@@ -1,5 +1,5 @@
 import React from 'react'
-import "./stylesheet/home.css"
+import './stylesheet/_globe.scss';
 import Intro from './components/Intro'
 
 function App() {

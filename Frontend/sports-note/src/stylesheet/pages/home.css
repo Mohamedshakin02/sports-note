@@ -1,0 +1,131 @@
+.line {
+  width: 50px;
+  height: 1.5px;
+  background-color: white;
+  opacity: 1;
+}
+
+.mobile-sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  right: 0; /* Menu slides in from right */
+  background-color: white;
+  overflow-x: hidden;
+  transition: width 0.4s ease;
+  padding-top: 60px;
+}
+
+.mobile-sidenav.open {
+  width: 250px;
+}
+
+.mobile-sidenav ul {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.mobile-sidenav ul li {
+  font-size: 20px;
+  display: block;
+  transition: 0.3s;
+}
+
+.mobile-sidenav ul li:hover {
+  color: #f1f1f1;
+}
+
+.mobile-sidenav ul li a {
+  color: #710004;
+}
+
+.mobile-sidenav .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 20px; /* Close icon on left inside the menu */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-sidenav .closebtn i {
+  font-size: 28px;
+  color: #710004 !important;
+}
+
+.auth-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  position: absolute;
+  right: 0;
+  background-color: #FCF0D6;
+  min-width: 160px;
+  overflow: hidden;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  /* Animation friendly properties */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none; /* prevent clicks when hidden */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-content.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto; /* enable clicks when visible */
+}
+
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+}
+
+.dropdown-content a:hover {
+  background-color: #710004;
+  color: white;
+}
+
+@media screen and (max-height: 450px) {
+  .mobile-sidenav {
+    padding-top: 15px;
+  }
+  .mobile-sidenav ul li {
+    font-size: 18px;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.intro-section {
+  background-image: url("../../assets/ronaldo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  min-height: 100svh;
+  position: relative;
+}
+.intro-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(113, 0, 4, 0.5647058824), rgba(252, 240, 214, 0.5647058824) 60%, rgba(107, 158, 189, 0.5647058824) 100%);
+  pointer-events: none;
+}/*# sourceMappingURL=home.css.map */
