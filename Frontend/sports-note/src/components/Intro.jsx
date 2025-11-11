@@ -6,7 +6,7 @@ import { Navigation as SwiperNavigation } from "swiper/modules";
 import Header from "./header";
 
 import football from "../assets/football.jpg";
-import cricket from "../assets/cricket.webp";
+import cricket from "../assets/cricket.jpg";
 import basketball from "../assets/basketball.jpg";
 import f1 from "../assets/f1.png";
 

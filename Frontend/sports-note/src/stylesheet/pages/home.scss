@@ -60,9 +60,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       z-index: 5;
 
       .dates-container {
@@ -188,21 +185,26 @@
   .intro-section{
     .intro-container {
       .content-container {
+        
 
         .dates-container {
           .dates-box {
-            width: 3.5rem;
-            height: 3.5rem;
+            width: 3rem;
+            height: 3rem;
+            font-size: 0.7rem;
           }
         }
 
         .quotes-container {
           .quotes-box {
-            width: 3.5rem;
+            width: 3rem;
           }
         }
 
         .desc-container {
+          width: 60% !important;
+          
+
           h1 {
             font-size: 2rem;
           }
