@@ -5,10 +5,10 @@ import "swiper/css/navigation";
 import { Navigation as SwiperNavigation } from "swiper/modules";
 import Header from "./header";
 
-import football from "../assets/football.jpg";
-import cricket from "../assets/cricket.jpg";
-import basketball from "../assets/basketball.jpg";
-import f1 from "../assets/f1.png";
+import football from "../assets/bg-image/football.jpg";
+import cricket from "../assets/bg-image/cricket.jpg";
+import basketball from "../assets/bg-image/basketball.jpg";
+import f1 from "../assets/bg-image/f1.png";
 
 const slides = [
   { id: 1, image: football },
