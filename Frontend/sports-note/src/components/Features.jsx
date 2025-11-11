@@ -7,15 +7,6 @@ import quotes from "../assets/logos/quotes.png";
 import techniques from "../assets/logos/techniques.png";
 import sessions from "../assets/logos/sessions.png";
 
-function MomentsPage() {
-    return (
-        <div className="moments-page container py-5">
-            <h2>Moments</h2>
-            <p>Here you can view and add your sports moments!</p>
-        </div>
-    );
-}
-
 function Features() {
     return (
         <BrowserRouter>
@@ -118,7 +109,7 @@ function Features() {
 
                 {/* Routes inside this component */}
                 {/* <Routes>
-          <Route path="/" element={<MomentsPage />} />
+          <Route path="/" element={} />
         </Routes> */}
             </section>
         </BrowserRouter>
