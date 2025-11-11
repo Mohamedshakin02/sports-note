@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 .line {
   width: 50px;
   height: 1.5px;
@@ -109,6 +110,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 .intro-section {
@@ -128,4 +130,32 @@
   height: 100%;
   background-image: linear-gradient(rgba(113, 0, 4, 0.5647058824), rgba(252, 240, 214, 0.5647058824) 60%, rgba(107, 158, 189, 0.5647058824) 100%);
   pointer-events: none;
+  z-index: 1;
+}
+.intro-section header {
+  position: relative;
+  z-index: 3;
+}
+.intro-section .intro-container {
+  position: relative;
+  z-index: 2;
+  min-height: calc(100svh - 80px);
+  display: flex;
+  justify-content: center;
+}
+.intro-section .content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  z-index: 2;
+}
+.intro-section .content-container .dates-container .dates-box {
+  background-color: #FCF0D6;
+}
+.intro-section .content-container .quotes-container .quotes-box {
+  background-color: #FCF0D6;
+}
+.intro-section .content-container .desc-container {
+  color: #000000;
 }/*# sourceMappingURL=home.css.map */

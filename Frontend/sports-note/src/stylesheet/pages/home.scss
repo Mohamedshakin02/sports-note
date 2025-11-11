@@ -5,15 +5,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: $poppins-font;
 }
 
 .intro-section {
   background-image: url("../../assets/ronaldo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-   background-position: center top;
+  background-position: center top;
   min-height: 100svh;
-  position: relative; 
+  position: relative;
 
   &::before {
     content: "";
@@ -22,11 +23,47 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(
-      #71000490,     
-      #FCF0D690 60%,
-      #6B9EBD90 100%   
-    );
-    pointer-events: none; 
+    background-image: linear-gradient(#71000490,
+        #fcf0d690 60%,
+        #6b9ebd90 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  header {
+    position: relative;
+    z-index: 3; // make header above gradient
+  }
+
+  .intro-container {
+    position: relative;
+    z-index: 2;
+    min-height: calc(100svh - 80px); // adjust for header height
+    display: flex;
+    justify-content: center; // vertical center
+  }
+
+  .content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    z-index: 2;
+
+    .dates-container {
+      .dates-box {
+        background-color: $yellow;
+      }
+    }
+
+    .quotes-container {
+      .quotes-box {
+        background-color: $yellow;
+      }
+    }
+
+    .desc-container {
+      color: $black;
+    }
   }
 }

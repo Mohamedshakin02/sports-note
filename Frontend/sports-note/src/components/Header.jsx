@@ -40,7 +40,7 @@ function Header() {
                                     className="btn btn-transparent text-white p-0"
                                     onClick={() => setMenuOpen(!menuOpen)}
                                 >
-                                    <i class="bi bi-grid-fill text-white fs-3"></i>
+                                    <i className="bi bi-grid-fill text-white fs-3"></i>
                                 </button>
 
                                 {/* Profile Icon (mobile right side) */}
@@ -72,15 +72,15 @@ function Header() {
                         {/* Desktop Menu Links */}
                         <div className="menu-links d-none d-lg-flex align-items-center">
                             <ul className="list-unstyled w-100 d-flex flex-md-row justify-content-between text-center text-decoration-none gap-2 m-0 p-0 fs-5">
-                                <li><Link to="/" className="text-decoration-none text-white fw-medium">Moments</Link></li>
+                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Moments</Link></li>
                                 <li><hr className="line"/></li>
-                                <li><Link to="/" className="text-decoration-none text-white fw-medium">Fixtures</Link></li>
+                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Fixtures</Link></li>
                                 <li><hr className="line"/></li>
-                                <li><Link to="/" className="text-decoration-none text-white fw-medium">Quotes</Link></li>
+                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Quotes</Link></li>
                                 <li><hr className="line"/></li>
-                                <li><Link to="/" className="text-decoration-none text-white fw-medium">Techniques</Link></li>
+                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Techniques</Link></li>
                                 <li><hr className="line"/></li>
-                                <li><Link to="/" className="text-decoration-none text-white fw-medium">Sessions</Link></li>
+                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Sessions</Link></li>
                             </ul>
                         </div>
 
