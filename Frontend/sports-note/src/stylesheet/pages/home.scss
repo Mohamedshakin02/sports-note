@@ -1,5 +1,4 @@
 @use "../abstract/variables" as *;
-@use "../components/header" as *;
 
 * {
   margin: 0;
@@ -8,62 +7,250 @@
   font-family: $poppins-font;
 }
 
-.intro-section {
-  background-image: url("../../assets/ronaldo.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center top;
-  min-height: 100svh;
-  position: relative;
+// Intro Section
 
-  &::before {
-    content: "";
+.intro-section {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+
+  .intro-swiper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .slide-image {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  .gradient-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(#71000490,
-        #fcf0d690 60%,
-        #6b9ebd90 100%);
-    pointer-events: none;
-    z-index: 1;
+    background-image: linear-gradient(#71000490, #fcf0d695 50%, #6b9ebd90 100%);
+    z-index: 5;
   }
 
   header {
     position: relative;
-    z-index: 3; // make header above gradient
+    z-index: 20;
   }
 
   .intro-container {
-    position: relative;
-    z-index: 2;
-    min-height: calc(100svh - 80px); // adjust for header height
-    display: flex;
-    justify-content: center; // vertical center
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+
+    .content-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 5;
+
+      .dates-container {
+        .dates-box {
+          background-color: $yellow;
+          width: 4rem;
+          height: 4rem;
+        }
+      }
+
+      .desc-container {
+        color: $black;
+
+        h1, p {
+          font-family: $inter-font;
+        }
+
+        h1 {
+          font-weight: 900;
+        }
+      }
+
+      .quotes-container {
+        .quotes-box {
+          background-color: $yellow;
+          width: 4rem;
+          aspect-ratio: 1/1;
+        }
+      }
+    }
   }
 
-  .content-container {
+  .slider-control {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 15;
+
+    .left-side {
+      .left-button {
+        position: absolute; 
+        left: -15px;
+        width: 80px;
+        height: 50px;
+        transform: skew(20deg);
+        background: $red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        i {
+          color: $yellow;
+          font-size: 1.5rem;
+          transform: skew(-20deg);
+        }
+      }
+    }
+
+    .right-side {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      right: -50px;
+
+      .indicator {
+        width: 20px;
+        height: 50px;
+        transform: skew(-20deg);
+        background-color: $red;
+
+        &.active {
+          background-color: $yellow;
+          border: 5px solid $red;
+        }
+      }
+
+      .right-button {
+        width: 80px;
+        height: 50px;
+        transform: skew(-20deg);
+        background: $red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        i {
+          color: $yellow;
+          font-size: 1.5rem;
+          transform: skew(20deg);
+        }
+      }
+    }
+  }
+
+  .scroll-down {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    z-index: 2;
+    animation: bounce 1.5s infinite;
+    z-index: 15;
 
-    .dates-container {
-      .dates-box {
-        background-color: $yellow;
+    .arrow {
+      font-size: 1.5rem;
+    }
+  }
+
+  @keyframes bounce {
+    0%,20%,50%,80%,100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+}
+
+@media (max-width: 576px){
+  .intro-section{
+    .intro-container {
+      .content-container {
+
+        .dates-container {
+          .dates-box {
+            width: 3.5rem;
+            height: 3.5rem;
+          }
+        }
+
+        .quotes-container {
+          .quotes-box {
+            width: 3.5rem;
+          }
+        }
+
+        .desc-container {
+          h1 {
+            font-size: 2rem;
+          }
+          p {
+            font-size: 1.2rem;
+          }
+        }
+
       }
     }
 
-    .quotes-container {
-      .quotes-box {
-        background-color: $yellow;
+    .slider-control {
+      .left-side {
+        .left-button {
+          left: -10px;
+          width: 60px;
+          height: 40px;
+          i {
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      .right-side {
+        gap: 0.5rem;
+        right: -40px;
+
+        .indicator {
+          width: 15px;
+          height: 40px;
+        }
+
+        .right-button {
+          width: 60px;
+          height: 40px;
+          i {
+            font-size: 1.2rem;
+          }
+        }
       }
     }
 
-    .desc-container {
-      color: $black;
+    .scroll-down {
+      bottom: 70px;
+      left: 48%;
+      .arrow {
+        font-size: 0.5rem;
+      }
     }
   }
 }

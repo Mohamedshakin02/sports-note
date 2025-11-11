@@ -23,7 +23,7 @@ function Header() {
     return (
         <BrowserRouter>
             <>
-                <header className="navbar navbar-expand-lg container-md pt-4">
+                <header className="navbar navbar-expand-lg container-md pt-4 px-2">
                     <nav className="navbar-nav w-100 d-flex flex-column flex-md-row justify-content-between text-center">
 
                         {/* Logo + Hamburger + Profile (Mobile) */}
@@ -71,15 +71,15 @@ function Header() {
 
                         {/* Desktop Menu Links */}
                         <div className="menu-links d-none d-lg-flex align-items-center">
-                            <ul className="list-unstyled w-100 d-flex flex-md-row justify-content-between text-center text-decoration-none gap-2 m-0 p-0 fs-5">
+                            <ul className="list-unstyled w-100 d-flex flex-md-row justify-content-between text-center text-decoration-none gap-2 m-0 p-0 fs-6">
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Moments</Link></li>
-                                <li><hr className="line"/></li>
+                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0"/></li>
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Fixtures</Link></li>
-                                <li><hr className="line"/></li>
+                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0"/></li>
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Quotes</Link></li>
-                                <li><hr className="line"/></li>
+                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0"/></li>
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Techniques</Link></li>
-                                <li><hr className="line"/></li>
+                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0"/></li>
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Sessions</Link></li>
                             </ul>
                         </div>
