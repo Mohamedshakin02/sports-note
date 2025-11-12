@@ -158,6 +158,37 @@
   }
 }
 
+@media only screen and (max-width: 992px) and (orientation: landscape) {
+  .intro-section .intro-container .content-container .dates-container .dates-box {
+    width: 3rem;
+    height: 3rem;
+    font-size: 0.7rem;
+  }
+  .intro-section .intro-container .content-container .dates-container .dates-box .day {
+    font-size: 1.2rem !important;
+  }
+  .intro-section .intro-container .content-container .quotes-container .quotes-box {
+    width: 3rem;
+  }
+  .intro-section .intro-container .content-container .quotes-container .quotes-box p {
+    font-size: 1.3rem;
+  }
+  .intro-section .intro-container .content-container .desc-container {
+    width: 60% !important;
+  }
+  .intro-section .intro-container .content-container .desc-container h1 {
+    font-size: 1.8rem;
+  }
+  .intro-section .intro-container .content-container .desc-container p {
+    font-size: 1rem;
+  }
+  .intro-section .intro-container .slider-control .right-side {
+    right: -50px;
+  }
+  .intro-section .slider-control .right-side {
+    right: -50px;
+  }
+}
 @media (max-width: 576px) {
   .intro-section .intro-container .content-container .dates-container .dates-box {
     width: 3rem;
