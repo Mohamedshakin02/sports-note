@@ -129,68 +129,64 @@ function Header() {
 
                         <ul className="list-unstyled mt-5 gap-3 mx-3">
 
-                                {/* Moments */}
-                                <li className="d-flex flex-column align-items-center justify-content-center">
+                            <li>
+                                <Link
+                                    to="/moments"
+                                    className="text-decoration-none text-white h-100 d-flex flex-column align-items-center justify-content-center"
+                                    onClick={() => setMenuOpen(false)}
+                                >
                                     <img src={moments} alt="" className="img-fluid mb-2" />
-                                    <Link
-                                        to="/"
-                                        className="text-decoration-none text-white"
-                                        onClick={() => setMenuOpen(false)}
-                                    >
-                                        Moments
-                                    </Link>
-                                </li>
+                                    <span>Moments</span>
+                                </Link>
+                            </li>
 
-                                {/* Fixtures */}
-                                <li className="d-flex flex-column align-items-center justify-content-center">
+                            <li>
+                                <Link
+                                    to="/"
+                                    className="text-decoration-none text-white h-100 d-flex flex-column align-items-center justify-content-center"
+                                    onClick={() => setMenuOpen(false)}
+                                >
                                     <img src={fixtures} alt="" className="img-fluid mb-2" />
-                                    <Link
-                                        to="/"
-                                        className="text-decoration-none text-white"
-                                        onClick={() => setMenuOpen(false)}
-                                    >
-                                        Fixtures
-                                    </Link>
-                                </li>
+                                    <span>Fixtures</span>
+                                </Link>
+                            </li>
 
-                                {/* Quotes */}
-                                <li className="d-flex flex-column align-items-center justify-content-center">
+                            <li>
+                                <Link
+                                    to="/"
+                                    className="text-decoration-none text-white h-100 d-flex flex-column align-items-center justify-content-center"
+                                    onClick={() => setMenuOpen(false)}
+                                >
                                     <img src={quotes} alt="" className="img-fluid mb-2" />
-                                    <Link
-                                        to="/"
-                                        className="text-decoration-none text-white"
-                                        onClick={() => setMenuOpen(false)}
-                                    >
-                                        Quotes
-                                    </Link>
-                                </li>
+                                    <span>Quotes</span>
+                                </Link>
+                            </li>
 
-                                {/* Techniques */}
-                                <li className="d-flex flex-column align-items-center justify-content-center">
+                            <li>
+                                <Link
+                                    to="/"
+                                    className="text-decoration-none text-white h-100 d-flex flex-column align-items-center justify-content-center"
+                                    onClick={() => setMenuOpen(false)}
+                                >
                                     <img src={techniques} alt="" className="img-fluid mb-2" />
-                                    <Link
-                                        to="/"
-                                        className="text-decoration-none text-white"
-                                        onClick={() => setMenuOpen(false)}
-                                    >
-                                        Techniques
-                                    </Link>
-                                </li>
+                                    <span>Techniques</span>
+                                </Link>
+                            </li>
 
-                                {/* Sessions */}
-                                <li className="d-flex flex-column align-items-center justify-content-center">
+                            <li>
+                                <Link
+                                    to="/"
+                                    className="text-decoration-none text-white h-100 d-flex flex-column align-items-center justify-content-center"
+                                    onClick={() => setMenuOpen(false)}
+                                >
                                     <img src={sessions} alt="" className="img-fluid mb-2" />
-                                    <Link
-                                        to="/"
-                                        className="text-decoration-none text-white"
-                                        onClick={() => setMenuOpen(false)}
-                                    >
-                                        Sessions
-                                    </Link>
-                                </li>
+                                    <span>Sessions</span>
+                                </Link>
+                            </li>
 
-                            </ul>
-                        </div>
+                        </ul>
+
+                    </div>
 
                 </nav>
             </header>
