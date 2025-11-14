@@ -1,0 +1,132 @@
+@use "../abstract/reset" as *;
+@use "../abstract/variables" as *;
+
+.features-section {
+  background-color: $yellow;
+
+  .features-container {
+    .top-container {
+      .heading {
+        width: 40%;
+        color: $red;
+
+        h1 {
+          font-weight: 600;
+        }
+
+      }
+
+      .desc {
+        width: 50%;
+        color: $black;
+
+        p {
+          font-weight: 500;
+        }
+      }
+    }
+
+    .bottom-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 2rem;
+      row-gap: 3rem;
+
+      .feature-box {
+        flex: 1 1 350px;
+        max-width: 400px;
+        border-left: 3px solid $red;
+        padding-left: 1rem;
+
+        .box-content {
+          h1 {
+            color: $red;
+          }
+        }
+
+        .box-link {
+          p {
+            a {
+              color: $black;
+              font-weight: 500;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .features-section {
+    .features-container {
+      .bottom-container {
+
+        .feature-box {
+          flex: 1 1 300px;
+          max-width: 350px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .features-section {
+    .features-container {
+      .top-container {
+        flex-direction: column;
+
+        .heading {
+          width: 100%;
+        }
+
+        .desc {
+          width: 100%;
+        }
+      }
+
+      .bottom-container {
+
+        .feature-box {
+          flex: 1 1 400px;
+          max-width: 450px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .features-section {
+    .features-container {
+      .bottom-container {
+        justify-content: center;
+
+        .feature-box {
+          flex: 1 1 300px;
+          max-width: 350px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .features-section {
+    .features-container {
+      .bottom-container {
+        justify-content:flex-start;
+        gap: 4rem;
+
+        .feature-box {
+          flex: 1 1 520px;
+          max-width: unset;
+        }
+      }
+    }
+  }
+
+}

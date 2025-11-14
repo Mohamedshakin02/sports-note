@@ -1,4 +1,138 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.line {
+  width: 50px;
+  height: 1.5px;
+  background-color: white;
+  opacity: 1;
+}
+
+.menu-links ul li a:hover {
+  color: #FCF0D6 !important;
+}
+
+.mobile-sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  right: 0;
+  /* Menu slides in from right */
+  background-color: white;
+  overflow-x: hidden;
+  transition: width 0.4s ease;
+  padding-top: 60px;
+}
+
+.mobile-sidenav.open {
+  width: 250px;
+}
+
+.mobile-sidenav ul {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.mobile-sidenav ul li {
+  font-size: 12px;
+  display: block;
+  transition: 0.3s;
+  background-color: #710004;
+  width: 100px;
+  aspect-ratio: 1/1;
+}
+.mobile-sidenav ul li img {
+  width: 30px;
+  height: 30px;
+}
+.mobile-sidenav ul li a {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.mobile-sidenav ul li:hover {
+  color: #f1f1f1;
+}
+
+.mobile-sidenav ul li a {
+  color: #710004;
+}
+
+.mobile-sidenav .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  /* Close icon on left inside the menu */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-sidenav .closebtn i {
+  font-size: 28px;
+  color: #710004 !important;
+  font-weight: 700;
+}
+
+.auth-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  position: absolute;
+  right: 0;
+  background-color: #FCF0D6;
+  min-width: 160px;
+  overflow: hidden;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  /* Animation friendly properties */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  /* prevent clicks when hidden */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-content.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  /* enable clicks when visible */
+}
+
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+}
+
+.dropdown-content a:hover {
+  background-color: #710004;
+  color: white;
+}
+
+@media screen and (max-height: 450px) {
+  .mobile-sidenav {
+    padding-top: 15px;
+  }
+  .mobile-sidenav ul li {
+    font-size: 18px;
+  }
+}
 .intro-section {
   position: relative;
   width: 100%;
@@ -232,13 +366,6 @@
     font-size: 0.5rem;
   }
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 .features-section {
   background-color: #FCF0D6;
 }
