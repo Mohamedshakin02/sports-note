@@ -1,338 +1,12 @@
 @use "../abstract/variables" as *;
+@use "../components/intro.scss" as *;
+
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: $poppins-font;
-}
-
-// Intro Section
-
-.intro-section {
-  position: relative;
-  width: 100%;
-  height: 100svh;
-  overflow: hidden;
-
-  .intro-swiper {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    .slide-image {
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-    }
-  }
-
-  .gradient-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(#71000490, #fcf0d695 50%, #6b9ebd90 100%);
-    z-index: 5;
-  }
-
-  header {
-    position: relative;
-    z-index: 20;
-  }
-
-  .intro-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-
-    .content-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-
-      .dates-container {
-        .dates-box {
-          background-color: $yellow;
-          width: 4rem;
-          height: 4rem;
-        }
-      }
-
-      .desc-container {
-        color: $black;
-
-        h1,
-        p {
-          font-family: $inter-font;
-        }
-
-        h1 {
-          font-weight: 900;
-        }
-      }
-
-      .quotes-container {
-        .quotes-box {
-          background-color: $yellow;
-          width: 4rem;
-          aspect-ratio: 1/1;
-        }
-      }
-    }
-  }
-
-  .slider-control {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 2rem;
-    z-index: 15;
-
-    .left-side {
-      .left-button {
-        position: absolute;
-        left: -15px;
-        width: 80px;
-        height: 50px;
-        transform: skew(20deg);
-        background: $red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-
-        i {
-          color: $yellow;
-          font-size: 1.5rem;
-          transform: skew(-20deg);
-        }
-      }
-    }
-
-    .right-side {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      position: relative;
-      right: -50px;
-
-      .indicator {
-        width: 20px;
-        height: 50px;
-        transform: skew(-20deg);
-        background-color: $red;
-
-        &.active {
-          background-color: $yellow;
-          border: 5px solid $red;
-        }
-      }
-
-      .right-button {
-        width: 80px;
-        height: 50px;
-        transform: skew(-20deg);
-        background: $red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-
-        i {
-          color: $yellow;
-          font-size: 1.5rem;
-          transform: skew(20deg);
-        }
-      }
-    }
-  }
-
-  .scroll-down {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 15;
-
-    .arrow {
-      font-size: 1.5rem;
-      animation: bounce 1.5s infinite;
-    }
-  }
-
-  @keyframes bounce {
-
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-      transform: translateY(0);
-    }
-
-    40% {
-      transform: translateY(-10px);
-    }
-
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-}
-
-@media only screen and (max-width: 992px) and (orientation: landscape) {
-  .intro-section {
-    .intro-container {
-      .content-container {
-
-
-        .dates-container {
-          .dates-box {
-            width: 3rem;
-            height: 3rem;
-            font-size: 0.7rem;
-
-            .day {
-              font-size: 1.2rem !important;
-            }
-          }
-        }
-
-        .quotes-container {
-          .quotes-box {
-            width: 3rem;
-
-            p {
-              font-size: 1.3rem;
-            }
-          }
-        }
-
-        .desc-container {
-          width: 60% !important;
-
-
-          h1 {
-            font-size: 1.8rem;
-          }
-
-          p {
-            font-size: 1rem;
-          }
-        }
-
-      }
-
-      .slider-control {
-        .right-side {
-          right: -50px;
-        }
-      }
-    }
-
-    .slider-control {
-      .right-side {
-        right: -50px;
-      }
-    }
-  }
-}
-
-@media (max-width: 576px) {
-  .intro-section {
-    .intro-container {
-      .content-container {
-
-
-        .dates-container {
-          .dates-box {
-            width: 3rem;
-            height: 3rem;
-            font-size: 0.7rem;
-          }
-        }
-
-        .quotes-container {
-          .quotes-box {
-            width: 3rem;
-          }
-        }
-
-        .desc-container {
-          width: 60% !important;
-
-
-          h1 {
-            font-size: 2rem;
-          }
-
-          p {
-            font-size: 1.2rem;
-          }
-        }
-
-      }
-    }
-
-    .slider-control {
-      .left-side {
-        .left-button {
-          left: -10px;
-          width: 60px;
-          height: 40px;
-
-          i {
-            font-size: 1.2rem;
-          }
-        }
-      }
-
-      .right-side {
-        gap: 0.5rem;
-        right: -40px;
-
-        .indicator {
-          width: 15px;
-          height: 40px;
-        }
-
-        .right-button {
-          width: 60px;
-          height: 40px;
-
-          i {
-            font-size: 1.2rem;
-          }
-        }
-      }
-    }
-
-    .scroll-down {
-      bottom: 70px;
-      left: 48%;
-
-      .arrow {
-        font-size: 0.5rem;
-      }
-    }
-  }
 }
 
 .features-section {
@@ -399,8 +73,8 @@
       .bottom-container {
 
         .feature-box {
-          flex: 1 1 520px;
-          max-width: 400px;
+          flex: 1 1 300px;
+          max-width: 350px;
         }
       }
     }
@@ -421,6 +95,14 @@
           width: 100%;
         }
       }
+
+      .bottom-container {
+
+        .feature-box {
+          flex: 1 1 400px;
+          max-width: 450px;
+        }
+      }
     }
   }
 }
@@ -432,7 +114,8 @@
         justify-content: center;
 
         .feature-box {
-          flex: 1 1 250px;
+          flex: 1 1 300px;
+          max-width: 350px;
         }
       }
     }
