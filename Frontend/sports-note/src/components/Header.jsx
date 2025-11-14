@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+import moments from "../assets/logos/moments-white.png";
+import fixtures from "../assets/logos/fixtures-white.png";
+import quotes from "../assets/logos/quotes-white.png";
+import techniques from "../assets/logos/techniques-white.png";
+import sessions from "../assets/logos/sessions-white.png";
 
 // import Home from './Home';
 // import Login from './Login';
@@ -73,13 +79,13 @@ function Header() {
                         <div className="menu-links d-none d-lg-flex align-items-center">
                             <ul className="list-unstyled w-100 d-flex flex-md-row justify-content-between text-center text-decoration-none gap-2 m-0 p-0 fs-6">
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Moments</Link></li>
-                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0"/></li>
+                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Fixtures</Link></li>
-                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0"/></li>
+                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Quotes</Link></li>
-                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0"/></li>
+                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Techniques</Link></li>
-                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0"/></li>
+                                <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
                                 <li><Link to="/" className="text-decoration-none text-white fw-normal">Sessions</Link></li>
                             </ul>
                         </div>
@@ -100,18 +106,76 @@ function Header() {
                         </div>
 
                         {/* Mobile slide-in menu from right */}
-                        <div className={`mobile-sidenav ${menuOpen ? "open" : ""}`}>
+                        <div className={`mobile-sidenav ${menuOpen ? "open" : ""}` }>
                             <button className="closebtn" onClick={() => setMenuOpen(false)}>
                                 <i className="bi bi-x-lg text-white fs-3"></i>
                             </button>
-                            <ul className="list-unstyled mt-4">
-                                <li><Link to="/" className="text-decoration-none" onClick={() => setMenuOpen(false)}>Moments</Link></li>
-                                <li><Link to="/" className="text-decoration-none" onClick={() => setMenuOpen(false)}>Fixtures</Link></li>
-                                <li><Link to="/" className="text-decoration-none" onClick={() => setMenuOpen(false)}>Quotes</Link></li>
-                                <li><Link to="/" className="text-decoration-none" onClick={() => setMenuOpen(false)}>Techniques</Link></li>
-                                <li><Link to="/" className="text-decoration-none" onClick={() => setMenuOpen(false)}>Sessions</Link></li>
+
+                            <ul className="list-unstyled mt-4 mt-md-5 gap-3 mx-3">
+
+                                {/* Moments */}
+                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                    <img src={moments} alt="" className="img-fluid mb-2" />
+                                    <Link
+                                        to="/"
+                                        className="text-decoration-none text-white"
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        Moments
+                                    </Link>
+                                </li>
+
+                                {/* Fixtures */}
+                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                    <img src={fixtures} alt="" className="img-fluid mb-2" />
+                                    <Link
+                                        to="/"
+                                        className="text-decoration-none text-white"
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        Fixtures
+                                    </Link>
+                                </li>
+
+                                {/* Quotes */}
+                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                    <img src={quotes} alt="" className="img-fluid mb-2" />
+                                    <Link
+                                        to="/"
+                                        className="text-decoration-none text-white"
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        Quotes
+                                    </Link>
+                                </li>
+
+                                {/* Techniques */}
+                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                    <img src={techniques} alt="" className="img-fluid mb-2" />
+                                    <Link
+                                        to="/"
+                                        className="text-decoration-none text-white"
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        Techniques
+                                    </Link>
+                                </li>
+
+                                {/* Sessions */}
+                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                    <img src={sessions} alt="" className="img-fluid mb-2" />
+                                    <Link
+                                        to="/"
+                                        className="text-decoration-none text-white"
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        Sessions
+                                    </Link>
+                                </li>
+
                             </ul>
                         </div>
+
                     </nav>
                 </header>
 

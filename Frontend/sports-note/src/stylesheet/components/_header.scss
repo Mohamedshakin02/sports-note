@@ -41,9 +41,22 @@
 }
 
 .mobile-sidenav ul li {
-  font-size: 20px;
+  font-size: 12px;
   display: block;
   transition: 0.3s;
+  background-color: $red;
+  width: 100px;
+  aspect-ratio: 1/1;
+
+  img{
+    width: 30px;
+    height: 30px;
+  }
+
+  a{
+    font-weight: 500;
+    font-size: 14px;
+  }
 }
 
 .mobile-sidenav ul li:hover {
