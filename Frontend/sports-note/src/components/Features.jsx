@@ -36,7 +36,7 @@ function Features() {
 
                             <div className='box-link'>
                                 <p>
-                                    <Link to="/" className="text-decoration-none fs-4 m-0 p-0">Explore</Link>
+                                    <Link to="/" className="text-decoration-none fs-5 m-0 p-0">Explore</Link>
                                 </p>
                             </div>
                         </div>
@@ -52,7 +52,7 @@ function Features() {
 
                             <div className='box-link'>
                                 <p>
-                                    <Link to="/" className="text-decoration-none fs-4 m-0 p-0">Explore</Link>
+                                    <Link to="/" className="text-decoration-none fs-5 m-0 p-0">Explore</Link>
                                 </p>
                             </div>
                         </div>
@@ -68,7 +68,7 @@ function Features() {
 
                             <div className='box-link'>
                                 <p>
-                                    <Link to="/" className="text-decoration-none fs-4 m-0 p-0">Explore</Link>
+                                    <Link to="/" className="text-decoration-none fs-5 m-0 p-0">Explore</Link>
                                 </p>
                             </div>
                         </div>
@@ -84,7 +84,7 @@ function Features() {
 
                             <div className='box-link'>
                                 <p>
-                                    <Link to="/" className="text-decoration-none fs-4 m-0 p-0">Explore</Link>
+                                    <Link to="/" className="text-decoration-none fs-5 m-0 p-0">Explore</Link>
                                 </p>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ function Features() {
 
                             <div className='box-link'>
                                 <p>
-                                    <Link to="/" className="text-decoration-none fs-4 m-0 p-0">Explore</Link>
+                                    <Link to="/" className="text-decoration-none fs-5 m-0 p-0">Explore</Link>
                                 </p>
                             </div>
                         </div>
