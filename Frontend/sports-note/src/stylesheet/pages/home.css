@@ -28,7 +28,7 @@
   background-color: white;
   overflow-x: hidden;
   transition: width 0.4s ease;
-  padding-top: 60px;
+  padding-top: 20px;
 }
 
 .mobile-sidenav.open {
@@ -69,7 +69,6 @@
   position: absolute;
   top: 10px;
   right: 20px;
-  /* Close icon on left inside the menu */
   background: none;
   border: none;
   cursor: pointer;
@@ -78,7 +77,11 @@
 .mobile-sidenav .closebtn i {
   font-size: 28px;
   color: #710004 !important;
-  font-weight: 700;
+  font-weight: 700 !important;
+}
+
+.mobile-sidenav .closebtn i::before {
+  font-weight: 700 !important;
 }
 
 .auth-dropdown {

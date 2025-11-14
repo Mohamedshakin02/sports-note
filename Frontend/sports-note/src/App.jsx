@@ -1,14 +1,16 @@
 import React from 'react'
-import './stylesheet/pages/home.css';
-import Intro from './components/Intro'
-import Features from './components/Features';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MomentsPage from './pages/MomentsPage';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <>
-      <Intro/>
-      <Features/>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/moments" element={<MomentsPage/>} />
+        <Route path="/" element={<HomePage/>} />  
+      </Routes>
+    </BrowserRouter>
   )
 }
 
