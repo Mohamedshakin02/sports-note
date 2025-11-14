@@ -77,16 +77,16 @@ function Header() {
 
                         {/* Desktop Menu Links */}
                         <div className="menu-links d-none d-lg-flex align-items-center">
-                            <ul className="list-unstyled w-100 d-flex flex-md-row justify-content-between text-center text-decoration-none gap-2 m-0 p-0 fs-6">
-                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Moments</Link></li>
+                            <ul className="list-unstyled nav nav-underline w-100 d-flex flex-md-row justify-content-between text-center text-decoration-none gap-2 m-0 p-0 fs-6">
+                                <li className="nav-item"><Link to="/" className="nav-link text-decoration-none text-white fw-normal">Moments</Link></li>
                                 <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
-                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Fixtures</Link></li>
+                                <li className="nav-item"><Link to="/" className="nav-link text-decoration-none text-white fw-normal">Fixtures</Link></li>
                                 <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
-                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Quotes</Link></li>
+                                <li className="nav-item"><Link to="/" className="nav-link text-decoration-none text-white fw-normal">Quotes</Link></li>
                                 <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
-                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Techniques</Link></li>
+                                <li className="nav-item"><Link to="/" className="nav-link text-decoration-none text-white fw-normal">Techniques</Link></li>
                                 <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
-                                <li><Link to="/" className="text-decoration-none text-white fw-normal">Sessions</Link></li>
+                                <li className="nav-item"><Link to="/" className="nav-link text-decoration-none text-white fw-normal">Sessions</Link></li>
                             </ul>
                         </div>
 
