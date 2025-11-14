@@ -111,10 +111,10 @@ function Header() {
                                 <i className="bi bi-x-lg text-white fs-3"></i>
                             </button>
 
-                            <ul className="list-unstyled mt-4 mt-md-5 gap-3 mx-3">
+                            <ul className="list-unstyled mt-5 gap-3 mx-3">
 
                                 {/* Moments */}
-                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                <li className="d-flex flex-column align-items-center justify-content-center">
                                     <img src={moments} alt="" className="img-fluid mb-2" />
                                     <Link
                                         to="/"
@@ -126,7 +126,7 @@ function Header() {
                                 </li>
 
                                 {/* Fixtures */}
-                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                <li className="d-flex flex-column align-items-center justify-content-center">
                                     <img src={fixtures} alt="" className="img-fluid mb-2" />
                                     <Link
                                         to="/"
@@ -138,7 +138,7 @@ function Header() {
                                 </li>
 
                                 {/* Quotes */}
-                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                <li className="d-flex flex-column align-items-center justify-content-center">
                                     <img src={quotes} alt="" className="img-fluid mb-2" />
                                     <Link
                                         to="/"
@@ -150,7 +150,7 @@ function Header() {
                                 </li>
 
                                 {/* Techniques */}
-                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                <li className="d-flex flex-column align-items-center justify-content-center">
                                     <img src={techniques} alt="" className="img-fluid mb-2" />
                                     <Link
                                         to="/"
@@ -162,7 +162,7 @@ function Header() {
                                 </li>
 
                                 {/* Sessions */}
-                                <li className="d-flex flex-column align-items-center justify-content-center mb-3">
+                                <li className="d-flex flex-column align-items-center justify-content-center">
                                     <img src={sessions} alt="" className="img-fluid mb-2" />
                                     <Link
                                         to="/"

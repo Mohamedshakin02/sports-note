@@ -73,7 +73,8 @@
       .desc-container {
         color: $black;
 
-        h1, p {
+        h1,
+        p {
           font-family: $inter-font;
         }
 
@@ -103,7 +104,7 @@
 
     .left-side {
       .left-button {
-        position: absolute; 
+        position: absolute;
         left: -15px;
         width: 80px;
         height: 50px;
@@ -113,6 +114,7 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
+
         i {
           color: $yellow;
           font-size: 1.5rem;
@@ -149,6 +151,7 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
+
         i {
           color: $yellow;
           font-size: 1.5rem;
@@ -175,17 +178,30 @@
   }
 
   @keyframes bounce {
-    0%,20%,50%,80%,100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+
+    40% {
+      transform: translateY(-10px);
+    }
+
+    60% {
+      transform: translateY(-5px);
+    }
   }
 }
 
-@media only screen and (max-width: 992px) and (orientation: landscape){
-  .intro-section{
+@media only screen and (max-width: 992px) and (orientation: landscape) {
+  .intro-section {
     .intro-container {
       .content-container {
-        
+
 
         .dates-container {
           .dates-box {
@@ -193,7 +209,7 @@
             height: 3rem;
             font-size: 0.7rem;
 
-            .day{
+            .day {
               font-size: 1.2rem !important;
             }
           }
@@ -203,7 +219,7 @@
           .quotes-box {
             width: 3rem;
 
-            p{
+            p {
               font-size: 1.3rem;
             }
           }
@@ -211,11 +227,12 @@
 
         .desc-container {
           width: 60% !important;
-          
+
 
           h1 {
             font-size: 1.8rem;
           }
+
           p {
             font-size: 1rem;
           }
@@ -224,10 +241,10 @@
       }
 
       .slider-control {
-          .right-side {
-            right: -50px;
-          }
+        .right-side {
+          right: -50px;
         }
+      }
     }
 
     .slider-control {
@@ -238,11 +255,11 @@
   }
 }
 
-@media (max-width: 576px){
-  .intro-section{
+@media (max-width: 576px) {
+  .intro-section {
     .intro-container {
       .content-container {
-        
+
 
         .dates-container {
           .dates-box {
@@ -260,11 +277,12 @@
 
         .desc-container {
           width: 60% !important;
-          
+
 
           h1 {
             font-size: 2rem;
           }
+
           p {
             font-size: 1.2rem;
           }
@@ -279,6 +297,7 @@
           left: -10px;
           width: 60px;
           height: 40px;
+
           i {
             font-size: 1.2rem;
           }
@@ -297,6 +316,7 @@
         .right-button {
           width: 60px;
           height: 40px;
+
           i {
             font-size: 1.2rem;
           }
@@ -307,6 +327,7 @@
     .scroll-down {
       bottom: 70px;
       left: 48%;
+
       .arrow {
         font-size: 0.5rem;
       }
@@ -314,50 +335,53 @@
   }
 }
 
-.features-section{
+.features-section {
   background-color: $yellow;
 
-  .features-container{
-    .top-container{
-      .heading{
+  .features-container {
+    .top-container {
+      .heading {
         width: 40%;
         color: $red;
 
-        h1{
+        h1 {
           font-weight: 600;
         }
 
       }
 
-      .desc{
-        width:50%;
+      .desc {
+        width: 50%;
         color: $black;
 
-        p{
+        p {
           font-weight: 500;
         }
       }
     }
 
-    .bottom-container{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 5rem;
+    .bottom-container {
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      column-gap: 2rem;
+      row-gap: 3rem;
 
-
-      .feature-box{
+      .feature-box {
+        flex: 1 1 350px;
+        max-width: 400px;
         border-left: 3px solid $red;
+        padding-left: 1rem;
 
-        .box-content{
-          h1{
+        .box-content {
+          h1 {
             color: $red;
           }
         }
 
-        .box-link{
-          p{
-            a{
+        .box-link {
+          p {
+            a {
               color: $black;
               font-weight: 500;
             }
@@ -369,29 +393,63 @@
   }
 }
 
-@media (max-width: 1200px){
-  .features-section{
-    .features-container{
-      .top-container{
-        flex-direction: column;
+@media (max-width: 1400px) {
+  .features-section {
+    .features-container {
+      .bottom-container {
 
-        .heading{
-          width: 100%;
-        }
-
-        .desc{
-          width:100%;
+        .feature-box {
+          flex: 1 1 520px;
+          max-width: 400px;
         }
       }
     }
   }
 }
 
-@media (max-width: 768px){
-  .features-section{
-    .features-container{
-      .bottom-container{
+@media (max-width: 1200px) {
+  .features-section {
+    .features-container {
+      .top-container {
+        flex-direction: column;
+
+        .heading {
+          width: 100%;
+        }
+
+        .desc {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .features-section {
+    .features-container {
+      .bottom-container {
+        justify-content: center;
+
+        .feature-box {
+          flex: 1 1 250px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .features-section {
+    .features-container {
+      .bottom-container {
+        justify-content:flex-start;
         gap: 4rem;
+
+        .feature-box {
+          flex: 1 1 520px;
+          max-width: unset;
+        }
       }
     }
   }
