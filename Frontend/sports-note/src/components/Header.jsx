@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import moments from "../assets/logos/moments-white.png";
 import fixtures from "../assets/logos/fixtures-white.png";
@@ -76,31 +76,31 @@ function Header() {
                         <ul className="list-unstyled nav nav-underline w-100 d-flex flex-md-row justify-content-between text-center gap-2 m-0 p-0 fs-6">
 
                             <li className="nav-item">
-                                <Link to="/moments" className="nav-link text-white fw-normal">Moments</Link>
+                                <NavLink to="/moments" className="nav-link text-white fw-normal">Moments</NavLink>
                             </li>
 
                             <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
 
                             <li className="nav-item">
-                                <Link to="/" className="nav-link text-white fw-normal">Fixtures</Link>
+                                <NavLink to="/fixtures" className="nav-link text-white fw-normal">Fixtures</NavLink>
                             </li>
 
                             <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
 
                             <li className="nav-item">
-                                <Link to="/" className="nav-link text-white fw-normal">Quotes</Link>
+                                <NavLink to="/quotes" className="nav-link text-white fw-normal">Quotes</NavLink>
                             </li>
 
                             <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
 
                             <li className="nav-item">
-                                <Link to="/" className="nav-link text-white fw-normal">Techniques</Link>
+                                <NavLink to="/techniques" className="nav-link text-white fw-normal">Techniques</NavLink>
                             </li>
 
                             <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
 
                             <li className="nav-item">
-                                <Link to="/" className="nav-link text-white fw-normal">Sessions</Link>
+                                <NavLink to="/sessions" className="nav-link text-white fw-normal">Sessions</NavLink>
                             </li>
 
                         </ul>
@@ -142,7 +142,7 @@ function Header() {
 
                             <li>
                                 <Link
-                                    to="/"
+                                    to="/fixtures"
                                     className="text-decoration-none text-white h-100 d-flex flex-column align-items-center justify-content-center"
                                     onClick={() => setMenuOpen(false)}
                                 >
@@ -153,7 +153,7 @@ function Header() {
 
                             <li>
                                 <Link
-                                    to="/"
+                                    to="/quotes"
                                     className="text-decoration-none text-white h-100 d-flex flex-column align-items-center justify-content-center"
                                     onClick={() => setMenuOpen(false)}
                                 >
@@ -164,7 +164,7 @@ function Header() {
 
                             <li>
                                 <Link
-                                    to="/"
+                                    to="/techniques"
                                     className="text-decoration-none text-white h-100 d-flex flex-column align-items-center justify-content-center"
                                     onClick={() => setMenuOpen(false)}
                                 >
@@ -175,7 +175,7 @@ function Header() {
 
                             <li>
                                 <Link
-                                    to="/"
+                                    to="/sessions"
                                     className="text-decoration-none text-white h-100 d-flex flex-column align-items-center justify-content-center"
                                     onClick={() => setMenuOpen(false)}
                                 >
