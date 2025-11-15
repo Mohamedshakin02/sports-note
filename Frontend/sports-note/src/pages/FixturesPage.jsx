@@ -13,7 +13,7 @@ function FixturesPage() {
             background-color: #FCF0D6; 
           }
 
-          .logo p a, .menu-links li a{
+          .logo p a, .menu-links li a, .Logo a{
             color: black !important
           }
 
@@ -21,7 +21,7 @@ function FixturesPage() {
             color: #710004 !important;
           }
 
-          .auth-dropdown i, .menu-links li hr{
+          .auth-dropdown i, .bi-grid-fill, .menu-links li hr{
            filter: invert(100%);
           }
            

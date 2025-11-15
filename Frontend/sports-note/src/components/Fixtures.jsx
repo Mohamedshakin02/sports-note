@@ -73,7 +73,7 @@ function Fixtures() {
 
             <div className="bottom-container p-4">
               <p className="m-0 p-0 mb-2 fs-4 fw-bolder">{fixture.match}</p>
-              <p className="m-0 p-0 fs-6"> <span><i class="bi bi-clock me-2"></i></span>{fixture.time}</p>
+              <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span>{fixture.time}</p>
             </div>
           </div>
         ))}
