@@ -6,6 +6,157 @@
   font-family: "Poppins", sans-serif;
 }
 
+.moments-section .heading-container {
+  color: #FCF0D6;
+}
+.moments-section .heading-container h1 {
+  font-weight: 600;
+}
+.moments-section .heading-container p {
+  color: #FFFFFF;
+}
+.moments-section .grid-container {
+  -moz-column-count: 3;
+       column-count: 3;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+  width: 100%;
+}
+@media screen and (max-width: 1200px) {
+  .moments-section .grid-container {
+    -moz-column-count: 2;
+         column-count: 2;
+  }
+}
+@media screen and (max-width: 576px) {
+  .moments-section .grid-container {
+    -moz-column-count: 1;
+         column-count: 1;
+  }
+}
+.moments-section .grid-container .moment-box {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  -moz-column-break-inside: avoid;
+       break-inside: avoid;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  background-color: #FCF0D6;
+  overflow: hidden;
+}
+.moments-section .grid-container .moment-box .moment-image {
+  width: 100%;
+  height: 250px;
+  position: relative;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  /* NO IMAGE BOX */
+}
+.moments-section .grid-container .moment-box .moment-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.moments-section .grid-container .moment-box .moment-image .sport-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #710004;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  z-index: 4;
+}
+.moments-section .grid-container .moment-box .moment-image .menu-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 5;
+  background-color: #710004;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.moments-section .grid-container .moment-box .moment-image .menu-wrapper .menu-icon {
+  font-size: 1.2rem;
+  color: white;
+}
+.moments-section .grid-container .moment-box .moment-image .menu-wrapper .menu-dropdown {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  width: 110px;
+}
+.moments-section .grid-container .moment-box .moment-image .menu-wrapper .menu-dropdown button {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: white;
+  font-size: 0.9rem;
+  text-align: left;
+}
+.moments-section .grid-container .moment-box .moment-image .menu-wrapper .menu-dropdown button:hover {
+  background: #f5f5f5;
+}
+.moments-section .grid-container .moment-box .moment-image .menu-wrapper.show .menu-dropdown {
+  display: block !important;
+}
+.moments-section .grid-container .moment-box .moment-image.no-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FCF0D6;
+}
+.moments-section .grid-container .moment-box .moment-image.no-image-wrapper .no-image-inner {
+  width: 40%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.moments-section .grid-container .moment-box .moment-image.no-image-wrapper .no-image-inner img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.moments-section .grid-container .moment-box .moment-image::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 75%;
+  bottom: 0;
+  width: 100%;
+  height: 71%;
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, #FCF0D6 29%);
+  pointer-events: none;
+}
+.moments-section .grid-container .moment-box .moment-content {
+  padding: 1rem;
+  z-index: 2;
+}
+.moments-section .grid-container .moment-box .moment-content .top-container h2 {
+  color: #710004;
+  font-weight: 500;
+}
+.moments-section .grid-container .moment-box .moment-content .top-container p {
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+.moments-section .grid-container .moment-box .moment-content .bottom-container p {
+  font-weight: 300;
+}
+
 body {
   background-color: #710004;
 }/*# sourceMappingURL=moments-page.css.map */
