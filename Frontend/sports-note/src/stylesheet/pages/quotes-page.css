@@ -1,5 +1,10 @@
-@use "../abstract/reset" as *;
-@use "../abstract/variables" as *;
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
 .line {
   width: 50px;
@@ -8,14 +13,8 @@
   opacity: 1;
 }
 
-.menu-links {
-  ul {
-    li {
-      a:hover {
-        color: $yellow !important;
-      }
-    }
-  }
+.menu-links ul li a:hover {
+  color: #FCF0D6 !important;
 }
 
 .mobile-sidenav {
@@ -45,19 +44,17 @@
   font-size: 12px;
   display: block;
   transition: 0.3s;
-  background-color: $red;
+  background-color: #710004;
   width: 100px;
   aspect-ratio: 1/1;
-
-  img{
-    width: 30px;
-    height: 30px;
-  }
-
-  a{
-    font-weight: 500;
-    font-size: 14px;
-  }
+}
+.mobile-sidenav ul li img {
+  width: 30px;
+  height: 30px;
+}
+.mobile-sidenav ul li a {
+  font-weight: 500;
+  font-size: 14px;
 }
 
 .mobile-sidenav ul li a {
@@ -79,7 +76,7 @@
   font-weight: 700 !important;
 }
 
-.mobile-sidenav .closebtn i::before{
+.mobile-sidenav .closebtn i::before {
   font-weight: 700 !important;
 }
 
@@ -100,7 +97,6 @@
   overflow: hidden;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
   z-index: 1000;
-
   /* Animation friendly properties */
   opacity: 0;
   transform: translateY(-10px);
@@ -132,8 +128,7 @@
   .mobile-sidenav {
     padding-top: 15px;
   }
-
   .mobile-sidenav ul li {
     font-size: 18px;
   }
-}
+}/*# sourceMappingURL=quotes-page.css.map */
