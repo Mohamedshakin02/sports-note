@@ -76,31 +76,31 @@ function Header() {
                         <ul className="list-unstyled nav nav-underline w-100 d-flex flex-md-row justify-content-between text-center gap-2 m-0 p-0 fs-6">
 
                             <li className="nav-item">
-                                <NavLink to="/moments" className="nav-link text-white fw-normal">Moments</NavLink>
+                                <NavLink to="/moments" className="nav-link text-white fw-normal px-0">Moments</NavLink>
                             </li>
 
                             <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
 
                             <li className="nav-item">
-                                <NavLink to="/fixtures" className="nav-link text-white fw-normal">Fixtures</NavLink>
+                                <NavLink to="/fixtures" className="nav-link text-white fw-normal px-0">Fixtures</NavLink>
                             </li>
 
                             <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
 
                             <li className="nav-item">
-                                <NavLink to="/quotes" className="nav-link text-white fw-normal">Quotes</NavLink>
+                                <NavLink to="/quotes" className="nav-link text-white fw-normal px-0">Quotes</NavLink>
                             </li>
 
                             <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
 
                             <li className="nav-item">
-                                <NavLink to="/techniques" className="nav-link text-white fw-normal">Techniques</NavLink>
+                                <NavLink to="/techniques" className="nav-link text-white fw-normal px-0">Techniques</NavLink>
                             </li>
 
                             <li className="d-flex align-items-center"><hr className="line m-0 p-0 border-0" /></li>
 
                             <li className="nav-item">
-                                <NavLink to="/sessions" className="nav-link text-white fw-normal">Sessions</NavLink>
+                                <NavLink to="/sessions" className="nav-link text-white fw-normal px-0">Sessions</NavLink>
                             </li>
 
                         </ul>
