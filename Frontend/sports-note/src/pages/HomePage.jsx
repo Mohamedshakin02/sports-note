@@ -7,8 +7,10 @@ import '../stylesheet/pages/home.css';
 function HomePage() {
   return (
     <>
+      <main>
         <Intro/>
         <Features/>
+      </main>
     </>
   )
 }

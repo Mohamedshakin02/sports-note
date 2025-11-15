@@ -7,8 +7,10 @@ import '../stylesheet/pages/moments-page.css';
 function MomentsPage() {
   return (
     <>
+      <main>
         <Header/>
         <Moments/>
+      </main>
     </>
   )
 }
