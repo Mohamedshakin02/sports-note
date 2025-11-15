@@ -74,7 +74,7 @@ function Moments() {
     };
 
     return (
-        <section className="moments-section container-md py-5 mt-2 px-3">
+        <section className="moments-section container-md py-5 mt-2 px-2">
             <div className="heading-container mb-5">
                 <h1 className="m-0 p-0 mb-3">Moments</h1>
                 <p className="m-0 p-0 fs-4 w-75">
