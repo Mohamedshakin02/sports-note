@@ -135,4 +135,79 @@
   .mobile-sidenav ul li {
     font-size: 18px;
   }
+}
+.fixtures-section .heading-container {
+  color: #710004;
+}
+.fixtures-section .heading-container h1 {
+  font-weight: 600;
+}
+.fixtures-section .heading-container p {
+  color: #000000;
+}
+.fixtures-section .grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.fixtures-section .grid-container .fixture-box {
+  border: 2px solid #710004;
+  border-radius: 8px;
+  position: relative;
+}
+.fixtures-section .grid-container .fixture-box .top-container {
+  background-color: #710004;
+  color: #FCF0D6;
+}
+.fixtures-section .grid-container .fixture-box .top-container h2 {
+  font-weight: 700;
+}
+.fixtures-section .grid-container .fixture-box .top-container .sport-badge {
+  display: block;
+  color: #FCF0D6;
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  font-weight: 600;
+}
+.fixtures-section .grid-container .fixture-box .top-container .menu-wrapper {
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+}
+.fixtures-section .grid-container .fixture-box .top-container .menu-wrapper .menu-icon {
+  font-size: 1.4rem;
+  color: #FCF0D6;
+}
+.fixtures-section .grid-container .fixture-box .top-container .menu-wrapper .menu-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  width: 110px;
+}
+.fixtures-section .grid-container .fixture-box .top-container .menu-wrapper .menu-dropdown button {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: white;
+  font-size: 0.9rem;
+  text-align: left;
+}
+.fixtures-section .grid-container .fixture-box .top-container .menu-wrapper .menu-dropdown button:hover {
+  background: #f5f5f5;
+}
+.fixtures-section .grid-container .fixture-box .top-container .menu-wrapper.show .menu-dropdown {
+  display: block !important;
+}
+.fixtures-section .grid-container .fixture-box .bottom-container {
+  padding: 0.5rem 1rem;
+}
+.fixtures-section .grid-container .fixture-box .bottom-container p {
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #710004;
 }/*# sourceMappingURL=fixtures-page.css.map */
