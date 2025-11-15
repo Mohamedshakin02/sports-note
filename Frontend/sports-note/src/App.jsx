@@ -6,10 +6,13 @@ import FixturesPage from './pages/FixturesPage';
 import QuotesPage from './pages/QuotesPage';
 import TechniquesPage from './pages/TechniquesPage';
 import SessionsPage from './pages/SessionsPage';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop/>
+      
       <Routes>
         <Route path="/" element={<HomePage/>} />  
         <Route path="/moments" element={<MomentsPage/>} />
