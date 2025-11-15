@@ -7,6 +7,14 @@ import '../stylesheet/pages/moments-page.css';
 function MomentsPage() {
   return (
     <>
+    <style>
+        {`
+          body {
+            background-color: #710004; 
+          }
+        `}
+      </style>
+
       <main>
         <Header/>
         <Moments/>

@@ -63,7 +63,7 @@ function Header() {
                     </div>
 
                     {/* Desktop Logo */}
-                    <div className="Logo d-none d-lg-block">
+                    <div className="logo d-none d-lg-block">
                         <p className="m-0 p-0">
                             <Link to="/" className="text-decoration-none text-white fw-bold fs-4">
                                 SPORTS NOTE
