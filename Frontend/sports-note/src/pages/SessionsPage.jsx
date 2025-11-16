@@ -1,6 +1,7 @@
 import React from 'react'
 import Sessions from '../components/Sessions'
 import Header from '../components/header'
+import '../stylesheet/pages/sessions-page.css';
 
 function SessionsPage() {
   return (
