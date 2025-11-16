@@ -52,7 +52,7 @@ function Features() {
                             <p className='m-0 p-0 fs-5'>Add your upcoming match fixtures and stay prepared for every game that defines your passion.</p>
                         </div>
                         <div className='box-link'>
-                            <p><Link to="/" className="text-decoration-none fs-5 m-0 p-0">Explore</Link></p>
+                            <p><Link to="/fixtures" className="text-decoration-none fs-5 m-0 p-0">Explore</Link></p>
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@ function Features() {
                             <p className='m-0 p-0 fs-5'>Save your favourite player quotes and rediscover the words that keep your spirit alive.</p>
                         </div>
                         <div className='box-link'>
-                            <p><Link to="/" className="text-decoration-none fs-5 m-0 p-0">Explore</Link></p>
+                            <p><Link to="/quotes" className="text-decoration-none fs-5 m-0 p-0">Explore</Link></p>
                         </div>
                     </div>
 
@@ -80,7 +80,7 @@ function Features() {
                             <p className='m-0 p-0 fs-5'>Write your step-by-step techniques and master the moves that improve your overall game.</p>
                         </div>
                         <div className='box-link '>
-                            <p><Link to="/" className="text-decoration-none fs-5 m-0 p-0">Explore</Link></p>
+                            <p><Link to="/techniques" className="text-decoration-none fs-5 m-0 p-0">Explore</Link></p>
                         </div>
                     </div>
 
@@ -94,7 +94,7 @@ function Features() {
                             <p className='m-0 p-0 fs-5'>Add your training sessions to keep a record of your sports practice and improve your performance.</p>
                         </div>
                         <div className='box-link'>
-                            <p><Link to="/" className="text-decoration-none fs-5 m-0 p-0">Explore</Link></p>
+                            <p><Link to="/sessions" className="text-decoration-none fs-5 m-0 p-0">Explore</Link></p>
                         </div>
                     </div>
 
