@@ -45,18 +45,14 @@
 
     .accordion-body ol {
         list-style: none;
-        /* remove default numbers */
         counter-reset: item;
-        /* reset counter */
         padding-left: 0;
     }
 
     .accordion-body ol li {
         counter-increment: item;
-        /* increment counter */
         position: relative;
         padding-left: 2.5rem;
-        /* space for circle */
         margin-bottom: 0.5rem;
         font-weight: 500;
         font-size: 1.2rem;
@@ -69,7 +65,6 @@
         top: 0;
         width: 1.8rem;
         height: 1.8rem;
-        /* change to your color */
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -77,7 +72,6 @@
         font-weight: bold;
         background-color: $red;
         color: $yellow;
-        /* number color */
     }
 
     .accordion-body {
