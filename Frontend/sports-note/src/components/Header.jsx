@@ -7,10 +7,6 @@ import quotes from "../assets/logos/quotes-white.png";
 import techniques from "../assets/logos/techniques-white.png";
 import sessions from "../assets/logos/sessions-white.png";
 
-import Moments from '../pages/MomentsPage';
-// import Login from './Login';
-// import Signup from './Sign-up';
-
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
