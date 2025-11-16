@@ -27,8 +27,8 @@ function Header() {
 
     return (
         <>
-            <header className="navbar navbar-expand-lg container-md pt-4 px-2">
-                <nav className="navbar-nav w-100 d-flex flex-column flex-md-row justify-content-between text-center">
+            <header className="navbar navbar-expand-lg container-fluid py-4">
+                <nav className="container-md px-2 navbar-nav w-100 d-flex flex-column flex-md-row justify-content-between text-center">
 
                     {/* Mobile Logo + Hamburger */}
                     <div className="d-flex justify-content-between align-items-center w-100 d-lg-none">

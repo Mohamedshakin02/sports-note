@@ -10,28 +10,23 @@ function FixturesPage() {
     <style>
         {`
           body {
-            background-color: #FCF0D6; 
+            background-color: #FCF0D6;
+          }
+
+          header{
+            background-color: #710004;
           }
 
           .logo p a, .menu-links li a, .Logo a{
-            color: black !important
+            color: white !important
           }
 
           body .menu-links li a:hover {
-            color: #710004 !important;
+            color: #FCF0D6 !important;
           }
 
           .auth-dropdown i, .bi-grid-fill, .menu-links li hr{
-           filter: invert(100%);
-          }
-           
-          .auth-dropdown .dropdown-content a{
-           background-color: #710004;
-           color: white
-          }
-
-          .auth-dropdown .dropdown-content a:hover{
-           background-color: black;
+           filter: invert(0%);
           }
         `}
       </style>
