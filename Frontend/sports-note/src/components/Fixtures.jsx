@@ -26,11 +26,11 @@ function Fixtures() {
 
   // Fixtures data with ISO dates
   const fixturesList = [
-    { date: "2024-11-19", match: "INDIA VS PAK", time: "9:30", sport: "Cricket" },
-    { date: "2024-11-20", match: "AUSTRALIA VS ENG", time: "14:00", sport: "Cricket" },
-    { date: "2024-11-21", match: "SA VS NZ", time: "10:00", sport: "Cricket" },
-    { date: "2024-11-22", match: "INDIA VS AUS", time: "16:30", sport: "Cricket" },
-    { date: "2024-11-23", match: "ENG VS PAK", time: "12:00", sport: "Cricket" }
+  { date: "2024-11-19", match: "INDIA VS PAK", time: "9:30", sport: "Cricket" },
+  { date: "2024-11-20", match: "AUSTRALIA VS ENG", time: "14:00", sport: "Cricket" },
+  { date: "2024-11-22", match: "BARCELONA VS REAL MADRID", time: "20:45", sport: "Football" },
+  { date: "2024-11-23", match: "MAN UNITED VS ARSENAL", time: "", sport: "Football" },
+  { date: "2024-11-25", match: "BULLS VS CELTICS", time: "", sport: "Basketball" }
   ];
 
   // Format date to "19 NOV"
@@ -73,7 +73,9 @@ function Fixtures() {
 
             <div className="bottom-container p-4">
               <p className="m-0 p-0 mb-2 fs-4 fw-bolder">{fixture.match}</p>
-              <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span>{fixture.time}</p>
+              <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span>
+                {fixture.time ? fixture.time : "N/A"}
+              </p>
             </div>
           </div>
         ))}
