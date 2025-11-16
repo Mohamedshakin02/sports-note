@@ -1,2 +1,117 @@
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
+
+.quotes-section {
+    .heading-container {
+        color: $yellow;
+
+        h1 {
+            font-weight: 600;
+        }
+
+        p {
+            color: $white;
+        }
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        gap: 2rem;
+
+        .quote-box {
+            background-color: $yellow;
+            border-radius: 8px;
+            position: relative;
+            padding-right: 2rem !important;
+
+            .image-container {
+                height: 7rem;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                border: 3px solid $red;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+
+            .quote-container {
+                align-self: flex-start;
+            }
+
+            .text-container {
+                .quote {
+                    font-weight: 500;
+                }
+            }
+
+            .menu-wrapper {
+                    cursor: pointer;
+                    position: absolute;
+                    top: 20px;
+                    right: 10px;
+
+                    .menu-icon {
+                        font-size: 1.4rem;
+                        color: $black;
+                    }
+
+                    .menu-dropdown {
+                        position: absolute;
+                        top: 30px;
+                        right: 0;
+                        background: #fff;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+                        overflow: hidden;
+                        width: 110px;
+
+                        button {
+                            width: 100%;
+                            padding: 8px 12px;
+                            border: none;
+                            background: white;
+                            font-size: 0.9rem;
+                            text-align: left;
+
+                            &:hover {
+                                background: #f5f5f5;
+                            }
+                        }
+                    }
+
+                    &.show .menu-dropdown {
+                        display: block !important;
+                    }
+                }
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .quotes-section{
+        .grid-container{
+            grid-template-columns:initial;
+            grid-auto-columns: repeat(auto-fit, minmax(450px, 1fr));;
+
+            .image-container{
+                height: 5rem !important;
+            }
+
+            .text-container {
+                .quote {
+                    font-size: 1rem !important;
+                }
+
+                .author{
+                    font-size: 0.9rem !important;
+                }
+            }
+        }
+    }
+}

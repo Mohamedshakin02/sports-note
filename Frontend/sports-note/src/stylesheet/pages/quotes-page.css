@@ -132,4 +132,94 @@
   .mobile-sidenav ul li {
     font-size: 18px;
   }
+}
+.quotes-section .heading-container {
+  color: #FCF0D6;
+}
+.quotes-section .heading-container h1 {
+  font-weight: 600;
+}
+.quotes-section .heading-container p {
+  color: #FFFFFF;
+}
+.quotes-section .grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+}
+.quotes-section .grid-container .quote-box {
+  background-color: #FCF0D6;
+  border-radius: 8px;
+  position: relative;
+  padding-right: 2rem !important;
+}
+.quotes-section .grid-container .quote-box .image-container {
+  height: 7rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 3px solid #710004;
+}
+.quotes-section .grid-container .quote-box .image-container img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.quotes-section .grid-container .quote-box .quote-container {
+  align-self: flex-start;
+}
+.quotes-section .grid-container .quote-box .text-container .quote {
+  font-weight: 500;
+}
+.quotes-section .grid-container .quote-box .menu-wrapper {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+.quotes-section .grid-container .quote-box .menu-wrapper .menu-icon {
+  font-size: 1.4rem;
+  color: #000000;
+}
+.quotes-section .grid-container .quote-box .menu-wrapper .menu-dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  width: 110px;
+}
+.quotes-section .grid-container .quote-box .menu-wrapper .menu-dropdown button {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: white;
+  font-size: 0.9rem;
+  text-align: left;
+}
+.quotes-section .grid-container .quote-box .menu-wrapper .menu-dropdown button:hover {
+  background: #f5f5f5;
+}
+.quotes-section .grid-container .quote-box .menu-wrapper.show .menu-dropdown {
+  display: block !important;
+}
+
+@media screen and (max-width: 576px) {
+  .quotes-section .grid-container {
+    grid-template-columns: initial;
+    grid-auto-columns: repeat(auto-fit, minmax(450px, 1fr));
+  }
+  .quotes-section .grid-container .image-container {
+    height: 5rem !important;
+  }
+  .quotes-section .grid-container .text-container .quote {
+    font-size: 1rem !important;
+  }
+  .quotes-section .grid-container .text-container .author {
+    font-size: 0.9rem !important;
+  }
 }/*# sourceMappingURL=quotes-page.css.map */

@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../components/header'
 import Quotes from '../components/Quotes'
+import '../stylesheet/pages/quotes-page.css';
 
 function QuotesPage() {
   return (
