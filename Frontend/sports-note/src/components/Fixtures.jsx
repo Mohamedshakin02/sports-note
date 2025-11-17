@@ -51,9 +51,8 @@ function Fixtures() {
       <div className="grid-container">
         {fixturesList.map((fixture, index) => (
           <div className="fixture-box pt-0 text-center" key={index}>
-            <div className="top-container p-2 d-flex flex-column justify-content-center align-items-center">
+            <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
               <h2 className="m-0 fs-3">{formatDate(fixture.date)}</h2>
-              <p className="sport-badge m-0 p-0 mt-2">{fixture.sport}</p>
 
               <div
                 className="menu-wrapper"
@@ -72,7 +71,8 @@ function Fixtures() {
             </div>
 
             <div className="bottom-container p-4">
-              <p className="m-0 p-0 mb-2 fs-4 fw-bolder">{fixture.match}</p>
+              <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{fixture.sport}</p>
+              <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder">{fixture.match}</p>
               <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span>
                 {fixture.time ? fixture.time : "N/A"}
               </p>

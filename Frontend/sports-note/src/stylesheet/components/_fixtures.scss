@@ -33,19 +33,11 @@
                     font-weight: 700;
                 }
 
-                .sport-badge {
-                    display:block;
-                    color: $yellow;
-                    font-size: 0.7rem;
-                    padding: 3px 10px;
-                    font-weight: 600;
-                    
-                }
 
                 .menu-wrapper {
                     cursor: pointer;
                     position: absolute;
-                    top: 12px;
+                    top: 18px;
                     right: 10px;
 
                     .menu-icon {
@@ -90,6 +82,17 @@
                     font-weight: 500;
                     font-size: 1.2rem;
                     color: $red;
+                }
+
+                .sport-badge {
+                    display: inline;
+                    color: $red;
+                    font-size: 0.7rem;
+                    padding: 3px 10px !important;
+                    font-weight: 600;
+                    border: 2px solid $red !important;
+
+                    
                 }
             }
         }

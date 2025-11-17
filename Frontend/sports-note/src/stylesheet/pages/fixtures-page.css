@@ -159,17 +159,10 @@
 .fixtures-section .grid-container .fixture-box .top-container h2 {
   font-weight: 700;
 }
-.fixtures-section .grid-container .fixture-box .top-container .sport-badge {
-  display: block;
-  color: #FCF0D6;
-  font-size: 0.7rem;
-  padding: 3px 10px;
-  font-weight: 600;
-}
 .fixtures-section .grid-container .fixture-box .top-container .menu-wrapper {
   cursor: pointer;
   position: absolute;
-  top: 12px;
+  top: 18px;
   right: 10px;
 }
 .fixtures-section .grid-container .fixture-box .top-container .menu-wrapper .menu-icon {
@@ -207,4 +200,12 @@
   font-weight: 500;
   font-size: 1.2rem;
   color: #710004;
+}
+.fixtures-section .grid-container .fixture-box .bottom-container .sport-badge {
+  display: inline;
+  color: #710004;
+  font-size: 0.7rem;
+  padding: 3px 10px !important;
+  font-weight: 600;
+  border: 2px solid #710004 !important;
 }/*# sourceMappingURL=fixtures-page.css.map */
