@@ -76,7 +76,7 @@ function Techniques() {
                 data-bs-target={`#flush-collapse-${index}`}
               >
                 {tech.title}
-                <i className="bi bi-caret-down-fill ms-auto custom-arrow"></i>
+                <i className="bi bi-caret-down-fill ms-auto ps-2 custom-arrow"></i>
               </button>
             </h2>
 
