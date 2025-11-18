@@ -18,6 +18,17 @@
         background-color: $red;
         color: $yellow;
         font-weight: 500;
+
+        .sport-badge {
+            display: inline;
+            color: $yellow;
+            font-size: 0.7rem;
+            padding: 3px 10px !important;
+            font-weight: 600;
+            border: 2px solid $yellow !important;
+
+
+        }
     }
 
     .accordion-button:focus,
@@ -81,8 +92,8 @@
 
     .menu-wrapper {
         position: absolute;
-        top: 15px; 
-        right: 15px; 
+        top: 15px;
+        right: 15px;
     }
 
     .menu-icon {

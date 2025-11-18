@@ -32,7 +32,8 @@ function Techniques() {
         "Roll the ball up the back of your standing leg",
         "Flick your standing leg forward and upward",
         "The ball should arc over your head and land in front of you"
-      ]
+      ],
+      sport: "Football" 
     },
     {
       title: "Cover Drive",
@@ -41,7 +42,8 @@ function Techniques() {
         "Step forward with your front foot toward the pitch of the ball",
         "Swing the bat smoothly along the ground",
         "Hit the ball along the ground through the cover region"
-      ]
+      ],
+      sport: "Cricket"
     },
     {
       title: "Reverse Sweep",
@@ -50,7 +52,8 @@ function Techniques() {
         "Rotate your wrists and bat to sweep the ball opposite direction",
         "Bend your knees slightly for balance",
         "Follow through to guide the ball past fielders"
-      ]
+      ],
+      sport: "Cricket"
     }
   ];
 
@@ -76,6 +79,7 @@ function Techniques() {
                 data-bs-target={`#flush-collapse-${index}`}
               >
                 {tech.title}
+                <p className="sport-badge m-0 p-0 ms-2 rounded-pill">{tech.sport}</p>
                 <i className="bi bi-caret-down-fill ms-auto ps-2 custom-arrow"></i>
               </button>
             </h2>

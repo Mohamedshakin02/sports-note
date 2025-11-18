@@ -147,6 +147,14 @@
   color: #FCF0D6;
   font-weight: 500;
 }
+.techniques-section .accordion-button .sport-badge {
+  display: inline;
+  color: #FCF0D6;
+  font-size: 0.7rem;
+  padding: 3px 10px !important;
+  font-weight: 600;
+  border: 2px solid #FCF0D6 !important;
+}
 .techniques-section .accordion-button:focus,
 .techniques-section .accordion-button:active {
   box-shadow: none;
