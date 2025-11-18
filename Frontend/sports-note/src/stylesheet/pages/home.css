@@ -444,4 +444,159 @@
     flex: 1 1 520px;
     max-width: unset;
   }
+}
+.moments-slider {
+  padding: 20px 0;
+  height: 575px;
+  /* Expanded content */
+  /* IMAGE SETTINGS */
+}
+.moments-slider .moment-card {
+  height: 500px;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+.moments-slider .card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: #FCF0D6;
+}
+.moments-slider .card-inner.closed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.moments-slider .card-inner.closed {
+  height: 100%;
+}
+.moments-slider .card-inner.closed .card-image {
+  width: 100%;
+}
+.moments-slider .card-inner.closed .card-image .no-image-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.moments-slider .card-inner.closed .card-image .no-image-inner img {
+  height: 15%;
+}
+.moments-slider .card-inner.closed .card-vertical-text {
+  width: 30%;
+  background: #710004;
+  color: #FCF0D6;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: 600;
+  padding: 10px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 12px 0px 0px 12px;
+  box-shadow: inset 0 0 0 4px #FCF0D6;
+}
+.moments-slider .card-inner.closed .sport-badge {
+  display: none;
+}
+.moments-slider .card-inner.open {
+  flex-direction: column;
+}
+.moments-slider .card-inner.open .card-image {
+  width: 100%;
+  height: 45%;
+  position: relative;
+}
+.moments-slider .card-inner.open .card-image .no-image-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.moments-slider .card-inner.open .card-image .no-image-inner img {
+  height: 50% !important;
+  width: 40% !important;
+}
+.moments-slider .sport-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #710004;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  z-index: 1;
+}
+.moments-slider .card-inner.open .card-content {
+  height: 55%;
+  padding: 14px;
+  background: #FCF0D6;
+  position: relative;
+}
+.moments-slider .card-inner.open .card-content h3 {
+  color: #710004;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.moments-slider .card-inner.open .card-content .text-truncate-vertical {
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.moments-slider .card-inner.open .card-content small {
+  position: absolute;
+  bottom: 0;
+}
+.moments-slider .card-image {
+  position: relative;
+}
+.moments-slider .card-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+}
+.moments-slider .card-image::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 80%;
+  bottom: 0;
+  width: 100%;
+  height: 71%;
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, #FCF0D6 29%);
+  pointer-events: none;
+}
+.moments-slider .swiper-pagination-bullet {
+  background-color: #FCF0D6;
+  opacity: 1;
+  width: 12px;
+  height: 12px;
+  aspect-ratio: 1/1;
+}
+.moments-slider .swiper-pagination-bullet-active {
+  background-color: #710004;
+  border: 2px solid #FCF0D6;
+}
+.moments-slider .swiper-button-prev,
+.moments-slider .swiper-button-next {
+  background-color: #710004;
+  color: #FCF0D6;
+  width: 45px !important;
+  height: 45px !important;
+  border-radius: 50%;
+  border: 3px solid #FCF0D6;
+}
+.moments-slider .swiper-button-prev:after,
+.moments-slider .swiper-button-next:after {
+  font-size: 25px !important;
+  font-weight: 700 !important;
 }/*# sourceMappingURL=home.css.map */
