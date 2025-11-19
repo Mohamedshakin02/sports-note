@@ -6,8 +6,8 @@ import { Mousewheel, Pagination } from "swiper/modules";
 
 function Sessions() {
   const sessionsData = [
-    { title: "Morning Basketball Drills Morning Basketball Drills", items: ["Warm-up jog (5 mins)", "Dribbling practice", "Layup drills", "Free-throw routine", "Cooldown stretches"] },
-    { title: "Badminton Smash Training", items: ["Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills", "Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills"] },
+    { title: "Morning Basketball Drills", items: ["Warm-up jog (5 mins)", "Dribbling practice", "Layup drills", "Free-throw routine", "Cooldown stretches"] },
+    { title: "Badminton Smash Training", items: ["Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills"] },
     { title: "Football Dribbling Drills", items: ["Cone dribbling", "Fast touches", "Directional changes", "Ball control challenges"] },
     { title: "Cardio and Endurance", items: ["5km run", "Interval sprints", "Jump rope (10 mins)", "Cooldown stretching"] },
     { title: "Badminton Rally Session", items: ["Long rallies", "Placement shots", "Side-to-side drills"] },
