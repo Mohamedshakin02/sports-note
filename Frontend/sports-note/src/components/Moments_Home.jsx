@@ -17,6 +17,29 @@ function Moments_Home() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const swiperRef = useRef(null);
 
+  const [openMenuIndex, setOpenMenuIndex] = useState(null);
+  const menuRefs = useRef([]);
+
+  const toggleMenu = (index) => {
+    setOpenMenuIndex((prev) => (prev === index ? null : index));
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        openMenuIndex !== null &&
+        menuRefs.current[openMenuIndex] &&
+        !menuRefs.current[openMenuIndex].contains(event.target)
+      ) {
+        setOpenMenuIndex(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [openMenuIndex]);
+
   const momentsList = [
     {
       image: moment1,
@@ -89,7 +112,7 @@ function Moments_Home() {
         key={screenWidth} // re-render on screenWidth change
         modules={[Navigation, Pagination]}
         navigation={true}
-        pagination={ { clickable: true, dynamicBullets: true } } 
+        pagination={{ clickable: true, dynamicBullets: true }}
         freeMode={!isMobile}
         slidesPerView={isMobile ? 1.3 : screenWidth >= 1024 ? "auto" : "auto"}
         centeredSlides={isMobile} // center slides on mobile
@@ -132,12 +155,12 @@ function Moments_Home() {
             }}
           >
             <div
-              className={`card-inner ${
-                openIndex === index || isMobile ? "open" : "closed"
-              }`}
+              className={`card-inner ${openIndex === index || isMobile ? "open" : "closed"
+                }`}
             >
               <div className="card-image">
-                  <span className="sport-badge">{moment.sport}</span>
+                <span className="sport-badge">{moment.sport}</span>
+
                 {moment.image ? (
                   <img src={moment.image} alt={moment.title} />
                 ) : (
@@ -154,16 +177,37 @@ function Moments_Home() {
               )}
 
               {(openIndex === index || isMobile) && (
-                <div className="card-content">
-                  <h3 className="fs-4">{moment.title}</h3>
-                  <p className="text-truncate-vertical flex-grow-1 mb-2">
-                    {moment.description}
-                  </p>
-                  <small className="date mb-3">
-                    <i className="bi bi-calendar me-2"></i>
-                    {formatDate(moment.date)}
-                  </small>
-                </div>
+
+                <>
+                  <div
+                    className="menu-wrapper"
+                    ref={(el) => (menuRefs.current[index] = el)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // <-- prevent slide click
+                      toggleMenu(index);
+                    }}
+                  >
+                    <i className="bi bi-three-dots-vertical menu-icon"></i>
+
+                    {openMenuIndex === index && (
+                      <div className="menu-dropdown">
+                        <button>Edit</button>
+                        <button>Delete</button>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="card-content">
+                    <h3 className="fs-4">{moment.title}</h3>
+                    <p className="text-truncate-vertical flex-grow-1 mb-2">
+                      {moment.description}
+                    </p>
+                    <small className="date mb-3">
+                      <i className="bi bi-calendar me-2"></i>
+                      {formatDate(moment.date)}
+                    </small>
+                  </div>
+                </>
               )}
             </div>
           </SwiperSlide>
