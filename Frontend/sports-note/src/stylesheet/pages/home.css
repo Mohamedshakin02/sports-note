@@ -729,6 +729,7 @@
   padding-bottom: 3rem;
   padding-left: 2rem;
   padding-right: 2rem;
+  position: relative;
 }
 @media (max-width: 768px) {
   .fixtures-section .fixtures-container .fixtures-slider {
@@ -755,6 +756,7 @@
   height: 45px !important;
   border-radius: 50%;
   border: 3px solid #FCF0D6;
+  top: 46% !important;
 }
 .fixtures-section .fixtures-container .fixtures-slider .swiper-button-prev:after,
 .fixtures-section .fixtures-container .fixtures-slider .swiper-button-next:after {
