@@ -6,6 +6,7 @@ import '../stylesheet/pages/home.css';
 import Moments_Home from '../components/Moments_Home';
 import Fixtures from '../components/Fixtures';
 import Fixtures_Home from '../components/Fixtures_Home';
+import Quotes_Home from '../components/Quotes_Home';
 
 function HomePage() {
   return (
@@ -15,6 +16,7 @@ function HomePage() {
         <Features/>
         <Moments_Home/>
         <Fixtures_Home/>
+        <Quotes_Home/>
       </main>
     </>
   )
