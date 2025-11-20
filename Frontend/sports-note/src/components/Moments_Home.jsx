@@ -40,48 +40,45 @@ function Moments_Home() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openMenuIndex]);
 
+
+
   const momentsList = [
-    {
-      image: moment1,
-      sport: "Cricket",
-      title: "RCB Won This Year IPL",
-      description:
-        "I was extremely happy when RCB finally won this year IPL. It was their first win and I still can’t believe it happened. The joy and excitement of watching the team lift the trophy was unforgettable and truly special for all the fans.",
-      date: "2024-05-12",
-    },
-    {
-      image: "",
-      sport: "Football",
-      title: "Argentina Won FIFA World Cup 2022",
-      description:
-        "I was overjoyed when Argentina won the 2022 FIFA World Cup. The match was thrilling and seeing the team lift the trophy felt surreal. I still can’t believe the incredible journey and the unforgettable moments of that tournament.",
-      date: "2022-12-18",
-    },
-    {
-      image: moment3,
-      sport: "Cricket",
-      title: "India vs New Zealand Heart Breaking Semi Final 2019",
-      description:
-        "Watching India play against New Zealand in the 2019 semi final was heartbreaking. I felt so proud of the team for giving their best, yet so sad when the match ended. It was a rollercoaster of emotions that I will never forget.",
-      date: "2019-07-10",
-    },
-    {
-      image: moment4,
-      sport: "Basketball",
-      title: "Lakers Win NBA Finals 2020",
-      description:
-        "I was thrilled when the Lakers clinched the 2020 NBA Finals. Witnessing the team's hard work pay off and seeing the championship celebration was unforgettable. The energy and excitement of the game made it a truly special moment.",
-      date: "2020-10-11",
-    },
-    {
-      image: "",
-      sport: "Cricket",
-      title: "England Won 2019 Cricket World Cup",
-      description:
-        "I could not stop cheering when England won the 2019 Cricket World Cup. The final was so intense and nerve-wracking, and I still remember the excitement when the match ended in a super over. It was an amazing experience to witness history.",
-      date: "2019-07-14",
-    },
-  ];
+          {
+              image: moment1,
+              sport: "Cricket",
+              title: "RCB Won This Year IPL",
+              description: "I was extremely happy when RCB finally won this year IPL. It was their first win and I still can’t believe it happened. The joy and excitement of watching the team lift the trophy was unforgettable and truly special for all the fans.",
+              date: "2024-05-12"
+          },
+          {
+              image: "",
+              sport: "Football",
+              title: "Argentina Won FIFA World Cup 2022",
+              description: "I was overjoyed when Argentina won the 2022 FIFA World Cup. The match was thrilling and seeing the team lift the trophy felt surreal. I still can’t believe the incredible journey and the unforgettable moments of that tournament.",
+              date: "2022-12-18"
+          },
+          {
+              image: moment3,
+              sport: "Cricket",
+              title: "India vs New Zealand Heart Breaking Semi Final 2019",
+              description: "Watching India play against New Zealand in the 2019 semi final was heartbreaking. I felt so proud of the team for giving their best, yet so sad when the match ended. It was a rollercoaster of emotions that I will never forget.",
+              date: "2019-07-10"
+          },
+          {
+              image: moment4,
+              sport: "Basketball",
+              title: "Lakers Win NBA Finals 2020",
+              description: "I was thrilled when the Lakers clinched the 2020 NBA Finals. Witnessing the team's hard work pay off and seeing the championship celebration was unforgettable. The energy and excitement of the game made it a truly special moment.",
+              date: "2020-10-11"
+          },
+          {
+              image: "",
+              sport: "Cricket",
+              title: "England Won 2019 Cricket World Cup",
+              description: "I could not stop cheering when England won the 2019 Cricket World Cup. The final was so intense and nerve-wracking, and I still remember the excitement when the match ended in a super over. It was an amazing experience to witness history.",
+              date: "2019-07-14"
+          }
+      ];
 
   const formatDate = (dateString) =>
     new Date(dateString).toLocaleDateString("en-US", {
@@ -109,13 +106,13 @@ function Moments_Home() {
       </div>
 
       <Swiper
-        key={screenWidth} // re-render on screenWidth change
+        key={screenWidth}
         modules={[Navigation, Pagination]}
         navigation={true}
         pagination={{ clickable: true, dynamicBullets: true }}
         freeMode={!isMobile}
         slidesPerView={isMobile ? 1.3 : screenWidth >= 1024 ? "auto" : "auto"}
-        centeredSlides={isMobile} // center slides on mobile
+        centeredSlides={isMobile}
         spaceBetween={20}
         observer={true}
         observeParents={true}
@@ -140,17 +137,53 @@ function Moments_Home() {
                 ? openIndex === index
                   ? "300px"
                   : "120px"
-                : "auto", // Swiper calculate width in mobile
-              maxWidth: isMobile ? "90vw" : undefined, // prevent overflow
+                : "auto",
+              maxWidth: isMobile ? "90vw" : undefined,
               transition: "0.3s ease",
               flexShrink: 0,
             }}
             onClick={() => {
               if (!isMobile) {
                 const newIndex = openIndex === index ? null : index;
+
                 setOpenIndex(newIndex);
-                if (newIndex !== null && swiperRef.current)
-                  swiperRef.current.slideTo(newIndex);
+
+                if (swiperRef.current) {
+                  const swiper = swiperRef.current;
+
+                  if (newIndex !== null) {
+                    requestAnimationFrame(() => {
+                      swiper.update();
+
+                      const slideEl = swiper.slides[newIndex];
+                      if (!slideEl) return;
+
+                      const slideOffsetLeft = slideEl.offsetLeft;
+                      const swiperOffset = swiper.slidesOffsetBefore;
+
+                      let targetTranslate = -(slideOffsetLeft - swiperOffset);
+
+                      swiper.setTranslate(targetTranslate);
+                      swiper.wrapperEl.style.transitionDuration = '300ms';
+                      swiper.wrapperEl.style.transitionTimingFunction = 'ease';
+
+                      swiper.realIndex = newIndex;
+                      swiper.snapIndex = newIndex;
+
+                      swiper.updateProgress();
+                      swiper.updateActiveIndex();
+
+                      swiper.updateNavigation();
+
+                    });
+
+                  } else {
+                    setTimeout(() => {
+                      swiper.update();
+                      swiper.slideTo(0); 
+                    }, 50);
+                  }
+                }
               }
             }}
           >
