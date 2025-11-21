@@ -50,7 +50,7 @@ function Fixtures_Home() {
     return (
         <section className="fixtures-section py-5 mt-2">
             <div className="fixtures-container container-md px-2">
-                <div className="heading-container mb-5">
+                <div className="heading-container mb-5 px-2">
                     <h1 className="m-0 p-0 mb-3">Fixtures</h1>
                     <p className="m-0 p-0 fs-4 w-75">
                         See all the upcoming matches you want to watch. Keep track of dates and times so you never miss any game.
