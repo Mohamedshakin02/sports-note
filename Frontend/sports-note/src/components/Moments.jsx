@@ -125,7 +125,7 @@ function Moments() {
                                 <p className="m-0 p-0 mb-4">{moment.description}</p>
                             </div>
                             <div className="bottom-container">
-                                <p className="m-0 p-0 text-dark fs-6"><span><i class="bi bi-calendar me-2"></i></span>{formatDate(moment.date)}</p>
+                                <p className="m-0 p-0 text-dark fs-6"><span><i className="bi bi-calendar me-2"></i></span>{formatDate(moment.date)}</p>
                             </div>
                         </div>
 
