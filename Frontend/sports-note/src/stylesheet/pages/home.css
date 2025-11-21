@@ -782,6 +782,7 @@
   max-width: 700px;
   justify-self: center;
   color: #FCF0D6;
+  margin-bottom: 6rem;
 }
 .quotes-section .quotes-slider .quote-box .image-container {
   height: 9rem;
@@ -863,6 +864,36 @@
   font-size: 25px !important;
   font-weight: 700 !important;
 }
+.quotes-section .quotes-slider .swiper-pagination {
+  display: flex;
+  justify-content: center;
+}
+.quotes-section .quotes-slider .swiper-pagination .custom-bullet {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FCF0D6;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #710004;
+}
+.quotes-section .quotes-slider .swiper-pagination .custom-bullet.swiper-pagination-bullet-active {
+  border: 2px solid #FCF0D6;
+}
+.quotes-section .quotes-slider .swiper-pagination .custom-bullet .bullet-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.quotes-section .quotes-slider .swiper-pagination .initials {
+  text-transform: uppercase;
+}
 
 @media (max-width: 992px) {
   .quotes-section .quotes-slider .quote-box {
@@ -875,8 +906,10 @@
 @media (max-width: 768px) {
   .quotes-section .quotes-slider .quote-box {
     max-width: none;
+    margin-bottom: 4rem;
     display: grid !important;
     grid-template-areas: "photo photo" "icons quote";
+    align-self: center;
   }
   .quotes-section .quotes-slider .quote-box .image-container {
     grid-area: photo;
@@ -894,6 +927,17 @@
   }
   .quotes-section .quotes-slider .quote-box .text-container .quote {
     font-size: 1.5rem !important;
+  }
+  .quotes-section .quotes-slider .quote-box .text-container .author {
+    font-size: 1rem !important;
+  }
+  .quotes-section .quotes-slider .swiper-pagination {
+    display: flex;
+    justify-content: center;
+  }
+  .quotes-section .quotes-slider .swiper-pagination .custom-bullet {
+    width: 50px;
+    height: 50px;
   }
 }
 @media (max-width: 576px) {

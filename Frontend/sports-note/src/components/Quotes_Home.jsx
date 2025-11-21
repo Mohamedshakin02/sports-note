@@ -51,7 +51,15 @@ function Quotes_Home() {
       quote: "Success isn’t owned. It’s leased. And rent is due every day.",
       author: "J.J. Watt",
     },
+    
   ];
+
+  // Function to get initials
+  const getInitials = (name) => {
+    const words = name.split(" ");
+    if (words.length === 1) return words[0].charAt(0).toUpperCase();
+    return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
+  };
 
   return (
     <section className="quotes-section container-md py-5 mt-2 px-2">
@@ -65,7 +73,21 @@ function Quotes_Home() {
       <Swiper
         spaceBetween={20}
         navigation={true}
-        pagination={{ clickable: true, dynamicBullets: true }}
+        pagination={{
+          clickable: true,
+          dynamicBullets: true,
+          renderBullet: (index, className) => {
+            const author = quotesList[index].author;
+            const image = quotesList[index].image;
+            if (image) {
+              return `<span class="${className} custom-bullet">
+                        <img src="${image}" alt="${author}" class="bullet-image"/>
+                      </span>`;
+            } else {
+              return `<span class="${className} custom-bullet initials">${getInitials(author)}</span>`;
+            }
+          },
+        }}
         modules={[Navigation, Pagination]}
         centeredSlides={true}
         className="quotes-slider"
@@ -83,7 +105,7 @@ function Quotes_Home() {
       >
       {quotesList.map((item, index) => (
         <SwiperSlide key={index}>
-          <div className="quote-box d-flex p-3 px-4 mb-4">
+          <div className="quote-box d-flex p-3 px-4">
 
             {/* IMAGE */}
             <div className="image-container me-2 me-sm-4 d-flex justify-content-center align-items-center">
