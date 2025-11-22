@@ -649,7 +649,6 @@
 
 .fixtures-section {
   background-color: #FCF0D6;
-  min-height: 700px;
 }
 .fixtures-section .fixtures-container .heading-container {
   color: #710004;
@@ -770,9 +769,6 @@
   font-weight: 700 !important;
 }
 
-.quotes-section {
-  min-height: 700px;
-}
 .quotes-section .heading-container h1 {
   font-weight: 600;
 }
@@ -954,7 +950,6 @@
 }
 .techniques-section {
   background-color: #FCF0D6;
-  min-height: 700px;
 }
 .techniques-section .techniques-container .heading-container {
   color: #710004;
@@ -1059,9 +1054,6 @@
   background: #f2f2f2;
 }
 
-.sessions-section {
-  min-height: 700px;
-}
 .sessions-section .heading-container {
   color: #FCF0D6;
 }
@@ -1319,11 +1311,11 @@ footer .footer-container .menu-links h1 {
   font-weight: 600;
 }
 footer .footer-container .menu-links p {
-  font-weight: 500;
+  font-weight: 400;
   color: #000000;
 }
 footer .footer-container .menu-links ul {
-  font-weight: 600;
+  font-weight: 500;
 }
 footer .footer-container .menu-links ul li a {
   color: #710004 !important;
@@ -1338,7 +1330,7 @@ footer .footer-container .auth-links h1 {
   font-weight: 600;
 }
 footer .footer-container .auth-links p {
-  font-weight: 500;
+  font-weight: 400;
   color: #000000;
 }
 footer .footer-container .auth-links ul {
@@ -1353,7 +1345,7 @@ footer .footer-container .auth-links ul li {
 }
 footer .footer-container .auth-links ul li a {
   border: 3px solid #710004;
-  font-weight: 600;
+  font-weight: 500;
   color: #710004;
 }
 footer .footer-container .auth-links ul li a:hover {

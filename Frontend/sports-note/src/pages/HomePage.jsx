@@ -14,16 +14,23 @@ import Footer from '../components/Footer';
 function HomePage() {
   return (
     <>
+      <style>
+        {`
+          body .fixtures-section, .quotes-section, .techniques-section, .sessions-section {
+            min-height: 700px;
+          `}
+      </style>
+
       <main>
-        <Intro/>
-        <Features/>
-        <Moments_Home/>
-        <Fixtures_Home/>
-        <Quotes_Home/>
-        <Techniques_Home/>
-        <Sessions_home/>
+        <Intro />
+        <Features />
+        <Moments_Home />
+        <Fixtures_Home />
+        <Quotes_Home />
+        <Techniques_Home />
+        <Sessions_home />
       </main>
-      <Footer/>
+      <Footer />
     </>
   )
 }
