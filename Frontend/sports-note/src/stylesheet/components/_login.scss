@@ -1,0 +1,178 @@
+@use "../abstract/reset" as *;
+@use "../abstract/variables" as *;
+
+.login-section {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+
+  .login-container {
+    z-index: 30;
+        .login-form{
+            
+        }
+    }
+
+  .login-swiper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .slide-image {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(#71000490, #fcf0d695 50%, #6b9ebd90 100%);
+    z-index: 5;
+  }
+
+  header {
+    position: relative;
+    z-index: 20;
+  }
+
+  .slider-control {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 15;
+
+    .left-side {
+      .left-button {
+        position: absolute;
+        left: -15px;
+        width: 80px;
+        height: 50px;
+        transform: skew(20deg);
+        background: $red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        i {
+          color: $yellow;
+          font-size: 1.5rem;
+          transform: skew(-20deg);
+        }
+      }
+    }
+
+    .right-side {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      right: -50px;
+
+      .indicator {
+        width: 20px;
+        height: 50px;
+        transform: skew(-20deg);
+        background-color: $red;
+
+        &.active {
+          background-color: $yellow;
+          border: 5px solid $red;
+        }
+      }
+
+      .right-button {
+        width: 80px;
+        height: 50px;
+        transform: skew(-20deg);
+        background: $red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        i {
+          color: $yellow;
+          font-size: 1.5rem;
+          transform: skew(20deg);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) and (orientation: landscape) {
+  .login-section {
+    .login-container {
+        .login-form{
+            
+        }
+      
+
+      .slider-control {
+        .right-side {
+          right: -50px;
+        }
+      }
+    }
+
+    .slider-control {
+      .right-side {
+        right: -50px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .login-section {
+    .login-container {
+      
+    }
+
+    .slider-control {
+      .left-side {
+        .left-button {
+          left: -10px;
+          width: 60px;
+          height: 40px;
+
+          i {
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      .right-side {
+        gap: 0.5rem;
+        right: -40px;
+
+        .indicator {
+          width: 15px;
+          height: 40px;
+        }
+
+        .right-button {
+          width: 60px;
+          height: 40px;
+
+          i {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}

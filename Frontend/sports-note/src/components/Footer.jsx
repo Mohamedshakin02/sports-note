@@ -20,7 +20,7 @@ function Footer() {
                     <h1 className='h3 m-0 p-0'>Planning to organise your sports notes?</h1>
                     <p className='h5 m-0 p-0 pt-3'>Start building your sports collection by joining Sport Note.</p>
                     <ul className='list-unstyled m-0 p-0 mt-4'>
-                        <li><Link to="/" className="login text-decoration-none rounded-pill p-2 fs-5">Login</Link></li>
+                        <li><Link to="/login" className="login text-decoration-none rounded-pill p-2 fs-5">Login</Link></li>
                         <li><Link to="/" className="sign text-decoration-none rounded-pill p-2 fs-5">Sign Up</Link></li>
                     </ul>
                 </div>

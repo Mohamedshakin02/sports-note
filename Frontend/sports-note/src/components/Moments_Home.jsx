@@ -173,8 +173,6 @@ function Moments_Home() {
                       swiper.updateProgress();
                       swiper.updateActiveIndex();
 
-                      swiper.updateNavigation();
-
                     });
 
                   } else {
