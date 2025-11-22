@@ -26,7 +26,7 @@ function Features() {
                 </div>
 
                 {/* Bottom Feature Boxes */}
-                <div className='bottom-container pt-3 pt-lg-5'>
+                <div className='bottom-container pt-3 pt-lg-5 mb-5'>
 
                     {/* Moments */}
                     <div className='feature-box d-flex flex-column justify-content-between ps-4 py-3'>

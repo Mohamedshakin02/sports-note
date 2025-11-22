@@ -40,7 +40,7 @@ function Fixtures() {
   };
 
   return (
-    <section className="fixtures-section container-md py-5 mb-5 mt-2 px-2">
+    <section className="fixtures-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
       <div className="heading-container mb-5">
         <h1 className="m-0 p-0 mb-3">Fixtures</h1>
         <p className="m-0 p-0 fs-4 w-75">
