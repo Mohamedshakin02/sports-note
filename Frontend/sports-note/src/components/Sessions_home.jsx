@@ -69,8 +69,9 @@ function Sessions_home() {
     const slideNext = () => swiperRef.current?.slideNext();
   
     return (
-      <section className="sessions-section container-md py-5 mt-2 px-2">
-        <div className="heading-container mb-5">
+      <section className="sessions-section py-5 mt-2 px-2">
+        <div className="sessions-container container-md">
+          <div className="heading-container mb-5">
           <h1>Sessions</h1>
           <p className="fs-4 w-75">
             Record your training sessions and exercises to stay on track and improve your performance.
@@ -153,6 +154,7 @@ function Sessions_home() {
               ))}
             </Swiper>
           </div>
+        </div>
         </div>
       </section>
     );
