@@ -2,6 +2,7 @@ import React from 'react'
 import Moments from '../components/Moments'
 import Header from '../components/header'
 import '../stylesheet/pages/moments-page.css';
+import Footer from '../components/Footer';
 
 
 function MomentsPage() {
@@ -28,6 +29,8 @@ function MomentsPage() {
           .auth-dropdown i, .bi-grid-fill, .menu-links li hr{
            filter: invert(100%);
           }
+
+          
         `}
       </style>
 
@@ -35,6 +38,7 @@ function MomentsPage() {
         <Header/>
         <Moments/>
       </main>
+      <Footer/>
     </>
   )
 }

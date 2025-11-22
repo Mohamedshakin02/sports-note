@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/header'
 import Techniques from '../components/Techniques'
 import '../stylesheet/pages/techniques-page.css';
+import Footer from '../components/Footer';
 
 function TechniquesPage() {
   return (
@@ -12,7 +13,7 @@ function TechniquesPage() {
             background-color: #FCF0D6;
           }
 
-          header{
+          header, footer{
             background-color: #710004;
           }
 
@@ -27,13 +28,50 @@ function TechniquesPage() {
           .auth-dropdown i, .bi-grid-fill, .menu-links li hr{
            filter: invert(0%);
           }
+
+          body footer .footer-container .menu-links ul a, 
+          body footer .footer-container, 
+          body footer .footer-container .logo p{
+            color: #FCF0D6 !important;
+          }
+
+          body footer .footer-container .menu-links ul a:hover{
+            color: white !important
+          }
+
+          body footer .footer-container .auth-links ul a{
+            border: 3px solid #FCF0D6 !important;
+            color: #FCF0D6 !important
+          }
+
+          body footer .footer-container .auth-links ul a:hover{
+            border: 3px solid white !important;
+            background-color: white !important;
+            color: black !important
+          }
+
+          body footer .footer-container .auth-links ul .sign{
+            background-color: #FCF0D6 !important;
+            color: #710004 !important;
+          }
+
+          body footer .footer-container p, .copyright{
+            color: white !important
+          }
+
+          footer .footer-container .logo::before, 
+          footer .footer-container .logo::after{
+            background-color: #FCF0D6;
+          }
         `}
       </style>
 
+      <Header/>
       <main>
-        <Header/>
         <Techniques/>
       </main>
+      <Footer/>
+
     </>
   )
 }

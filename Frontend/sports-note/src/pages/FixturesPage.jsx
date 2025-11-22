@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/header'
 import Fixtures from '../components/Fixtures'
 import '../stylesheet/pages/fixtures-page.css';
+import Footer from '../components/Footer';
 
 
 function FixturesPage() {
@@ -13,7 +14,7 @@ function FixturesPage() {
             background-color: #FCF0D6;
           }
 
-          header{
+          header, footer{
             background-color: #710004;
           }
 
@@ -28,13 +29,49 @@ function FixturesPage() {
           .auth-dropdown i, .bi-grid-fill, .menu-links li hr{
            filter: invert(0%);
           }
+
+          body footer .footer-container .menu-links ul a, 
+          body footer .footer-container, 
+          body footer .footer-container .logo p{
+            color: #FCF0D6 !important;
+          }
+
+          body footer .footer-container .menu-links ul a:hover{
+            color: white !important
+          }
+
+          body footer .footer-container .auth-links ul a{
+            border: 3px solid #FCF0D6 !important;
+            color: #FCF0D6 !important
+          }
+
+          body footer .footer-container .auth-links ul a:hover{
+            border: 3px solid white !important;
+            background-color: white !important;
+            color: black !important
+          }
+
+          body footer .footer-container .auth-links ul .sign{
+            background-color: #FCF0D6 !important;
+            color: #710004 !important;
+          }
+
+          body footer .footer-container p, .copyright{
+            color: white !important
+          }
+
+          footer .footer-container .logo::before, 
+          footer .footer-container .logo::after{
+            background-color: #FCF0D6;
+          }
         `}
       </style>
 
+      <Header/>
       <main>
-        <Header/>
         <Fixtures/>
       </main>
+      <Footer/>
     </>
   )
 }

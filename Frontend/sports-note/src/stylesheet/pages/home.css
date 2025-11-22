@@ -1326,7 +1326,7 @@ footer .footer-container .menu-links ul {
   font-weight: 600;
 }
 footer .footer-container .menu-links ul li a {
-  color: #710004;
+  color: #710004 !important;
 }
 footer .footer-container .menu-links ul li a:hover {
   color: black !important;

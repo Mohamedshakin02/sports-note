@@ -2,6 +2,7 @@ import React from 'react'
 import Sessions from '../components/Sessions'
 import Header from '../components/header'
 import '../stylesheet/pages/sessions-page.css';
+import Footer from '../components/Footer';
 
 function SessionsPage() {
   return (
@@ -30,10 +31,11 @@ function SessionsPage() {
         `}
       </style>
 
+      <Header/>
       <main>
-        <Header/>
         <Sessions/>
       </main>
+      <Footer/>
     </>
   )
 }

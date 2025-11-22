@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/header'
 import Quotes from '../components/Quotes'
 import '../stylesheet/pages/quotes-page.css';
+import Footer from '../components/Footer';
 
 function QuotesPage() {
   return (
@@ -30,10 +31,11 @@ function QuotesPage() {
         `}
       </style>
 
+      <Header/>
       <main>
-        <Header/>
         <Quotes/>
       </main>
+      <Footer/>
     </>
   )
 }

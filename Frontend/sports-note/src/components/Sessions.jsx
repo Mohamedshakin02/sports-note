@@ -69,7 +69,7 @@ function Sessions() {
   const slideNext = () => swiperRef.current?.slideNext();
 
   return (
-    <section className="sessions-section container-md py-5 mt-2 px-2">
+    <section className="sessions-section container-md py-5 mt-2 mb-5 px-2">
       <div className="heading-container mb-5">
         <h1>Sessions</h1>
         <p className="fs-4 w-75">
