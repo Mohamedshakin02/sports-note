@@ -27,10 +27,13 @@ footer {
                 font-weight: 600;
 
                 li {
-                    cursor: pointer;
 
-                    &:hover {
-                        color: black;
+                    a {
+                        color: $red;
+
+                        &:hover {
+                            color: black !important;
+                        }
                     }
                 }
             }
@@ -55,21 +58,28 @@ footer {
                 gap: 1rem;
 
                 li {
-                    border: 3px solid $red;
-                    font-weight: 600;
-                    cursor: pointer;
+                    display: grid;
+                    grid-template-columns: repeat(1, 1fr);
 
-                    &:hover {
-                        background-color: black;
-                        color: white;
-                        border: 3px solid $black;
+                    a {
+                        border: 3px solid $red;
+                        font-weight: 600;
+                        color: $red;
+
+                        &:hover {
+                            background-color: black !important;
+                            color: white !important;
+                            border: 3px solid $black;
+                        }
+
+                    }
+
+                    .sign {
+                        color: $yellow ;
+                        background-color: $red;
                     }
                 }
 
-                .sign {
-                    color: $yellow ;
-                    background-color: $red;
-                }
             }
         }
 
@@ -91,58 +101,58 @@ footer {
             &::after {
                 content: "";
                 position: absolute;
-                top: 5%; 
+                top: 5%;
                 bottom: 5%;
                 width: 2px;
                 background-color: $red;
             }
 
             &::before {
-                left: 2px; 
+                left: 2px;
             }
 
             &::after {
-                right: 0px; 
+                right: 0px;
             }
 
         }
     }
 
-    .copyright{
+    .copyright {
         text-align: center;
         color: $black;
     }
 }
 
-@media screen and (max-width: 992px){
-    footer{
-        .footer-container{
+@media screen and (max-width: 992px) {
+    footer {
+        .footer-container {
             grid-template-columns: repeat(1, 1fr);
             grid-template-areas:
-            "logo" 
-            "menus"
-             "auth";
-             gap: 1.5rem;
+                "logo"
+                "menus"
+                "auth";
+            gap: 1.5rem;
 
-             .logo{
-                justify-self:left;
+            .logo {
+                justify-self: left;
                 text-align: left;
 
                 &::before,
-                &::after{
+                &::after {
                     display: none;
                 }
 
-                h2{
-                    br{
+                h2 {
+                    br {
                         display: none;
                     }
                 }
 
-                p{
+                p {
                     color: black;
                 }
-             }
+            }
         }
     }
 }

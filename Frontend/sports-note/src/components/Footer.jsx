@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 function Footer() {
     return (
@@ -8,24 +9,24 @@ function Footer() {
                     <h1 className='h2 m-0 p-0'>Explore Sports Note</h1>
                     <p className='h5 m-0 p-0 pt-3'>Find everything you need to explore your sports notes.</p>
                     <ul className='list-unstyled m-0 p-0 pt-3 fs-4'>
-                        <li className='pb-2'>Moments <span><i className="bi bi-arrow-up-right"></i></span></li>
-                        <li className='pb-2'>Fixtures  <span><i className="bi bi-arrow-up-right"></i></span></li>
-                        <li className='pb-2'>Quotes  <span><i className="bi bi-arrow-up-right"></i></span></li>
-                        <li className='pb-2'>Techniques  <span><i className="bi bi-arrow-up-right"></i></span></li>
-                        <li className='pb-2'>Sessions  <span><i className="bi bi-arrow-up-right"></i></span></li>
+                        <li className='pb-2'><Link to="/moments" className="text-decoration-none">Moments<span><i className="bi bi-arrow-up-right ms-1"></i></span></Link></li>
+                        <li className='pb-2'><Link to="/fixtures" className="text-decoration-none">Fixtures<span><i className="bi bi-arrow-up-right ms-1"></i></span></Link></li>
+                        <li className='pb-2'><Link to="/quotes" className="text-decoration-none">Quotes<span><i className="bi bi-arrow-up-right ms-1"></i></span></Link></li>
+                        <li className='pb-2'><Link to="/techniques" className="text-decoration-none">Techniques<span><i className="bi bi-arrow-up-right ms-1"></i></span></Link></li>
+                        <li className='pb-2'><Link to="/sessions" className="text-decoration-none">Sessions<span><i className="bi bi-arrow-up-right ms-1"></i></span></Link></li>
                     </ul>
                 </div>
                 <div className='auth-links ps-lg-5'>
                     <h1 className='h2 m-0 p-0'>Planning to organise your sports notes?</h1>
                     <p className='h5 m-0 p-0 pt-3'>Start building your sports collection by joining Sport Note.</p>
                     <ul className='list-unstyled m-0 p-0 mt-4'>
-                        <li className='login rounded-pill p-2 fs-5'>Login</li>
-                        <li className='sign rounded-pill p-2 fs-5'>Sign Up</li>
+                        <li><Link to="/" className="login text-decoration-none rounded-pill p-2 fs-5">Login</Link></li>
+                        <li><Link to="/" className="sign text-decoration-none rounded-pill p-2 fs-5">Sign Up</Link></li>
                     </ul>
                 </div>
 
                 <div className='logo'>
-                    <h2 className='display-3 m-0 p-0'>SPORTS <br />
+                    <h2 className='display-4 m-0 p-0'>SPORTS <br />
                         NOTE</h2>
                     <p className='m-0 p-0 pt-3 px-lg-5 fs-5'><i>Capture Plays, Track Progress, Relive Moments</i></p>
                 </div>

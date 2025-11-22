@@ -1325,11 +1325,11 @@ footer .footer-container .menu-links p {
 footer .footer-container .menu-links ul {
   font-weight: 600;
 }
-footer .footer-container .menu-links ul li {
-  cursor: pointer;
+footer .footer-container .menu-links ul li a {
+  color: #710004;
 }
-footer .footer-container .menu-links ul li:hover {
-  color: black;
+footer .footer-container .menu-links ul li a:hover {
+  color: black !important;
 }
 footer .footer-container .auth-links {
   grid-area: auth;
@@ -1348,16 +1348,20 @@ footer .footer-container .auth-links ul {
   gap: 1rem;
 }
 footer .footer-container .auth-links ul li {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+footer .footer-container .auth-links ul li a {
   border: 3px solid #710004;
   font-weight: 600;
-  cursor: pointer;
+  color: #710004;
 }
-footer .footer-container .auth-links ul li:hover {
-  background-color: black;
-  color: white;
+footer .footer-container .auth-links ul li a:hover {
+  background-color: black !important;
+  color: white !important;
   border: 3px solid #000000;
 }
-footer .footer-container .auth-links ul .sign {
+footer .footer-container .auth-links ul li .sign {
   color: #FCF0D6;
   background-color: #710004;
 }
