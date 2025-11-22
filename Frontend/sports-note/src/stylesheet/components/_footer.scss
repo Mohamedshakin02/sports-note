@@ -1,0 +1,154 @@
+@use "../abstract/reset" as *;
+@use "../abstract/variables" as *;
+
+footer {
+    background-color: $yellow;
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "menus logo auth";
+        color: $red;
+
+        .menu-links {
+            grid-area: menus;
+
+            h1 {
+                font-weight: 600;
+            }
+
+            p {
+                font-weight: 500;
+                color: $black;
+            }
+
+            ul {
+                font-weight: 600;
+
+                li {
+                    cursor: pointer;
+
+                    &:hover {
+                        color: black;
+                    }
+                }
+            }
+        }
+
+        .auth-links {
+            grid-area: auth;
+
+            h1 {
+                font-weight: 600;
+            }
+
+            p {
+                font-weight: 500;
+                color: $black;
+            }
+
+            ul {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                text-align: center;
+                gap: 1rem;
+
+                li {
+                    border: 3px solid $red;
+                    font-weight: 600;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: black;
+                        color: white;
+                        border: 3px solid $black;
+                    }
+                }
+
+                .sign {
+                    color: $yellow ;
+                    background-color: $red;
+                }
+            }
+        }
+
+        .logo {
+            grid-area: logo;
+            justify-self: center;
+            text-align: center;
+            position: relative;
+
+            h2 {
+                font-weight: 900;
+            }
+
+            p {
+                font-weight: 600;
+            }
+
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+                top: 5%; 
+                bottom: 5%;
+                width: 2px;
+                background-color: $red;
+            }
+
+            &::before {
+                left: 2px; 
+            }
+
+            &::after {
+                right: 0px; 
+            }
+
+        }
+    }
+
+    .copyright{
+        text-align: center;
+        color: $black;
+    }
+}
+
+@media screen and (max-width: 992px){
+    footer{
+        .footer-container{
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-areas:
+            "logo" 
+            "menus"
+             "auth";
+             gap: 1.5rem;
+
+             .auth-links{
+                ul{
+                    
+                }
+             }
+
+             .logo{
+                justify-self:left;
+                text-align: left;
+
+                &::before,
+                &::after{
+                    display: none;
+                }
+
+                h2{
+                    br{
+                        display: none;
+                    }
+                }
+
+                p{
+                    color: black;
+                }
+             }
+        }
+    }
+}
