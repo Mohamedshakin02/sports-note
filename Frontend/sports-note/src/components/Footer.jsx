@@ -6,7 +6,7 @@ function Footer() {
         <footer className='py-5 pb-3 mt-2 px-2'>
             <div className='footer-container container-md'>
                 <div className='menu-links pe-5'>
-                    <h1 className='h2 m-0 p-0'>Explore Sports Note</h1>
+                    <h1 className='h3 m-0 p-0'>Explore Sports Note</h1>
                     <p className='h5 m-0 p-0 pt-3'>Find everything you need to explore your sports notes.</p>
                     <ul className='list-unstyled m-0 p-0 pt-3 fs-4'>
                         <li className='pb-2'><Link to="/moments" className="text-decoration-none">Moments<span><i className="bi bi-arrow-up-right ms-1"></i></span></Link></li>
@@ -17,7 +17,7 @@ function Footer() {
                     </ul>
                 </div>
                 <div className='auth-links ps-lg-5'>
-                    <h1 className='h2 m-0 p-0'>Planning to organise your sports notes?</h1>
+                    <h1 className='h3 m-0 p-0'>Planning to organise your sports notes?</h1>
                     <p className='h5 m-0 p-0 pt-3'>Start building your sports collection by joining Sport Note.</p>
                     <ul className='list-unstyled m-0 p-0 mt-4'>
                         <li><Link to="/" className="login text-decoration-none rounded-pill p-2 fs-5">Login</Link></li>
