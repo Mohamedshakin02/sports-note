@@ -8,6 +8,7 @@ import Fixtures from '../components/Fixtures';
 import Fixtures_Home from '../components/Fixtures_Home';
 import Quotes_Home from '../components/Quotes_Home';
 import Techniques_Home from '../components/Techniques_Home';
+import Sessions_home from '../components/Sessions_home';
 
 function HomePage() {
   return (
@@ -19,6 +20,7 @@ function HomePage() {
         <Fixtures_Home/>
         <Quotes_Home/>
         <Techniques_Home/>
+        <Sessions_home/>
       </main>
     </>
   )
