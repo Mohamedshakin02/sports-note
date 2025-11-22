@@ -649,6 +649,7 @@
 
 .fixtures-section {
   background-color: #FCF0D6;
+  min-height: 700px;
 }
 .fixtures-section .fixtures-container .heading-container {
   color: #710004;
@@ -769,6 +770,9 @@
   font-weight: 700 !important;
 }
 
+.quotes-section {
+  min-height: 700px;
+}
 .quotes-section .heading-container h1 {
   font-weight: 600;
 }
@@ -950,6 +954,7 @@
 }
 .techniques-section {
   background-color: #FCF0D6;
+  min-height: 700px;
 }
 .techniques-section .techniques-container .heading-container {
   color: #710004;
@@ -1054,6 +1059,9 @@
   background: #f2f2f2;
 }
 
+.sessions-section {
+  min-height: 700px;
+}
 .sessions-section .heading-container {
   color: #FCF0D6;
 }
