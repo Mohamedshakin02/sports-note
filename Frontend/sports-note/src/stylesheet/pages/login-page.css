@@ -139,129 +139,83 @@
   }
 }
 .login-section {
-  position: relative;
   width: 100%;
-  height: 100svh;
   overflow: hidden;
 }
 .login-section .login-container {
   z-index: 30;
-}
-.login-section .login-swiper {
   width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.login-section .login-swiper .slide-image {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-}
-.login-section .gradient-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(rgba(113, 0, 4, 0.5647058824), rgba(252, 240, 214, 0.5843137255) 50%, rgba(107, 158, 189, 0.5647058824) 100%);
-  z-index: 5;
-}
-.login-section header {
-  position: relative;
-  z-index: 20;
-}
-.login-section .slider-control {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 2rem;
-  z-index: 15;
-}
-.login-section .slider-control .left-side .left-button {
-  position: absolute;
-  left: -15px;
-  width: 80px;
-  height: 50px;
-  transform: skew(20deg);
-  background: #710004;
-  display: flex;
-  justify-content: center;
+  margin-top: 7rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5rem;
   align-items: center;
-  cursor: pointer;
-}
-.login-section .slider-control .left-side .left-button i {
+  justify-items: center;
   color: #FCF0D6;
-  font-size: 1.5rem;
-  transform: skew(-20deg);
 }
-.login-section .slider-control .right-side {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.login-section .login-container .login-heading {
+  justify-self: flex-end;
+}
+.login-section .login-container .login-heading h1 {
+  font-weight: 600;
+}
+.login-section .login-container .login-heading p {
+  color: #FFFFFF;
+}
+.login-section .login-container .login-form {
+  max-width: 450px;
+  justify-self: self-start;
   position: relative;
-  right: -50px;
-}
-.login-section .slider-control .right-side .indicator {
-  width: 20px;
-  height: 50px;
-  transform: skew(-20deg);
-  background-color: #710004;
-}
-.login-section .slider-control .right-side .indicator.active {
   background-color: #FCF0D6;
-  border: 5px solid #710004;
+  color: #710004;
+  border-radius: 8px;
 }
-.login-section .slider-control .right-side .right-button {
-  width: 80px;
-  height: 50px;
-  transform: skew(-20deg);
-  background: #710004;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+.login-section .login-container .login-form form label {
+  font-weight: 500;
 }
-.login-section .slider-control .right-side .right-button i {
+.login-section .login-container .login-form form input {
+  background-color: unset;
+  color: white;
+  border: 2px solid #710004;
+}
+.login-section .login-container .login-form form .form-control:focus {
+  background-color: #FCF0D6;
+  box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
+  color: black;
+}
+.login-section .login-container .login-form form button {
+  background-color: #710004;
   color: #FCF0D6;
-  font-size: 1.5rem;
-  transform: skew(20deg);
+  font-weight: 500;
+  border: none;
+}
+.login-section .login-container .login-form form button:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.login-section .login-container .login-form form .sign-up {
+  color: #000000;
+}
+.login-section .login-container .login-form form .sign-up .link {
+  color: #710004;
 }
 
-@media only screen and (max-width: 992px) and (orientation: landscape) {
-  .login-section .login-container .slider-control .right-side {
-    right: -50px;
+@media only screen and (max-width: 992px) {
+  .login-section .login-container {
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 4rem;
+    gap: 2rem;
   }
-  .login-section .slider-control .right-side {
-    right: -50px;
+  .login-section .login-container .login-heading {
+    justify-self: unset;
+    max-width: 450px;
+  }
+  .login-section .login-container .login-form {
+    justify-self: unset;
   }
 }
 @media (max-width: 576px) {
-  .login-section .slider-control .left-side .left-button {
-    left: -10px;
-    width: 60px;
-    height: 40px;
-  }
-  .login-section .slider-control .left-side .left-button i {
-    font-size: 1.2rem;
-  }
-  .login-section .slider-control .right-side {
-    gap: 0.5rem;
-    right: -40px;
-  }
-  .login-section .slider-control .right-side .indicator {
-    width: 15px;
-    height: 40px;
-  }
-  .login-section .slider-control .right-side .right-button {
-    width: 60px;
-    height: 40px;
-  }
-  .login-section .slider-control .right-side .right-button i {
-    font-size: 1.2rem;
+  .login-section .login-container {
+    margin-top: 2rem;
   }
 }/*# sourceMappingURL=login-page.css.map */
