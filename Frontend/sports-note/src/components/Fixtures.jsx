@@ -26,12 +26,12 @@ function Fixtures() {
 
   // Fixtures data with ISO dates
   const fixturesList = [
-  { date: "2024-11-19", team1: "INDIA", team2: "PAK", time: "9:30", sport: "Cricket" },
-  { date: "2024-11-20", team1: "AUSTRALIA", team2: "ENG", time: "14:00", sport: "Cricket" },
-  { date: "2024-11-22", team1: "BARCELONA", team2: "REAL MADRID", time: "20:45", sport: "Football" },
-  { date: "2024-11-23", team1: "MAN UNITED", team2: "ARSENAL", time: "", sport: "Football" },
-  { date: "2024-11-25", team1: "BULLS", team2: "CELTICS", time: "", sport: "Basketball" }
-];
+    { date: "2024-11-19", team1: "INDIA", team2: "PAK", time: "9:30", sport: "Cricket" },
+    { date: "2024-11-20", team1: "AUSTRALIA", team2: "ENG", time: "14:00", sport: "Cricket" },
+    { date: "2024-11-22", team1: "BARCELONA", team2: "REAL MADRID", time: "20:45", sport: "Football" },
+    { date: "2024-11-23", team1: "MAN UNITED", team2: "ARSENAL", time: "", sport: "Football" },
+    { date: "2024-11-25", team1: "BULLS", team2: "CELTICS", time: "", sport: "Basketball" }
+  ];
 
   // Format date to "19 NOV"
   const formatDate = (dateString) => {

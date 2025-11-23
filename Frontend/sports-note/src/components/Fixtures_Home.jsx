@@ -32,11 +32,11 @@ function Fixtures_Home() {
     }, [openMenuIndex]);
 
     const fixturesList = [
-        { date: "2024-11-19", match: "INDIA VS PAK", time: "9:30", sport: "Cricket" },
-        { date: "2024-11-20", match: "AUSTRALIA VS ENG", time: "14:00", sport: "Cricket" },
-        { date: "2024-11-22", match: "BARCELONA VS REAL MADRID", time: "20:45", sport: "Football" },
-        { date: "2024-11-23", match: "MAN UNITED VS ARSENAL", time: "", sport: "Football" },
-        { date: "2024-11-25", match: "BULLS VS CELTICS", time: "", sport: "Basketball" },
+        { date: "2024-11-19", team1: "INDIA", team2: "PAK", time: "9:30", sport: "Cricket" },
+        { date: "2024-11-20", team1: "AUSTRALIA", team2: "ENG", time: "14:00", sport: "Cricket" },
+        { date: "2024-11-22", team1: "BARCELONA", team2: "REAL MADRID", time: "20:45", sport: "Football" },
+        { date: "2024-11-23", team1: "MAN UNITED", team2: "ARSENAL", time: "", sport: "Football" },
+        { date: "2024-11-25", team1: "BULLS", team2: "CELTICS", time: "", sport: "Basketball" }
     ];
 
     const formatDate = (dateString) => {
@@ -106,7 +106,7 @@ function Fixtures_Home() {
                                     <p className="sport-badge m-0 p-0 mt-2 rounded-pill">
                                         {fixture.sport}
                                     </p>
-                                    <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder">{fixture.match}</p>
+                                    <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder">{fixture.team1} VS {fixture.team2}</p>
                                     <p className="m-0 p-0 fs-6">
                                         <i className="bi bi-clock me-2"></i>
                                         {fixture.time || "N/A"}
