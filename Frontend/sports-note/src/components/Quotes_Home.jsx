@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -51,7 +52,7 @@ function Quotes_Home() {
       quote: "Success isn’t owned. It’s leased. And rent is due every day.",
       author: "J.J. Watt",
     },
-    
+
   ];
 
   // Function to get initials
@@ -98,66 +99,71 @@ function Quotes_Home() {
         className="quotes-slider"
         breakpoints={{
           0: {
-            slidesPerView: 1.25,   
+            slidesPerView: 1.25,
           },
           768: {
-            slidesPerView: 1.25,   
+            slidesPerView: 1.25,
           },
           992: {
             slidesPerView: 1,     // desktop
           }
         }}
       >
-      {quotesList.map((item, index) => (
-        <SwiperSlide key={index}>
-          <div className="quote-box d-flex p-3 px-4">
+        {quotesList.map((item, index) => (
+          <SwiperSlide key={index}>
+            <div className="quote-box d-flex p-3 px-4">
 
-            {/* IMAGE */}
-            <div className="image-container me-2 me-sm-4 d-flex justify-content-center align-items-center">
-              {item.image ? (
-                <img src={item.image} alt="" className="img-fluid" />
-              ) : (
-                <i className="bi bi-person-fill display-3"></i>
-              )}
+              {/* IMAGE */}
+              <div className="image-container me-2 me-sm-4 d-flex justify-content-center align-items-center">
+                {item.image ? (
+                  <img src={item.image} alt="" className="img-fluid" />
+                ) : (
+                  <i className="bi bi-person-fill display-3"></i>
+                )}
+              </div>
+
+              {/* QUOTE ICON */}
+              <div className="quote-container">
+                <i className="bi bi-quote display-3"></i>
+              </div>
+
+              {/* TEXT */}
+              <div className="text-container h-100 p-2 d-flex flex-column justify-content-between">
+                <p className="quote m-0 display-6 fs-4 pt-0 pt-lg-1">
+                  "{item.quote}"
+                </p>
+                <p className="author m-0 p-0 mt-2 fs-5 text-end">
+                  <i>- {item.author}</i>
+                </p>
+              </div>
+
+              {/* MENU WRAPPER */}
+              <div
+                className="menu-wrapper ms-auto"
+                ref={(el) => (menuRefs.current[index] = el)}
+              >
+                <i
+                  className="bi bi-three-dots-vertical menu-icon"
+                  onClick={() => toggleMenu(index)}
+                ></i>
+
+                {openMenuIndex === index && (
+                  <div className="menu-dropdown">
+                    <button>Edit</button>
+                    <button>Delete</button>
+                  </div>
+                )}
+              </div>
+
             </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-            {/* QUOTE ICON */}
-            <div className="quote-container">
-              <i className="bi bi-quote display-3"></i>
-            </div>
 
-            {/* TEXT */}
-            <div className="text-container h-100 p-2 d-flex flex-column justify-content-between">
-              <p className="quote m-0 display-6 fs-4 pt-0 pt-lg-1">
-                "{item.quote}"
-              </p>
-              <p className="author m-0 p-0 mt-2 fs-5 text-end">
-                <i>- {item.author}</i>
-              </p>
-            </div>
-
-            {/* MENU WRAPPER */}
-            <div
-              className="menu-wrapper ms-auto"
-              ref={(el) => (menuRefs.current[index] = el)}
-            >
-              <i
-                className="bi bi-three-dots-vertical menu-icon"
-                onClick={() => toggleMenu(index)}
-              ></i>
-
-              {openMenuIndex === index && (
-                <div className="menu-dropdown">
-                  <button>Edit</button>
-                  <button>Delete</button>
-                </div>
-              )}
-            </div>
-
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+      <div className="explore mt-5">
+        <Link to="/quotes" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
+      </div>
 
     </section >
   )

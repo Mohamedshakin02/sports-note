@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -159,6 +160,10 @@ function Sessions_home() {
               ))}
             </Swiper>
           </div>
+        </div>
+
+        <div className="explore mt-5">
+          <Link to="/sessions" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
         </div>
       </div>
     </section>

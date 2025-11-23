@@ -647,6 +647,38 @@
   font-weight: 700 !important;
 }
 
+.explore {
+  display: flex;
+  justify-content: center;
+}
+.explore a, .explore button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.explore a {
+  background-color: black;
+  color: white;
+}
+.explore button {
+  background-color: #FCF0D6;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: black;
+  border: none;
+}
+.explore button:hover {
+  background-color: black;
+  color: white;
+}
+.explore a:focus, .explore a:active,
+.explore button:focus, .explore button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 .fixtures-section {
   background-color: #FCF0D6;
 }
@@ -767,6 +799,40 @@
 .fixtures-section .fixtures-container .fixtures-slider .swiper-button-next:after {
   font-size: 25px !important;
   font-weight: 700 !important;
+}
+.fixtures-section .fixtures-container .explore {
+  display: flex;
+  justify-content: center;
+}
+.fixtures-section .fixtures-container .explore a,
+.fixtures-section .fixtures-container .explore button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.fixtures-section .fixtures-container .explore a {
+  background-color: black;
+  color: white;
+}
+.fixtures-section .fixtures-container .explore button {
+  background-color: #710004;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: #FCF0D6;
+  border: none;
+}
+.fixtures-section .fixtures-container .explore button:hover {
+  background-color: black;
+  color: white;
+}
+.fixtures-section .fixtures-container .explore a:focus,
+.fixtures-section .fixtures-container .explore a:active,
+.fixtures-section .fixtures-container .explore button:focus,
+.fixtures-section .fixtures-container .explore button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .quotes-section .heading-container h1 {
@@ -893,6 +959,40 @@
 }
 .quotes-section .quotes-slider .swiper-pagination .initials {
   text-transform: uppercase;
+}
+.quotes-section .explore {
+  display: flex;
+  justify-content: center;
+}
+.quotes-section .explore a,
+.quotes-section .explore button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.quotes-section .explore a {
+  background-color: black;
+  color: white;
+}
+.quotes-section .explore button {
+  background-color: #FCF0D6;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: black;
+  border: none;
+}
+.quotes-section .explore button:hover {
+  background-color: black;
+  color: white;
+}
+.quotes-section .explore a:focus,
+.quotes-section .explore a:active,
+.quotes-section .explore button:focus,
+.quotes-section .explore button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 @media (max-width: 992px) {
@@ -1052,6 +1152,40 @@
 }
 .techniques-section .techniques-container .menu-dropdown button:hover {
   background: #f2f2f2;
+}
+.techniques-section .explore {
+  display: flex;
+  justify-content: center;
+}
+.techniques-section .explore a,
+.techniques-section .explore button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.techniques-section .explore a {
+  background-color: black;
+  color: white;
+}
+.techniques-section .explore button {
+  background-color: #710004;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: #FCF0D6;
+  border: none;
+}
+.techniques-section .explore button:hover {
+  background-color: black;
+  color: white;
+}
+.techniques-section .explore a:focus,
+.techniques-section .explore a:active,
+.techniques-section .explore button:focus,
+.techniques-section .explore button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .sessions-section .heading-container {
@@ -1237,6 +1371,40 @@
 .sessions-section .mySwiper .swiper-pagination-bullet-active {
   background-color: #710004;
   border: 2px solid #FCF0D6;
+}
+.sessions-section .explore {
+  display: flex;
+  justify-content: center;
+}
+.sessions-section .explore a,
+.sessions-section .explore button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.sessions-section .explore a {
+  background-color: black;
+  color: white;
+}
+.sessions-section .explore button {
+  background-color: #FCF0D6;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: black;
+  border: none;
+}
+.sessions-section .explore button:hover {
+  background-color: black;
+  color: white;
+}
+.sessions-section .explore a:focus,
+.sessions-section .explore a:active,
+.sessions-section .explore button:focus,
+.sessions-section .explore button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 @media screen and (max-width: 1023px) {

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -116,6 +117,10 @@ function Fixtures_Home() {
                         </SwiperSlide>
                     ))}
                 </Swiper>
+
+                <div className="explore mt-4">
+                    <Link to="/fixtures" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
+                </div>
             </div>
         </section>
     );

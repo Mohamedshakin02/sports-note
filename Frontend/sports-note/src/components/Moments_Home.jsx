@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -77,7 +78,7 @@ function Moments_Home() {
       title: "England Won 2019 Cricket World Cup",
       description: "I could not stop cheering when England won the 2019 Cricket World Cup. The final was so intense and nerve-wracking, and I still remember the excitement when the match ended in a super over. It was an amazing experience to witness history.",
       date: "2019-07-14"
-    }
+    },
   ];
 
   const formatDate = (dateString) =>
@@ -248,6 +249,10 @@ function Moments_Home() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div className="explore mt-3">
+        <Link to="/moments" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
+      </div>
     </section>
   );
 }
