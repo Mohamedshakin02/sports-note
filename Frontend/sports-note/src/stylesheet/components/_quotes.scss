@@ -4,6 +4,32 @@
 .quotes-section {
     .heading-container {
         color: $yellow;
+        display: flex;
+        justify-content: space-between;
+        gap: 3rem;
+
+        .button {
+            display: flex;
+            align-items: end;
+
+            button {
+                width: 160px;
+                background-color: $yellow;
+                font-weight: 600;
+
+                &:hover {
+                    background-color: black;
+                    color: white;
+                }
+
+                &:focus, &:active {
+                    outline: $black !important;
+                    box-shadow: $black !important;
+                    border-color: $black;
+                }
+            }
+
+        }
 
         h1 {
             font-weight: 600;
@@ -89,6 +115,15 @@
                         display: block !important;
                     }
                 }
+        }
+    }
+}
+
+@media screen and (max-width: 992px){
+    .quotes-section{
+        .heading-container{
+            flex-direction: column;
+            gap: 1.5rem;
         }
     }
 }

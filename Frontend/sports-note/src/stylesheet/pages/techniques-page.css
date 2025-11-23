@@ -140,6 +140,28 @@
 }
 .techniques-section .heading-container {
   color: #710004;
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.techniques-section .heading-container .button {
+  display: flex;
+  align-items: end;
+}
+.techniques-section .heading-container .button button {
+  width: 190px;
+  background-color: #710004;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+.techniques-section .heading-container .button button:hover {
+  background-color: black;
+  color: white;
+}
+.techniques-section .heading-container .button button:focus, .techniques-section .heading-container .button button:active {
+  outline: #000000 !important;
+  box-shadow: #000000 !important;
+  border-color: #000000;
 }
 .techniques-section .heading-container h1 {
   font-weight: 600;
@@ -239,4 +261,11 @@
 }
 .techniques-section .menu-dropdown button:hover {
   background: #f2f2f2;
+}
+
+@media screen and (max-width: 992px) {
+  .techniques-section .heading-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }/*# sourceMappingURL=techniques-page.css.map */

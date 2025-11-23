@@ -76,10 +76,15 @@ function Moments() {
     return (
         <section className="moments-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
             <div className="heading-container mb-5">
-                <h1 className="m-0 p-0 mb-3">Moments</h1>
-                <p className="m-0 p-0 fs-4 w-75">
-                    Keep and enjoy your best sports moments. Remember the exciting games and achievements that made you proud.
-                </p>
+                <div className="text">
+                    <h1 className="m-0 p-0 mb-3">Moments</h1>
+                    <p className="m-0 p-0 fs-4">
+                        Keep and enjoy your best sports moments. Remember the exciting games and achievements that made you proud.
+                    </p>
+                </div>
+                <div className="button">
+                    <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Moment</button>
+                </div>
             </div>
 
             <div className="grid-container">

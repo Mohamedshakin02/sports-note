@@ -61,66 +61,72 @@ function Techniques_Home() {
         <section className="techniques-section py-5 mt-2 px-2">
             <div className="techniques-container container-md">
                 <div className="heading-container mb-5">
-                <h1 className="m-0 p-0 mb-3">Techniques</h1>
-                <p className="m-0 p-0 fs-4 w-75">
-                    Learn step-by-step moves and drills. Practice them to improve your
-                    skills and play better.
-                </p>
-            </div>
+                    <div className="text">
+                        <h1 className="m-0 p-0 mb-3">Techniques</h1>
+                        <p className="m-0 p-0 fs-4">
+                            Learn step-by-step moves and drills. Practice them to improve your
+                            skills and play better.
+                        </p>
+                    </div>
+                    <div className="button">
+                        <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Technique</button>
+                    </div>
+                </div>
 
-            {/* ACCORDION */}
-            <div className="accordion accordion-flush" id="accordionFlushExample">
-                {techniquesList.map((tech, index) => (
-                    <div className="accordion-item" key={index}>
-                        <h2 className="accordion-header">
-                            <button
-                                className="accordion-button collapsed fs-5"
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target={`#flush-collapse-${index}`}
-                            >
-                                {tech.title}
-                                <p className="sport-badge m-0 p-0 ms-2 rounded-pill">{tech.sport}</p>
-                                <i className="bi bi-caret-down-fill ms-auto ps-2 custom-arrow"></i>
-                            </button>
-                        </h2>
 
-                        <div
-                            id={`flush-collapse-${index}`}
-                            className="accordion-collapse collapse"
-                            data-bs-parent="#accordionFlushExample"
-                        >
-                            <div className="accordion-body">
-
-                                {/* THREE DOTS MENU INSIDE BODY */}
-                                <div
-                                    className="menu-wrapper"
-                                    ref={(el) => (menuRefs.current[index] = el)}
+                {/* ACCORDION */}
+                <div className="accordion accordion-flush" id="accordionFlushExample">
+                    {techniquesList.map((tech, index) => (
+                        <div className="accordion-item" key={index}>
+                            <h2 className="accordion-header">
+                                <button
+                                    className="accordion-button collapsed fs-5"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target={`#flush-collapse-${index}`}
                                 >
-                                    <i
-                                        className="bi bi-three-dots-vertical menu-icon"
-                                        onClick={() => toggleMenu(index)}
-                                    ></i>
+                                    {tech.title}
+                                    <p className="sport-badge m-0 p-0 ms-2 rounded-pill">{tech.sport}</p>
+                                    <i className="bi bi-caret-down-fill ms-auto ps-2 custom-arrow"></i>
+                                </button>
+                            </h2>
 
-                                    {openMenuIndex === index && (
-                                        <div className="menu-dropdown">
-                                            <button>Edit</button>
-                                            <button>Delete</button>
-                                        </div>
-                                    )}
+                            <div
+                                id={`flush-collapse-${index}`}
+                                className="accordion-collapse collapse"
+                                data-bs-parent="#accordionFlushExample"
+                            >
+                                <div className="accordion-body">
+
+                                    {/* THREE DOTS MENU INSIDE BODY */}
+                                    <div
+                                        className="menu-wrapper"
+                                        ref={(el) => (menuRefs.current[index] = el)}
+                                    >
+                                        <i
+                                            className="bi bi-three-dots-vertical menu-icon"
+                                            onClick={() => toggleMenu(index)}
+                                        ></i>
+
+                                        {openMenuIndex === index && (
+                                            <div className="menu-dropdown">
+                                                <button>Edit</button>
+                                                <button>Delete</button>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* STEPS */}
+                                    <ol>
+                                        {tech.steps.map((step, i) => (
+                                            <li key={i}>{step}</li>
+                                        ))}
+                                    </ol>
                                 </div>
-
-                                {/* STEPS */}
-                                <ol>
-                                    {tech.steps.map((step, i) => (
-                                        <li key={i}>{step}</li>
-                                    ))}
-                                </ol>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
             </div>
         </section>
     )

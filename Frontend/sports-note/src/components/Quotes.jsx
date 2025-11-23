@@ -34,10 +34,10 @@ function Quotes() {
       author: "Virat Kohli",
     },
     {
-    image: quote2,
-    quote: "I hated every minute of training, but I said, 'Don’t quit. Suffer now and live the rest of your life as a champion.'",
-    author: "Muhammad Ali",
-  },
+      image: quote2,
+      quote: "I hated every minute of training, but I said, 'Don’t quit. Suffer now and live the rest of your life as a champion.'",
+      author: "Muhammad Ali",
+    },
     {
       image: "",
       quote: "Success isn’t owned. It’s leased. And rent is due every day.",
@@ -48,10 +48,15 @@ function Quotes() {
   return (
     <section className="quotes-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
       <div className="heading-container mb-5">
-        <h1 className="m-0 p-0 mb-3">Quotes</h1>
-        <p className="m-0 p-0 fs-4 w-75">
-          Read your favorite quotes from players and coaches. Let their words inspire and motivate you every day.
-        </p>
+        <div className="text">
+          <h1 className="m-0 p-0 mb-3">Quotes</h1>
+          <p className="m-0 p-0 fs-4">
+            Read your favorite quotes from players and coaches. Let their words inspire and motivate you every day.
+          </p>
+        </div>
+        <div className="button">
+          <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Quote</button>
+        </div>
       </div>
 
       {/* GRID */}

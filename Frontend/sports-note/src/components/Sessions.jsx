@@ -43,22 +43,22 @@ function Sessions() {
 
   // Update swiper & arrow visibility
   const updateArrows = () => {
-  if (!swiperRef.current) return;
+    if (!swiperRef.current) return;
 
-  const swiper = swiperRef.current;
+    const swiper = swiperRef.current;
 
-  if (screenWidth >= 1024) {
-    // Desktop: compare slide count with slidesPerView
-    setShowArrows(swiper.slides.length > swiper.params.slidesPerView);
-  } else {
-    // Mobile: compare total slides width with container width
-    const totalWidth = Array.from(swiper.slides).reduce(
-      (sum, slide) => sum + slide.offsetWidth + swiper.params.spaceBetween,
-      0
-    );
-    setShowArrows(totalWidth > swiper.width);
-  }
-};
+    if (screenWidth >= 1024) {
+      // Desktop: compare slide count with slidesPerView
+      setShowArrows(swiper.slides.length > swiper.params.slidesPerView);
+    } else {
+      // Mobile: compare total slides width with container width
+      const totalWidth = Array.from(swiper.slides).reduce(
+        (sum, slide) => sum + slide.offsetWidth + swiper.params.spaceBetween,
+        0
+      );
+      setShowArrows(totalWidth > swiper.width);
+    }
+  };
 
   useEffect(() => {
     setTimeout(updateArrows, 50); // Wait for swiper to render
@@ -71,10 +71,15 @@ function Sessions() {
   return (
     <section className="sessions-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
       <div className="heading-container mb-5">
-        <h1>Sessions</h1>
-        <p className="fs-4 w-75">
-          Record your training sessions and exercises to stay on track and improve your performance.
-        </p>
+        <div className="text">
+          <h1 className="m-0 p-0 mb-3">Sessions</h1>
+          <p className="m-0 p-0 fs-4">
+            Record your training sessions and exercises to stay on track and improve your performance.
+          </p>
+        </div>
+        <div className="button">
+          <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Session</button>
+        </div>
       </div>
 
       <div className="grid-container">

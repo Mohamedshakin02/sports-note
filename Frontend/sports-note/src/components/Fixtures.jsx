@@ -26,11 +26,11 @@ function Fixtures() {
 
   // Fixtures data with ISO dates
   const fixturesList = [
-  { date: "2024-11-19", match: "INDIA VS PAK", time: "9:30", sport: "Cricket" },
-  { date: "2024-11-20", match: "AUSTRALIA VS ENG", time: "14:00", sport: "Cricket" },
-  { date: "2024-11-22", match: "BARCELONA VS REAL MADRID", time: "20:45", sport: "Football" },
-  { date: "2024-11-23", match: "MAN UNITED VS ARSENAL", time: "", sport: "Football" },
-  { date: "2024-11-25", match: "BULLS VS CELTICS", time: "", sport: "Basketball" }
+    { date: "2024-11-19", match: "INDIA VS PAK", time: "9:30", sport: "Cricket" },
+    { date: "2024-11-20", match: "AUSTRALIA VS ENG", time: "14:00", sport: "Cricket" },
+    { date: "2024-11-22", match: "BARCELONA VS REAL MADRID", time: "20:45", sport: "Football" },
+    { date: "2024-11-23", match: "MAN UNITED VS ARSENAL", time: "", sport: "Football" },
+    { date: "2024-11-25", match: "BULLS VS CELTICS", time: "", sport: "Basketball" }
   ];
 
   // Format date to "19 NOV"
@@ -42,10 +42,15 @@ function Fixtures() {
   return (
     <section className="fixtures-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
       <div className="heading-container mb-5">
-        <h1 className="m-0 p-0 mb-3">Fixtures</h1>
-        <p className="m-0 p-0 fs-4 w-75">
-          See all the upcoming matches you want to watch. Keep track of dates and times so you never miss any game.
-        </p>
+        <div className="text">
+          <h1 className="m-0 p-0 mb-3">Fixtures</h1>
+          <p className="m-0 p-0 fs-4">
+            See all the upcoming matches you want to watch. Keep track of dates and times so you never miss any game.
+          </p>
+        </div>
+        <div className="button">
+          <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Fixture</button>
+        </div>
       </div>
 
       <div className="grid-container">

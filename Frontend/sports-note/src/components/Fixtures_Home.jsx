@@ -50,11 +50,16 @@ function Fixtures_Home() {
     return (
         <section className="fixtures-section py-5 mt-2">
             <div className="fixtures-container container-md px-2">
-                <div className="heading-container mb-5 px-2">
-                    <h1 className="m-0 p-0 mb-3">Fixtures</h1>
-                    <p className="m-0 p-0 fs-4 w-75">
-                        See all the upcoming matches you want to watch. Keep track of dates and times so you never miss any game.
-                    </p>
+                <div className="heading-container mb-5">
+                    <div className="text">
+                        <h1 className="m-0 p-0 mb-3">Fixtures</h1>
+                        <p className="m-0 p-0 fs-4">
+                            See all the upcoming matches you want to watch. Keep track of dates and times so you never miss any game.
+                        </p>
+                    </div>
+                    <div className="button">
+                        <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Fixture</button>
+                    </div>
                 </div>
 
                 <Swiper
@@ -63,9 +68,9 @@ function Fixtures_Home() {
                     pagination={{ clickable: true, dynamicBullets: true }}
                     spaceBetween={25}
                     breakpoints={{
-                        320: { slidesPerView: 1.2, spaceBetween: 15, centeredSlides:true }, 
-                        576: { slidesPerView: 2, spaceBetween: 15, centeredSlides: false },   
-                        992: { slidesPerView: 3, spaceBetween: 20, centeredSlides: false },  
+                        320: { slidesPerView: 1.2, spaceBetween: 15, centeredSlides: true },
+                        576: { slidesPerView: 2, spaceBetween: 15, centeredSlides: false },
+                        992: { slidesPerView: 3, spaceBetween: 20, centeredSlides: false },
                         1400: { slidesPerView: 4, spaceBetween: 20, centeredSlides: false },
                     }}
                     onSwiper={(swiper) => (swiperRef.current = swiper)}

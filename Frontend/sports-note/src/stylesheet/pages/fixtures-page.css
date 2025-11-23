@@ -140,6 +140,28 @@
 }
 .fixtures-section .heading-container {
   color: #710004;
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.fixtures-section .heading-container .button {
+  display: flex;
+  align-items: end;
+}
+.fixtures-section .heading-container .button button {
+  width: 160px;
+  background-color: #710004;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+.fixtures-section .heading-container .button button:hover {
+  background-color: black;
+  color: white;
+}
+.fixtures-section .heading-container .button button:focus, .fixtures-section .heading-container .button button:active {
+  outline: #000000 !important;
+  box-shadow: #000000 !important;
+  border-color: #000000;
 }
 .fixtures-section .heading-container h1 {
   font-weight: 600;
@@ -213,4 +235,11 @@
   padding: 3px 10px !important;
   font-weight: 600;
   border: 2px solid #710004 !important;
+}
+
+@media screen and (max-width: 992px) {
+  .fixtures-section .heading-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }/*# sourceMappingURL=fixtures-page.css.map */

@@ -4,6 +4,32 @@
 .moments-section {
     .heading-container {
         color: $yellow;
+        display: flex;
+        justify-content: space-between;
+        gap: 3rem;
+
+        .button {
+            display: flex;
+            align-items: end;
+
+            button {
+                width: 160px;
+                background-color: $yellow;
+                font-weight: 600;
+
+                &:hover {
+                    background-color: black;
+                    color: white;
+                }
+
+                &:focus, &:active {
+                    outline: $black !important;
+                    box-shadow: $black !important;
+                    border-color: $black;
+                }
+            }
+
+        }
 
         h1 {
             font-weight: 600;
@@ -36,7 +62,7 @@
             background-color: $yellow;
             overflow: hidden;
 
-             // IMAGE SECTION
+            // IMAGE SECTION
             .moment-image {
                 width: 100%;
                 height: 250px;
@@ -143,11 +169,11 @@
                     height: 71%;
                     background: linear-gradient(rgba(0, 0, 0, 0) 0%,
                             #FCF0D6 29%);
-                    pointer-events: none; 
+                    pointer-events: none;
                 }
             }
 
-             // CONTENT SECTION
+            // CONTENT SECTION
             .moment-content {
                 padding: 1rem;
                 z-index: 2;
@@ -170,6 +196,15 @@
                     }
                 }
             }
+        }
+    }
+}
+
+@media screen and (max-width: 992px){
+    .moments-section{
+        .heading-container{
+            flex-direction: column;
+            gap: 1.5rem;
         }
     }
 }

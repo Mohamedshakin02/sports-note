@@ -10,7 +10,7 @@ import sessions from "../assets/logos/sessions.png";
 function Features() {
     return (
         <section className="features-section">
-            <div className='features-container container-md py-3 py-lg-5 px-3'>
+            <div className='features-container container-md py-3 py-lg-4 px-3'>
                 
                 {/* Top Heading */}
                 <div className='top-container d-flex justify-content-between mb-5'>

@@ -140,6 +140,27 @@
 }
 .sessions-section .heading-container {
   color: #FCF0D6;
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.sessions-section .heading-container .button {
+  display: flex;
+  align-items: end;
+}
+.sessions-section .heading-container .button button {
+  width: 160px;
+  background-color: #FCF0D6;
+  font-weight: 600;
+}
+.sessions-section .heading-container .button button:hover {
+  background-color: black;
+  color: white;
+}
+.sessions-section .heading-container .button button:focus, .sessions-section .heading-container .button button:active {
+  outline: #000000 !important;
+  box-shadow: #000000 !important;
+  border-color: #000000;
 }
 .sessions-section .heading-container h1 {
   font-weight: 600;
@@ -377,5 +398,11 @@
   }
   .sessions-section .buttons .session-divider {
     display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  .sessions-section .heading-container {
+    flex-direction: column;
+    gap: 1.5rem;
   }
 }/*# sourceMappingURL=sessions-page.css.map */

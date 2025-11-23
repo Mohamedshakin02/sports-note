@@ -6,47 +6,47 @@ import { Mousewheel, Pagination } from "swiper/modules";
 
 function Sessions_home() {
   const sessionsData = [
-      { title: "Morning Basketball Drills", items: ["Warm-up jog (5 mins)", "Dribbling practice", "Layup drills", "Free-throw routine", "Cooldown stretches"] },
-      { title: "Badminton Smash Training", items: ["Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills"] },
-      { title: "Football Dribbling Drills", items: ["Cone dribbling", "Fast touches", "Directional changes", "Ball control challenges"] },
-      { title: "Cardio and Endurance", items: ["5km run", "Interval sprints", "Jump rope (10 mins)", "Cooldown stretching"] },
-      { title: "Badminton Rally Session", items: ["Long rallies", "Placement shots", "Side-to-side drills"] },
-      { title: "Football Shooting Practice", items: ["First-touch shots", "Power shooting", "Target accuracy"] },
-      { title: "Badminton Footwork Practice", items: ["Front-back steps", "Side-to-side steps", "Recovery training"] },
-    ];
-  
-    const [selected, setSelected] = useState(sessionsData[0]);
-    const [openMenu, setOpenMenu] = useState(false);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-    const [showArrows, setShowArrows] = useState(false);
-  
-    const menuRef = useRef(null);
-    const swiperRef = useRef(null);
-  
-    // Track screen resize
-    useEffect(() => {
-      const handleResize = () => setScreenWidth(window.innerWidth);
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, []);
-  
-    // Close menu when clicking outside
-    useEffect(() => {
-      const handleClickOutside = (e) => {
-        if (openMenu && menuRef.current && !menuRef.current.contains(e.target)) {
-          setOpenMenu(false);
-        }
-      };
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [openMenu]);
-  
-    // Update swiper & arrow visibility
-    const updateArrows = () => {
+    { title: "Morning Basketball Drills", items: ["Warm-up jog (5 mins)", "Dribbling practice", "Layup drills", "Free-throw routine", "Cooldown stretches"] },
+    { title: "Badminton Smash Training", items: ["Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills"] },
+    { title: "Football Dribbling Drills", items: ["Cone dribbling", "Fast touches", "Directional changes", "Ball control challenges"] },
+    { title: "Cardio and Endurance", items: ["5km run", "Interval sprints", "Jump rope (10 mins)", "Cooldown stretching"] },
+    { title: "Badminton Rally Session", items: ["Long rallies", "Placement shots", "Side-to-side drills"] },
+    { title: "Football Shooting Practice", items: ["First-touch shots", "Power shooting", "Target accuracy"] },
+    { title: "Badminton Footwork Practice", items: ["Front-back steps", "Side-to-side steps", "Recovery training"] },
+  ];
+
+  const [selected, setSelected] = useState(sessionsData[0]);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [showArrows, setShowArrows] = useState(false);
+
+  const menuRef = useRef(null);
+  const swiperRef = useRef(null);
+
+  // Track screen resize
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (openMenu && menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpenMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [openMenu]);
+
+  // Update swiper & arrow visibility
+  const updateArrows = () => {
     if (!swiperRef.current) return;
-  
+
     const swiper = swiperRef.current;
-  
+
     if (screenWidth >= 1024) {
       // Desktop: compare slide count with slidesPerView
       setShowArrows(swiper.slides.length > swiper.params.slidesPerView);
@@ -59,25 +59,30 @@ function Sessions_home() {
       setShowArrows(totalWidth > swiper.width);
     }
   };
-  
-    useEffect(() => {
-      setTimeout(updateArrows, 50); // Wait for swiper to render
-    }, [screenWidth, selected]);
-  
-    // Arrow button handlers
-    const slidePrev = () => swiperRef.current?.slidePrev();
-    const slideNext = () => swiperRef.current?.slideNext();
-  
-    return (
-      <section className="sessions-section py-5 mt-2 px-2">
-        <div className="sessions-container container-md">
-          <div className="heading-container mb-5">
-          <h1>Sessions</h1>
-          <p className="fs-4 w-75">
-            Record your training sessions and exercises to stay on track and improve your performance.
-          </p>
+
+  useEffect(() => {
+    setTimeout(updateArrows, 50); // Wait for swiper to render
+  }, [screenWidth, selected]);
+
+  // Arrow button handlers
+  const slidePrev = () => swiperRef.current?.slidePrev();
+  const slideNext = () => swiperRef.current?.slideNext();
+
+  return (
+    <section className="sessions-section py-5 mt-2 px-2">
+      <div className="sessions-container container-md">
+        <div className="heading-container mb-5">
+          <div className="text">
+            <h1 className="m-0 p-0 mb-3">Sessions</h1>
+            <p className="m-0 p-0 fs-4">
+              Record your training sessions and exercises to stay on track and improve your performance.
+            </p>
+          </div>
+          <div className="button">
+            <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Session</button>
+          </div>
         </div>
-  
+
         <div className="grid-container">
           {/* LEFT CONTENT */}
           <div className="content">
@@ -90,7 +95,7 @@ function Sessions_home() {
                 </div>
               )}
             </div>
-  
+
             <h1>{selected.title}</h1>
             <ul className="mt-3">
               {selected.items.map((item, i) => (
@@ -98,7 +103,7 @@ function Sessions_home() {
               ))}
             </ul>
           </div>
-  
+
           {/* RIGHT BUTTON SLIDER */}
           <div className="buttons">
             {/* Arrow buttons for desktop */}
@@ -112,7 +117,7 @@ function Sessions_home() {
                 </button>
               </div>
             )}
-  
+
             {/* Arrow buttons for mobile */}
             {screenWidth < 1024 && showArrows && (
               <>
@@ -124,7 +129,7 @@ function Sessions_home() {
                 </button>
               </>
             )}
-  
+
             <Swiper
               key={screenWidth} // remount on screen width change
               direction={screenWidth >= 1024 ? "vertical" : "horizontal"}
@@ -155,9 +160,9 @@ function Sessions_home() {
             </Swiper>
           </div>
         </div>
-        </div>
-      </section>
-    );
+      </div>
+    </section>
+  );
 }
 
 export default Sessions_home

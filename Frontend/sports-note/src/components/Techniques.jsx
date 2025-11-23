@@ -33,7 +33,7 @@ function Techniques() {
         "Flick your standing leg forward and upward",
         "The ball should arc over your head and land in front of you"
       ],
-      sport: "Football" 
+      sport: "Football"
     },
     {
       title: "Cover Drive",
@@ -60,11 +60,16 @@ function Techniques() {
   return (
     <section className="techniques-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
       <div className="heading-container mb-5">
-        <h1 className="m-0 p-0 mb-3">Techniques</h1>
-        <p className="m-0 p-0 fs-4 w-75">
-          Learn step-by-step moves and drills. Practice them to improve your
-          skills and play better.
-        </p>
+        <div className="text">
+          <h1 className="m-0 p-0 mb-3">Techniques</h1>
+          <p className="m-0 p-0 fs-4">
+            Learn step-by-step moves and drills. Practice them to improve your
+            skills and play better.
+          </p>
+        </div>
+        <div className="button">
+          <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Technique</button>
+        </div>
       </div>
 
       {/* ACCORDION */}
