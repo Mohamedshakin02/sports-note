@@ -54,6 +54,26 @@ function Techniques_Home() {
                 "Follow through to guide the ball past fielders"
             ],
             sport: "Cricket"
+        },
+        {
+            title: "Jump Smash",
+            steps: [
+                "Stand in a ready position with knees slightly bent",
+                "Move quickly under the shuttle and jump upward",
+                "Rotate your shoulders and swing your racket overhead",
+                "Hit the shuttle downward with power while landing balanced"
+            ],
+            sport: "Badminton"
+        },
+        {
+            title: "Crossover Dribble",
+            steps: [
+                "Start dribbling the ball with your dominant hand",
+                "Lower your body to maintain control",
+                "Quickly bounce the ball to your opposite hand",
+                "Explode in the new direction to beat your defender"
+            ],
+            sport: "Basketball"
         }
     ];
 
