@@ -1,11 +1,11 @@
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
-.login-section {
+.signup-section {
   width: 100%;
   overflow: hidden;
 
-  .login-container {
+  .signup-container {
     z-index: 30;
     width: 100%;
     margin-top: 7rem;
@@ -14,9 +14,9 @@
     gap: 5rem;
     align-items: center;
     justify-items: center;
-    color: $yellow;
+    color: $red;
 
-    .login-heading {
+    .signup-heading {
       justify-self: flex-end;
       align-self: flex-start;
       max-width: 450px;
@@ -26,16 +26,16 @@
       }
 
       p {
-        color: $white;
+        color: $black;
       }
     }
 
-    .login-form {
+    .signup-form {
       max-width: 450px;
       justify-self: self-start;
       position: relative;
-      background-color: $yellow;
-      color: $red;
+      background-color: $red;
+      color: $yellow;
       border-radius: 8px;
       
 
@@ -46,19 +46,19 @@
 
         input{
           background-color:unset;
-          color: black;
-          border: 2px solid $red;
+          color: white;
+          border: 2px solid $yellow;
         }
 
         .form-control:focus{
-          background-color: $yellow;
-          box-shadow: 0 0 0 .25rem rgb(113, 0, 4, 0.25);
-          color: black;
+          background-color: $red;
+          box-shadow: 0 0 0 .25rem rgb(252, 240, 214, 0.25);
+          color: white;
         }
 
         button{
-          background-color: $red;
-          color: $yellow;
+          background-color: $yellow;
+          color: $red;
           font-weight: 500;
           border: none;
 
@@ -69,10 +69,10 @@
         }
 
         .sign-up{
-          color: $black;
+          color: $white;
 
           .link{
-            color: $red
+            color: $yellow
           }
         }
       }
@@ -83,18 +83,18 @@
 }
 
 @media only screen and (max-width: 992px) {
-  .login-section {
-    .login-container {
+  .signup-section {
+    .signup-container {
       grid-template-columns: repeat(1, 1fr);
       margin-top: 4rem;
       gap: 2rem;
 
-      .login-heading{
+      .signup-heading{
         justify-self:unset;
         max-width: 450px;
       }
 
-      .login-form{
+      .signup-form{
         justify-self:unset;
       }
     }
@@ -103,8 +103,8 @@
 }
 
 @media (max-width: 576px) {
-  .login-section {
-    .login-container {
+  .signup-section {
+    .signup-container {
       margin-top: 2rem;
     }
 

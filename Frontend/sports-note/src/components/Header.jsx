@@ -52,7 +52,7 @@ function Header() {
 
                                 <div className={`dropdown-content ${dropdownOpen ? "show" : ""}`}>
                                     <Link to="/login" className="text-decoration-none text-dark d-block fw-medium px-3 py-2">Login</Link>
-                                    <Link to="/" className="text-decoration-none text-dark d-block fw-medium px-3 py-2">Sign Up</Link>
+                                    <Link to="/sign-up" className="text-decoration-none text-dark d-block fw-medium px-3 py-2">Sign Up</Link>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@ function Header() {
 
                         <div className={`dropdown-content ${dropdownOpen ? "show" : ""}`}>
                             <Link to="/login" className="text-decoration-none d-block fw-medium px-3 py-2">Login</Link>
-                            <Link to="/" className="text-decoration-none d-block fw-medium px-3 py-2">Sign Up</Link>
+                            <Link to="/sign-up" className="text-decoration-none d-block fw-medium px-3 py-2">Sign Up</Link>
                         </div>
                     </div>
 

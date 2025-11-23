@@ -8,6 +8,7 @@ import TechniquesPage from './pages/TechniquesPage';
 import SessionsPage from './pages/SessionsPage';
 import ScrollToTop from './components/ScrollToTop';
 import LoginPage from './pages/LoginPage';
+import Sign_UpPage from './pages/Sign_UpPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/techniques" element={<TechniquesPage/>} />
         <Route path="/sessions" element={<SessionsPage/>} />
         <Route path="/login" element={<LoginPage/>} />
+        <Route path="/sign-up" element={<Sign_UpPage/>} />
       </Routes>
     </BrowserRouter>
   )

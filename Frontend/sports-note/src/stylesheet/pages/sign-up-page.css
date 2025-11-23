@@ -138,11 +138,11 @@
     font-size: 18px;
   }
 }
-.login-section {
+.signup-section {
   width: 100%;
   overflow: hidden;
 }
-.login-section .login-container {
+.signup-section .signup-container {
   z-index: 30;
   width: 100%;
   margin-top: 7rem;
@@ -151,73 +151,73 @@
   gap: 5rem;
   align-items: center;
   justify-items: center;
-  color: #FCF0D6;
+  color: #710004;
 }
-.login-section .login-container .login-heading {
+.signup-section .signup-container .signup-heading {
   justify-self: flex-end;
   align-self: flex-start;
   max-width: 450px;
 }
-.login-section .login-container .login-heading h1 {
+.signup-section .signup-container .signup-heading h1 {
   font-weight: 600;
 }
-.login-section .login-container .login-heading p {
-  color: #FFFFFF;
+.signup-section .signup-container .signup-heading p {
+  color: #000000;
 }
-.login-section .login-container .login-form {
+.signup-section .signup-container .signup-form {
   max-width: 450px;
   justify-self: self-start;
   position: relative;
-  background-color: #FCF0D6;
-  color: #710004;
-  border-radius: 8px;
-}
-.login-section .login-container .login-form form label {
-  font-weight: 500;
-}
-.login-section .login-container .login-form form input {
-  background-color: unset;
-  color: black;
-  border: 2px solid #710004;
-}
-.login-section .login-container .login-form form .form-control:focus {
-  background-color: #FCF0D6;
-  box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
-  color: black;
-}
-.login-section .login-container .login-form form button {
   background-color: #710004;
   color: #FCF0D6;
+  border-radius: 8px;
+}
+.signup-section .signup-container .signup-form form label {
+  font-weight: 500;
+}
+.signup-section .signup-container .signup-form form input {
+  background-color: unset;
+  color: white;
+  border: 2px solid #FCF0D6;
+}
+.signup-section .signup-container .signup-form form .form-control:focus {
+  background-color: #710004;
+  box-shadow: 0 0 0 0.25rem rgba(252, 240, 214, 0.25);
+  color: white;
+}
+.signup-section .signup-container .signup-form form button {
+  background-color: #FCF0D6;
+  color: #710004;
   font-weight: 500;
   border: none;
 }
-.login-section .login-container .login-form form button:hover {
+.signup-section .signup-container .signup-form form button:hover {
   background-color: #000000;
   color: #FFFFFF;
 }
-.login-section .login-container .login-form form .sign-up {
-  color: #000000;
+.signup-section .signup-container .signup-form form .sign-up {
+  color: #FFFFFF;
 }
-.login-section .login-container .login-form form .sign-up .link {
-  color: #710004;
+.signup-section .signup-container .signup-form form .sign-up .link {
+  color: #FCF0D6;
 }
 
 @media only screen and (max-width: 992px) {
-  .login-section .login-container {
+  .signup-section .signup-container {
     grid-template-columns: repeat(1, 1fr);
     margin-top: 4rem;
     gap: 2rem;
   }
-  .login-section .login-container .login-heading {
+  .signup-section .signup-container .signup-heading {
     justify-self: unset;
     max-width: 450px;
   }
-  .login-section .login-container .login-form {
+  .signup-section .signup-container .signup-form {
     justify-self: unset;
   }
 }
 @media (max-width: 576px) {
-  .login-section .login-container {
+  .signup-section .signup-container {
     margin-top: 2rem;
   }
-}/*# sourceMappingURL=login-page.css.map */
+}/*# sourceMappingURL=sign-up-page.css.map */

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Login() {
 
     return (
-        <section className="login-section container-md px-3 px-md-2 ">
+        <section className="login-section container-md px-3 px-md-2 mb-5">
             <div className="login-container">
                 <div className="login-heading">
                     <h1 className="display-5 m-0 p-0">Login</h1>
@@ -14,7 +14,7 @@ function Login() {
 
                     <form className="row g-3">
                         <div className="mb-1 col-12">
-                            <label htmlFor="userID" className="form-label">User Name:</label>
+                            <label htmlFor="userID" className="form-label">Username:</label>
                             <input type="text" className="form-control" id="userID"/>
                         </div>
                         <div className="mb-2 col-12">
@@ -27,7 +27,7 @@ function Login() {
                         </div>
 
                         <div className="col-12 sign-up mt-4">
-                            <p>Don't have an account? <Link to="/" className="link rounded-pill">Sign Up</Link></p>
+                            <p className="m-0 p-0">Don't have an account? <Link to="/sign-up" className="link rounded-pill">Sign Up</Link></p>
                         </div>
                     </form>
                 </div>
