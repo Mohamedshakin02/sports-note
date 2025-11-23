@@ -63,7 +63,7 @@ function Quotes_Home() {
   };
 
   return (
-    <section className="quotes-section container-md py-5 mt-2 px-2">
+    <section className="quotes-section container-md py-5 mt-2 px-3 px-md-2">
       <div className="heading-container mb-5">
         <div className="text">
           <h1 className="m-0 p-0 mb-3">Quotes</h1>

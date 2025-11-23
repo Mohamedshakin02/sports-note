@@ -70,8 +70,8 @@ function Sessions_home() {
   const slideNext = () => swiperRef.current?.slideNext();
 
   return (
-    <section className="sessions-section py-5 mt-2 px-2">
-      <div className="sessions-container container-md">
+    <section className="sessions-section py-5 mt-2">
+      <div className="sessions-container container-md px-3 px-md-2">
         <div className="heading-container mb-5">
           <div className="text">
             <h1 className="m-0 p-0 mb-3">Sessions</h1>

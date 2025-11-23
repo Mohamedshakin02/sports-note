@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function Footer() {
     return (
-        <footer className='py-5 pb-3 mt-2 px-2'>
-            <div className='footer-container container-md'>
+        <footer className='py-5 pb-3 mt-2'>
+            <div className='footer-container container-md px-3 px-md-2'>
                 <div className='menu-links pe-5'>
                     <h1 className='h3 m-0 p-0'>Explore Sports Note</h1>
                     <p className='h5 m-0 p-0 pt-3'>Find everything you need to explore your sports notes.</p>

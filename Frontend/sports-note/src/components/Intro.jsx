@@ -57,7 +57,7 @@ function Intro() {
 
       {/* Main content overlay */}
       <div className="intro-container container-md position-absolute">
-        <div className="content-container d-flex justify-content-between align-items-center px-3">
+        <div className="content-container d-flex justify-content-between align-items-center px-3 px-md-2">
           {/* Dates */}
           <div className="dates-container d-flex flex-column gap-4">
             {["12", "15", "20"].map((day, i) => (
