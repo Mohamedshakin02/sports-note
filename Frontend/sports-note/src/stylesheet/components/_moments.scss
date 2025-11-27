@@ -22,7 +22,8 @@
                     color: white;
                 }
 
-                &:focus, &:active {
+                &:focus,
+                &:active {
                     outline: $black !important;
                     box-shadow: $black !important;
                     border-color: $black;
@@ -198,11 +199,98 @@
             }
         }
     }
+
+    .modal {
+
+        .modal-dialog-scrollable {
+            display: flex;
+            align-items: center;
+
+            .modal-content {
+                border-radius: 8px;
+                background-color: $yellow;
+                border: 2px solid $red;
+                position: relative;
+
+                .modal-body {
+                    .heading {
+                        h1 {
+                            color: $red;
+                            font-weight: 600;
+                            text-align: center;
+                        }
+
+                        button {
+                            position: absolute;
+                            right: 15px;
+                            top: 20px;
+                        }
+                    }
+
+                    .form {
+                        form {
+                            label {
+                                font-weight: 500;
+                                color: $red;
+
+                                span{
+                                    font-weight: 400;
+                                    color: black;
+                                    font-size: 0.9rem;
+                                }
+                            }
+
+                            input, textarea {
+                                background-color: unset;
+                                color: black;
+                                border: 2px solid $red;
+                            }
+
+                            textarea{
+                                resize: vertical;
+                                min-height: 100px;
+                            }
+
+                            .form-control:focus {
+                                background-color: $yellow;
+                                box-shadow: 0 0 0 .25rem rgb(113, 0, 4, 0.25);
+                                color: black;
+                            }
+
+                            button {
+                                background-color: $red;
+                                color: $yellow;
+                                font-weight: 500;
+                                border: none;
+
+                                &:hover {
+                                    background-color: $black;
+                                    color: $white;
+                                }
+                            }
+
+                            .sign-up {
+                                color: $black;
+
+                                .link {
+                                    color: $red
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+
 }
 
-@media screen and (max-width: 992px){
-    .moments-section{
-        .heading-container{
+@media screen and (max-width: 992px) {
+    .moments-section {
+        .heading-container {
             flex-direction: column;
             gap: 1.5rem;
         }

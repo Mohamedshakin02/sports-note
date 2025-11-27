@@ -6,6 +6,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+body {
+  padding-right: 0 !important;
+}
+
 .line {
   width: 50px;
   height: 1.5px;
@@ -308,6 +312,65 @@
 }
 .moments-section .grid-container .moment-box .moment-content .bottom-container p {
   font-weight: 300;
+}
+.moments-section .modal .modal-dialog-scrollable {
+  display: flex;
+  align-items: center;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content {
+  border-radius: 8px;
+  background-color: #FCF0D6;
+  border: 2px solid #710004;
+  position: relative;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading h1 {
+  color: #710004;
+  font-weight: 600;
+  text-align: center;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading button {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label {
+  font-weight: 500;
+  color: #710004;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label span {
+  font-weight: 400;
+  color: black;
+  font-size: 0.9rem;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input, .moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea {
+  background-color: unset;
+  color: black;
+  border: 2px solid #710004;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus {
+  background-color: #FCF0D6;
+  box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
+  color: black;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button {
+  background-color: #710004;
+  color: #FCF0D6;
+  font-weight: 500;
+  border: none;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .sign-up {
+  color: #000000;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .sign-up .link {
+  color: #710004;
 }
 
 @media screen and (max-width: 992px) {

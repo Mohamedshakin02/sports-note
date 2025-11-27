@@ -83,7 +83,8 @@ function Moments() {
                     </p>
                 </div>
                 <div className="button">
-                    <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Moment</button>
+                    <button type="button" className="btn p-2" data-bs-toggle="modal" data-bs-target="#addMomentModal" >
+                        <i className="bi bi-plus-lg me-2"></i>Add Moment</button>
                 </div>
             </div>
 
@@ -136,6 +137,49 @@ function Moments() {
 
                     </div>
                 ))}
+            </div>
+
+            {/* Modal */}
+            <div className="modal fade"
+                id="addMomentModal"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabIndex="-1"
+                aria-labelledby="addMomentLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                            <div className="heading">
+                                <h1 class="modal-title fs-4" id="staticBackdropLabel">Add Sports Moment</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div className="form mt-4">
+                                <form className="row g-3 py-2">
+                                    <div className="mb-1 col-12">
+                                        <label htmlFor="moment-title" className="form-label">Title:</label>
+                                        <input type="text" className="form-control" id="moment-title" />
+                                    </div>
+                                    <div className="mb-2 col-12">
+                                        <label htmlFor="moment-desc" className="form-label">Description:</label>
+                                        <textarea className="form-control" id="moment-desc" required></textarea>
+                                    </div>
+                                    <div className="mb-2 col-12">
+                                        <label htmlFor="moment-date" className="form-label">Date <span>(Optional)</span>:</label>
+                                        <input type="date"  className="form-control" id="moment-date" />
+                                    </div>
+
+                                    <div className="col-12">
+                                        <button type="submit" className="btn btn-primary fs-6 w-100">Add Moment</button>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     );
