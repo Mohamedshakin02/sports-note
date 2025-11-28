@@ -94,7 +94,7 @@ function Fixtures() {
         tabIndex="-1"
         aria-labelledby="addFixtureLabel"
         aria-hidden="true">
-          
+
         <div className="modal-dialog modal-dialog-scrollable">
           <div className="modal-content">
 
@@ -111,17 +111,17 @@ function Fixtures() {
                 <form className="row g-2 gx-3 py-2">
                   <div className="mb-1 col-6">
                     <label htmlFor="fixture-team-1" className="form-label">Team 1:</label>
-                    <input type="text" className="form-control" id="fixture-team-1" placeholder="Enter Team 1" />
+                    <input type="text" className="form-control" id="fixture-team-1" placeholder="Enter Team 1" required/>
                   </div>
 
                    <div className="mb-1 col-6">
                     <label htmlFor="fixture-team-2" className="form-label">Team 2:</label>
-                    <input type="text" className="form-control" id="fixture-team-2" placeholder="Enter Team 2" />
+                    <input type="text" className="form-control" id="fixture-team-2" placeholder="Enter Team 2" required/>
                   </div>
 
                   <div className="mb-1 col-12">
                     <label htmlFor="fixture-type" className="form-label">Sport:</label>
-                    <select className="form-control form-select py-1" aria-label="Sport select" id="fixture-type" defaultValue="">
+                    <select className="form-control form-select py-1" aria-label="Sport select" id="fixture-type" defaultValue="" required>
                       <option value="" disabled>Select a sport</option>
                       <option value="football">Football</option>
                       <option value="basketball">Basketball</option>
@@ -140,7 +140,7 @@ function Fixtures() {
 
                   <div className="mb-2 col-12">
                     <label htmlFor="fixture-date" className="form-label">Date:</label>
-                    <input type="date" className="form-control" id="fixture-date" />
+                    <input type="date" className="form-control" id="fixture-date" required/>
                   </div>
 
                   <div className="mb-3 col-12">
@@ -150,7 +150,7 @@ function Fixtures() {
 
 
                   <div className="col-12">
-                    <button type="submit" className="btn btn-primary fs-6 w-100">Add Fixture</button>
+                    <button type="submit" className="btn btn-primary fs-6 w-100">Save Fixture</button>
                   </div>
 
                 </form>

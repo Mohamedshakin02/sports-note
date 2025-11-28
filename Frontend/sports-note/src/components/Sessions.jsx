@@ -205,12 +205,12 @@ function Sessions() {
                 <form className="row g-2 gx-3 py-2">
                   <div className="mb-1 col-12">
                     <label htmlFor="session-title" className="form-label">Session Name:</label>
-                    <input type="text" className="form-control" id="session-title" placeholder="Enter a short title for your sports moment" />
+                    <input type="text" className="form-control" id="session-title" placeholder="Enter a short title for your sports moment" required/>
                   </div>
 
                   <div className="mb-1 col-12">
                     <label htmlFor="session-type" className="form-label">Sport:</label>
-                    <select className="form-control form-select py-1" aria-label="Sport select" id="session-type" defaultValue="">
+                    <select className="form-control form-select py-1" aria-label="Sport select" id="session-type" defaultValue="" required>
                       <option value="" disabled>Select a sport</option>
                       <option value="football">Football</option>
                       <option value="basketball">Basketball</option>
@@ -238,6 +238,7 @@ function Sessions() {
                           value={step}
                           onChange={(e) => updateExercise(index, e.target.value)}
                           placeholder={`Enter Exercise/Activity ${index + 1}`}
+                          required
                         />
 
                         <button

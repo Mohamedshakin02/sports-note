@@ -151,6 +151,7 @@ function Moments() {
                 tabIndex="-1"
                 aria-labelledby="addMomentLabel"
                 aria-hidden="true">
+
                 <div className="modal-dialog modal-dialog-scrollable">
                     <div className="modal-content">
 
@@ -167,11 +168,11 @@ function Moments() {
                                 <form className="row g-2 py-2">
                                     <div className="mb-1 col-12">
                                         <label htmlFor="moment-title" className="form-label">Title:</label>
-                                        <input type="text" className="form-control" id="moment-title" placeholder="Enter a short title for your sports moment" />
+                                        <input type="text" className="form-control" id="moment-title" placeholder="Enter a short title for your sports moment" required/>
                                     </div>
                                     <div className="mb-1 col-12">
                                         <label htmlFor="moment-type" className="form-label">Sport:</label>
-                                        <select className="form-control form-select py-1" aria-label="Sport select" id="moment-type" defaultValue="">
+                                        <select className="form-control form-select py-1" aria-label="Sport select" id="moment-type" defaultValue="" required>
                                             <option value="" disabled>Select a sport</option>
                                             <option value="football">Football</option>
                                             <option value="basketball">Basketball</option>
@@ -189,7 +190,7 @@ function Moments() {
                                     </div>
 
                                     <div className="mb-2 col-12">
-                                        <label htmlFor="moment-date" className="form-label">Image <span>(Optional)</span>:</label>
+                                        <label htmlFor="moment-image" className="form-label">Image <span>(Optional)</span>:</label>
                                         <input className="form-control form-control-sm" id="moment-image" type="file" accept=".jpg, .jpeg, .png, .webp" />
                                     </div>
 
@@ -204,7 +205,7 @@ function Moments() {
                                     </div>
 
                                     <div className="col-12">
-                                        <button type="submit" className="btn btn-primary fs-6 w-100">Add Moment</button>
+                                        <button type="submit" className="btn btn-primary fs-6 w-100">Save Moment</button>
                                     </div>
 
                                 </form>

@@ -180,7 +180,7 @@ function Techniques() {
 
             <div className="modal-body">
               <div className="heading">
-                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add New Technique</h1>
+                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add Technique</h1>
                 <p className="m-0 mt-2 fs-6 text-center">
                   Create a step-by-step tutorial for a trick shot or technique.
                 </p>
@@ -191,12 +191,12 @@ function Techniques() {
                 <form className="row g-2 gx-3 py-2">
                   <div className="mb-1 col-12">
                     <label htmlFor="technique-title" className="form-label">Technique Name:</label>
-                    <input type="text" className="form-control" id="technique-title" placeholder="Enter a short title for your sports moment" />
+                    <input type="text" className="form-control" id="technique-title" placeholder="Enter a short title for your sports moment" required/>
                   </div>
 
                   <div className="mb-1 col-12">
                     <label htmlFor="technique-type" className="form-label">Sport:</label>
-                    <select className="form-control form-select py-1" aria-label="Sport select" id="technique-type" defaultValue="">
+                    <select className="form-control form-select py-1" aria-label="Sport select" id="technique-type" defaultValue="" required>
                       <option value="" disabled>Select a sport</option>
                       <option value="football">Football</option>
                       <option value="basketball">Basketball</option>
@@ -226,6 +226,7 @@ function Techniques() {
                           value={step}
                           onChange={(e) => updateStep(index, e.target.value)}
                           placeholder={`Enter Step ${index + 1}`}
+                          required
                         />
 
                         <button

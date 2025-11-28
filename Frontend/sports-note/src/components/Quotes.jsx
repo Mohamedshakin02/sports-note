@@ -120,13 +120,13 @@ function Quotes() {
         tabIndex="-1"
         aria-labelledby="addQuoteLabel"
         aria-hidden="true">
-          
+
         <div className="modal-dialog modal-dialog-scrollable">
           <div className="modal-content">
 
             <div className="modal-body">
               <div className="heading">
-                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add New Quote</h1>
+                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add Quote</h1>
                 <p className="m-0 mt-2 fs-6 text-center">
                   Save an inspirational quote from your favorite player.
                 </p>
@@ -141,7 +141,7 @@ function Quotes() {
                     <textarea className="form-control" id="quote-text" placeholder="Type the inspirational quote here..." required></textarea>
                   </div>
 
-                  <div className="mb-4 col-12">
+                  <div className="mb-2 col-12">
                     <label htmlFor="quote-author" className="form-label">Author/Player:</label>
                     <input type="text" className="form-control" id="quote-author" placeholder="Enter the name of the author or player" required/>
                   </div>
@@ -152,7 +152,7 @@ function Quotes() {
                   </div>
 
                   <div className="col-12">
-                    <button type="submit" className="btn btn-primary fs-6 w-100">Add Quote</button>
+                    <button type="submit" className="btn btn-primary fs-6 w-100">Save Quote</button>
                   </div>
 
                 </form>
