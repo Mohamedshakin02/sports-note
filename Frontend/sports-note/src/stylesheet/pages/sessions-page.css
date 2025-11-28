@@ -347,6 +347,76 @@ body {
   background-color: #710004;
   border: 2px solid #FCF0D6;
 }
+.sessions-section .modal .modal-dialog-scrollable {
+  display: flex;
+  align-items: center;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content {
+  border-radius: 8px;
+  background-color: #FCF0D6;
+  border: 2px solid #710004;
+  position: relative;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading h1 {
+  color: #710004;
+  font-weight: 600;
+  text-align: center;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading button {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  box-shadow: none;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label {
+  font-weight: 500;
+  color: #710004;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label span {
+  font-weight: 400;
+  color: black;
+  font-size: 0.9rem;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input,
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select {
+  background-color: unset;
+  color: black;
+  border: 2px solid #710004;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::-moz-placeholder, .sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::-moz-placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::placeholder,
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option {
+  background-color: #710004;
+  color: white;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""] {
+  background-color: #b3b5b7;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .step button {
+  align-self: stretch;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus {
+  background-color: #FCF0D6;
+  box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
+  color: black;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button {
+  background-color: #710004;
+  color: #FCF0D6;
+  font-weight: 500;
+  border: none;
+}
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
 
 @media screen and (max-width: 1023px) {
   .sessions-section .grid-container {

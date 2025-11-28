@@ -175,16 +175,6 @@
                             }
 
 
-                            select.form-select option {
-                                background-color: $red;
-                                color: white;
-                            }
-
-                            select.form-select option[value=""] {
-                                background-color: #b3b5b7;
-                            }
-
-
                             textarea {
                                 resize: vertical;
                                 min-height: 100px;
@@ -206,6 +196,11 @@
                                     background-color: $black;
                                     color: $white;
                                 }
+                            }
+
+                            #quote-image::file-selector-button {
+                                background-color: $red;
+                                color: $yellow;
                             }
 
                         }

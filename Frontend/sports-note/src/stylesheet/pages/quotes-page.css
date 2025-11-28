@@ -284,13 +284,6 @@ body {
   font-size: 0.9rem;
   color: rgb(55, 55, 55);
 }
-.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option {
-  background-color: #710004;
-  color: white;
-}
-.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""] {
-  background-color: #b3b5b7;
-}
 .quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea {
   resize: vertical;
   min-height: 100px;
@@ -309,6 +302,10 @@ body {
 .quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover {
   background-color: #000000;
   color: #FFFFFF;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form #quote-image::file-selector-button {
+  background-color: #710004;
+  color: #FCF0D6;
 }
 
 @media screen and (max-width: 992px) {
