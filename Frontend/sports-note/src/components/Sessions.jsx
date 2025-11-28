@@ -208,25 +208,6 @@ function Sessions() {
                     <input type="text" className="form-control" id="session-title" placeholder="Enter a short title for your sports moment" required/>
                   </div>
 
-                  <div className="mb-1 col-12">
-                    <label htmlFor="session-type" className="form-label">Sport:</label>
-                    <select className="form-control form-select py-1" aria-label="Sport select" id="session-type" defaultValue="" required>
-                      <option value="" disabled>Select a sport</option>
-                      <option value="football">Football</option>
-                      <option value="basketball">Basketball</option>
-                      <option value="cricket">Cricket</option>
-                      <option value="tennis">Tennis</option>
-                      <option value="badminton">Badminton</option>
-                      <option value="volleyball">Volleyball</option>
-                      <option value="swimming">Swimming</option>
-                      <option value="running">Running</option>
-                      <option value="boxing">Boxing</option>
-                      <option value="table-tennis">Table Tennis</option>
-                      <option value="rugby">Kabaddi</option>
-                      <option value="hockey">Hockey</option>
-                    </select>
-                  </div>
-
                   <div className="mb-4 col-12">
                     <label className="form-label">Steps:</label>
 
