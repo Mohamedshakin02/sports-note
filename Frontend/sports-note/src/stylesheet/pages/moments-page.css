@@ -342,10 +342,26 @@ body {
   color: black;
   font-size: 0.9rem;
 }
-.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input, .moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea {
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input,
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea,
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select {
   background-color: unset;
   color: black;
   border: 2px solid #710004;
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::-moz-placeholder, .moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea::-moz-placeholder, .moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::-moz-placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::placeholder,
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea::placeholder,
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option {
+  background-color: #710004;
+  color: white;
 }
 .moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea {
   resize: vertical;
@@ -366,11 +382,9 @@ body {
   background-color: #000000;
   color: #FFFFFF;
 }
-.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .sign-up {
-  color: #000000;
-}
-.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .sign-up .link {
-  color: #710004;
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form #moment-image::file-selector-button {
+  background-color: #710004;
+  color: #FCF0D6;
 }
 
 @media screen and (max-width: 992px) {

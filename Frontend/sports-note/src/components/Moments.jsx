@@ -152,29 +152,57 @@ function Moments() {
 
                         <div class="modal-body">
                             <div className="heading">
-                                <h1 class="modal-title fs-4" id="staticBackdropLabel">Add Sports Moment</h1>
+                                <h1 class="modal-title fs-4" id="staticBackdropLabel">Add Moment</h1>
+                                <p className="m-0 mt-2 fs-6 text-center">
+                                    Add your sports moment and keep your favourite memories saved.
+                                </p>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <div className="form mt-4">
-                                <form className="row g-3 py-2">
+                            <div className="form mt-3">
+                                <form className="row g-2 py-2">
                                     <div className="mb-1 col-12">
                                         <label htmlFor="moment-title" className="form-label">Title:</label>
-                                        <input type="text" className="form-control" id="moment-title" />
+                                        <input type="text" className="form-control" id="moment-title" placeholder="Enter a short title for your sports moment" />
                                     </div>
-                                    <div className="mb-2 col-12">
-                                        <label htmlFor="moment-desc" className="form-label">Description:</label>
-                                        <textarea className="form-control" id="moment-desc" required></textarea>
+                                    <div className="mb-1 col-12">
+                                        <label htmlFor="moment-type" className="form-label">Sport:</label>
+                                        <select className="form-control form-select py-1" aria-label="Sport select" id="moment-type">
+                                            <option selected disabled>Select a sport</option>
+                                            <option value="football">Football</option>
+                                            <option value="basketball">Basketball</option>
+                                            <option value="cricket">Cricket</option>
+                                            <option value="tennis">Tennis</option>
+                                            <option value="badminton">Badminton</option>
+                                            <option value="volleyball">Volleyball</option>
+                                            <option value="swimming">Swimming</option>
+                                            <option value="running">Running</option>
+                                            <option value="boxing">Boxing</option>
+                                            <option value="table-tennis">Table Tennis</option>
+                                            <option value="rugby">Kabaddi</option>
+                                            <option value="hockey">Hockey</option>
+                                        </select>
                                     </div>
+
+                                    <div class="mb-2 col-12">
+                                        <label htmlFor="moment-date" class="form-label">Image <span>(Optional)</span>:</label>
+                                        <input class="form-control form-control-sm" id="moment-image" type="file" accept=".jpg, .jpeg, .png, .webp" />
+                                    </div>
+
                                     <div className="mb-2 col-12">
                                         <label htmlFor="moment-date" className="form-label">Date <span>(Optional)</span>:</label>
-                                        <input type="date"  className="form-control" id="moment-date" />
+                                        <input type="date" className="form-control" id="moment-date" />
+                                    </div>
+
+                                    <div className="mb-4 col-12">
+                                        <label htmlFor="moment-desc" className="form-label">Description:</label>
+                                        <textarea className="form-control" id="moment-desc" placeholder="Describe what happened in this moment" required></textarea>
                                     </div>
 
                                     <div className="col-12">
                                         <button type="submit" className="btn btn-primary fs-6 w-100">Add Moment</button>
                                     </div>
-                                    
+
                                 </form>
                             </div>
                         </div>

@@ -233,20 +233,35 @@
                                 font-weight: 500;
                                 color: $red;
 
-                                span{
+                                span {
                                     font-weight: 400;
                                     color: black;
                                     font-size: 0.9rem;
                                 }
                             }
 
-                            input, textarea {
+                            input,
+                            textarea,
+                            select {
                                 background-color: unset;
                                 color: black;
                                 border: 2px solid $red;
+
+
+                                &::placeholder {
+                                    font-size: 0.9rem;
+                                    color: rgb(55, 55, 55);
+                                }
                             }
 
-                            textarea{
+
+                            select.form-select option {
+                                background-color: $red;
+                                color: white;
+                            }
+
+
+                            textarea {
                                 resize: vertical;
                                 min-height: 100px;
                             }
@@ -269,13 +284,11 @@
                                 }
                             }
 
-                            .sign-up {
-                                color: $black;
-
-                                .link {
-                                    color: $red
-                                }
+                            #moment-image::file-selector-button {
+                                background-color: $red;
+                                color: $yellow;
                             }
+
                         }
                     }
                 }
