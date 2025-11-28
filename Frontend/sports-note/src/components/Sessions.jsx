@@ -231,7 +231,7 @@ function Sessions() {
                     <label className="form-label">Steps:</label>
 
                     {exercises.map((step, index) => (
-                      <div key={index} className="step d-flex align-items-center mb-2">
+                      <div key={index} className="exercise d-flex align-items-center mb-2">
                         <input
                           type="text"
                           className="form-control"
@@ -243,7 +243,7 @@ function Sessions() {
 
                         <button
                           type="button"
-                          className="btn btn-danger btn-sm ms-2"
+                          className="btn btn-sm ms-2"
                           onClick={() => deleteExercise(index)}
                           disabled={exercises.length === 1}
                         >
@@ -255,7 +255,7 @@ function Sessions() {
 
                     <button
                       type="button"
-                      className="btn btn-secondary btn-sm mt-2"
+                      className="add btn btn-sm mt-2"
                       onClick={addExercise}
                     >
                       <i className="bi bi-plus-lg me-1"></i>Add Exercise

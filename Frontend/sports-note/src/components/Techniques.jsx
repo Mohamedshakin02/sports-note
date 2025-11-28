@@ -231,7 +231,7 @@ function Techniques() {
 
                         <button
                           type="button"
-                          className="btn btn-danger btn-sm ms-2"
+                          className="btn btn-sm ms-2"
                           onClick={() => deleteStep(index)}
                           disabled={steps.length === 1}
                         >
@@ -243,7 +243,7 @@ function Techniques() {
 
                     <button
                       type="button"
-                      className="btn btn-secondary btn-sm mt-2"
+                      className="btn btn-sm mt-2"
                       onClick={addStep}
                     >
                       <i className="bi bi-plus-lg me-1"></i>Add Step
