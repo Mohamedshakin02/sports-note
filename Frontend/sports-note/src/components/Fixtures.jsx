@@ -49,7 +49,7 @@ function Fixtures() {
           </p>
         </div>
         <div className="button">
-          <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Fixture</button>
+          <button type="button" className="btn p-2" data-bs-toggle="modal" data-bs-target="#addFixtureModal"><i className="bi bi-plus-lg me-2"></i>Add Fixture</button>
         </div>
       </div>
 
@@ -84,6 +84,79 @@ function Fixtures() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Modal */}
+      <div className="modal fade"
+        id="addFixtureModal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="addFixtureLabel"
+        aria-hidden="true">
+        <div className="modal-dialog modal-dialog-scrollable">
+          <div className="modal-content">
+
+            <div className="modal-body">
+              <div className="heading">
+                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add Fixture</h1>
+                <p className="m-0 mt-2 fs-6 text-center">
+                  Add an upcoming match to your fixtures list.
+                </p>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div className="form mt-3">
+                <form className="row g-2 gx-3 py-2">
+                  <div className="mb-1 col-6">
+                    <label htmlFor="fixture-team-1" className="form-label">Team 1:</label>
+                    <input type="text" className="form-control" id="fixture-team-1" placeholder="Enter Team 1" />
+                  </div>
+
+                   <div className="mb-1 col-6">
+                    <label htmlFor="fixture-team-2" className="form-label">Team 2:</label>
+                    <input type="text" className="form-control" id="fixture-team-2" placeholder="Enter Team 2" />
+                  </div>
+
+                  <div className="mb-1 col-12">
+                    <label htmlFor="fixture-type" className="form-label">Sport:</label>
+                    <select className="form-control form-select py-1" aria-label="Sport select" id="fixture-type" defaultValue="">
+                      <option value="" disabled>Select a sport</option>
+                      <option value="football">Football</option>
+                      <option value="basketball">Basketball</option>
+                      <option value="cricket">Cricket</option>
+                      <option value="tennis">Tennis</option>
+                      <option value="badminton">Badminton</option>
+                      <option value="volleyball">Volleyball</option>
+                      <option value="swimming">Swimming</option>
+                      <option value="running">Running</option>
+                      <option value="boxing">Boxing</option>
+                      <option value="table-tennis">Table Tennis</option>
+                      <option value="rugby">Kabaddi</option>
+                      <option value="hockey">Hockey</option>
+                    </select>
+                  </div>
+
+                  <div className="mb-2 col-12">
+                    <label htmlFor="fixture-date" className="form-label">Date:</label>
+                    <input type="date" className="form-control" id="fixture-date" />
+                  </div>
+
+                  <div className="mb-3 col-12">
+                    <label htmlFor="fixture-time" className="form-label">Time <span>(Optional)</span>:</label>
+                    <input type="time" className="form-control" id="fixture-time" />
+                  </div>
+
+
+                  <div className="col-12">
+                    <button type="submit" className="btn btn-primary fs-6 w-100">Add Fixture</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

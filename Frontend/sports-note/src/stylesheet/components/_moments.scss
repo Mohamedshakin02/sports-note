@@ -260,6 +260,10 @@
                                 color: white;
                             }
 
+                            select.form-select option[value=""] {
+                                background-color: #b3b5b7;
+                            }
+
 
                             textarea {
                                 resize: vertical;

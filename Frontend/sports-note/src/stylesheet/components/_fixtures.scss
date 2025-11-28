@@ -125,6 +125,108 @@
             }
         }
     }
+
+    .modal {
+
+        .modal-dialog-scrollable {
+            display: flex;
+            align-items: center;
+
+            .modal-content {
+                border-radius: 8px;
+                background-color: $yellow;
+                border: 2px solid $red;
+                position: relative;
+
+                .modal-body {
+                    .heading {
+                        h1 {
+                            color: $red;
+                            font-weight: 600;
+                            text-align: center;
+                        }
+
+                        button {
+                            position: absolute;
+                            right: 15px;
+                            top: 20px;
+                        }
+                    }
+
+                    .form {
+                        form {
+                            label {
+                                font-weight: 500;
+                                color: $red;
+
+                                span {
+                                    font-weight: 400;
+                                    color: black;
+                                    font-size: 0.9rem;
+                                }
+                            }
+
+                            input,
+                            textarea,
+                            select {
+                                background-color: unset;
+                                color: black;
+                                border: 2px solid $red;
+
+
+                                &::placeholder {
+                                    font-size: 0.9rem;
+                                    color: rgb(55, 55, 55);
+                                }
+                            }
+
+
+                            select.form-select option {
+                                background-color: $red;
+                                color: white;
+                            }
+
+                            select.form-select option[value=""] {
+                                background-color: #b3b5b7;
+                            }
+
+
+                            textarea {
+                                resize: vertical;
+                                min-height: 100px;
+                            }
+
+                            .form-control:focus {
+                                background-color: $yellow;
+                                box-shadow: 0 0 0 .25rem rgb(113, 0, 4, 0.25);
+                                color: black;
+                            }
+
+                            button {
+                                background-color: $red;
+                                color: $yellow;
+                                font-weight: 500;
+                                border: none;
+
+                                &:hover {
+                                    background-color: $black;
+                                    color: $white;
+                                }
+                            }
+
+                            #fixture-image::file-selector-button {
+                                background-color: $red;
+                                color: $yellow;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
 }
 
 @media screen and (max-width: 992px){

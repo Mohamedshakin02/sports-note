@@ -363,6 +363,9 @@ body {
   background-color: #710004;
   color: white;
 }
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""] {
+  background-color: #b3b5b7;
+}
 .moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea {
   resize: vertical;
   min-height: 100px;

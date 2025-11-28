@@ -131,7 +131,11 @@ function Moments() {
                                 <p className="m-0 p-0 mb-4">{moment.description}</p>
                             </div>
                             <div className="bottom-container">
+                                {moment.date ? (
                                 <p className="m-0 p-0 text-dark fs-6"><span><i className="bi bi-calendar me-2"></i></span>{formatDate(moment.date)}</p>
+                                ) : (
+                                <p className="m-0 p-0 text-dark fs-6"><span><i className="bi bi-calendar me-2"></i></span>N/A</p>
+                                )}
                             </div>
                         </div>
 
@@ -147,16 +151,16 @@ function Moments() {
                 tabIndex="-1"
                 aria-labelledby="addMomentLabel"
                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content">
+                <div className="modal-dialog modal-dialog-scrollable">
+                    <div className="modal-content">
 
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <div className="heading">
-                                <h1 class="modal-title fs-4" id="staticBackdropLabel">Add Moment</h1>
+                                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add Moment</h1>
                                 <p className="m-0 mt-2 fs-6 text-center">
                                     Add your sports moment and keep your favourite memories saved.
                                 </p>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
                             <div className="form mt-3">
@@ -167,8 +171,8 @@ function Moments() {
                                     </div>
                                     <div className="mb-1 col-12">
                                         <label htmlFor="moment-type" className="form-label">Sport:</label>
-                                        <select className="form-control form-select py-1" aria-label="Sport select" id="moment-type">
-                                            <option selected disabled>Select a sport</option>
+                                        <select className="form-control form-select py-1" aria-label="Sport select" id="moment-type" defaultValue="">
+                                            <option value="" disabled>Select a sport</option>
                                             <option value="football">Football</option>
                                             <option value="basketball">Basketball</option>
                                             <option value="cricket">Cricket</option>
@@ -184,9 +188,9 @@ function Moments() {
                                         </select>
                                     </div>
 
-                                    <div class="mb-2 col-12">
-                                        <label htmlFor="moment-date" class="form-label">Image <span>(Optional)</span>:</label>
-                                        <input class="form-control form-control-sm" id="moment-image" type="file" accept=".jpg, .jpeg, .png, .webp" />
+                                    <div className="mb-2 col-12">
+                                        <label htmlFor="moment-date" className="form-label">Image <span>(Optional)</span>:</label>
+                                        <input className="form-control form-control-sm" id="moment-image" type="file" accept=".jpg, .jpeg, .png, .webp" />
                                     </div>
 
                                     <div className="mb-2 col-12">
