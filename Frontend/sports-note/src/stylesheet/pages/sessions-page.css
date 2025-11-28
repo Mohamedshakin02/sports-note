@@ -399,7 +399,7 @@ body {
 .sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""] {
   background-color: #b3b5b7;
 }
-.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .exerice button {
+.sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .exercise button {
   align-self: stretch;
 }
 .sessions-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus {
