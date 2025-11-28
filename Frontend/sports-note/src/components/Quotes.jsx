@@ -143,7 +143,12 @@ function Quotes() {
 
                   <div className="mb-4 col-12">
                     <label htmlFor="quote-author" className="form-label">Author/Player:</label>
-                    <input type="text" className="form-control" id="quote-author" placeholder="Enter the name of the author or player"/>
+                    <input type="text" className="form-control" id="quote-author" placeholder="Enter the name of the author or player" required/>
+                  </div>
+
+                  <div className="mb-4 col-12">
+                    <label htmlFor="quote-image" className="form-label">Image <span>(Optional)</span>:</label>
+                    <input className="form-control form-control-sm" id="quote-image" type="file" accept=".jpg, .jpeg, .png, .webp" />
                   </div>
 
                   <div className="col-12">
