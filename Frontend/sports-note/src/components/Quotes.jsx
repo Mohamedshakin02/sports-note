@@ -55,7 +55,7 @@ function Quotes() {
           </p>
         </div>
         <div className="button">
-          <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Quote</button>
+          <button type="button" className="btn p-2" data-bs-toggle="modal" data-bs-target="#addQuoteModal"><i className="bi bi-plus-lg me-2"></i>Add Quote</button>
         </div>
       </div>
 
@@ -110,6 +110,51 @@ function Quotes() {
           </div>
         ))}
 
+      </div>
+
+      {/* Modal */}
+      <div className="modal fade"
+        id="addQuoteModal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="addQuoteLabel"
+        aria-hidden="true">
+          
+        <div className="modal-dialog modal-dialog-scrollable">
+          <div className="modal-content">
+
+            <div className="modal-body">
+              <div className="heading">
+                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add New Quote</h1>
+                <p className="m-0 mt-2 fs-6 text-center">
+                  Save an inspirational quote from your favorite player.
+                </p>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div className="form mt-3">
+                <form className="row g-2 py-2">
+
+                  <div className="mb-2 col-12">
+                    <label htmlFor="quote-text" className="form-label">Quote:</label>
+                    <textarea className="form-control" id="quote-text" placeholder="Type the inspirational quote here..." required></textarea>
+                  </div>
+
+                  <div className="mb-4 col-12">
+                    <label htmlFor="quote-author" className="form-label">Author/Player:</label>
+                    <input type="text" className="form-control" id="quote-author" placeholder="Enter the name of the author or player"/>
+                  </div>
+
+                  <div className="col-12">
+                    <button type="submit" className="btn btn-primary fs-6 w-100">Add Quote</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

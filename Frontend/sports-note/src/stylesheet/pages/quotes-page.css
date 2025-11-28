@@ -237,6 +237,79 @@ body {
 .quotes-section .grid-container .quote-box .menu-wrapper.show .menu-dropdown {
   display: block !important;
 }
+.quotes-section .modal .modal-dialog-scrollable {
+  display: flex;
+  align-items: center;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content {
+  border-radius: 8px;
+  background-color: #FCF0D6;
+  border: 2px solid #710004;
+  position: relative;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading h1 {
+  color: #710004;
+  font-weight: 600;
+  text-align: center;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading button {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  box-shadow: none;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label {
+  font-weight: 500;
+  color: #710004;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label span {
+  font-weight: 400;
+  color: black;
+  font-size: 0.9rem;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input,
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea,
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select {
+  background-color: unset;
+  color: black;
+  border: 2px solid #710004;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::-moz-placeholder, .quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea::-moz-placeholder, .quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::-moz-placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::placeholder,
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea::placeholder,
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option {
+  background-color: #710004;
+  color: white;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""] {
+  background-color: #b3b5b7;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus {
+  background-color: #FCF0D6;
+  box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
+  color: black;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button {
+  background-color: #710004;
+  color: #FCF0D6;
+  font-weight: 500;
+  border: none;
+}
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
 
 @media screen and (max-width: 992px) {
   .quotes-section .heading-container {

@@ -150,6 +150,7 @@
                             position: absolute;
                             right: 15px;
                             top: 20px;
+                            box-shadow: none;
                         }
                     }
 
@@ -212,11 +213,6 @@
                                     background-color: $black;
                                     color: $white;
                                 }
-                            }
-
-                            #fixture-image::file-selector-button {
-                                background-color: $red;
-                                color: $yellow;
                             }
 
                         }

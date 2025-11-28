@@ -259,6 +259,7 @@ body {
   position: absolute;
   right: 15px;
   top: 20px;
+  box-shadow: none;
 }
 .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label {
   font-weight: 500;
@@ -311,10 +312,6 @@ body {
 .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover {
   background-color: #000000;
   color: #FFFFFF;
-}
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form #fixture-image::file-selector-button {
-  background-color: #710004;
-  color: #FCF0D6;
 }
 
 @media screen and (max-width: 992px) {

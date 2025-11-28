@@ -94,6 +94,7 @@ function Fixtures() {
         tabIndex="-1"
         aria-labelledby="addFixtureLabel"
         aria-hidden="true">
+          
         <div className="modal-dialog modal-dialog-scrollable">
           <div className="modal-content">
 
