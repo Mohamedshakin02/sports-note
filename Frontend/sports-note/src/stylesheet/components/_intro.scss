@@ -55,33 +55,59 @@
       width: 100%;
       height: 100%;
       z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-areas:
+        "dates slogan quotes"
+        "dates desc quotes";
+      align-items: center;
+      justify-content: space-between;
+
 
       .dates-container {
+        grid-area: dates;
+
         .dates-box {
           background-color: $yellow;
           width: 4rem;
           height: 4rem;
+          cursor: pointer;
         }
       }
 
-      .desc-container {
+      .slogan-container {
+        grid-area: slogan;
         color: $black;
-
-        h1,
-        p {
-          font-family: $inter-font;
-        }
+        justify-self: center;
+        align-self: end;
 
         h1 {
+          font-family: $inter-font;
           font-weight: 900;
         }
       }
 
+      .desc-container {
+        grid-area: desc;
+        justify-self: center;
+        align-self: start;
+
+        p {
+          color: $black;
+          font-family: $inter-font;
+          font-weight: 600;
+        }
+      }
+
       .quotes-container {
+        grid-area: quotes;
+        justify-self: end;
+
         .quotes-box {
           background-color: $yellow;
           width: 4rem;
           aspect-ratio: 1/1;
+          cursor: pointer;
 
           img {
             object-fit: cover;
@@ -258,50 +284,51 @@
   }
 
   .quote-box {
-            border-radius: 8px;
-            position: relative;
-            max-width: 700px;
-            justify-self: center;
-            color: $yellow;
+    border-radius: 8px;
+    position: relative;
+    max-width: 700px;
+    justify-self: center;
+    color: $yellow;
 
-            .image-container {
-                height: 7rem;
-                width: 7rem;
-                aspect-ratio: 1/1;
-                border-radius: 50%;
-                border: 3px solid $red;
-                margin-left: auto;
-                margin-right: auto !important;
-                
+    .image-container {
+      height: 7rem;
+      width: 7rem;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      border: 3px solid $red;
+      margin-left: auto;
+      margin-right: auto !important;
 
-                img {
-                    width: 100%;
-                    height: 100%;
-                    aspect-ratio: 1/1;
-                    object-fit: cover;
-                    border-radius: 50%;
-                }
 
-                i{
-                  color: #6c757d;
-                  margin-left: auto;
-                  margin-right: auto !important;
-                }
-            }
+      img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 50%;
+      }
 
-            .quote-container {
-                align-self: flex-start;
-                color: $black;
-            }
+      i {
+        color: #6c757d;
+        margin-left: auto;
+        margin-right: auto !important;
+      }
+    }
 
-            .text-container {
-              color: $black;
-                .quote {
-                    font-weight: 500;
-                }
-            }
+    .quote-container {
+      align-self: flex-start;
+      color: $red;
+    }
 
-        }
+    .text-container {
+      color: $red;
+
+      .quote {
+        font-weight: 500;
+      }
+    }
+
+  }
 
 
 }
@@ -310,7 +337,6 @@
   .intro-section {
     .intro-container {
       .content-container {
-
 
         .dates-container {
           .dates-box {
@@ -334,12 +360,12 @@
           }
         }
 
-        .desc-container {
-          width: 60% !important;
+        .desc-container,
+        .slogan-container {
 
 
           h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
           }
 
           p {
@@ -368,6 +394,16 @@
   .intro-section {
     .intro-container {
       .content-container {
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas:
+          ". . ."
+          ". . ."
+          "dates slogan quotes"
+          "desc desc desc"
+          ". . .";
+
+        grid-template-rows: 0.5fr 0.7fr 1.1fr 1fr 1fr;
+        row-gap: 1rem;
 
 
         .dates-container {
@@ -384,8 +420,17 @@
           }
         }
 
-        .desc-container {
-          width: 60% !important;
+        .slogan-container{
+          align-self: center;
+
+          h1{
+            font-size: 2.5rem !important;
+          }
+
+        }
+
+        .desc-container,
+        .slogan-container {
 
 
           h1 {
@@ -394,6 +439,7 @@
 
           p {
             font-size: 1.2rem;
+            margin: 0px !important;
           }
         }
 

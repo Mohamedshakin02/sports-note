@@ -122,7 +122,7 @@ function Intro() {
 
       {/* Main content overlay */}
       <div className="intro-container container-md position-absolute">
-        <div className="content-container d-flex justify-content-between align-items-center px-3 px-md-2">
+        <div className="content-container px-3 px-md-2">
           {/* Dates */}
           <div className="dates-container d-flex flex-column gap-4">
             {fixturesList.slice(0, 3).map((fixture, i) => {
@@ -132,7 +132,7 @@ function Intro() {
                 <div key={i} className="dates-box d-flex flex-column justify-content-center align-items-center" onClick={() => openFixtureModal(fixture)}
                   data-bs-toggle="modal"
                   data-bs-target="#infoModal">
-                  <p className="month m-0 p-0 fw-semibold">{month}</p>
+                  <p className="month m-0 p-0 mt-1 fw-semibold">{month}</p>
                   <p className="day m-0 p-0 fs-4 fw-semibold">{day}</p>
                 </div>
               );
@@ -140,11 +140,15 @@ function Intro() {
           </div>
 
           {/* Description */}
-          <div className="desc-container fst-italic w-50 text-center text-md-start">
+          <div className="slogan-container fst-italic text-center text-md-start">
             <h1 className="m-0 p-0 display-4 text-center">Every Moment Counts</h1>
-            <p className="m-0 p-0 fw-bolder h4 text-center my-4">
-              With Sports Note, capture your unforgettable plays, track your progress,
-              and relive the moments that make every game memorable.
+            
+          </div>
+
+          <div className="desc-container">
+            <p className="m-0 p-0 h4 text-center my-4">
+              <i>With Sports Note, capture your unforgettable plays, track your progress,
+              and relive the moments that make every game memorable.</i>
             </p>
           </div>
 

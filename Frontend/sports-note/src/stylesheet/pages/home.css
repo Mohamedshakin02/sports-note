@@ -190,26 +190,50 @@ body {
   width: 100%;
   height: 100%;
   z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas: "dates slogan quotes" "dates desc quotes";
+  align-items: center;
+  justify-content: space-between;
+}
+.intro-section .intro-container .content-container .dates-container {
+  grid-area: dates;
 }
 .intro-section .intro-container .content-container .dates-container .dates-box {
   background-color: #FCF0D6;
   width: 4rem;
   height: 4rem;
+  cursor: pointer;
+}
+.intro-section .intro-container .content-container .slogan-container {
+  grid-area: slogan;
+  color: #000000;
+  justify-self: center;
+  align-self: end;
+}
+.intro-section .intro-container .content-container .slogan-container h1 {
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
 }
 .intro-section .intro-container .content-container .desc-container {
-  color: #000000;
+  grid-area: desc;
+  justify-self: center;
+  align-self: start;
 }
-.intro-section .intro-container .content-container .desc-container h1,
 .intro-section .intro-container .content-container .desc-container p {
+  color: #000000;
   font-family: "Inter", sans-serif;
+  font-weight: 600;
 }
-.intro-section .intro-container .content-container .desc-container h1 {
-  font-weight: 900;
+.intro-section .intro-container .content-container .quotes-container {
+  grid-area: quotes;
+  justify-self: end;
 }
 .intro-section .intro-container .content-container .quotes-container .quotes-box {
   background-color: #FCF0D6;
   width: 4rem;
   aspect-ratio: 1/1;
+  cursor: pointer;
 }
 .intro-section .intro-container .content-container .quotes-container .quotes-box img {
   -o-object-fit: cover;
@@ -377,10 +401,10 @@ body {
 }
 .intro-section .quote-box .quote-container {
   align-self: flex-start;
-  color: #000000;
+  color: #710004;
 }
 .intro-section .quote-box .text-container {
-  color: #000000;
+  color: #710004;
 }
 .intro-section .quote-box .text-container .quote {
   font-weight: 500;
@@ -401,13 +425,12 @@ body {
   .intro-section .intro-container .content-container .quotes-container .quotes-box p {
     font-size: 1.3rem;
   }
-  .intro-section .intro-container .content-container .desc-container {
-    width: 60% !important;
+  .intro-section .intro-container .content-container .desc-container h1,
+  .intro-section .intro-container .content-container .slogan-container h1 {
+    font-size: 1.5rem;
   }
-  .intro-section .intro-container .content-container .desc-container h1 {
-    font-size: 1.8rem;
-  }
-  .intro-section .intro-container .content-container .desc-container p {
+  .intro-section .intro-container .content-container .desc-container p,
+  .intro-section .intro-container .content-container .slogan-container p {
     font-size: 1rem;
   }
   .intro-section .intro-container .slider-control .right-side {
@@ -418,6 +441,12 @@ body {
   }
 }
 @media (max-width: 576px) {
+  .intro-section .intro-container .content-container {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: ". . ." ". . ." "dates slogan quotes" "desc desc desc" ". . .";
+    grid-template-rows: 0.5fr 0.7fr 1.1fr 1fr 1fr;
+    row-gap: 1rem;
+  }
   .intro-section .intro-container .content-container .dates-container .dates-box {
     width: 3rem;
     height: 3rem;
@@ -426,14 +455,20 @@ body {
   .intro-section .intro-container .content-container .quotes-container .quotes-box {
     width: 3rem;
   }
-  .intro-section .intro-container .content-container .desc-container {
-    width: 60% !important;
+  .intro-section .intro-container .content-container .slogan-container {
+    align-self: center;
   }
-  .intro-section .intro-container .content-container .desc-container h1 {
+  .intro-section .intro-container .content-container .slogan-container h1 {
+    font-size: 2.5rem !important;
+  }
+  .intro-section .intro-container .content-container .desc-container h1,
+  .intro-section .intro-container .content-container .slogan-container h1 {
     font-size: 2rem;
   }
-  .intro-section .intro-container .content-container .desc-container p {
+  .intro-section .intro-container .content-container .desc-container p,
+  .intro-section .intro-container .content-container .slogan-container p {
     font-size: 1.2rem;
+    margin: 0px !important;
   }
   .intro-section .slider-control .left-side .left-button {
     left: -10px;
