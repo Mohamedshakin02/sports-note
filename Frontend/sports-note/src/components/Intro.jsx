@@ -10,12 +10,62 @@ import cricket from "../assets/bg-image/cricket.jpg";
 import basketball from "../assets/bg-image/basketball.jpg";
 import f1 from "../assets/bg-image/f1.png";
 
+import quote1 from "../assets/quotes/virat.jpg";
+import quote2 from "../assets/quotes/muhammad.jpg";
+
 const slides = [
   { id: 1, image: football },
   { id: 2, image: cricket },
   { id: 3, image: basketball },
   { id: 4, image: f1 },
 ];
+
+const fixturesList = [
+  { date: "2024-1-19", team1: "INDIA", team2: "PAK", time: "9:30", sport: "Cricket" },
+  { date: "2024-11-20", team1: "AUSTRALIA", team2: "ENG", time: "14:00", sport: "Cricket" },
+  { date: "2024-11-22", team1: "BARCELONA", team2: "REAL MADRID", time: "20:45", sport: "Football" },
+  { date: "2024-11-23", team1: "MAN UNITED", team2: "ARSENAL", time: "", sport: "Football" },
+  { date: "2024-11-25", team1: "BULLS", team2: "CELTICS", time: "", sport: "Basketball" }
+];
+
+const quotesList = [
+  {
+    image: quote1,
+    quote:
+      "Whatever you want to do, do with full passion and work really hard towards it. Don't look anywhere else.",
+    author: "Virat Kohli",
+  },
+  {
+    image: quote2,
+    quote: "I hated every minute of training, but I said, 'Don’t quit. Suffer now and live the rest of your life as a champion.'",
+    author: "Muhammad Ali",
+  },
+  {
+    image: "",
+    quote: "Success isn’t owned. It’s leased. And rent is due every day.",
+    author: "J.J. Watt",
+  },
+];
+
+const formatDate = (dateStr) => {
+  const d = new Date(dateStr);
+  const month = d.toLocaleString("en-US", { month: "short" }).toUpperCase();
+  const day = d.getDate();
+  return { month, day };
+};
+
+const formatDate2 = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-GB", { day: "2-digit", month: "short" }).toUpperCase();
+};
+
+const getInitials = (name) => {
+  const words = name.trim().split(" ");
+  const first = words[0][0] || "";
+  const second = words[1]?.[0] || "";
+  return (first + second).toUpperCase();
+};
+
 
 function Intro() {
   const swiperRef = useRef(null);
@@ -25,6 +75,19 @@ function Intro() {
   const goNext = () => swiperRef.current?.slideNext();
 
   const handleSlideChange = (swiper) => setActiveIndex(swiper.realIndex);
+
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [modalType, setModalType] = useState("");
+
+  const openFixtureModal = (fixture) => {
+    setSelectedItem(fixture);
+    setModalType("fixture");
+  };
+
+  const openQuoteModal = (quote) => {
+    setSelectedItem(quote);
+    setModalType("quote");
+  };
 
   return (
     <section className="intro-section">
@@ -40,10 +103,12 @@ function Intro() {
           <SwiperSlide key={slide.id}>
             <div
               className="slide-image"
-              style={{ backgroundImage: `url(${slide.image})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center top"}}
+              style={{
+                backgroundImage: `url(${slide.image})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center top"
+              }}
             />
           </SwiperSlide>
         ))}
@@ -60,12 +125,18 @@ function Intro() {
         <div className="content-container d-flex justify-content-between align-items-center px-3 px-md-2">
           {/* Dates */}
           <div className="dates-container d-flex flex-column gap-4">
-            {["12", "15", "20"].map((day, i) => (
-              <div key={i} className="dates-box d-flex flex-column justify-content-center align-items-center">
-                <p className="month m-0 p-0 fw-semibold">NOV</p>
-                <p className="day m-0 p-0 fs-4 fw-semibold">{day}</p>
-              </div>
-            ))}
+            {fixturesList.slice(0, 3).map((fixture, i) => {
+              const { month, day } = formatDate(fixture.date);
+
+              return (
+                <div key={i} className="dates-box d-flex flex-column justify-content-center align-items-center" onClick={() => openFixtureModal(fixture)}
+                  data-bs-toggle="modal"
+                  data-bs-target="#infoModal">
+                  <p className="month m-0 p-0 fw-semibold">{month}</p>
+                  <p className="day m-0 p-0 fs-4 fw-semibold">{day}</p>
+                </div>
+              );
+            })}
           </div>
 
           {/* Description */}
@@ -79,9 +150,15 @@ function Intro() {
 
           {/* Quotes */}
           <div className="quotes-container d-flex flex-column gap-4 fs-3 fw-semibold">
-            {["VK", "RS", "LM"].map((author, i) => (
-              <div key={i} className="quotes-box d-flex justify-content-center align-items-center">
-                <p className="author m-0 p-0">{author}</p>
+            {quotesList.map((quote, i) => (
+              <div key={i} className="quotes-box d-flex justify-content-center align-items-center" onClick={() => openQuoteModal(quote)}
+                data-bs-toggle="modal"
+                data-bs-target="#infoModal">
+                {quote.image ? (
+                  <img src={quote.image} alt={quote.author} className="quote-img img-fluid" />
+                ) : (
+                  <p className="author m-0 p-0">{getInitials(quote.author)}</p>
+                )}
               </div>
             ))}
           </div>
@@ -115,6 +192,69 @@ function Intro() {
           <i className="bi bi-chevron-down fs-3"></i>
         </div>
       </div>
+
+      <div
+        className="modal fade"
+        id="infoModal"
+        tabIndex="-1"
+        aria-labelledby="infoModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content p-3">
+
+            <div className="modal-body">
+              
+              <h1 className="m-0 fs-3 mb-4">{modalType === "fixture" ? "Upcoming Fixture" : "Quote"}</h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
+
+              {modalType === "fixture" && selectedItem && (
+                <div className="fixture-box pt-0 text-center">
+                  <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
+                    <h2 className="m-0 fs-3"> {formatDate2(selectedItem.date)}</h2>
+                  </div>
+                  <div className="bottom-container p-4">
+                    <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{selectedItem.sport}</p>
+                    <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder"> {selectedItem.team1} vs {selectedItem.team2}</p>
+                    <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span> {selectedItem.time || "N/A"}</p>
+                  </div>
+                </div>
+
+              )}
+
+              {modalType === "quote" && selectedItem && (
+                <div className="quote-box d-flex flex-column ">
+                  <div className="image-container mb-3 me-2 me-sm-4 d-flex align-items-center">
+                    {selectedItem.image ? (
+                      <img
+                        src={selectedItem.image}
+                        alt={selectedItem.author}
+                        className="img-fluid"
+                      />
+                    ) :
+                      (
+                        <i className="bi bi-person-fill display-3"></i>
+                      )}
+                  </div>
+
+                  <div className="bottom container d-flex">
+                    <div className="quote-container">
+                    <i className="bi bi-quote display-3"></i>
+                  </div>
+                  <div className="text-container h-100 p-2 d-flex flex-column justify-content-between">
+                    <p className="quote m-0 display-6 fs-4 pt-0 pt-lg-1">"{selectedItem.quote}"</p>
+                    <p className="author m-0 p-0 mt-2 fs-5 text-end"><i>- {selectedItem.author}</i></p>
+                  </div>
+                  </div>
+                  
+                </div>
+              )}
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }
