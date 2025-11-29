@@ -106,7 +106,7 @@ function Moments_Home() {
           </p>
         </div>
         <div className="button">
-          <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Moment</button>
+          <button type="button" className="btn p-2" data-bs-toggle="modal" data-bs-target="#addMomentModal" ><i className="bi bi-plus-lg me-2"></i>Add Moment</button>
         </div>
       </div>
 
@@ -252,6 +252,79 @@ function Moments_Home() {
 
       <div className="explore mt-3">
         <Link to="/moments" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
+      </div>
+
+      {/* Modal */}
+      <div className="modal fade"
+        id="addMomentModal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="addMomentLabel"
+        aria-hidden="true">
+
+        <div className="modal-dialog modal-dialog-scrollable">
+          <div className="modal-content">
+
+            <div className="modal-body">
+              <div className="heading">
+                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add Moment</h1>
+                <p className="m-0 mt-2 fs-6 text-center">
+                  Add your sports moment and keep your favourite memories saved.
+                </p>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div className="form mt-3">
+                <form className="row g-2 py-2">
+                  <div className="mb-1 col-12">
+                    <label htmlFor="moment-title" className="form-label">Title:</label>
+                    <input type="text" className="form-control" id="moment-title" placeholder="Enter a short title for your sports moment" required />
+                  </div>
+                  <div className="mb-1 col-12">
+                    <label htmlFor="moment-type" className="form-label">Sport:</label>
+                    <select className="form-control form-select py-1" aria-label="Sport select" id="moment-type" defaultValue="" required>
+                      <option value="" disabled>Select a sport</option>
+                      <option value="football">Football</option>
+                      <option value="basketball">Basketball</option>
+                      <option value="cricket">Cricket</option>
+                      <option value="tennis">Tennis</option>
+                      <option value="badminton">Badminton</option>
+                      <option value="volleyball">Volleyball</option>
+                      <option value="swimming">Swimming</option>
+                      <option value="running">Running</option>
+                      <option value="boxing">Boxing</option>
+                      <option value="table-tennis">Table Tennis</option>
+                      <option value="rugby">Kabaddi</option>
+                      <option value="hockey">Hockey</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div className="mb-2 col-12">
+                    <label htmlFor="moment-image" className="form-label">Image <span>(Optional)</span>:</label>
+                    <input className="form-control form-control-sm" id="moment-image" type="file" accept=".jpg, .jpeg, .png, .webp" />
+                  </div>
+
+                  <div className="mb-2 col-12">
+                    <label htmlFor="moment-date" className="form-label">Date <span>(Optional)</span>:</label>
+                    <input type="date" className="form-control" id="moment-date" />
+                  </div>
+
+                  <div className="mb-4 col-12">
+                    <label htmlFor="moment-desc" className="form-label">Description:</label>
+                    <textarea className="form-control" id="moment-desc" placeholder="Describe what happened in this moment" required></textarea>
+                  </div>
+
+                  <div className="col-12">
+                    <button type="submit" className="btn btn-primary fs-6 w-100">Save Moment</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -78,6 +78,27 @@ function Techniques_Home() {
         }
     ];
 
+    // steps storage
+      const [steps, setSteps] = useState([""]);
+    
+      // Add new step
+      const addStep = () => {
+        setSteps([...steps, ""]);
+      };
+    
+      // Update step text
+      const updateStep = (index, value) => {
+        const updated = [...steps];
+        updated[index] = value;
+        setSteps(updated);
+      };
+    
+      // Delete a step
+      const deleteStep = (index) => {
+        const updated = steps.filter((_, i) => i !== index);
+        setSteps(updated);
+      };
+
     return (
         <section className="techniques-section py-5 mt-2">
             <div className="techniques-container container-md px-3 px-md-2">
@@ -90,7 +111,7 @@ function Techniques_Home() {
                         </p>
                     </div>
                     <div className="button">
-                        <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Technique</button>
+                        <button type="button" className="btn p-2" data-bs-toggle="modal" data-bs-target="#addTechniqueModal"><i className="bi bi-plus-lg me-2"></i>Add Technique</button>
                     </div>
                 </div>
 
@@ -152,6 +173,103 @@ function Techniques_Home() {
 
                 <div className="explore mt-5">
                     <Link to="/techniques" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
+                </div>
+            </div>
+
+            {/* Modal */}
+            <div className="modal fade"
+                id="addTechniqueModal"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabIndex="-1"
+                aria-labelledby="addTechniqueLabel"
+                aria-hidden="true">
+
+                <div className="modal-dialog modal-dialog-scrollable">
+                    <div className="modal-content">
+
+                        <div className="modal-body">
+                            <div className="heading">
+                                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add Technique</h1>
+                                <p className="m-0 mt-2 fs-6 text-center">
+                                    Create a step-by-step tutorial for a trick shot or technique.
+                                </p>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div className="form mt-3">
+                                <form className="row g-2 gx-3 py-2">
+                                    <div className="mb-1 col-12">
+                                        <label htmlFor="technique-title" className="form-label">Technique Name:</label>
+                                        <input type="text" className="form-control" id="technique-title" placeholder="Enter a short title for your sports moment" required />
+                                    </div>
+
+                                    <div className="mb-1 col-12">
+                                        <label htmlFor="technique-type" className="form-label">Sport:</label>
+                                        <select className="form-control form-select py-1" aria-label="Sport select" id="technique-type" defaultValue="" required>
+                                            <option value="" disabled>Select a sport</option>
+                                            <option value="football">Football</option>
+                                            <option value="basketball">Basketball</option>
+                                            <option value="cricket">Cricket</option>
+                                            <option value="tennis">Tennis</option>
+                                            <option value="badminton">Badminton</option>
+                                            <option value="volleyball">Volleyball</option>
+                                            <option value="swimming">Swimming</option>
+                                            <option value="running">Running</option>
+                                            <option value="boxing">Boxing</option>
+                                            <option value="table-tennis">Table Tennis</option>
+                                            <option value="rugby">Kabaddi</option>
+                                            <option value="hockey">Hockey</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="mb-4 col-12">
+                                        <label className="form-label">Steps:</label>
+
+                                        {steps.map((step, index) => (
+                                            <div key={index} className="step d-flex align-items-center mb-2">
+                                                <span className="me-2 mt-1 fw-bold">{index + 1}.</span>
+
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    value={step}
+                                                    onChange={(e) => updateStep(index, e.target.value)}
+                                                    placeholder={`Enter Step ${index + 1}`}
+                                                    required
+                                                />
+
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-sm ms-2"
+                                                    onClick={() => deleteStep(index)}
+                                                    disabled={steps.length === 1}
+                                                >
+                                                    <i className="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        ))}
+
+
+                                        <button
+                                            type="button"
+                                            className="btn btn-sm mt-2"
+                                            onClick={addStep}
+                                        >
+                                            <i className="bi bi-plus-lg me-1"></i>Add Step
+                                        </button>
+                                    </div>
+
+
+                                    <div className="col-12">
+                                        <button type="submit" className="btn btn-primary fs-6 w-100">Save Technique</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

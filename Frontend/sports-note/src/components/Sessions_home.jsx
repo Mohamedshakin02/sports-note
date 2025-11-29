@@ -69,6 +69,27 @@ function Sessions_home() {
   const slidePrev = () => swiperRef.current?.slidePrev();
   const slideNext = () => swiperRef.current?.slideNext();
 
+  // exercises storage
+  const [exercises, setExercises] = useState([""]);
+
+  // Add new exercise
+  const addExercise = () => {
+    setExercises([...exercises, ""]);
+  };
+
+  // Update exercise text
+  const updateExercise = (index, value) => {
+    const updated = [...exercises];
+    updated[index] = value;
+    setExercises(updated);
+  };
+
+  // Delete a exercise
+  const deleteExercise = (index) => {
+    const updated = exercises.filter((_, i) => i !== index);
+    setExercises(updated);
+  };
+
   return (
     <section className="sessions-section py-5 mt-2">
       <div className="sessions-container container-md px-3 px-md-2">
@@ -80,7 +101,7 @@ function Sessions_home() {
             </p>
           </div>
           <div className="button">
-            <button type="button" className="btn p-2"><i className="bi bi-plus-lg me-2"></i>Add Session</button>
+            <button type="button" className="btn p-2" data-bs-toggle="modal" data-bs-target="#addSessionModal"><i className="bi bi-plus-lg me-2"></i>Add Session</button>
           </div>
         </div>
 
@@ -164,6 +185,81 @@ function Sessions_home() {
 
         <div className="explore mt-5">
           <Link to="/sessions" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
+        </div>
+      </div>
+
+      {/* Modal */}
+      <div className="modal fade"
+        id="addSessionModal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="addSessionLabel"
+        aria-hidden="true">
+
+        <div className="modal-dialog modal-dialog-scrollable">
+          <div className="modal-content">
+
+            <div className="modal-body">
+              <div className="heading">
+                <h1 className="modal-title fs-4" id="staticBackdropLabel">Add Session</h1>
+                <p className="m-0 mt-2 fs-6 text-center">
+                  Save your training session details and exercises.
+                </p>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div className="form mt-3">
+                <form className="row g-2 gx-3 py-2">
+                  <div className="mb-1 col-12">
+                    <label htmlFor="session-title" className="form-label">Session Name:</label>
+                    <input type="text" className="form-control" id="session-title" placeholder="Enter a short title for your sports moment" required />
+                  </div>
+
+                  <div className="mb-4 col-12">
+                    <label className="form-label">Steps:</label>
+
+                    {exercises.map((step, index) => (
+                      <div key={index} className="exercise d-flex align-items-center mb-2">
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={step}
+                          onChange={(e) => updateExercise(index, e.target.value)}
+                          placeholder={`Enter Exercise/Activity ${index + 1}`}
+                          required
+                        />
+
+                        <button
+                          type="button"
+                          className="btn btn-sm ms-2"
+                          onClick={() => deleteExercise(index)}
+                          disabled={exercises.length === 1}
+                        >
+                          <i className="bi bi-trash"></i>
+                        </button>
+                      </div>
+                    ))}
+
+
+                    <button
+                      type="button"
+                      className="add btn btn-sm mt-2"
+                      onClick={addExercise}
+                    >
+                      <i className="bi bi-plus-lg me-1"></i>Add Exercise
+                    </button>
+                  </div>
+
+
+                  <div className="col-12">
+                    <button type="submit" className="btn btn-primary fs-6 w-100">Save Session</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

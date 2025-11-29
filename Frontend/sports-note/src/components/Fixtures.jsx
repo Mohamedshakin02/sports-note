@@ -135,6 +135,7 @@ function Fixtures() {
                       <option value="table-tennis">Table Tennis</option>
                       <option value="rugby">Kabaddi</option>
                       <option value="hockey">Hockey</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
 

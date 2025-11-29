@@ -181,6 +181,7 @@ function Sessions() {
         </div>
       </div>
 
+      {/* Modal */}
       <div className="modal fade"
         id="addSessionModal"
         data-bs-backdrop="static"
