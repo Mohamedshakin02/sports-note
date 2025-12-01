@@ -1203,6 +1203,10 @@ body {
   font-weight: 600;
   border: 2px solid #FCF0D6 !important;
 }
+.techniques-section .techniques-container .body-head {
+  font-weight: 600;
+  color: #710004;
+}
 .techniques-section .techniques-container .accordion-button:focus,
 .techniques-section .techniques-container .accordion-button:active {
   box-shadow: none;
@@ -1344,6 +1348,9 @@ body {
 .sessions-section .content h1 {
   font-weight: 500 !important;
   color: #710004;
+}
+.sessions-section .content .exercise-title {
+  font-weight: 500;
 }
 .sessions-section .content ul {
   padding-left: 1.5rem;

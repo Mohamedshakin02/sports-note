@@ -34,6 +34,11 @@
             }
         }
 
+        .body-head {
+            font-weight: 600;
+            color: $red;
+        }
+
         .accordion-button:focus,
         .accordion-button:active {
             box-shadow: none

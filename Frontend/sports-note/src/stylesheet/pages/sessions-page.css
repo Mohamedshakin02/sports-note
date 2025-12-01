@@ -190,6 +190,9 @@ body {
   font-weight: 500 !important;
   color: #710004;
 }
+.sessions-section .content .exercise-title {
+  font-weight: 500;
+}
 .sessions-section .content ul {
   padding-left: 1.5rem;
   list-style-position: outside;

@@ -140,6 +140,8 @@ function Techniques_Home() {
                             >
                                 <div className="accordion-body">
 
+                                    <p className="body-head m-0 p-0 fs-5 mb-3">Steps:</p>
+
                                     {/* THREE DOTS MENU INSIDE BODY */}
                                     <div
                                         className="menu-wrapper"

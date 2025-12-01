@@ -81,6 +81,11 @@
         border: 5px solid $red;
     }
 
+    .body-head {
+        font-weight: 600;
+        color: $red;
+    }
+
     .accordion-body ol {
         list-style: none;
         counter-reset: item;

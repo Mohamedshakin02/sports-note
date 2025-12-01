@@ -204,6 +204,10 @@ body {
   background-color: #FCF0D6;
   border: 5px solid #710004;
 }
+.techniques-section .body-head {
+  font-weight: 600;
+  color: #710004;
+}
 .techniques-section .accordion-body ol {
   list-style: none;
   counter-reset: item;

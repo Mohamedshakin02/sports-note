@@ -106,6 +106,7 @@ function Sessions() {
       <div className="grid-container">
         {/* LEFT CONTENT */}
         <div className="content">
+
           <div className="menu-wrapper" ref={menuRef}>
             <i className="bi bi-three-dots-vertical menu-icon" onClick={() => setOpenMenu(!openMenu)}></i>
             {openMenu && (
@@ -116,8 +117,9 @@ function Sessions() {
             )}
           </div>
 
-          <h1>{selected.title}</h1>
-          <ul className="mt-3">
+          <h1 className="mb-3">{selected.title}</h1>
+          <p className="exercise-title m-0 p-0 fs-4 mb-2">Exercises:</p>
+          <ul className="mt-0">
             {selected.items.map((item, i) => (
               <li key={i} className="fs-5">{item}</li>
             ))}
@@ -210,7 +212,7 @@ function Sessions() {
                   </div>
 
                   <div className="mb-4 col-12">
-                    <label className="form-label">Steps:</label>
+                    <label className="form-label">Exercises:</label>
 
                     {exercises.map((step, index) => (
                       <div key={index} className="exercise d-flex align-items-center mb-2">
