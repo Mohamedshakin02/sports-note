@@ -79,25 +79,25 @@ function Techniques_Home() {
     ];
 
     // steps storage
-      const [steps, setSteps] = useState([""]);
-    
-      // Add new step
-      const addStep = () => {
+    const [steps, setSteps] = useState([""]);
+
+    // Add new step
+    const addStep = () => {
         setSteps([...steps, ""]);
-      };
-    
-      // Update step text
-      const updateStep = (index, value) => {
+    };
+
+    // Update step text
+    const updateStep = (index, value) => {
         const updated = [...steps];
         updated[index] = value;
         setSteps(updated);
-      };
-    
-      // Delete a step
-      const deleteStep = (index) => {
+    };
+
+    // Delete a step
+    const deleteStep = (index) => {
         const updated = steps.filter((_, i) => i !== index);
         setSteps(updated);
-      };
+    };
 
     return (
         <section className="techniques-section py-5 mt-2">
@@ -216,12 +216,11 @@ function Techniques_Home() {
                                             <option value="tennis">Tennis</option>
                                             <option value="badminton">Badminton</option>
                                             <option value="volleyball">Volleyball</option>
-                                            <option value="swimming">Swimming</option>
-                                            <option value="running">Running</option>
                                             <option value="boxing">Boxing</option>
                                             <option value="table-tennis">Table Tennis</option>
                                             <option value="rugby">Kabaddi</option>
                                             <option value="hockey">Hockey</option>
+                                            <option value="racing">Racing</option>
                                             <option value="other">Other</option>
                                         </select>
                                     </div>

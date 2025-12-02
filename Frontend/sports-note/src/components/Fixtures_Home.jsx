@@ -166,12 +166,11 @@ function Fixtures_Home() {
                                             <option value="tennis">Tennis</option>
                                             <option value="badminton">Badminton</option>
                                             <option value="volleyball">Volleyball</option>
-                                            <option value="swimming">Swimming</option>
-                                            <option value="running">Running</option>
                                             <option value="boxing">Boxing</option>
                                             <option value="table-tennis">Table Tennis</option>
                                             <option value="rugby">Kabaddi</option>
                                             <option value="hockey">Hockey</option>
+                                            <option value="racing">Racing</option>
                                             <option value="other">Other</option>
                                         </select>
                                     </div>
