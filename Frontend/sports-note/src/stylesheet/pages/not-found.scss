@@ -1,0 +1,28 @@
+@use "../abstract/reset" as *;
+@use "../abstract/variables" as *;
+
+.not-found {
+    background-color: $red;
+    color: $yellow;
+
+    a {
+        background-color: $yellow ;
+        color: $red ;
+        font-size: 1.25rem;
+        font-weight: 500;
+
+        &:hover {
+            background-color: $white;
+            color: $black
+        }
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+    .not-found{
+        a{
+            font-size: 0.9rem;
+        }
+    }
+}

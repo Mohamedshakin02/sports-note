@@ -9,6 +9,7 @@ import SessionsPage from './pages/SessionsPage';
 import ScrollToTop from './components/ScrollToTop';
 import LoginPage from './pages/LoginPage';
 import Sign_UpPage from './pages/Sign_UpPage';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/sessions" element={<SessionsPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/sign-up" element={<Sign_UpPage/>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   )
