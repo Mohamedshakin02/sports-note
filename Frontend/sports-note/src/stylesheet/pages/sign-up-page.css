@@ -176,13 +176,33 @@ body {
   color: #FCF0D6;
   border-radius: 8px;
 }
+.signup-section .signup-container .signup-form form {
+  /* Remove bootstrap purple background on input focus */
+  /* Remove browser auto-fill purple background */
+}
 .signup-section .signup-container .signup-form form label {
   font-weight: 500;
 }
 .signup-section .signup-container .signup-form form input {
-  background-color: unset;
+  background-color: #710004 !important;
   color: white;
   border: 2px solid #FCF0D6;
+}
+.signup-section .signup-container .signup-form form input.form-control:focus {
+  background-color: #710004 !important;
+  color: white !important;
+}
+.signup-section .signup-container .signup-form form input:-webkit-autofill,
+.signup-section .signup-container .signup-form form input:-webkit-autofill:hover,
+.signup-section .signup-container .signup-form form input:-webkit-autofill:focus {
+  background-color: #710004 !important;
+  box-shadow: 0 0 0 1000px #710004 inset !important;
+  -webkit-text-fill-color: white !important;
+  color: white !important;
+}
+.signup-section .signup-container .signup-form form input:-internal-autofill-selected {
+  background-color: #710004 !important;
+  color: white !important;
 }
 .signup-section .signup-container .signup-form form .form-control:focus {
   background-color: #710004;

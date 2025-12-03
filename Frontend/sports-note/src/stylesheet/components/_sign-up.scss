@@ -37,41 +37,63 @@
       background-color: $red;
       color: $yellow;
       border-radius: 8px;
-      
 
-      form{
-        label{
+
+      form {
+        label {
           font-weight: 500;
         }
 
-        input{
-          background-color:unset;
+        input {
+          background-color: $red !important;
           color: white;
           border: 2px solid $yellow;
         }
 
-        .form-control:focus{
+        /* Remove bootstrap purple background on input focus */
+        input.form-control:focus {
+          background-color: $red !important;
+          color: white !important;
+        }
+
+        /* Remove browser auto-fill purple background */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+          background-color: $red !important;
+          -webkit-box-shadow: 0 0 0 1000px $red inset !important;
+          box-shadow: 0 0 0 1000px $red inset !important;
+          -webkit-text-fill-color: white !important;
+          color: white !important;
+        }
+
+        input:-internal-autofill-selected {
+          background-color: $red !important;
+          color: white !important;
+        }
+
+        .form-control:focus {
           background-color: $red;
           box-shadow: 0 0 0 .25rem rgb(252, 240, 214, 0.25);
           color: white;
         }
 
-        button{
+        button {
           background-color: $yellow;
           color: $red;
           font-weight: 500;
           border: none;
 
-          &:hover{
+          &:hover {
             background-color: $black;
             color: $white;
           }
         }
 
-        .sign-up{
+        .sign-up {
           color: $white;
 
-          .link{
+          .link {
             color: $yellow
           }
         }
@@ -89,13 +111,13 @@
       margin-top: 4rem;
       gap: 2rem;
 
-      .signup-heading{
-        justify-self:unset;
+      .signup-heading {
+        justify-self: unset;
         max-width: 450px;
       }
 
-      .signup-form{
-        justify-self:unset;
+      .signup-form {
+        justify-self: unset;
       }
     }
 
