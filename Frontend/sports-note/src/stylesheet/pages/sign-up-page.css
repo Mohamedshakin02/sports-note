@@ -176,10 +176,6 @@ body {
   color: #FCF0D6;
   border-radius: 8px;
 }
-.signup-section .signup-container .signup-form form {
-  /* Remove bootstrap purple background on input focus */
-  /* Remove browser auto-fill purple background */
-}
 .signup-section .signup-container .signup-form form label {
   font-weight: 500;
 }

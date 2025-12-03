@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Sign_Up() {
+
+    const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -30,6 +32,14 @@ function Sign_Up() {
 
       console.log("Signup Success:", res.data);
       alert("Signup successful!");
+
+      setFormData({
+        username: "",
+        email: "",
+        password: ""
+      });
+
+      navigate("/");
 
     } catch (err) {
       console.error("Signup Error:", err.response?.data);
@@ -68,7 +78,7 @@ function Sign_Up() {
               </div>
 
               <div className="col-12">
-                <button type="submit" className="btn btn-primary fs-5">Sign Up</button>
+                <button type="submit" className="btn btn-primary fs-6">Sign Up</button>
               </div>
 
               <div className="col-12 sign-up mt-4">

@@ -50,13 +50,11 @@
           border: 2px solid $yellow;
         }
 
-        /* Remove bootstrap purple background on input focus */
         input.form-control:focus {
           background-color: $red !important;
           color: white !important;
         }
 
-        /* Remove browser auto-fill purple background */
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
         input:-webkit-autofill:focus {

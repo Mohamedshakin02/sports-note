@@ -23,7 +23,7 @@ function Login() {
                         </div>
 
                         <div className="col-12">
-                            <button type="submit" className="btn btn-primary fs-5">Login</button>
+                            <button type="submit" className="btn btn-primary fs-6">Login</button>
                         </div>
 
                         <div className="col-12 sign-up mt-4">
