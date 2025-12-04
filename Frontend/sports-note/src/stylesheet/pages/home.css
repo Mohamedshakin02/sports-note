@@ -1403,7 +1403,7 @@ body {
   content: "";
   position: absolute;
   top: 1rem;
-  height: 320px;
+  height: 343px;
   left: 0;
   width: 1.5px;
   background: #710004;
@@ -1411,7 +1411,7 @@ body {
 }
 .sessions-section .buttons .arrow-desktop-container {
   position: absolute;
-  height: 350px;
+  height: 370px;
   display: flex;
   width: 100%;
 }
@@ -1481,7 +1481,7 @@ body {
   bottom: -5px;
 }
 .sessions-section .mySwiper {
-  height: 350px;
+  height: 370px;
   position: relative;
 }
 .sessions-section .mySwiper .swiper-slide {
