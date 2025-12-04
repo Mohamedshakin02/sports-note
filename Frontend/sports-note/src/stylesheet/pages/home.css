@@ -1665,6 +1665,19 @@ footer .footer-container .auth-links ul li .sign {
   color: #FCF0D6;
   background-color: #710004;
 }
+footer .footer-container .auth-links .username {
+  width: 320px;
+}
+footer .footer-container .auth-links .logout {
+  border: 3px solid #710004;
+  font-weight: 500;
+  color: #710004;
+}
+footer .footer-container .auth-links .logout:hover {
+  background-color: black !important;
+  color: white !important;
+  border: 3px solid #000000;
+}
 footer .footer-container .logo {
   grid-area: logo;
   justify-self: center;
@@ -1689,7 +1702,7 @@ footer .footer-container .logo::before {
   left: 2px;
 }
 footer .footer-container .logo::after {
-  right: 0px;
+  right: 2px;
 }
 footer .copyright {
   text-align: center;

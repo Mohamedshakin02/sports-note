@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 function Footer() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        setUser(storedUser);
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        setUser(null);
+        window.location.reload(); // reload to update footer
+    };
+
     return (
         <footer className='py-5 pb-3 mt-1'>
             <div className='footer-container container-md px-3 px-md-2'>
@@ -16,18 +30,33 @@ function Footer() {
                         <li className='pb-2'><Link to="/sessions" className="text-decoration-none">Sessions<span><i className="bi bi-arrow-up-right ms-1"></i></span></Link></li>
                     </ul>
                 </div>
+
                 <div className='auth-links ps-lg-5'>
-                    <h1 className='h3 m-0 p-0'>Planning to organise your sports notes?</h1>
-                    <p className='h5 m-0 p-0 pt-3'>Start building your sports collection by joining Sport Note.</p>
-                    <ul className='list-unstyled m-0 p-0 mt-4'>
-                        <li><Link to="/login" className="login text-decoration-none rounded-pill p-2 fs-5">Login</Link></li>
-                        <li><Link to="/sign-up" className="sign text-decoration-none rounded-pill p-2 fs-5">Sign Up</Link></li>
-                    </ul>
+                    {user ? (
+                        <div className="d-flex flex-column m-0 p-0">
+                            <h1 className='username h3 m-0 p-0 text-truncate overflow-hidden text-nowrap'>Hello, {user.username.charAt(0).toUpperCase() + user.username.slice(1)}</h1>
+                            <p className='h5 m-0 p-0 pt-3 text-wrap'>Welcome back! Dive into your sports notes and make the most of all our features.</p>
+                            <button
+                                className="logout btn rounded-pill p-2 fs-5 mt-3 w-50"
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    ) : (
+                        <>
+                            <h1 className='h3 m-0 p-0'>Planning to organise your sports notes?</h1>
+                            <p className='h5 m-0 p-0 pt-3'>Start building your sports collection by joining Sport Note.</p>
+                            <ul className='list-unstyled m-0 p-0 mt-4'>
+                                <li><Link to="/login" className="login text-decoration-none rounded-pill p-2 fs-5">Login</Link></li>
+                                <li><Link to="/sign-up" className="sign text-decoration-none rounded-pill p-2 fs-5">Sign Up</Link></li>
+                            </ul>
+                        </>
+                    )}
                 </div>
 
                 <div className='logo'>
-                    <h2 className='display-4 m-0 p-0'>SPORTS <br />
-                        NOTE</h2>
+                    <h2 className='display-4 m-0 p-0'>SPORTS <br />NOTE</h2>
                     <p className='m-0 p-0 pt-3 px-lg-5 fs-5'><i>Capture Plays, Track Progress, Relive Moments</i></p>
                 </div>
             </div>
@@ -36,7 +65,7 @@ function Footer() {
                 <p className='m-0 p-0'>&copy; 2025 SPORTS NOTE</p>
             </div>
         </footer>
-    )
+    );
 }
 
-export default Footer
+export default Footer;
