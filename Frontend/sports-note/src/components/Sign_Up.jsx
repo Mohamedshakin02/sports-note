@@ -48,7 +48,11 @@ function Sign_Up() {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:5000/api/auth/signup", formData);
+      const res = await axios.post("http://localhost:5000/api/auth/signup", formData);
+
+      // Save login details
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("token", res.data.token);
 
       // Show toast message
       showToast("Signup successful!");
@@ -76,7 +80,7 @@ function Sign_Up() {
           </div>
         </div>
       )}
-      
+
       <section className="signup-section container-md px-3 px-md-2 mb-5">
         <div className="signup-container">
           <div className="signup-heading">

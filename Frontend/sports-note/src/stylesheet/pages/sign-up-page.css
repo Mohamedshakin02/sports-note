@@ -108,6 +108,9 @@ body {
   /* prevent clicks when hidden */
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+.dropdown-content .username {
+  width: 200px !important;
+}
 
 .dropdown-content.show {
   opacity: 1;
@@ -124,9 +127,9 @@ body {
   padding: 10px 15px;
 }
 
-.dropdown-content a:hover {
-  background-color: black;
-  color: white;
+.dropdown-content a:hover, .logout:hover {
+  background-color: black !important;
+  color: white !important;
 }
 
 @media only screen and (max-width: 992px) {
@@ -226,6 +229,7 @@ body {
   top: 100px;
   right: 0px;
   border-radius: 8px;
+  z-index: 100;
 }
 
 .custom-toast {

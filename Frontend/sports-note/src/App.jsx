@@ -10,22 +10,38 @@ import ScrollToTop from './components/ScrollToTop';
 import LoginPage from './pages/LoginPage';
 import Sign_UpPage from './pages/Sign_UpPage';
 import NotFound from './pages/NotFound';
+import GuestRoute from "./components/GuestRoute";
 
 function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop/>
-      
+      <ScrollToTop />
+
       <Routes>
-        <Route path="/" element={<HomePage/>} />  
-        <Route path="/moments" element={<MomentsPage/>} />
-        <Route path="/fixtures" element={<FixturesPage/>} />
-        <Route path="/quotes" element={<QuotesPage/>} />
-        <Route path="/techniques" element={<TechniquesPage/>} />
-        <Route path="/sessions" element={<SessionsPage/>} />
-        <Route path="/login" element={<LoginPage/>} />
-        <Route path="/sign-up" element={<Sign_UpPage/>} />
-        <Route path="*" element={<NotFound/>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/moments" element={<MomentsPage />} />
+        <Route path="/fixtures" element={<FixturesPage />} />
+        <Route path="/quotes" element={<QuotesPage />} />
+        <Route path="/techniques" element={<TechniquesPage />} />
+        <Route path="/sessions" element={<SessionsPage />} />
+        <Route path="*" element={<NotFound />} />
+
+        <Route
+          path="/login"
+          element={
+            <GuestRoute>
+              <LoginPage />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/sign-up"
+          element={
+            <GuestRoute>
+              <Sign_UpPage />
+            </GuestRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   )

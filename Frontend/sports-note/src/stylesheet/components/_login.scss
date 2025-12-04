@@ -51,6 +51,26 @@
 
         }
 
+        input.form-control:focus {
+          background-color: $yellow !important;
+          color: black !important;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+          background-color: $yellow !important;
+          -webkit-box-shadow: 0 0 0 1000px $yellow inset !important;
+          box-shadow: 0 0 0 1000px $yellow inset !important;
+          -webkit-text-fill-color: black !important;
+          color: black !important;
+        }
+
+        input:-internal-autofill-selected {
+          background-color: $yellow !important;
+          color: black !important;
+        }
+
         .form-control:focus{
           background-color: $yellow;
           box-shadow: 0 0 0 .25rem rgb(113, 0, 4, 0.25);
@@ -81,6 +101,59 @@
   }
 
 
+}
+
+.toast-container{
+  top: 100px !important;
+  right: 0px;
+  border-radius: 8px;
+  z-index: 100;
+}
+
+// Toast background 
+.custom-toast {
+  background-color: $white !important;  
+  color: $black !important;                
+  border: none;
+
+  .btn-close{
+    box-shadow: none;
+  }
+}
+
+// Progress bar 
+.toast-progress-wrapper {
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 0px 0px 8px 8px;
+}
+
+// Progress bar animation
+.toast-progress {
+  height: 100%;
+  width: 100%;
+  background-color: $red; 
+  animation: shrink 3s linear forwards;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4; 
+}
+
+// disappering toast 
+@keyframes shrink {
+  from { width: 100%; }
+  to { width: 0%; }
 }
 
 @media only screen and (max-width: 992px) {
