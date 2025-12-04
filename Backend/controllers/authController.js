@@ -6,21 +6,26 @@ export const signup = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        // 1. Check missing fields
+        
         if (!username || !email || !password) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        // 2. Check if email exists
+        const existingUsername = await User.findOne({ username });
+        if (existingUsername) {
+            return res.status(409).json({ message: "Username already exists" });
+        }
+
+        
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(409).json({ message: "Email already exists" });
         }
 
-        // 3. Hash password
+        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // 4. Save new user
+        //  Save new user
         const newUser = new User({
             username,
             email,
@@ -29,7 +34,7 @@ export const signup = async (req, res) => {
 
         await newUser.save();
 
-        // 5. Create JWT token
+        // Creates JWT token
         const token = jwt.sign(
             { id: newUser._id },
             process.env.JWT_SECRET,

@@ -102,6 +102,59 @@
 
 }
 
+.toast-container{
+  top: 100px;
+  right: 0px;
+  border-radius: 8px;
+}
+
+// Toast background 
+.custom-toast {
+  background-color: $white !important;  
+  color: $black !important;                
+  border: none;
+
+  .btn-close{
+    box-shadow: none;
+  }
+}
+
+// Progress bar 
+.toast-progress-wrapper {
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 0px 0px 8px 8px;
+}
+
+// Progress bar animation
+.toast-progress {
+  height: 100%;
+  width: 100%;
+  background-color: $red; 
+  animation: shrink 3s linear forwards;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4; 
+}
+
+// disappering toast 
+@keyframes shrink {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+
 @media only screen and (max-width: 992px) {
   .signup-section {
     .signup-container {
