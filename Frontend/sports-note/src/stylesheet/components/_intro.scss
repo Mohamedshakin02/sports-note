@@ -365,11 +365,11 @@
 
 
           h1 {
-            font-size: 1.5rem;
+            font-size: 2rem;
           }
 
           p {
-            font-size: 1rem;
+            font-size: 1.2rem;
           }
         }
 
@@ -385,6 +385,36 @@
     .slider-control {
       .right-side {
         right: -50px;
+      }
+    }
+
+    .scroll-down {
+      bottom: 30px;
+      left: 48%;
+
+      .arrow {
+        font-size: 0.5rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) and (orientation: landscape){
+  .intro-section {
+    .intro-container {
+      .content-container {
+        .slogan-container, .desc-container {
+
+
+          h1 {
+            font-size: 1.5rem;
+          }
+
+          p {
+            font-size: 1rem;
+          }
+        }
+
       }
     }
   }
