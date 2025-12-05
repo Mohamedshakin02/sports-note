@@ -11,7 +11,7 @@ import { AuthContext } from "./AuthContext";
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout, logoutLoading } = useContext(AuthContext);
 
 
     const capitalize = (name) => {
@@ -65,6 +65,10 @@ function Header() {
 
     return (
         <header className="navbar navbar-expand-lg container-fluid py-4">
+
+            {logoutLoading && (<div className="loading-overlay"> <div className="spinner-border text-light" role="status"> <span className="visually-hidden">Loading...</span> </div> </div>
+      )}
+      
             <nav className="container-md px-3 px-md-2 navbar-nav w-100 d-flex flex-column flex-md-row justify-content-between text-center">
 
                 {/* Mobile Header */}
@@ -132,6 +136,8 @@ function Header() {
                 </div>
             </nav>
         </header>
+
+        
     );
 }
 

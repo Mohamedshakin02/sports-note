@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "./AuthContext";
 
 function Login() {
   const navigate = useNavigate();
@@ -9,12 +10,14 @@ function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [toast, setToast] = useState({ message: "" });
   const [loading, setLoading] = useState(false);
+  const { login } = useContext(AuthContext); 
 
   // Show toast
   const showToast = (message) => {
     setToast({ message });
     const toastElement = toastRef.current;
     if (!toastElement) return;
+
 
     const progress = toastElement.querySelector(".toast-progress");
     progress.style.animation = "none";
@@ -23,6 +26,8 @@ function Login() {
 
     const bsToast = new window.bootstrap.Toast(toastElement, { delay: 3000 });
     bsToast.show();
+
+
   };
 
   // Handle input change
@@ -35,29 +40,68 @@ function Login() {
     e.preventDefault();
     setLoading(true);
 
+
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+      const res = await axios.post("http://localhost:5000/api/auth/login", formData, { withCredentials: true });
 
       showToast("Login successful!");
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      setTimeout(() => navigate("/"), 1000);
-
+      login(res.data.user); // store in context
+      setTimeout(() => navigate("/", { replace: true }), 10);
     } catch (err) {
       showToast(err.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
+
+
   };
+
+  // Google login
+  const handleGoogleLogin = async (response) => {
+    if (!response.credential) return showToast("Google login failed");
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/google-login",
+        { token: response.credential },
+        { withCredentials: true }
+      );
+      login(res.data.user); // store in context
+      showToast("Logged in successfully with Google!");
+      setTimeout(() => navigate("/", { replace: true }), 10);
+    } catch (err) {
+      showToast(err.response?.data?.message || "Google login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Initialize Google button
+  useEffect(() => {
+    /* global google */
+    const signInContainer = document.getElementById("g_id_signin");
+    if (!window.google || !signInContainer || signInContainer.childNodes.length > 0) return;
+
+
+    google.accounts.id.initialize({
+      client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com", 
+      callback: handleGoogleLogin
+    });
+
+    google.accounts.id.renderButton(signInContainer, {
+      theme: "outline",
+      size: "large",
+      width: "100%"
+    });
+
+    google.accounts.id.prompt();
+
+
+  }, []);
 
   return (
     <>
-      {loading && (
-        <div className="loading-overlay">
-          <div className="spinner-border text-light" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
+      {loading && (<div className="loading-overlay"> <div className="spinner-border text-light" role="status"> <span className="visually-hidden">Loading...</span> </div> </div>
       )}
 
       <section className="login-section container-md px-3 px-md-2 mb-5">
@@ -102,6 +146,9 @@ function Login() {
                   Don't have an account? <Link to="/sign-up" className="link rounded-pill">Sign Up</Link>
                 </p>
               </div>
+
+              <div className="text-center text-dark mt-2">OR</div>
+              <div id="g_id_signin" className="mt-2"></div>
             </form>
           </div>
         </div>
@@ -120,6 +167,8 @@ function Login() {
         </div>
       </div>
     </>
+
+
   );
 }
 

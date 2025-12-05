@@ -30,8 +30,6 @@ function Sign_Up() {
 
   const [formData, setFormData] = useState({ username: "", email: "", password: "" });
 
-
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -49,7 +47,7 @@ function Sign_Up() {
       login(res.data.user);
       showToast("Signup successful!");
       setFormData({ username: "", email: "", password: "" });
-      setTimeout(() => navigate("/"), 1000);
+      setTimeout(() => navigate("/", { replace: true }), 10);
     } catch (err) {
       const message = err.response?.data?.message || err.message || "Something went wrong";
       showToast(message);
@@ -70,7 +68,7 @@ function Sign_Up() {
 
       login(res.data.user);
       showToast("Signed up successfully with Google!");
-      navigate("/");
+      setTimeout(() => navigate("/", { replace: true }), 10);
     } catch (err) {
       showToast(err.response?.data?.message || "Google login failed");
     } finally {
@@ -95,7 +93,7 @@ function Sign_Up() {
       width: "100%"
     });
 
-    google.accounts.id.prompt(); 
+    google.accounts.id.prompt();
 
 
   }, []);

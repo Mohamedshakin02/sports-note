@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -24,12 +25,17 @@ export function AuthProvider({ children }) {
   const login = (userData) => setUser(userData);
 
   const logout = async () => {
+    setLogoutLoading(true);
+
     await axios.post("http://localhost:5000/api/auth/logout", {}, { withCredentials: true });
-    setUser(null);
+    setTimeout(() => {
+      setUser(null);
+      setLogoutLoading(false);
+    }, 2000);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading, logoutLoading }}>
       {children}
     </AuthContext.Provider>
   );

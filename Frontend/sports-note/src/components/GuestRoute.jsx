@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 const GuestRoute = ({ children }) => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const { user, loading } = useContext(AuthContext);
+
+  if (loading) return null; 
+
   return user ? <Navigate to="/not-found" replace /> : children;
 };
 

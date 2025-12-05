@@ -132,6 +132,19 @@ body {
   color: white !important;
 }
 
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+}
+
 @media only screen and (max-width: 992px) {
   .Logo a {
     font-size: 1.2rem;
@@ -430,17 +443,32 @@ body {
   }
   .intro-section .intro-container .content-container .desc-container h1,
   .intro-section .intro-container .content-container .slogan-container h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   .intro-section .intro-container .content-container .desc-container p,
   .intro-section .intro-container .content-container .slogan-container p {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   .intro-section .intro-container .slider-control .right-side {
     right: -50px;
   }
   .intro-section .slider-control .right-side {
     right: -50px;
+  }
+  .intro-section .scroll-down {
+    bottom: 30px;
+    left: 48%;
+  }
+  .intro-section .scroll-down .arrow {
+    font-size: 0.5rem;
+  }
+}
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  .intro-section .intro-container .content-container .slogan-container h1, .intro-section .intro-container .content-container .desc-container h1 {
+    font-size: 1.5rem;
+  }
+  .intro-section .intro-container .content-container .slogan-container p, .intro-section .intro-container .content-container .desc-container p {
+    font-size: 1rem;
   }
 }
 @media (max-width: 576px) {
