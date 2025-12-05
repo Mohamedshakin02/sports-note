@@ -30,7 +30,7 @@ function Sign_Up() {
 
   const [formData, setFormData] = useState({ username: "", email: "", password: "" });
 
-  
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -40,28 +40,34 @@ function Sign_Up() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signup", formData);
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/signup",
+        formData,
+        { withCredentials: true }
+      );
 
-      login(res.data.user); 
+      login(res.data.user);
       localStorage.setItem("token", res.data.token);
       showToast("Signup successful!");
       setFormData({ username: "", email: "", password: "" });
       setTimeout(() => navigate("/"), 1000);
     } catch (err) {
-      showToast(err.response?.data?.message || "Something went wrong");
+      const message = err.response?.data?.message || err.message || "Something went wrong";
+      showToast(message);
     } finally {
       setLoading(false);
     }
   };
 
   const handleGoogleLogin = async (response) => {
-    
+
     if (!response.credential) return showToast("Google login failed");
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/google-login", {
-        token: response.credential
-      });
+      const res = await axios.post("http://localhost:5000/api/auth/google-login",
+        { token: response.credential },
+        { withCredentials: true }
+      );
 
       login(res.data.user);
       localStorage.setItem("token", res.data.token);
@@ -81,7 +87,7 @@ function Sign_Up() {
 
 
     google.accounts.id.initialize({
-      client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com", // replace with your actual client ID
+      client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
       callback: handleGoogleLogin
     });
 

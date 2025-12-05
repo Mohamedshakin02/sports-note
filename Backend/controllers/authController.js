@@ -11,24 +11,32 @@ export const signup = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        
+
         if (!username || !email || !password) {
             return res.status(400).json({ message: "All fields are required" });
         }
-
+        if (username.length < 5) {
+            return res.status(400).json({ message: "Username must have at least 5 characters." });
+        }
+        if (password.length < 6) {
+            return res.status(400).json({ message: "Password must have at least 6 characters." });
+        }
         const existingUsername = await User.findOne({ username });
         if (existingUsername) {
             return res.status(409).json({ message: "Username already exists" });
         }
 
-        
+
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(409).json({ message: "Email already exists" });
         }
 
         // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const salt = await bcrypt.genSalt(10);
+
+        const hashedPassword = await bcrypt.hash(password, salt);
+
 
         //  Save new user
         const newUser = new User({
@@ -80,7 +88,7 @@ export const login = async (req, res) => {
         // 3. Compare password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(401).json({ message: "Invalid credentials" });
+            return res.status(401).json({ message: "Invalid Password" });
         }
 
         // 4. Create JWT token
