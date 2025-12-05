@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation as SwiperNavigation } from "swiper/modules";
 import Header from "./header";
+import { fetchVideos } from "../api/youtube";
 
 import football from "../assets/bg-image/football.jpg";
 import cricket from "../assets/bg-image/cricket.jpg";
@@ -79,14 +80,39 @@ function Intro() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType] = useState("");
 
+  const [videos, setVideos] = useState([]);
+  const [videosLoading, setVideosLoading] = useState(false);
+
   const openFixtureModal = (fixture) => {
     setSelectedItem(fixture);
     setModalType("fixture");
   };
 
-  const openQuoteModal = (quote) => {
+  const openQuoteModal = async (quote) => {
     setSelectedItem(quote);
     setModalType("quote");
+
+    setVideos([]);
+    setVideosLoading(true);
+
+    const searchText = `Best of ${quote.author} Moments in Sports`;
+
+    try {
+      const results = await fetchVideos(searchText);
+
+      const videosFiltered = results.filter(
+        (v) =>
+          v.id?.videoId &&
+          v.id.videoId.length === 11 &&
+          v.snippet?.thumbnails?.default
+      );
+
+      setVideos(videosFiltered.slice(0, 3));
+    } catch (err) {
+      console.error("Video fetch error:", err);
+    }
+
+    setVideosLoading(false);
   };
 
   return (
@@ -142,13 +168,13 @@ function Intro() {
           {/* Description */}
           <div className="slogan-container fst-italic text-center text-md-start">
             <h1 className="m-0 p-0 display-4 text-center">Every Moment Counts</h1>
-            
+
           </div>
 
           <div className="desc-container">
             <p className="m-0 p-0 h4 text-center my-4">
               <i>With Sports Note, capture your unforgettable plays, track your progress,
-              and relive the moments that make every game memorable.</i>
+                and relive the moments that make every game memorable.</i>
             </p>
           </div>
 
@@ -165,6 +191,7 @@ function Intro() {
                 )}
               </div>
             ))}
+
           </div>
         </div>
       </div>
@@ -204,11 +231,11 @@ function Intro() {
         aria-labelledby="infoModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content p-3">
+        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div className="modal-content">
 
-            <div className="modal-body">
-              
+            <div className="modal-body p-4">
+
               <h1 className="m-0 fs-3 mb-4">{modalType === "fixture" ? "Upcoming Fixture" : "Quote"}</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
 
@@ -243,15 +270,43 @@ function Intro() {
 
                   <div className="bottom container d-flex">
                     <div className="quote-container">
-                    <i className="bi bi-quote display-3"></i>
+                      <i className="bi bi-quote display-3"></i>
+                    </div>
+                    <div className="text-container h-100 p-2 d-flex flex-column justify-content-between">
+                      <p className="quote m-0 display-6 fs-4 pt-0 pt-lg-1">"{selectedItem.quote}"</p>
+                      <p className="author m-0 p-0 mt-2 fs-5 text-end"><i>- {selectedItem.author}</i></p>
+                    </div>
                   </div>
-                  <div className="text-container h-100 p-2 d-flex flex-column justify-content-between">
-                    <p className="quote m-0 display-6 fs-4 pt-0 pt-lg-1">"{selectedItem.quote}"</p>
-                    <p className="author m-0 p-0 mt-2 fs-5 text-end"><i>- {selectedItem.author}</i></p>
-                  </div>
-                  </div>
-                  
+
+                  {/* Render videos only if videos exist */}
+                  {videos.length > 0 && (
+                    <>
+                      <hr className="my-3" />
+                      <h2 className="fs-4 mb-3">Best of {selectedItem.author}</h2>
+
+                      {videosLoading && <p className="text-center">Loading videos...</p>}
+
+                      <div className="video-container d-flex flex-column gap-3">
+                        {videos.map((v) => (
+                          <div key={v.id.videoId} className="video-box">
+                            <iframe
+                              width="100%"
+                              height="200"
+                              src={`https://www.youtube.com/embed/${v.id.videoId}`}
+                              title={v.snippet.title}
+                              allowFullScreen
+                            ></iframe>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
+
                 </div>
+
+
+
+
               )}
 
             </div>

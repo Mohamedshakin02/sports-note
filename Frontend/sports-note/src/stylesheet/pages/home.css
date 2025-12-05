@@ -339,6 +339,12 @@ body {
     transform: translateY(-5px);
   }
 }
+.intro-section .modal-dialog {
+  display: flex;
+}
+.intro-section .modal-dialog .modal-body {
+  max-height: 500px;
+}
 .intro-section .modal-dialog .modal-content {
   border-radius: 8px;
   background-color: #FCF0D6;
@@ -425,6 +431,9 @@ body {
 .intro-section .quote-box .text-container .quote {
   font-weight: 500;
 }
+.intro-section .quote-box h2 {
+  color: #710004;
+}
 
 @media only screen and (max-width: 992px) and (orientation: landscape) {
   .intro-section .intro-container .content-container .dates-container .dates-box {
@@ -464,10 +473,12 @@ body {
   }
 }
 @media only screen and (max-width: 768px) and (orientation: landscape) {
-  .intro-section .intro-container .content-container .slogan-container h1, .intro-section .intro-container .content-container .desc-container h1 {
+  .intro-section .intro-container .content-container .slogan-container h1,
+  .intro-section .intro-container .content-container .desc-container h1 {
     font-size: 1.5rem;
   }
-  .intro-section .intro-container .content-container .slogan-container p, .intro-section .intro-container .content-container .desc-container p {
+  .intro-section .intro-container .content-container .slogan-container p,
+  .intro-section .intro-container .content-container .desc-container p {
     font-size: 1rem;
   }
 }

@@ -113,6 +113,7 @@
             object-fit: cover;
             height: 100%;
           }
+
         }
       }
     }
@@ -221,7 +222,15 @@
     }
   }
 
+
   .modal-dialog {
+    display: flex;
+    
+
+    .modal-body{
+      max-height: 500px;
+    }
+
     .modal-content {
       border-radius: 8px;
       background-color: $yellow;
@@ -240,6 +249,8 @@
         top: 18px;
         box-shadow: none;
       }
+
+
     }
   }
 
@@ -328,6 +339,11 @@
       }
     }
 
+    h2 {
+        color: $red;
+      }
+
+
   }
 
 
@@ -357,6 +373,8 @@
             p {
               font-size: 1.3rem;
             }
+
+
           }
         }
 
@@ -399,11 +417,13 @@
   }
 }
 
-@media only screen and (max-width: 768px) and (orientation: landscape){
+@media only screen and (max-width: 768px) and (orientation: landscape) {
   .intro-section {
     .intro-container {
       .content-container {
-        .slogan-container, .desc-container {
+
+        .slogan-container,
+        .desc-container {
 
 
           h1 {
@@ -450,10 +470,10 @@
           }
         }
 
-        .slogan-container{
+        .slogan-container {
           align-self: center;
 
-          h1{
+          h1 {
             font-size: 2.5rem !important;
           }
 
