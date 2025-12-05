@@ -47,7 +47,6 @@ function Sign_Up() {
       );
 
       login(res.data.user);
-      localStorage.setItem("token", res.data.token);
       showToast("Signup successful!");
       setFormData({ username: "", email: "", password: "" });
       setTimeout(() => navigate("/"), 1000);
@@ -70,7 +69,6 @@ function Sign_Up() {
       );
 
       login(res.data.user);
-      localStorage.setItem("token", res.data.token);
       showToast("Signed up successfully with Google!");
       navigate("/");
     } catch (err) {
@@ -97,7 +95,7 @@ function Sign_Up() {
       width: "100%"
     });
 
-    google.accounts.id.prompt(); // optional: One Tap
+    google.accounts.id.prompt(); 
 
 
   }, []);

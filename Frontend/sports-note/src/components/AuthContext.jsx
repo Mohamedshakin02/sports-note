@@ -1,32 +1,36 @@
 import { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        try {
-            const stored = localStorage.getItem("user");
-            if (stored) setUser(JSON.parse(stored));
-        } catch (err) {
-            console.error("Failed to parse stored user:", err);
-        }
-    }, []);
-
-    const login = (userData) => {
-        setUser(userData);
-        localStorage.setItem("user", JSON.stringify(userData));
-    };
-
-    const logout = () => {
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/auth/session", { withCredentials: true });
+        setUser(res.data.user);
+      } catch {
         setUser(null);
-        localStorage.removeItem("user");
+      } finally {
+        setLoading(false);
+      }
     };
+    fetchSession();
+  }, []);
 
-    return (
-        <AuthContext.Provider value={{ user, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  const login = (userData) => setUser(userData);
+
+  const logout = async () => {
+    await axios.post("http://localhost:5000/api/auth/logout", {}, { withCredentials: true });
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
