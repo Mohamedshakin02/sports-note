@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import moments from "../assets/logos/moments-white.png";
@@ -6,26 +6,13 @@ import fixtures from "../assets/logos/fixtures-white.png";
 import quotes from "../assets/logos/quotes-white.png";
 import techniques from "../assets/logos/techniques-white.png";
 import sessions from "../assets/logos/sessions-white.png";
+import { AuthContext } from "./AuthContext";
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [user, setUser] = useState(null);
-    const navigate = useNavigate();
+    const { user, logout } = useContext(AuthContext);
 
-    // Load user from localStorage
-    useEffect(() => {
-        const storedUser = JSON.parse(localStorage.getItem("user"));
-        setUser(storedUser);
-    }, []);
-
-    // Logout
-    const handleLogout = () => {
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        setUser(null);
-        navigate("/");
-    };
 
     const capitalize = (name) => {
         if (!name) return "";
@@ -57,7 +44,7 @@ function Header() {
                     </div>
 
                     <button
-                        onClick={handleLogout}
+                        onClick={logout}
                         className="logout text-dark text-center w-100 fw-medium px-3 py-2 border-0 bg-transparent"
                     >
                         Logout

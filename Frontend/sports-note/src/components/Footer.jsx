@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
+
 
 function Footer() {
-    const [user, setUser] = useState(null);
+    const { user, logout } = useContext(AuthContext);
 
-    useEffect(() => {
-        const storedUser = JSON.parse(localStorage.getItem("user"));
-        setUser(storedUser);
-    }, []);
-
-    const handleLogout = () => {
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        setUser(null);
-        window.location.reload(); // reload to update footer
+    const capitalize = (name) => {
+        if (!name) return "";
+        return name.charAt(0).toUpperCase() + name.slice(1);
     };
+
 
     return (
         <footer className='py-5 pb-3 mt-1'>
@@ -34,11 +30,11 @@ function Footer() {
                 <div className='auth-links ps-lg-5'>
                     {user ? (
                         <div className="d-flex flex-column m-0 p-0">
-                            <h1 className='username h3 m-0 p-0 text-truncate overflow-hidden text-nowrap'>Hello, {user.username.charAt(0).toUpperCase() + user.username.slice(1)}</h1>
+                            <h1 className='username h3 m-0 p-0 text-truncate overflow-hidden text-nowrap'>Hello, {capitalize(user.username)}</h1>
                             <p className='h5 m-0 p-0 pt-3 text-wrap'>Welcome back! Dive into your sports notes and make the most of all our features.</p>
                             <button
                                 className="logout btn rounded-pill p-2 fs-5 mt-3 w-50"
-                                onClick={handleLogout}
+                                onClick={logout}
                             >
                                 Logout
                             </button>

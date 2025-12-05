@@ -1,6 +1,11 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import { OAuth2Client } from "google-auth-library";
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+dotenv.config();
 
 export const signup = async (req, res) => {
     try {
@@ -97,5 +102,49 @@ export const login = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
+    }
+};
+
+export const googleLogin = async (req, res) => {
+    try {
+        const { token } = req.body;
+
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID
+        });
+
+        const payload = ticket.getPayload();
+        const { email, name } = payload;
+
+        let user = await User.findOne({ email });
+
+        if (!user) {
+            user = await User.create({
+                username: name,
+                email,
+                password: null,
+                googleUser: true
+            });
+        }
+
+        const jwtToken = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        return res.status(200).json({
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            },
+            token: jwtToken
+        });
+
+    } catch (err) {
+        console.error(err);
+        return res.status(400).json({ message: "Google login failed" });
     }
 };
