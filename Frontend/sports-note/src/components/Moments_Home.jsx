@@ -49,7 +49,7 @@ function Moments_Home() {
       sport: "Cricket",
       title: "RCB Won This Year IPL",
       description: "I was extremely happy when RCB finally won this year IPL. It was their first win and I still can’t believe it happened. The joy and excitement of watching the team lift the trophy was unforgettable and truly special for all the fans.",
-      date: "2024-05-12"
+      date: "2025-06-03"
     },
     {
       image: "",
