@@ -40,3 +40,40 @@ export const addMoment = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// Update a moment (logged-in users only)
+export const updateMoment = async (req, res) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) return res.status(401).json({ message: "Unauthorized" });
+
+    const { title, sport, description, date, imageUrl } = req.body;
+    const updatedMoment = await Moment.findOneAndUpdate(
+      { _id: req.params.id, userId },
+      { title, sport, description, date, imageUrl },
+      { new: true }
+    );
+
+    if (!updatedMoment) return res.status(404).json({ message: "Moment not found" });
+
+    res.json(updatedMoment);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Delete a moment (logged-in users only)
+export const deleteMoment = async (req, res) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) return res.status(401).json({ message: "Unauthorized" });
+
+    const deleted = await Moment.findOneAndDelete({ _id: req.params.id, userId });
+    if (!deleted) return res.status(404).json({ message: "Moment not found" });
+
+    res.json({ message: "Moment deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
