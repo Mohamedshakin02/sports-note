@@ -193,7 +193,7 @@ function Moments() {
             }
 
         })() : editForm.imageUrl || "";
-        
+
         if (imageUrl === null) return;
 
         try {
@@ -202,7 +202,7 @@ function Moments() {
             const modalEl = document.getElementById("editMomentModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
             showToast("Moment updated successfully!");
-        } 
+        }
         catch { showToast("Failed to update moment."); }
 
         finally { setLoading(false); }
@@ -225,8 +225,8 @@ function Moments() {
             window.bootstrap.Modal.getInstance(modalEl).hide();
             showToast("Moment deleted successfully!");
 
-        } 
-        
+        }
+
         catch (err) {
             console.error("Delete error", err);
             const modalEl = document.getElementById("deleteMomentModal");
@@ -237,6 +237,12 @@ function Moments() {
         finally { setLoading(false); }
     };
 
+    const isLoggedIn = !!user;
+
+    const showLoginToast = () => {
+        showToast("Please login to continue");
+    };
+
     return (
         <>
             {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"><span className="visually-hidden">Loading...</span></div></div>)}
@@ -245,7 +251,13 @@ function Moments() {
                 <div className="heading-container mb-5">
                     <div className="text"><h1 className="m-0 p-0 mb-3">Moments</h1><p className="m-0 p-0 fs-4">Keep and enjoy your best sports moments. Remember the exciting games and achievements that made you proud.</p></div>
                     <div className="button">
-                        <button type="button" className="btn p-2" data-bs-toggle="modal" data-bs-target="#addMomentModal"><i className="bi bi-plus-lg me-2"></i>Add Moment</button>
+                        <button type="button" className="btn p-2" onClick={() => {
+                            if (!isLoggedIn) return showLoginToast();
+                            const modalEl = document.getElementById("addMomentModal");
+                            new window.bootstrap.Modal(modalEl).show();
+                        }}>
+                            <i className="bi bi-plus-lg me-2"></i>Add Moment
+                        </button>
                     </div>
                 </div>
 
@@ -258,8 +270,15 @@ function Moments() {
                                     <i className="bi bi-three-dots-vertical menu-icon"></i>
                                     {openMenuIndex === index && (
                                         <div className="menu-dropdown">
-                                            <button type="button" onClick={() => handleEdit(moment)}>Edit</button>
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#deleteMomentModal" onClick={() => setDeleteId(moment._id || moment.id)}>Delete</button>
+                                            <button type="button" onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(moment) }}>Edit</button>
+                                            <button type="button" onClick={() => {
+                                                if (!isLoggedIn) return showLoginToast();
+                                                setDeleteId(moment._id || moment.id);
+                                                const modalEl = document.getElementById("deleteMomentModal");
+                                                new window.bootstrap.Modal(modalEl).show();
+                                            }}>
+                                                Delete
+                                            </button>
                                         </div>
                                     )}
                                 </div>
@@ -267,7 +286,7 @@ function Moments() {
                             </div>
                             <div className="moment-content pb-3 px-3 pt-0">
                                 <div className="top-container">
-                                    <h2 className="m-0 p-0 mb-3 fs-3">{moment.title}</h2>
+                                    <h2 className="m-0 p-0 mb-3 fs-3 text-capitalize">{moment.title}</h2>
                                     <p className="m-0 p-0 mb-4">{moment.description}</p>
                                 </div>
                                 <div className="bottom-container">

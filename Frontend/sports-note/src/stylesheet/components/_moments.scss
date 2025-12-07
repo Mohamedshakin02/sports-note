@@ -2,6 +2,8 @@
 @use "../abstract/variables" as *;
 
 .moments-section {
+    min-height: 500px;
+
     .heading-container {
         color: $yellow;
         display: flex;
