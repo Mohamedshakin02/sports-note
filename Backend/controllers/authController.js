@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { OAuth2Client } from "google-auth-library";
 import Moment from "../models/moment.js";
 import Fixture from "../models/fixture.js";
+import Quote from "../models/quote.js";
 
 dotenv.config();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -38,6 +39,12 @@ const defaultFixtures = [
     { team1: "BULLS", team2: "CELTICS", sport: "Basketball", date: "2024-11-25", time: "" }
 ];
 
+const defaultQuotes = [
+    { quote: "Whatever you want to do, do with full passion and work really hard towards it. Don't look anywhere else.", author: "Virat Kohli", imageUrl: "https://res.cloudinary.com/dy3pvt29a/image/upload/v1765129338/virat.jpg" },
+    { quote: "I hated every minute of training, but I said, 'Don’t quit. Suffer now and live the rest of your life as a champion.'", author: "Muhammad Ali", imageUrl: "https://res.cloudinary.com/dy3pvt29a/image/upload/v1765129578/muhammad.jpg" },
+    { quote: "Success isn’t owned. It’s leased. And rent is due every day.", author: "J.J. Watt", imageUrl: "" },
+];
+
 export const signup = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -63,6 +70,10 @@ export const signup = async (req, res) => {
         // Add default fixtures
         const userFixtures = defaultFixtures.map(f => ({ ...f, userId: newUser._id, date: new Date(f.date) }));
         await Fixture.insertMany(userFixtures);
+
+        // Add default quotes
+        const userQuotes = defaultQuotes.map(q => ({ ...q, userId: newUser._id }));
+        await Quote.insertMany(userQuotes);
 
 
 
@@ -117,6 +128,11 @@ export const googleLogin = async (req, res) => {
             // Add default fixtures
             const userFixtures = defaultFixtures.map(f => ({ ...f, userId: user._id, date: new Date(f.date) }));
             await Fixture.insertMany(userFixtures);
+
+            // Add default quotes
+            const userQuotes = defaultQuotes.map(q => ({ ...q, userId: user._id }));
+            await Quote.insertMany(userQuotes);
+
 
         }
 

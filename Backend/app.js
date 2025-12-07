@@ -6,6 +6,7 @@ import cors from "cors";
 import authRoutes from "./routes/auth.js";
 import momentsRoutes from "./routes/moments.js";
 import fixturesRoutes from "./routes/fixtures.js";
+import quotesRoutes from "./routes/quotes.js";
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/moments", momentsRoutes);
 app.use("/api/fixtures", fixturesRoutes);
+app.use("/api/quotes", quotesRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI, { dbName: "SportsNoteDB" })

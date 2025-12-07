@@ -31,6 +31,7 @@ function QuotesPage() {
 
           .auth-dropdown i, .bi-grid-fill, .menu-links li hr{
            filter: invert(100%);
+           
           }
         `}
       </style>
