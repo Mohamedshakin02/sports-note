@@ -208,7 +208,7 @@ function Techniques_Home() {
 
                                     <div className="mb-1 col-12">
                                         <label htmlFor="technique-type" className="form-label">Sport:</label>
-                                        <select className="form-control form-select py-1" aria-label="Sport select" id="technique-type" defaultValue="" required>
+                                        <select className="form-control form-select py-1" aria-label="Sport select" id="technique-type" required>
                                             <option value="" disabled>Select a sport</option>
                                             <option value="Football">Football</option>
                                             <option value="Basketball">Basketball</option>

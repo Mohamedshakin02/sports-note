@@ -331,7 +331,7 @@ function Moments() {
                                         <div className="mb-1 col-12">
                                             <label htmlFor="moment-type" className="form-label">Sport:</label>
                                             <select id="moment-type" className="form-select" value={form.sport} onChange={handleChange} required>
-                                                <option value="">Select a sport</option>
+                                                <option value="" disabled>Select a sport</option>
                                                 <option value="Football">Football</option>
                                                 <option value="Basketball">Basketball</option>
                                                 <option value="Cricket">Cricket</option>
@@ -386,7 +386,7 @@ function Moments() {
                                         <div className="mb-1 col-12">
                                             <label htmlFor="moment-type" className="form-label">Sport:</label>
                                             <select id="moment-type" className="form-select" value={editForm.sport} onChange={(e) => handleChange(e, true)} required>
-                                                <option value="">Select a sport</option>
+                                                <option value="" disabled>Select a sport</option>
                                                 <option value="Football">Football</option>
                                                 <option value="Basketball">Basketball</option>
                                                 <option value="Cricket">Cricket</option>
