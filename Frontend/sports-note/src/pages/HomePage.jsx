@@ -16,8 +16,13 @@ function HomePage() {
     <>
       <style>
         {`
-          body .fixtures-section, .quotes-section, .techniques-section, .sessions-section {
+          body .fixtures-section, .techniques-section {
+            min-height: 695px;
+            }
+
+          body .quotes-section, .sessions-section{
             min-height: 700px;
+          }
           `}
       </style>
 

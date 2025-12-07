@@ -1367,6 +1367,9 @@ body {
   border: none !important;
 }
 
+.sessions-section {
+  border-top: 5px solid #FCF0D6;
+}
 .sessions-section .heading-container {
   color: #FCF0D6;
 }

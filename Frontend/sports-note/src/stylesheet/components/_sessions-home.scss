@@ -2,7 +2,8 @@
 @use "../abstract/variables" as *;
 
 .sessions-section {
-
+    border-top: 5px solid $yellow;
+    
     .heading-container {
         color: $yellow;
 

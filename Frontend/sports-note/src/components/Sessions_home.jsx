@@ -91,7 +91,7 @@ function Sessions_home() {
   };
 
   return (
-    <section className="sessions-section py-5 mt-2">
+    <section className="sessions-section py-5">
       <div className="sessions-container container-md px-3 px-md-2">
         <div className="heading-container mb-5">
           <div className="text">

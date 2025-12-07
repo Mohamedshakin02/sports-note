@@ -25,6 +25,10 @@ function SessionsPage() {
             color: #710004 !important;
           }
 
+          body .sessions-section{
+            border-top: none;
+          }
+
           .auth-dropdown i, .bi-grid-fill, .menu-links li hr{
            filter: invert(100%);
           }

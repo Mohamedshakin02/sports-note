@@ -25,6 +25,10 @@ function QuotesPage() {
             color: #710004 !important;
           }
 
+          body .quotes-section{
+            border-top: none;
+          }
+
           .auth-dropdown i, .bi-grid-fill, .menu-links li hr{
            filter: invert(100%);
           }
