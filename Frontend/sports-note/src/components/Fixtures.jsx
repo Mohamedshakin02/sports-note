@@ -198,45 +198,48 @@ function Fixtures() {
         </div>
 
         <div className="grid-container">
-          {fixturesList.map((fixture, index) => (
-            <div className="fixture-box pt-0 text-center" key={index}>
-              <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
-                <h2 className="m-0 fs-3">{formatDate(fixture.date)}</h2>
+          {fixturesList
+            .slice() 
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .map((fixture, index) => (
+              <div className="fixture-box pt-0 text-center" key={index}>
+                <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
+                  <h2 className="m-0 fs-3">{formatDate(fixture.date)}</h2>
 
-                <div
-                  className="menu-wrapper"
-                  ref={(el) => (menuRefs.current[index] = el)}
-                  onClick={() => toggleMenu(index)}
-                >
-                  <i className="bi bi-three-dots-vertical menu-icon"></i>
+                  <div
+                    className="menu-wrapper"
+                    ref={(el) => (menuRefs.current[index] = el)}
+                    onClick={() => toggleMenu(index)}
+                  >
+                    <i className="bi bi-three-dots-vertical menu-icon"></i>
 
-                  {openMenuIndex === index && (
-                    <div className="menu-dropdown">
-                      <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(fixture) }}>Edit</button>
-                      <button onClick={() => {
-                        if (!isLoggedIn) return showLoginToast();
-                        setDeleteId(fixture._id);
-                        new window.bootstrap.Modal(document.getElementById("deleteFixtureModal")).show();
-                      }}>
-                        Delete
-                      </button>
-                    </div>
-                  )}
+                    {openMenuIndex === index && (
+                      <div className="menu-dropdown">
+                        <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(fixture) }}>Edit</button>
+                        <button onClick={() => {
+                          if (!isLoggedIn) return showLoginToast();
+                          setDeleteId(fixture._id);
+                          new window.bootstrap.Modal(document.getElementById("deleteFixtureModal")).show();
+                        }}>
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="bottom-container p-4">
+                  <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{fixture.sport}</p>
+                  <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder text-uppercase">{fixture.team1} VS {fixture.team2}</p>
+                  <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span>
+                    {fixture.time || "N/A"}
+                  </p>
                 </div>
               </div>
-
-              <div className="bottom-container p-4">
-                <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{fixture.sport}</p>
-                <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder text-uppercase">{fixture.team1} VS {fixture.team2}</p>
-                <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span>
-                  {fixture.time || "N/A"}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
 
-        {/* Modal */}
+        {/* Add Fixture Modal */}
         <div className="modal fade"
           id="addFixtureModal"
           data-bs-backdrop="static"
@@ -271,7 +274,7 @@ function Fixtures() {
 
                     <div className="mb-1 col-12">
                       <label htmlFor="fixture-type" className="form-label">Sport:</label>
-                      <select className="form-control form-select py-1" aria-label="Sport select" id="fixture-type" defaultValue="" value={form.sport} onChange={(e) => handleChange(e)} required>
+                      <select className="form-control form-select py-1" aria-label="Sport select" id="fixture-type" value={form.sport} onChange={(e) => handleChange(e)} required>
                         <option value="" disabled>Select a sport</option>
                         <option value="Football">Football</option>
                         <option value="Basketball">Basketball</option>

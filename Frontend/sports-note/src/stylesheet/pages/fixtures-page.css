@@ -158,6 +158,9 @@ body {
     font-size: 18px;
   }
 }
+.fixtures-section {
+  min-height: 500px;
+}
 .fixtures-section .heading-container {
   color: #710004;
   display: flex;

@@ -2,6 +2,8 @@
 @use "../abstract/variables" as *;
 
 .fixtures-section {
+    min-height: 500px;
+    
     .heading-container {
         color: $red;
         display: flex;
