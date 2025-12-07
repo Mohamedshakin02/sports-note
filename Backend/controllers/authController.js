@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { OAuth2Client } from "google-auth-library";
 import Moment from "../models/moment.js";
+import Fixture from "../models/fixture.js";
 
 dotenv.config();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -26,8 +27,15 @@ const defaultMoments = [
     { imageUrl: "https://res.cloudinary.com/dy3pvt29a/image/upload/v1765029367/india%20vs%20new%20zealand.jpg", sport: "Cricket", title: "India vs New Zealand Heart Breaking Semi Final 2019", description: "Watching India play against New Zealand in the 2019 semi final was heartbreaking. I felt so proud of the team for giving their best, yet so sad when the match ended. It was a rollercoaster of emotions that I will never forget.", date: "2019-07-10" },
     { imageUrl: "https://res.cloudinary.com/dy3pvt29a/image/upload/v1765029450/lakers%20win.jpg", sport: "Basketball", title: "Lakers Win NBA Finals 2020", description: "I was thrilled when the Lakers clinched the 2020 NBA Finals. Witnessing the team's hard work pay off and seeing the championship celebration was unforgettable. The energy and excitement of the game made it a truly special moment.", date: "2020-10-11" },
     { imageUrl: "", sport: "Cricket", title: "England Won 2019 Cricket World Cup", description: "I could not stop cheering when England won the 2019 Cricket World Cup. The final was so intense and nerve-wracking, and I still remember the excitement when the match ended in a super over. It was an amazing experience to witness history.", date: "2019-07-14" },
+];
 
-
+// Default fixtures for new users
+const defaultFixtures = [
+    { team1: "INDIA", team2: "PAK", sport: "Cricket", date: "2024-11-19", time: "09:30" },
+    { team1: "AUSTRALIA", team2: "ENG", sport: "Cricket", date: "2024-11-20", time: "14:00" },
+    { team1: "BARCELONA", team2: "REAL MADRID", sport: "Football", date: "2024-11-22", time: "20:45" },
+    { team1: "MAN UNITED", team2: "ARSENAL", sport: "Football", date: "2024-11-23", time: "" },
+    { team1: "BULLS", team2: "CELTICS", sport: "Basketball", date: "2024-11-25", time: "" }
 ];
 
 export const signup = async (req, res) => {
@@ -48,8 +56,13 @@ export const signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await User.create({ username, email, password: hashedPassword });
 
+        // Add default moments
         const userMoments = defaultMoments.map(m => ({ ...m, userId: newUser._id }));
         await Moment.insertMany(userMoments);
+
+        // Add default fixtures
+        const userFixtures = defaultFixtures.map(f => ({ ...f, userId: newUser._id, date: new Date(f.date) }));
+        await Fixture.insertMany(userFixtures);
 
 
 
@@ -100,6 +113,11 @@ export const googleLogin = async (req, res) => {
             // Add default moments for new Google user
             const userMoments = defaultMoments.map(m => ({ ...m, userId: user._id }));
             await Moment.insertMany(userMoments);
+
+            // Add default fixtures
+            const userFixtures = defaultFixtures.map(f => ({ ...f, userId: user._id, date: new Date(f.date) }));
+            await Fixture.insertMany(userFixtures);
+
         }
 
         createTokenAndSetCookie(res, user);

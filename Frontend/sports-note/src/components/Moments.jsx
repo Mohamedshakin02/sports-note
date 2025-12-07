@@ -119,20 +119,6 @@ function Moments() {
         fetchMoments();
     }, [user]);
 
-    const formatDate = (dateString) => {
-
-        if (!dateString) return "N/A";
-        const options = { year: "numeric", month: "long", day: "numeric" };
-
-        return new Date(dateString).toLocaleDateString("en-US", options);
-    };
-
-    const formatDate2 = (dateString) => {
-        const date = new Date(dateString);
-        if (isNaN(date)) return ""; // if invalid
-        return date.toISOString().split("T")[0]; // YYYY-MM-DD
-    };
-
     const handleChange = (e, edit = false) => {
 
         const map = { "moment-title": "title", "moment-type": "sport", "moment-image": "image", "moment-date": "date", "moment-desc": "description" };
@@ -155,7 +141,12 @@ function Moments() {
                 const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); imageUrl = res.data.secure_url;
             }
 
-            catch { showToast("Failed to upload image."); setLoading(false); return; }
+            catch {
+                const modalEl = document.getElementById("addMomentModal");
+                window.bootstrap.Modal.getInstance(modalEl).hide();
+                showToast("Failed to upload image.");
+                setLoading(false); return;
+            }
         }
 
         try {
@@ -166,7 +157,11 @@ function Moments() {
             window.bootstrap.Modal.getInstance(modalEl).hide();
             showToast("Moment added successfully!");
         }
-        catch { showToast("Failed to save moment."); }
+        catch {
+            const modalEl = document.getElementById("addMomentModal");
+            window.bootstrap.Modal.getInstance(modalEl).hide();
+            showToast("Failed to save moment.");
+        }
 
         finally { setLoading(false); }
     };
@@ -189,6 +184,8 @@ function Moments() {
             }
 
             catch {
+                const modalEl = document.getElementById("editMomentModal");
+                window.bootstrap.Modal.getInstance(modalEl).hide();
                 showToast("Failed to upload image."); setLoading(false); return null;
             }
 
@@ -203,7 +200,11 @@ function Moments() {
             window.bootstrap.Modal.getInstance(modalEl).hide();
             showToast("Moment updated successfully!");
         }
-        catch { showToast("Failed to update moment."); }
+        catch {
+            const modalEl = document.getElementById("editMomentModal");
+            window.bootstrap.Modal.getInstance(modalEl).hide();
+            showToast("Failed to update moment.");
+        }
 
         finally { setLoading(false); }
     };
@@ -235,6 +236,20 @@ function Moments() {
         }
 
         finally { setLoading(false); }
+    };
+
+    const formatDate = (dateString) => {
+
+        if (!dateString) return "N/A";
+        const options = { year: "numeric", month: "long", day: "numeric" };
+
+        return new Date(dateString).toLocaleDateString("en-US", options);
+    };
+
+    const formatDate2 = (dateString) => {
+        const date = new Date(dateString);
+        if (isNaN(date)) return ""; // if invalid
+        return date.toISOString().split("T")[0]; // YYYY-MM-DD
     };
 
     const isLoggedIn = !!user;

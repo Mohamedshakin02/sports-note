@@ -23,7 +23,8 @@
                     color: white;
                 }
 
-                &:focus, &:active {
+                &:focus,
+                &:active {
                     outline: $black !important;
                     box-shadow: $black !important;
                     border-color: $black;
@@ -120,7 +121,7 @@
                     font-weight: 600;
                     border: 2px solid $red !important;
 
-                    
+
                 }
             }
         }
@@ -128,7 +129,8 @@
 
     .modal {
 
-        .modal-dialog-scrollable {
+        .modal-dialog-scrollable,
+        .modal-dialog {
             display: flex;
             align-items: center;
 
@@ -181,6 +183,33 @@
                                 }
                             }
 
+                            input.form-control:focus {
+                                background-color: $yellow !important;
+                                color: black !important;
+                            }
+
+                            input:-webkit-autofill,
+                            input:-webkit-autofill:hover,
+                            input:-webkit-autofill:focus {
+                                background-color: $yellow !important;
+                                -webkit-box-shadow: 0 0 0 1000px $yellow inset !important;
+                                box-shadow: 0 0 0 1000px $yellow inset !important;
+                                -webkit-text-fill-color: black !important;
+                                color: black !important;
+                            }
+
+                            input:-internal-autofill-selected {
+                                background-color: $yellow !important;
+                                color: black !important;
+                            }
+
+                            .form-control:focus {
+                                background-color: $yellow;
+                                box-shadow: 0 0 0 .25rem rgb(113, 0, 4, 0.25);
+                                color: black;
+                            }
+
+
 
                             select.form-select option {
                                 background-color: $red;
@@ -218,6 +247,33 @@
                         }
                     }
                 }
+
+                h5 {
+                    color: $red;
+                }
+
+                .cancel {
+                    border: 2px solid $red ;
+
+                    &:hover {
+                        background-color: black;
+                        color: white;
+                    }
+                }
+
+                .delete {
+                    background-color: $red;
+                    color: $yellow;
+
+                    &:hover {
+                        background-color: black;
+                        color: white;
+                    }
+                }
+
+                .btn-close {
+                    box-shadow: none;
+                }
             }
         }
 
@@ -225,9 +281,9 @@
     }
 }
 
-@media screen and (max-width: 992px){
-    .fixtures-section{
-        .heading-container{
+@media screen and (max-width: 992px) {
+    .fixtures-section {
+        .heading-container {
             flex-direction: column;
             gap: 1.5rem;
         }

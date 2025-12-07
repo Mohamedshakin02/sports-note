@@ -256,78 +256,150 @@ body {
   font-weight: 600;
   border: 2px solid #710004 !important;
 }
-.fixtures-section .modal .modal-dialog-scrollable {
+.fixtures-section .modal .modal-dialog-scrollable,
+.fixtures-section .modal .modal-dialog {
   display: flex;
   align-items: center;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content,
+.fixtures-section .modal .modal-dialog .modal-content {
   border-radius: 8px;
   background-color: #FCF0D6;
   border: 2px solid #710004;
   position: relative;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading h1 {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading h1,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .heading h1 {
   color: #710004;
   font-weight: 600;
   text-align: center;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading button {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading button,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .heading button {
   position: absolute;
   right: 15px;
   top: 20px;
   box-shadow: none;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form label {
   font-weight: 500;
   color: #710004;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label span {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label span,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form label span {
   font-weight: 400;
   color: black;
   font-size: 0.9rem;
 }
 .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input,
 .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea,
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form input,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form textarea,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form select {
   background-color: unset;
   color: black;
   border: 2px solid #710004;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::-moz-placeholder, .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea::-moz-placeholder, .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::-moz-placeholder {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::-moz-placeholder, .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea::-moz-placeholder, .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::-moz-placeholder, .fixtures-section .modal .modal-dialog .modal-content .modal-body .form form input::-moz-placeholder, .fixtures-section .modal .modal-dialog .modal-content .modal-body .form form textarea::-moz-placeholder, .fixtures-section .modal .modal-dialog .modal-content .modal-body .form form select::-moz-placeholder {
   font-size: 0.9rem;
   color: rgb(55, 55, 55);
 }
 .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::placeholder,
 .fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea::placeholder,
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::placeholder {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::placeholder,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form input::placeholder,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form textarea::placeholder,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form select::placeholder {
   font-size: 0.9rem;
   color: rgb(55, 55, 55);
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option {
-  background-color: #710004;
-  color: white;
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input.form-control:focus,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form input.form-control:focus {
+  background-color: #FCF0D6 !important;
+  color: black !important;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""] {
-  background-color: #b3b5b7;
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-webkit-autofill,
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-webkit-autofill:hover,
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-webkit-autofill:focus,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form input:-webkit-autofill,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form input:-webkit-autofill:hover,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form input:-webkit-autofill:focus {
+  background-color: #FCF0D6 !important;
+  box-shadow: 0 0 0 1000px #FCF0D6 inset !important;
+  -webkit-text-fill-color: black !important;
+  color: black !important;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea {
-  resize: vertical;
-  min-height: 100px;
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-internal-autofill-selected,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form input:-internal-autofill-selected {
+  background-color: #FCF0D6 !important;
+  color: black !important;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form .form-control:focus {
   background-color: #FCF0D6;
   box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
   color: black;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form select.form-select option {
+  background-color: #710004;
+  color: white;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""],
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form select.form-select option[value=""] {
+  background-color: #b3b5b7;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form .form-control:focus {
+  background-color: #FCF0D6;
+  box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
+  color: black;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form button {
   background-color: #710004;
   color: #FCF0D6;
   font-weight: 500;
   border: none;
 }
-.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover {
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover,
+.fixtures-section .modal .modal-dialog .modal-content .modal-body .form form button:hover {
   background-color: #000000;
   color: #FFFFFF;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content h5,
+.fixtures-section .modal .modal-dialog .modal-content h5 {
+  color: #710004;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .cancel,
+.fixtures-section .modal .modal-dialog .modal-content .cancel {
+  border: 2px solid #710004;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .cancel:hover,
+.fixtures-section .modal .modal-dialog .modal-content .cancel:hover {
+  background-color: black;
+  color: white;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .delete,
+.fixtures-section .modal .modal-dialog .modal-content .delete {
+  background-color: #710004;
+  color: #FCF0D6;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .delete:hover,
+.fixtures-section .modal .modal-dialog .modal-content .delete:hover {
+  background-color: black;
+  color: white;
+}
+.fixtures-section .modal .modal-dialog-scrollable .modal-content .btn-close,
+.fixtures-section .modal .modal-dialog .modal-content .btn-close {
+  box-shadow: none;
 }
 
 @media screen and (max-width: 992px) {

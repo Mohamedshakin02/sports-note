@@ -162,16 +162,16 @@ function Fixtures_Home() {
                                             <option value="" disabled>Select a sport</option>
                                             <option value="football">Football</option>
                                             <option value="basketball">Basketball</option>
-                                            <option value="cricket">Cricket</option>
-                                            <option value="tennis">Tennis</option>
-                                            <option value="badminton">Badminton</option>
-                                            <option value="volleyball">Volleyball</option>
-                                            <option value="boxing">Boxing</option>
-                                            <option value="table-tennis">Table Tennis</option>
-                                            <option value="rugby">Kabaddi</option>
-                                            <option value="hockey">Hockey</option>
-                                            <option value="racing">Racing</option>
-                                            <option value="other">Other</option>
+                                            <option value="Cricket">Cricket</option>
+                                            <option value="Tennis">Tennis</option>
+                                            <option value="Badminton">Badminton</option>
+                                            <option value="Volleyball">Volleyball</option>
+                                            <option value="Boxing">Boxing</option>
+                                            <option value="Table Tennis">Table Tennis</option>
+                                            <option value="Kabbadi">Kabaddi</option>
+                                            <option value="Hockey">Hockey</option>
+                                            <option value="Racing">Racing</option>
+                                            <option value="Other">Other</option>
                                         </select>
                                     </div>
 
