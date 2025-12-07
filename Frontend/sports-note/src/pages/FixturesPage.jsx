@@ -56,6 +56,11 @@ function FixturesPage() {
             color: #710004 !important;
           }
 
+          footer .footer-container .auth-links .logout{
+            color: #FCF0D6 !important;
+            border: 3px solid #FCF0D6 !important;
+          }
+
           body footer .footer-container p, .copyright{
             color: white !important
           }
