@@ -158,6 +158,9 @@ body {
     font-size: 18px;
   }
 }
+.quotes-section {
+  min-height: 500px;
+}
 .quotes-section .heading-container {
   color: #FCF0D6;
   display: flex;

@@ -392,6 +392,10 @@ function Quotes() {
                       )}
                     </div>
 
+                    <div className="col-12">
+                      <button type="submit" className="btn btn-primary fs-6 w-100">Update Quote</button>
+                    </div>
+
                   </form>
                 </div>
               </div>

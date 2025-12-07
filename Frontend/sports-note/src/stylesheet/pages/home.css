@@ -1108,6 +1108,7 @@ body {
 .quotes-section .quotes-slider .swiper-pagination {
   display: flex;
   justify-content: center;
+  width: 500px !important;
 }
 .quotes-section .quotes-slider .swiper-pagination .custom-bullet {
   width: 60px;
