@@ -1007,6 +1007,9 @@ body {
   border: none !important;
 }
 
+.quotes-section {
+  border-top: 5px solid #FCF0D6;
+}
 .quotes-section .heading-container h1 {
   font-weight: 600;
 }

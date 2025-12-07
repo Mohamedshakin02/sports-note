@@ -2,6 +2,7 @@
 @use "../abstract/variables" as *;
 
 .quotes-section {
+    border-top: 5px solid $yellow;
 
     .heading-container {
 
