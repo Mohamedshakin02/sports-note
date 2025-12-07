@@ -158,6 +158,9 @@ body {
     font-size: 18px;
   }
 }
+.moments-section {
+  min-height: 500px;
+}
 .moments-section .heading-container {
   color: #FCF0D6;
   display: flex;
