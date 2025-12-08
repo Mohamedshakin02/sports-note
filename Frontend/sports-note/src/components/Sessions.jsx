@@ -117,7 +117,7 @@ function Sessions() {
             )}
           </div>
 
-          <h1 className="mb-3">{selected.title}</h1>
+          <h1 className="mb-3 text-capitalize">{selected.title}</h1>
           <p className="exercise-title m-0 p-0 fs-4 mb-2">Exercises:</p>
           <ul className="mt-0">
             {selected.items.map((item, i) => (
@@ -171,7 +171,7 @@ function Sessions() {
             {sessionsData.map((session, index) => (
               <SwiperSlide key={index}>
                 <button
-                  className={`session-btn ${selected.title === session.title ? "active" : ""} text-truncate`}
+                  className={`session-btn ${selected.title === session.title ? "active" : ""} text-truncate text-capitalize`}
                   onClick={() => setSelected(session)}
                 >
                   {session.title}

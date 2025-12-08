@@ -248,7 +248,7 @@ function Quotes() {
                 <p className="quote m-0 display-6 fs-5 pt-0 pt-lg-1">
                   "{quote.quote}"
                 </p>
-                <p className="author m-0 p-0 mt-2 fs-6 text-end">
+                <p className="author m-0 p-0 mt-2 fs-6 text-end text-capitalize">
                   <i>- {quote.author}</i>
                 </p>
               </div>

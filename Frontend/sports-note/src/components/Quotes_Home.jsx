@@ -264,7 +264,7 @@ function Quotes_Home() {
                     <div className="quote-container"><i className="bi bi-quote display-3"></i></div>
                     <div className="text-container h-100 p-2 d-flex flex-column justify-content-between">
                       <p className="quote m-0 display-6 fs-4 pt-0 pt-lg-1">"{item.quote}"</p>
-                      <p className="author m-0 p-0 mt-2 fs-5 text-end"><i>- {item.author}</i></p>
+                      <p className="author m-0 p-0 mt-2 fs-5 text-end text-capitalize"><i>- {item.author}</i></p>
                     </div>
                     <div className="menu-wrapper ms-auto" ref={(el) => (menuRefs.current[index] = el)}>
                       <i className="bi bi-three-dots-vertical menu-icon" onClick={() => toggleMenu(index)}></i>

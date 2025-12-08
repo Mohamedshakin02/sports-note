@@ -172,7 +172,7 @@ function Sessions_home() {
               {sessionsData.map((session, index) => (
                 <SwiperSlide key={index}>
                   <button
-                    className={`session-btn ${selected.title === session.title ? "active" : ""} text-truncate`}
+                    className={`session-btn ${selected.title === session.title ? "active" : ""} text-truncate text-capitalize`}
                     onClick={() => setSelected(session)}
                   >
                     {session.title}
