@@ -117,7 +117,12 @@ function Quotes() {
       formData.append("file", form.image);
       formData.append("upload_preset", "quotes_preset");
       try { const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); imageUrl = res.data.secure_url; }
-      catch { showToast("Image upload failed"); setLoading(false); return; }
+      catch {
+        const modalEl = document.getElementById("addQuoteModal");
+        window.bootstrap.Modal.getInstance(modalEl).hide();
+        showToast("Image upload failed");
+        setLoading(false); return;
+      }
     }
 
     try {
@@ -128,6 +133,8 @@ function Quotes() {
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Quote added successfully!");
     } catch {
+      const modalEl = document.getElementById("addQuoteModal");
+      window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Failed to save quote.");
     } finally { setLoading(false); }
 
@@ -156,7 +163,12 @@ function Quotes() {
       formData.append("file", editingQuote.image);
       formData.append("upload_preset", "quotes_preset");
       try { const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); return res.data.secure_url; }
-      catch { showToast("Image upload failed"); setLoading(false); return null; }
+      catch {
+        const modalEl = document.getElementById("editQuoteModal");
+        window.bootstrap.Modal.getInstance(modalEl).hide();
+        showToast("Image upload failed");
+        setLoading(false); return null;
+      }
     })() : editingQuote.imageUrl || "";
 
     if (imageUrl === null) return;
@@ -168,6 +180,8 @@ function Quotes() {
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Quote updated successfully!");
     } catch {
+      const modalEl = document.getElementById("editQuoteModal");
+      window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Failed to update quote.");
     } finally { setLoading(false); }
 
@@ -184,6 +198,8 @@ function Quotes() {
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Quote deleted successfully!");
     } catch {
+      const modalEl = document.getElementById("deleteQuoteModal");
+      window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Failed to delete quote.");
     } finally { setLoading(false); }
   };
@@ -241,7 +257,7 @@ function Quotes() {
                 <i className="bi bi-three-dots-vertical menu-icon" onClick={() => toggleMenu(index)}></i>
                 {openMenuIndex === index && (
                   <div className="menu-dropdown">
-                    <button onClick={() => {if (!isLoggedIn) return showLoginToast(); handleEdit(quote)}}>Edit</button>
+                    <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(quote) }}>Edit</button>
                     <button onClick={() => { if (!isLoggedIn) return showLoginToast(); setDeleteId(quote._id || quote.id); const modalEl = document.getElementById("deleteQuoteModal"); new window.bootstrap.Modal(modalEl).show(); }}>Delete</button>
                   </div>
                 )}
