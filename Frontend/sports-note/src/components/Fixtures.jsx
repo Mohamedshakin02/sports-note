@@ -70,12 +70,15 @@ function Fixtures() {
 
     const fetchFixtures = async () => {
       try {
+        setLoading(true);
         const res = await axios.get("http://localhost:5000/api/fixtures", { withCredentials: true });
         setFixturesList(res.data);
       } catch (err) {
+        setFixturesList([]);
         console.error("Failed to fetch fixtures:", err);
-        showToast("Failed to load fixtures from server.");
+        showToast("Failed to load fixtures");
       }
+      finally { setLoading(false); }
     };
     fetchFixtures();
   }, [user]);
@@ -128,7 +131,7 @@ function Fixtures() {
     setLoading(true);
     try {
       const res = await axios.put(`http://localhost:5000/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
-      setFixturesList(prev => prev.map(f => (f._id === editForm.id ? res.data : f)));
+      setFixturesList(prev => prev.map(fixture => (fixture._id === editForm.id ? res.data : fixture)));
       const modalEl = document.getElementById("editFixtureModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Fixture updated successfully!");
@@ -148,7 +151,7 @@ function Fixtures() {
     setLoading(true);
     try {
       await axios.delete(`http://localhost:5000/api/fixtures/${deleteId}`, { withCredentials: true });
-      setFixturesList(prev => prev.filter(f => f._id !== deleteId));
+      setFixturesList(prev => prev.filter(fixture => fixture._id !== deleteId));
       const modalEl = document.getElementById("deleteFixtureModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Fixture deleted successfully!");

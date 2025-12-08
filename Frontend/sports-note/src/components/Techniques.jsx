@@ -103,14 +103,17 @@ function Techniques() {
     }
     const fetchTechniques = async () => {
       try {
+        setLoading(true);
         const res = await axios.get("http://localhost:5000/api/techniques", { withCredentials: true });
         // Sort by createdAt ascending so oldest first
         const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
         setTechniquesList(sorted);
       } catch {
+        setTechniquesList([]);
         showToast("Failed to fetch techniques.");
       }
+      finally { setLoading(false); }
     };
     fetchTechniques();
   }, [user]);
@@ -165,6 +168,7 @@ function Techniques() {
       window.bootstrap.Modal.getInstance(document.getElementById("addTechniqueModal")).hide();
       showToast("Technique added!");
     } catch {
+      window.bootstrap.Modal.getInstance(document.getElementById("addTechniqueModal")).hide();
       showToast("Failed to add technique.");
     } finally { setLoading(false); }
   };
@@ -179,10 +183,13 @@ function Techniques() {
     setLoading(true);
     try {
       const res = await axios.put(`http://localhost:5000/api/techniques/${editForm.id}`, editForm, { withCredentials: true });
-      setTechniquesList(prev => prev.map(t => (t._id === editForm.id ? res.data : t)));
+      setTechniquesList(prev => prev.map(technique => (technique._id === editForm.id ? res.data : technique)));
       window.bootstrap.Modal.getInstance(document.getElementById("editTechniqueModal")).hide();
       showToast("Technique updated!");
-    } catch { showToast("Failed to update technique."); }
+    } catch { 
+      window.bootstrap.Modal.getInstance(document.getElementById("editTechniqueModal")).hide();
+      showToast("Failed to update technique."); 
+    }
     finally { setLoading(false); }
   };
 
@@ -191,10 +198,13 @@ function Techniques() {
     setLoading(true);
     try {
       await axios.delete(`http://localhost:5000/api/techniques/${deleteId}`, { withCredentials: true });
-      setTechniquesList(prev => prev.filter(t => t._id !== deleteId));
+      setTechniquesList(prev => prev.filter(technique => technique._id !== deleteId));
       window.bootstrap.Modal.getInstance(document.getElementById("deleteTechniqueModal")).hide();
       showToast("Technique deleted!");
-    } catch { showToast("Failed to delete technique."); }
+    } catch { 
+      window.bootstrap.Modal.getInstance(document.getElementById("deleteTechniqueModal")).hide();
+      showToast("Failed to delete technique."); 
+    }
     finally { setLoading(false); }
   };
 
@@ -202,7 +212,7 @@ function Techniques() {
     <>
       {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"></div></div>)}
 
-
+    
       <section className="techniques-section py-5 mt-2 container-md px-3 px-md-2">
         <div className="heading-container mb-5">
           <div className="text">

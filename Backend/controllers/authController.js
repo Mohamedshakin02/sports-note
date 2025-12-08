@@ -118,19 +118,19 @@ export const signup = async (req, res) => {
         const newUser = await User.create({ username, email, password: hashedPassword });
 
         // Add default moments
-        const userMoments = defaultMoments.map(m => ({ ...m, userId: newUser._id }));
+        const userMoments = defaultMoments.map(moment => ({ ...moment, userId: newUser._id }));
         await Moment.insertMany(userMoments);
 
         // Add default fixtures
-        const userFixtures = defaultFixtures.map(f => ({ ...f, userId: newUser._id, date: new Date(f.date) }));
+        const userFixtures = defaultFixtures.map(fixture => ({ ...fixture, userId: newUser._id, date: new Date(fixture.date) }));
         await Fixture.insertMany(userFixtures);
 
         // Add default quotes
-        const userQuotes = defaultQuotes.map(q => ({ ...q, userId: newUser._id }));
+        const userQuotes = defaultQuotes.map(quote => ({ ...quote, userId: newUser._id }));
         await Quote.insertMany(userQuotes);
 
         // Add default techniques
-        const userTechniques = defaultTechniques.map(t => ({ ...t, userId: newUser._id }));
+        const userTechniques = defaultTechniques.map(technique => ({ ...technique, userId: newUser._id }));
         await Technique.insertMany(userTechniques);
 
 
@@ -180,19 +180,19 @@ export const googleLogin = async (req, res) => {
             user = await User.create({ username: name, email, password: null, googleUser: true });
 
             // Add default moments for new Google user
-            const userMoments = defaultMoments.map(m => ({ ...m, userId: user._id }));
+            const userMoments = defaultMoments.map(moment => ({ ...moment, userId: user._id }));
             await Moment.insertMany(userMoments);
 
             // Add default fixtures
-            const userFixtures = defaultFixtures.map(f => ({ ...f, userId: user._id, date: new Date(f.date) }));
+            const userFixtures = defaultFixtures.map(fixture => ({ ...fixture, userId: user._id, date: new Date(fixture.date) }));
             await Fixture.insertMany(userFixtures);
 
             // Add default quotes
-            const userQuotes = defaultQuotes.map(q => ({ ...q, userId: user._id }));
+            const userQuotes = defaultQuotes.map(quote => ({ ...quote, userId: user._id }));
             await Quote.insertMany(userQuotes);
 
             // Add default techniques
-            const userTechniques = defaultTechniques.map(t => ({ ...t, userId: user._id }));
+            const userTechniques = defaultTechniques.map(technique => ({ ...technique, userId: user._id }));
             await Technique.insertMany(userTechniques);
 
         }

@@ -106,14 +106,21 @@ function Moments() {
             }
 
             try {
+                setLoading(true);
                 const res = await axios.get("http://localhost:5000/api/moments", { withCredentials: true });
-                setMomentsList(res.data); // replace static moments with DB data
+                // setMomentsList(res.data); // replace static moments with DB data
+                // Sort by createdAt ascending so oldest first
+                const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+                setMomentsList(sorted);
             }
 
             catch (err) {
+                setMomentsList([]);
                 console.error("Failed to fetch moments:", err);
-                showToast("Failed to load your moments from server.");
+                showToast("Failed to load your moments");
             }
+            finally { setLoading(false); }
         };
 
         fetchMoments();
@@ -151,7 +158,7 @@ function Moments() {
 
         try {
             const res = await axios.post("http://localhost:5000/api/moments", { ...form, imageUrl }, { withCredentials: true });
-            setMomentsList(prev => [res.data, ...prev]);
+            setMomentsList(prev => [...prev, res.data]);
             setForm({ title: "", sport: "", image: null, date: "", description: "" });
             const modalEl = document.getElementById("addMomentModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -195,7 +202,7 @@ function Moments() {
 
         try {
             const res = await axios.put(`http://localhost:5000/api/moments/${editForm.id}`, { ...editForm, imageUrl }, { withCredentials: true });
-            setMomentsList(prev => prev.map(m => (m._id === editForm.id || m.id === editForm.id ? res.data : m)));
+            setMomentsList(prev => prev.map(moment => (moment._id === editForm.id || mmoment.id === editForm.id ? res.data : moment)));
             const modalEl = document.getElementById("editMomentModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
             showToast("Moment updated successfully!");
@@ -219,7 +226,7 @@ function Moments() {
             await axios.delete(`http://localhost:5000/api/moments/${deleteId}`, { withCredentials: true });
 
             setMomentsList(prev =>
-                prev.filter(m => (m._id || m.id) !== deleteId)
+                prev.filter(moment => (moment._id || moment.id) !== deleteId)
             );
 
             const modalEl = document.getElementById("deleteMomentModal");

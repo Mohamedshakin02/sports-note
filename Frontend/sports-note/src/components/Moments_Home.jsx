@@ -115,14 +115,21 @@ function Moments_Home() {
       }
 
       try {
+        setLoading(true);
         const res = await axios.get("http://localhost:5000/api/moments", { withCredentials: true });
-        setMomentsList(res.data); // replace static moments with DB data
+        // setMomentsList(res.data); // replace static moments with DB data
+        // Sort by createdAt ascending so oldest first
+        const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+        setMomentsList(sorted);
       }
 
       catch (err) {
+        setMomentsList([]);
         console.error("Failed to fetch moments:", err);
-        showToast("Failed to load your moments from server.");
+        showToast("Failed to load your moments");
       }
+      finally { setLoading(false); }
     };
 
     fetchMoments();
@@ -207,7 +214,7 @@ function Moments_Home() {
 
     try {
       const res = await axios.put(`http://localhost:5000/api/moments/${editForm.id}`, { ...editForm, imageUrl }, { withCredentials: true });
-      setMomentsList(prev => prev.map(m => (m._id === editForm.id || m.id === editForm.id ? res.data : m)));
+      setMomentsList(prev => prev.map(moment => (moment._id === editForm.id || moment.id === editForm.id ? res.data : moment)));
       const modalEl = document.getElementById("editMomentModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Moment updated successfully!");
@@ -227,7 +234,7 @@ function Moments_Home() {
       await axios.delete(`http://localhost:5000/api/moments/${deleteId}`, { withCredentials: true });
 
       setMomentsList(prev =>
-        prev.filter(m => (m._id || m.id) !== deleteId)
+        prev.filter(m => (moment._id || moment.id) !== deleteId)
       );
 
       const modalEl = document.getElementById("deleteMomentModal");
@@ -275,338 +282,338 @@ function Moments_Home() {
     <>
       {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"><span className="visually-hidden">Loading...</span></div></div>)}
 
-      {momentsList && momentsList.length > 0 &&(
-      <section className="moments-section container-md py-5 mt-2 px-3 px-md-2">
-        
-        <div className="heading-container mb-5">
-          <div className="text">
-            <h1 className="m-0 p-0 mb-3">Moments</h1>
-            <p className="m-0 p-0 fs-4">
-              Keep and enjoy your best sports moments. Remember the exciting games and achievements that made you proud.
-            </p>
+      {momentsList && momentsList.length > 0 && (
+        <section className="moments-section container-md py-5 mt-2 px-3 px-md-2">
+
+          <div className="heading-container mb-5">
+            <div className="text">
+              <h1 className="m-0 p-0 mb-3">Moments</h1>
+              <p className="m-0 p-0 fs-4">
+                Keep and enjoy your best sports moments. Remember the exciting games and achievements that made you proud.
+              </p>
+            </div>
+            <div className="button">
+              <button className="btn p-2" onClick={() => { if (!isLoggedIn) return showToast("Please login to continue"); new window.bootstrap.Modal(document.getElementById("addMomentModal")).show(); }}>
+                <i className="bi bi-plus-lg me-2"></i>Add Moment
+              </button>
+            </div>
           </div>
-          <div className="button">
-            <button className="btn p-2" onClick={() => { if (!isLoggedIn) return showToast("Please login to continue"); new window.bootstrap.Modal(document.getElementById("addMomentModal")).show(); }}>
-              <i className="bi bi-plus-lg me-2"></i>Add Moment
-            </button>
-          </div>
-        </div>
 
-        <Swiper
-          key={screenWidth}
-          modules={[Navigation, Pagination]}
-          navigation={true}
-          pagination={{ clickable: true, dynamicBullets: true }}
-          freeMode={!isMobile}
-          slidesPerView={isMobile ? 1.3 : screenWidth >= 1024 ? "auto" : "auto"}
-          centeredSlides={isMobile}
-          spaceBetween={20}
-          observer={true}
-          observeParents={true}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-            setTimeout(() => swiper.update(), 50);
-          }}
-          onResize={() => {
-            setTimeout(() => {
-              swiperRef.current.update();
-              swiperRef.current.slideTo(0);
-            }, 50);
-          }}
-          className="moments-slider"
-        >
-          {momentsList.map((moment, index) => (
-            <SwiperSlide
-              key={index}
-              className="moment-card"
-              style={{
-                width: !isMobile
-                  ? openIndex === index
-                    ? "300px"
-                    : "120px"
-                  : "auto",
-                maxWidth: isMobile ? "90vw" : undefined,
-                transition: "0.3s ease",
-                flexShrink: 0,
-              }}
-              onClick={() => {
-                if (!isMobile) {
-                  const newIndex = openIndex === index ? null : index;
+          <Swiper
+            key={screenWidth}
+            modules={[Navigation, Pagination]}
+            navigation={true}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            freeMode={!isMobile}
+            slidesPerView={isMobile ? 1.3 : screenWidth >= 1024 ? "auto" : "auto"}
+            centeredSlides={isMobile}
+            spaceBetween={20}
+            observer={true}
+            observeParents={true}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+              setTimeout(() => swiper.update(), 50);
+            }}
+            onResize={() => {
+              setTimeout(() => {
+                swiperRef.current.update();
+                swiperRef.current.slideTo(0);
+              }, 50);
+            }}
+            className="moments-slider"
+          >
+            {momentsList.map((moment, index) => (
+              <SwiperSlide
+                key={index}
+                className="moment-card"
+                style={{
+                  width: !isMobile
+                    ? openIndex === index
+                      ? "300px"
+                      : "120px"
+                    : "auto",
+                  maxWidth: isMobile ? "90vw" : undefined,
+                  transition: "0.3s ease",
+                  flexShrink: 0,
+                }}
+                onClick={() => {
+                  if (!isMobile) {
+                    const newIndex = openIndex === index ? null : index;
 
-                  setOpenIndex(newIndex);
+                    setOpenIndex(newIndex);
 
-                  if (swiperRef.current) {
-                    const swiper = swiperRef.current;
+                    if (swiperRef.current) {
+                      const swiper = swiperRef.current;
 
-                    if (newIndex !== null) {
-                      requestAnimationFrame(() => {
-                        swiper.update();
+                      if (newIndex !== null) {
+                        requestAnimationFrame(() => {
+                          swiper.update();
 
-                        const slideEl = swiper.slides[newIndex];
-                        if (!slideEl) return;
+                          const slideEl = swiper.slides[newIndex];
+                          if (!slideEl) return;
 
-                        const slideOffsetLeft = slideEl.offsetLeft;
-                        const swiperOffset = swiper.slidesOffsetBefore;
+                          const slideOffsetLeft = slideEl.offsetLeft;
+                          const swiperOffset = swiper.slidesOffsetBefore;
 
-                        let targetTranslate = -(slideOffsetLeft - swiperOffset);
+                          let targetTranslate = -(slideOffsetLeft - swiperOffset);
 
-                        swiper.setTranslate(targetTranslate);
-                        swiper.wrapperEl.style.transitionDuration = '300ms';
-                        swiper.wrapperEl.style.transitionTimingFunction = 'ease';
+                          swiper.setTranslate(targetTranslate);
+                          swiper.wrapperEl.style.transitionDuration = '300ms';
+                          swiper.wrapperEl.style.transitionTimingFunction = 'ease';
 
-                        swiper.realIndex = newIndex;
-                        swiper.snapIndex = newIndex;
+                          swiper.realIndex = newIndex;
+                          swiper.snapIndex = newIndex;
 
-                        swiper.updateProgress();
-                        swiper.updateActiveIndex();
+                          swiper.updateProgress();
+                          swiper.updateActiveIndex();
 
-                      });
+                        });
 
-                    } else {
-                      setTimeout(() => {
-                        swiper.update();
-                        swiper.slideTo(0);
-                      }, 50);
+                      } else {
+                        setTimeout(() => {
+                          swiper.update();
+                          swiper.slideTo(0);
+                        }, 50);
+                      }
                     }
                   }
-                }
-              }}
-            >
-              <div
-                className={`card-inner ${openIndex === index || isMobile ? "open" : "closed"
-                  }`}
+                }}
               >
-                <div className="card-image">
-                  <span className="sport-badge">{moment.sport}</span>
+                <div
+                  className={`card-inner ${openIndex === index || isMobile ? "open" : "closed"
+                    }`}
+                >
+                  <div className="card-image">
+                    <span className="sport-badge">{moment.sport}</span>
 
-                  {moment.image || moment.imageUrl ? (
-                    <img src={moment.image || moment.imageUrl} alt={moment.title} />
-                  ) : (
-                    <div className="no-image-inner">
-                      <img src={noImage} className="img-fluid" alt="No image" />
+                    {moment.image || moment.imageUrl ? (
+                      <img src={moment.image || moment.imageUrl} alt={moment.title} />
+                    ) : (
+                      <div className="no-image-inner">
+                        <img src={noImage} className="img-fluid" alt="No image" />
+                      </div>
+                    )}
+                  </div>
+
+                  {!isMobile && openIndex !== index && (
+                    <div className="card-vertical-text">
+                      <p className="m-0 p-0 text-truncate fs-6 text-capitalize">{moment.title}</p>
                     </div>
                   )}
-                </div>
 
-                {!isMobile && openIndex !== index && (
-                  <div className="card-vertical-text">
-                    <p className="m-0 p-0 text-truncate fs-6 text-capitalize">{moment.title}</p>
+                  {(openIndex === index || isMobile) && (
+
+                    <>
+                      <div
+                        className="menu-wrapper"
+                        ref={(el) => (menuRefs.current[index] = el)}
+                        onClick={(e) => {
+                          e.stopPropagation(); // <-- prevent slide click
+                          toggleMenu(index);
+                        }}
+                      >
+                        <i className="bi bi-three-dots-vertical menu-icon"></i>
+
+                        {openMenuIndex === index && (
+                          <div className="menu-dropdown">
+                            <button onClick={() => { if (!isLoggedIn) return showToast("Please login to continue"); handleEdit(moment) }}>Edit</button>
+                            <button onClick={() => { if (!isLoggedIn) return showToast("Please login to continue"); { setDeleteId(moment._id || moment.id); new window.bootstrap.Modal(document.getElementById("deleteMomentModal")).show(); } }}>Delete</button>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="card-content">
+                        <h3 className="fs-4 text-capitalize">{moment.title}</h3>
+                        <p className="text-truncate-vertical flex-grow-1 mb-2">
+                          {moment.description}
+                        </p>
+                        <small className="date mb-3">
+                          <i className="bi bi-calendar me-2"></i>
+                          {formatDate(moment.date)}
+                        </small>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <div className="explore mt-3">
+            <Link to="/moments"><button className="btn">EXPLORE MORE</button></Link>
+          </div>
+
+          {/* Add Moment Modal */}
+          <div className="modal fade" id="addMomentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="addMomentLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-scrollable">
+              <div className="modal-content">
+                <div className="modal-body">
+                  <div className="heading">
+                    <h1 className="modal-title fs-4">Add Moment</h1>
+                    <p className="m-0 mt-2 fs-6 text-center">Add your sports moment and keep your favourite memories saved.</p>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                )}
-
-                {(openIndex === index || isMobile) && (
-
-                  <>
-                    <div
-                      className="menu-wrapper"
-                      ref={(el) => (menuRefs.current[index] = el)}
-                      onClick={(e) => {
-                        e.stopPropagation(); // <-- prevent slide click
-                        toggleMenu(index);
-                      }}
-                    >
-                      <i className="bi bi-three-dots-vertical menu-icon"></i>
-
-                      {openMenuIndex === index && (
-                        <div className="menu-dropdown">
-                          <button onClick={() => { if (!isLoggedIn) return showToast("Please login to continue"); handleEdit(moment) }}>Edit</button>
-                          <button onClick={() => { if (!isLoggedIn) return showToast("Please login to continue"); { setDeleteId(moment._id || moment.id); new window.bootstrap.Modal(document.getElementById("deleteMomentModal")).show(); } }}>Delete</button>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="card-content">
-                      <h3 className="fs-4 text-capitalize">{moment.title}</h3>
-                      <p className="text-truncate-vertical flex-grow-1 mb-2">
-                        {moment.description}
-                      </p>
-                      <small className="date mb-3">
-                        <i className="bi bi-calendar me-2"></i>
-                        {formatDate(moment.date)}
-                      </small>
-                    </div>
-                  </>
-                )}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <div className="explore mt-3">
-          <Link to="/moments"><button className="btn">EXPLORE MORE</button></Link>
-        </div>
-
-        {/* Add Moment Modal */}
-        <div className="modal fade" id="addMomentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="addMomentLabel" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-scrollable">
-            <div className="modal-content">
-              <div className="modal-body">
-                <div className="heading">
-                  <h1 className="modal-title fs-4">Add Moment</h1>
-                  <p className="m-0 mt-2 fs-6 text-center">Add your sports moment and keep your favourite memories saved.</p>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div className="form mt-3">
-                  <form className="row g-2 py-2 mt-3" onSubmit={handleAddSubmit}>
-                    <div className="mb-1 col-12">
-                      <label htmlFor="moment-title" className="form-label">Title:</label>
-                      <input type="text" id="moment-title" className="form-control" value={form.title} onChange={handleChange} placeholder="Enter a short title for your sports moment" required />
-                    </div>
-                    <div className="mb-1 col-12">
-                      <label htmlFor="moment-type" className="form-label">Sport:</label>
-                      <select id="moment-type" className="form-select" value={form.sport} onChange={handleChange} required>
-                        <option value="" disabled>Select a sport</option>
-                        <option value="Football">Football</option>
-                        <option value="Basketball">Basketball</option>
-                        <option value="Cricket">Cricket</option>
-                        <option value="Tennis">Tennis</option>
-                        <option value="Badminton">Badminton</option>
-                        <option value="Volleyball">Volleyball</option>
-                        <option value="Swimming">Swimming</option>
-                        <option value="Running">Running</option>
-                        <option value="Boxing">Boxing</option>
-                        <option value="Table Tennis">Table Tennis</option>
-                        <option value="Kabbadi">Kabaddi</option>
-                        <option value="Hockey">Hockey</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                    <div className="mb-2 col-12">
-                      <label htmlFor="moment-image" className="form-label">Image  <span>(Optional)</span>:</label>
-                      <input className="form-control form-control-sm" id="moment-image" type="file" accept=".jpg, .jpeg, .png, .webp" onChange={handleChange} />
-                    </div>
-                    <div className="mb-2 col-12">
-                      <label htmlFor="moment-date" className="form-label">Date <span>(Optional)</span>:</label>
-                      <input type="date" id="moment-date" className="form-control" value={form.date} onChange={handleChange} />
-                    </div>
-                    <div className="mb-4 col-12">
-                      <label htmlFor="moment-desc" className="form-label">Description:</label>
-                      <textarea id="moment-desc" className="form-control" value={form.description} onChange={handleChange} placeholder="Describe what happened in this moment" required />
-                    </div>
-                    <div className="col-12"><button type="submit" className="btn btn-primary w-100">Save Moment</button></div>
-                  </form>
+                  <div className="form mt-3">
+                    <form className="row g-2 py-2 mt-3" onSubmit={handleAddSubmit}>
+                      <div className="mb-1 col-12">
+                        <label htmlFor="moment-title" className="form-label">Title:</label>
+                        <input type="text" id="moment-title" className="form-control" value={form.title} onChange={handleChange} placeholder="Enter a short title for your sports moment" required />
+                      </div>
+                      <div className="mb-1 col-12">
+                        <label htmlFor="moment-type" className="form-label">Sport:</label>
+                        <select id="moment-type" className="form-select" value={form.sport} onChange={handleChange} required>
+                          <option value="" disabled>Select a sport</option>
+                          <option value="Football">Football</option>
+                          <option value="Basketball">Basketball</option>
+                          <option value="Cricket">Cricket</option>
+                          <option value="Tennis">Tennis</option>
+                          <option value="Badminton">Badminton</option>
+                          <option value="Volleyball">Volleyball</option>
+                          <option value="Swimming">Swimming</option>
+                          <option value="Running">Running</option>
+                          <option value="Boxing">Boxing</option>
+                          <option value="Table Tennis">Table Tennis</option>
+                          <option value="Kabbadi">Kabaddi</option>
+                          <option value="Hockey">Hockey</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      <div className="mb-2 col-12">
+                        <label htmlFor="moment-image" className="form-label">Image  <span>(Optional)</span>:</label>
+                        <input className="form-control form-control-sm" id="moment-image" type="file" accept=".jpg, .jpeg, .png, .webp" onChange={handleChange} />
+                      </div>
+                      <div className="mb-2 col-12">
+                        <label htmlFor="moment-date" className="form-label">Date <span>(Optional)</span>:</label>
+                        <input type="date" id="moment-date" className="form-control" value={form.date} onChange={handleChange} />
+                      </div>
+                      <div className="mb-4 col-12">
+                        <label htmlFor="moment-desc" className="form-label">Description:</label>
+                        <textarea id="moment-desc" className="form-control" value={form.description} onChange={handleChange} placeholder="Describe what happened in this moment" required />
+                      </div>
+                      <div className="col-12"><button type="submit" className="btn btn-primary w-100">Save Moment</button></div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Edit Moment Modal */}
-        <div className="modal fade" id="editMomentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="editMomentLabel" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-scrollable">
-            <div className="modal-content">
-              <div className="modal-body">
-                <div className="heading">
-                  <h1 className="modal-title fs-4">Edit Moment</h1>
-                  <p className="m-0 mt-2 fs-6 text-center">Edit your sports moment details.</p>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div className="form mt-3">
-                  <form className="row g-2 py-2 mt-3" onSubmit={handleEditSubmit}>
-                    <div className="mb-1 col-12">
-                      <label htmlFor="moment-title" className="form-label">Title:</label>
-                      <input type="text" id="moment-title" className="form-control" value={editForm.title} onChange={(e) => handleChange(e, true)} required />
-                    </div>
-                    <div className="mb-1 col-12">
-                      <label htmlFor="moment-type" className="form-label">Sport:</label>
-                      <select id="moment-type" className="form-select" value={editForm.sport} onChange={(e) => handleChange(e, true)} required>
-                        <option value="" disabled>Select a sport</option>
-                        <option value="Football">Football</option>
-                        <option value="Basketball">Basketball</option>
-                        <option value="Cricket">Cricket</option>
-                        <option value="Tennis">Tennis</option>
-                        <option value="Badminton">Badminton</option>
-                        <option value="Volleyball">Volleyball</option>
-                        <option value="Swimming">Swimming</option>
-                        <option value="Running">Running</option>
-                        <option value="Boxing">Boxing</option>
-                        <option value="Table Tennis">Table Tennis</option>
-                        <option value="Kabbadi">Kabaddi</option>
-                        <option value="Hockey">Hockey</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-                    <div className="mb-2 col-12 position-relative">
-                      <label htmlFor="moment-image" className="form-label">
-                        Image <span>(Optional)</span>:
-                      </label>
-                      <input
-                        className="form-control form-control-sm"
-                        id="moment-image"
-                        type="file"
-                        accept=".jpg,.jpeg,.png,.webp"
-                        onChange={(e) => handleChange(e, true)}
-                      />
-                      {editForm.imageUrl && !editForm.image && (
-                        <span
-                          className="existing-file translate-middle-y ps-2 text-truncate"
-                        >
-                          {editForm.imageUrl.split("/").pop()}
-                        </span>
-                      )}
-                    </div>
+          {/* Edit Moment Modal */}
+          <div className="modal fade" id="editMomentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="editMomentLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-scrollable">
+              <div className="modal-content">
+                <div className="modal-body">
+                  <div className="heading">
+                    <h1 className="modal-title fs-4">Edit Moment</h1>
+                    <p className="m-0 mt-2 fs-6 text-center">Edit your sports moment details.</p>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div className="form mt-3">
+                    <form className="row g-2 py-2 mt-3" onSubmit={handleEditSubmit}>
+                      <div className="mb-1 col-12">
+                        <label htmlFor="moment-title" className="form-label">Title:</label>
+                        <input type="text" id="moment-title" className="form-control" value={editForm.title} onChange={(e) => handleChange(e, true)} required />
+                      </div>
+                      <div className="mb-1 col-12">
+                        <label htmlFor="moment-type" className="form-label">Sport:</label>
+                        <select id="moment-type" className="form-select" value={editForm.sport} onChange={(e) => handleChange(e, true)} required>
+                          <option value="" disabled>Select a sport</option>
+                          <option value="Football">Football</option>
+                          <option value="Basketball">Basketball</option>
+                          <option value="Cricket">Cricket</option>
+                          <option value="Tennis">Tennis</option>
+                          <option value="Badminton">Badminton</option>
+                          <option value="Volleyball">Volleyball</option>
+                          <option value="Swimming">Swimming</option>
+                          <option value="Running">Running</option>
+                          <option value="Boxing">Boxing</option>
+                          <option value="Table Tennis">Table Tennis</option>
+                          <option value="Kabbadi">Kabaddi</option>
+                          <option value="Hockey">Hockey</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                      <div className="mb-2 col-12 position-relative">
+                        <label htmlFor="moment-image" className="form-label">
+                          Image <span>(Optional)</span>:
+                        </label>
+                        <input
+                          className="form-control form-control-sm"
+                          id="moment-image"
+                          type="file"
+                          accept=".jpg,.jpeg,.png,.webp"
+                          onChange={(e) => handleChange(e, true)}
+                        />
+                        {editForm.imageUrl && !editForm.image && (
+                          <span
+                            className="existing-file translate-middle-y ps-2 text-truncate"
+                          >
+                            {editForm.imageUrl.split("/").pop()}
+                          </span>
+                        )}
+                      </div>
 
-                    <div className="mb-2 col-12">
-                      <label htmlFor="moment-date" className="form-label">Date <span>(Optional)</span>:</label>
-                      <input type="date" id="moment-date" className="form-control" value={editForm.date || ""} onChange={(e) => handleChange(e, true)} />
-                    </div>
-                    <div className="mb-4 col-12">
-                      <label htmlFor="moment-desc" className="form-label">Description:</label>
-                      <textarea id="moment-desc" className="form-control" value={editForm.description} onChange={(e) => handleChange(e, true)} required />
-                    </div>
-                    <div className="col-12"><button type="submit" className="btn btn-primary w-100">Update Moment</button></div>
-                  </form>
+                      <div className="mb-2 col-12">
+                        <label htmlFor="moment-date" className="form-label">Date <span>(Optional)</span>:</label>
+                        <input type="date" id="moment-date" className="form-control" value={editForm.date || ""} onChange={(e) => handleChange(e, true)} />
+                      </div>
+                      <div className="mb-4 col-12">
+                        <label htmlFor="moment-desc" className="form-label">Description:</label>
+                        <textarea id="moment-desc" className="form-control" value={editForm.description} onChange={(e) => handleChange(e, true)} required />
+                      </div>
+                      <div className="col-12"><button type="submit" className="btn btn-primary w-100">Update Moment</button></div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Delete Confirm Modal */}
-        <div
-          className="modal fade"
-          id="deleteMomentModal"
-          tabIndex="-1"
-          aria-labelledby="deleteModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
+          {/* Delete Confirm Modal */}
+          <div
+            className="modal fade"
+            id="deleteMomentModal"
+            tabIndex="-1"
+            aria-labelledby="deleteModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
 
-              <div className="modal-header">
-                <h5 className="modal-title" id="deleteModalLabel">Delete Moment</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
+                <div className="modal-header">
+                  <h5 className="modal-title" id="deleteModalLabel">Delete Moment</h5>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div className="modal-body">
+                  Are you sure you want to delete this moment?
+                </div>
+
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn cancel"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="button"
+                    className="btn delete"
+                    onClick={confirmDelete}
+                  >
+                    Delete
+                  </button>
+                </div>
+
               </div>
-
-              <div className="modal-body">
-                Are you sure you want to delete this moment?
-              </div>
-
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn cancel"
-                  data-bs-dismiss="modal"
-                >
-                  Cancel
-                </button>
-
-                <button
-                  type="button"
-                  className="btn delete"
-                  onClick={confirmDelete}
-                >
-                  Delete
-                </button>
-              </div>
-
             </div>
           </div>
-        </div>
 
-      </section>
-      
-    )}
+        </section>
+
+      )}
 
       <div className="toast-container position-fixed p-3">
         <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert">

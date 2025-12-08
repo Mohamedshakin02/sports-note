@@ -53,21 +53,21 @@ function Quotes() {
 
   useEffect(() => {
     const fetchQuotes = async () => {
-      setLoading(true);
-
       if (!user) {
         // User logged out → show default quotes immediately
         setQuotesList(defaultQuotes);
-        setLoading(false);
         return;
       }
 
       try {
+        setLoading(true);
         const res = await axios.get("http://localhost:5000/api/quotes", { withCredentials: true });
         setQuotesList(Array.isArray(res.data) ? res.data : []);
+
       } catch (err) {
+        setQuotesList([]);
         console.error("Error fetching quotes:", err);
-        setQuotesList([]); // fallback
+        showToast("Failed to load quotes.");
       } finally {
         setLoading(false);
       }
@@ -175,7 +175,7 @@ function Quotes() {
 
     try {
       const res = await axios.put(`http://localhost:5000/api/quotes/${editingQuote.id}`, { ...editingQuote, imageUrl }, { withCredentials: true });
-      setQuotesList(prev => prev.map(q => (q._id === editingQuote.id || q.id === editingQuote.id ? res.data : q)));
+      setQuotesList(prev => prev.map(quote => (quote._id === editingQuote.id || quote.id === editingQuote.id ? res.data : quote)));
       const modalEl = document.getElementById("editQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Quote updated successfully!");
@@ -193,7 +193,7 @@ function Quotes() {
     setLoading(true);
     try {
       await axios.delete(`http://localhost:5000/api/quotes/${deleteId}`, { withCredentials: true });
-      setQuotesList(prev => prev.filter(q => (q._id || q.id) !== deleteId));
+      setQuotesList(prev => prev.filter(quote => (quote._id || quote.id) !== deleteId));
       const modalEl = document.getElementById("deleteQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Quote deleted successfully!");

@@ -46,7 +46,7 @@ function Login() {
 
       showToast("Login successful!");
       login(res.data.user); // store in context
-      setTimeout(() => navigate("/", { replace: true }), 10);
+      setTimeout(() => navigate("/", { replace: true }), 5);
     } catch (err) {
       showToast(err.response?.data?.message || "Something went wrong");
     } finally {
@@ -68,7 +68,7 @@ function Login() {
       );
       login(res.data.user); // store in context
       showToast("Logged in successfully with Google!");
-      setTimeout(() => navigate("/", { replace: true }), 10);
+      setTimeout(() => navigate("/", { replace: true }), 5);
     } catch (err) {
       showToast(err.response?.data?.message || "Google login failed");
     } finally {
