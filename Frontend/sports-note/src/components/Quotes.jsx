@@ -258,7 +258,13 @@ function Quotes() {
                 {openMenuIndex === index && (
                   <div className="menu-dropdown">
                     <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(quote) }}>Edit</button>
-                    <button onClick={() => { if (!isLoggedIn) return showLoginToast(); setDeleteId(quote._id || quote.id); const modalEl = document.getElementById("deleteQuoteModal"); new window.bootstrap.Modal(modalEl).show(); }}>Delete</button>
+                    <button onClick={() => {
+                      if (!isLoggedIn) return showLoginToast(); setDeleteId(quote._id || quote.id);
+                      const modalEl = document.getElementById("deleteQuoteModal");
+                      new window.bootstrap.Modal(modalEl).show();
+                    }}>
+                      Delete
+                    </button>
                   </div>
                 )}
               </div>

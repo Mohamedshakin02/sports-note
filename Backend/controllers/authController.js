@@ -6,6 +6,7 @@ import { OAuth2Client } from "google-auth-library";
 import Moment from "../models/moment.js";
 import Fixture from "../models/fixture.js";
 import Quote from "../models/quote.js";
+import Technique from "../models/technique.js";
 
 dotenv.config();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -45,6 +46,59 @@ const defaultQuotes = [
     { quote: "Success isn’t owned. It’s leased. And rent is due every day.", author: "J.J. Watt", imageUrl: "" },
 ];
 
+const defaultTechniques = [
+    {
+        title: "Rainbow Flick",
+        steps: [
+            "Place your dominant foot in front of the ball",
+            "Roll the ball up the back of your standing leg",
+            "Flick your standing leg forward and upward",
+            "The ball should arc over your head and land in front of you"
+        ],
+        sport: "Football"
+    },
+    {
+        title: "Cover Drive",
+        steps: [
+            "Take a side-on stance",
+            "Step forward with your front foot toward the pitch of the ball",
+            "Swing the bat smoothly along the ground",
+            "Hit the ball along the ground through the cover region"
+        ],
+        sport: "Cricket"
+    },
+    {
+        title: "Reverse Sweep",
+        steps: [
+            "Take a normal batting stance",
+            "Rotate your wrists and bat to sweep the ball opposite direction",
+            "Bend your knees slightly for balance",
+            "Follow through to guide the ball past fielders"
+        ],
+        sport: "Cricket"
+    },
+    {
+        title: "Jump Smash",
+        steps: [
+            "Stand in a ready position with knees slightly bent",
+            "Move quickly under the shuttle and jump upward",
+            "Rotate your shoulders and swing your racket overhead",
+            "Hit the shuttle downward with power while landing balanced"
+        ],
+        sport: "Badminton"
+    },
+    {
+        title: "Crossover Dribble",
+        steps: [
+            "Start dribbling the ball with your dominant hand",
+            "Lower your body to maintain control",
+            "Quickly bounce the ball to your opposite hand",
+            "Explode in the new direction to beat your defender"
+        ],
+        sport: "Basketball"
+    }
+];
+
 export const signup = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -74,6 +128,10 @@ export const signup = async (req, res) => {
         // Add default quotes
         const userQuotes = defaultQuotes.map(q => ({ ...q, userId: newUser._id }));
         await Quote.insertMany(userQuotes);
+
+        // Add default techniques
+        const userTechniques = defaultTechniques.map(t => ({ ...t, userId: newUser._id }));
+        await Technique.insertMany(userTechniques);
 
 
 
@@ -133,6 +191,9 @@ export const googleLogin = async (req, res) => {
             const userQuotes = defaultQuotes.map(q => ({ ...q, userId: user._id }));
             await Quote.insertMany(userQuotes);
 
+            // Add default techniques
+            const userTechniques = defaultTechniques.map(t => ({ ...t, userId: user._id }));
+            await Technique.insertMany(userTechniques);
 
         }
 

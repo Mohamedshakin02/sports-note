@@ -158,6 +158,9 @@ body {
     font-size: 18px;
   }
 }
+.techniques-section {
+  min-height: 500px;
+}
 .techniques-section .heading-container {
   color: #710004;
   display: flex;
@@ -286,78 +289,122 @@ body {
 .techniques-section .menu-dropdown button:hover {
   background: #f2f2f2;
 }
-.techniques-section .modal .modal-dialog-scrollable {
+.techniques-section .modal .modal-dialog-scrollable,
+.techniques-section .modal .modal-dialog {
   display: flex;
   align-items: center;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content {
+.techniques-section .modal .modal-dialog-scrollable .modal-content,
+.techniques-section .modal .modal-dialog .modal-content {
   border-radius: 8px;
   background-color: #FCF0D6;
   border: 2px solid #710004;
   position: relative;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading h1 {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading h1,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .heading h1 {
   color: #710004;
   font-weight: 600;
   text-align: center;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading button {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading button,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .heading button {
   position: absolute;
   right: 15px;
   top: 20px;
   box-shadow: none;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form label {
   font-weight: 500;
   color: #710004;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label span {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label span,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form label span {
   font-weight: 400;
   color: black;
   font-size: 0.9rem;
 }
 .techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input,
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form input,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form select {
   background-color: unset;
   color: black;
   border: 2px solid #710004;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::-moz-placeholder, .techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::-moz-placeholder {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::-moz-placeholder, .techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::-moz-placeholder, .techniques-section .modal .modal-dialog .modal-content .modal-body .form form input::-moz-placeholder, .techniques-section .modal .modal-dialog .modal-content .modal-body .form form select::-moz-placeholder {
   font-size: 0.9rem;
   color: rgb(55, 55, 55);
 }
 .techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::placeholder,
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::placeholder {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::placeholder,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form input::placeholder,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form select::placeholder {
   font-size: 0.9rem;
   color: rgb(55, 55, 55);
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form select.form-select option {
   background-color: #710004;
   color: white;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""] {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""],
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form select.form-select option[value=""] {
   background-color: #b3b5b7;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .step span {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .step span,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form .step span {
   width: 15px;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .step button {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .step button,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form .step button {
   align-self: stretch;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form .form-control:focus {
   background-color: #FCF0D6;
   box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
   color: black;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form button {
   background-color: #710004;
   color: #FCF0D6;
   font-weight: 500;
   border: none;
 }
-.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover {
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form button:hover {
   background-color: #000000;
   color: #FFFFFF;
+}
+.techniques-section .modal .modal-dialog-scrollable .modal-content h5,
+.techniques-section .modal .modal-dialog .modal-content h5 {
+  color: #710004;
+}
+.techniques-section .modal .modal-dialog-scrollable .modal-content .cancel,
+.techniques-section .modal .modal-dialog .modal-content .cancel {
+  border: 2px solid #710004;
+}
+.techniques-section .modal .modal-dialog-scrollable .modal-content .cancel:hover,
+.techniques-section .modal .modal-dialog .modal-content .cancel:hover {
+  background-color: black;
+  color: white;
+}
+.techniques-section .modal .modal-dialog-scrollable .modal-content .delete,
+.techniques-section .modal .modal-dialog .modal-content .delete {
+  background-color: #710004;
+  color: #FCF0D6;
+}
+.techniques-section .modal .modal-dialog-scrollable .modal-content .delete:hover,
+.techniques-section .modal .modal-dialog .modal-content .delete:hover {
+  background-color: black;
+  color: white;
+}
+.techniques-section .modal .modal-dialog-scrollable .modal-content .btn-close,
+.techniques-section .modal .modal-dialog .modal-content .btn-close {
+  box-shadow: none;
 }
 
 @media screen and (max-width: 992px) {

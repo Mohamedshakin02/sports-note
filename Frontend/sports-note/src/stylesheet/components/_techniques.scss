@@ -2,6 +2,8 @@
 @use "../abstract/variables" as *;
 
 .techniques-section {
+    min-height: 500px;
+    
     .heading-container {
         color: $red;
         display: flex;
@@ -159,7 +161,8 @@
 
     .modal {
 
-        .modal-dialog-scrollable {
+        .modal-dialog-scrollable,
+        .modal-dialog {
             display: flex;
             align-items: center;
 
@@ -252,6 +255,33 @@
 
                         }
                     }
+                }
+
+                h5 {
+                    color: $red;
+                }
+
+                .cancel {
+                    border: 2px solid $red ;
+
+                    &:hover {
+                        background-color: black;
+                        color: white;
+                    }
+                }
+
+                .delete {
+                    background-color: $red;
+                    color: $yellow;
+
+                    &:hover {
+                        background-color: black;
+                        color: white;
+                    }
+                }
+
+                .btn-close {
+                    box-shadow: none;
                 }
             }
         }
