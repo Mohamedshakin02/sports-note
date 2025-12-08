@@ -8,6 +8,8 @@ import momentsRoutes from "./routes/moments.js";
 import fixturesRoutes from "./routes/fixtures.js";
 import quotesRoutes from "./routes/quotes.js";
 import techniquesRoutes from "./routes/techniques.js";
+import sessionRoutes from "./routes/sessions.js";
+
 
 dotenv.config();
 const app = express();
@@ -24,6 +26,7 @@ app.use("/api/moments", momentsRoutes);
 app.use("/api/fixtures", fixturesRoutes);
 app.use("/api/quotes", quotesRoutes);
 app.use("/api/techniques", techniquesRoutes);
+app.use("/api/sessions", sessionRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI, { dbName: "SportsNoteDB" })

@@ -3,7 +3,7 @@
 
 .techniques-section {
     min-height: 500px;
-    
+
     .heading-container {
         color: $red;
         display: flex;
@@ -25,7 +25,8 @@
                     color: white;
                 }
 
-                &:focus, &:active {
+                &:focus,
+                &:active {
                     outline: $black !important;
                     box-shadow: $black !important;
                     border-color: $black;
@@ -224,15 +225,35 @@
                                 background-color: #b3b5b7;
                             }
 
-                            .step{
-                                span{
+                            .step {
+                                span {
                                     width: 15px;
 
                                 }
 
-                                button{
+                                button {
                                     align-self: stretch;
                                 }
+                            }
+
+                            input.form-control:focus {
+                                background-color: $yellow !important;
+                                color: black !important;
+                            }
+
+                            input:-webkit-autofill,
+                            input:-webkit-autofill:hover,
+                            input:-webkit-autofill:focus {
+                                background-color: $yellow !important;
+                                -webkit-box-shadow: 0 0 0 1000px $yellow inset !important;
+                                box-shadow: 0 0 0 1000px $yellow inset !important;
+                                -webkit-text-fill-color: black !important;
+                                color: black !important;
+                            }
+
+                            input:-internal-autofill-selected {
+                                background-color: $yellow !important;
+                                color: black !important;
                             }
 
                             .form-control:focus {
@@ -291,9 +312,9 @@
 
 }
 
-@media screen and (max-width: 992px){
-    .techniques-section{
-        .heading-container{
+@media screen and (max-width: 992px) {
+    .techniques-section {
+        .heading-container {
             flex-direction: column;
             gap: 1.5rem;
         }

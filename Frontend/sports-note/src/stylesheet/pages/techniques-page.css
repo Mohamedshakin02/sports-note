@@ -361,6 +361,27 @@ body {
 .techniques-section .modal .modal-dialog .modal-content .modal-body .form form .step button {
   align-self: stretch;
 }
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input.form-control:focus,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form input.form-control:focus {
+  background-color: #FCF0D6 !important;
+  color: black !important;
+}
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-webkit-autofill,
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-webkit-autofill:hover,
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-webkit-autofill:focus,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form input:-webkit-autofill,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form input:-webkit-autofill:hover,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form input:-webkit-autofill:focus {
+  background-color: #FCF0D6 !important;
+  box-shadow: 0 0 0 1000px #FCF0D6 inset !important;
+  -webkit-text-fill-color: black !important;
+  color: black !important;
+}
+.techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-internal-autofill-selected,
+.techniques-section .modal .modal-dialog .modal-content .modal-body .form form input:-internal-autofill-selected {
+  background-color: #FCF0D6 !important;
+  color: black !important;
+}
 .techniques-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus,
 .techniques-section .modal .modal-dialog .modal-content .modal-body .form form .form-control:focus {
   background-color: #FCF0D6;

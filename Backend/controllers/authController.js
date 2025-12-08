@@ -7,6 +7,7 @@ import Moment from "../models/moment.js";
 import Fixture from "../models/fixture.js";
 import Quote from "../models/quote.js";
 import Technique from "../models/technique.js";
+import Session from "../models/session.js";
 
 dotenv.config();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -99,6 +100,16 @@ const defaultTechniques = [
     }
 ];
 
+const defaultSessions = [
+    { title: "Morning Basketball Drills", exercises: ["Warm-up jog (5 mins)", "Dribbling practice", "Layup drills", "Free-throw routine", "Cooldown stretches"] },
+    { title: "Badminton Smash Training", exercises: ["Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills"] },
+    { title: "Football Dribbling Drills", exercises: ["Cone dribbling", "Fast touches", "Directional changes", "Ball control challenges"] },
+    { title: "Cardio and Endurance", exercises: ["5km run", "Interval sprints", "Jump rope (10 mins)", "Cooldown stretching"] },
+    { title: "Badminton Rally Session", exercises: ["Long rallies", "Placement shots", "Side-to-side drills"] },
+    { title: "Football Shooting Practice", exercises: ["First-touch shots", "Power shooting", "Target accuracy"] },
+    { title: "Badminton Footwork Practice", exercises: ["Front-back steps", "Side-to-side steps", "Recovery training"] },
+]
+
 export const signup = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -132,6 +143,10 @@ export const signup = async (req, res) => {
         // Add default techniques
         const userTechniques = defaultTechniques.map(technique => ({ ...technique, userId: newUser._id }));
         await Technique.insertMany(userTechniques);
+
+        // Add default sessions
+        const userSessions = defaultSessions.map(session => ({ ...session, userId: newUser._id }));
+        await Session.insertMany(userSessions);
 
 
 
@@ -194,6 +209,10 @@ export const googleLogin = async (req, res) => {
             // Add default techniques
             const userTechniques = defaultTechniques.map(technique => ({ ...technique, userId: user._id }));
             await Technique.insertMany(userTechniques);
+
+            // Add default sessions
+            const userSessions = defaultSessions.map(session => ({ ...session, userId: user._id }));
+            await Session.insertMany(userSessions);
 
         }
 
