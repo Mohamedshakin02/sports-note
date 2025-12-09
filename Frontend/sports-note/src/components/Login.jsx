@@ -10,6 +10,8 @@ function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [toast, setToast] = useState({ message: "" });
   const [loading, setLoading] = useState(false);
+  const [googleReady, setGoogleReady] = useState(false);
+
   const { login } = useContext(AuthContext); 
 
   // Show toast
@@ -94,6 +96,8 @@ function Login() {
       width: "100%"
     });
 
+    setGoogleReady(true);
+
     google.accounts.id.prompt();
 
 
@@ -121,6 +125,7 @@ function Login() {
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
+                  placeholder="Enter email address"
                   required
                 />
               </div>
@@ -133,6 +138,7 @@ function Login() {
                   id="password"
                   value={formData.password}
                   onChange={handleChange}
+                  placeholder="Enter password"
                   required
                 />
               </div>
@@ -147,8 +153,11 @@ function Login() {
                 </p>
               </div>
 
-              <div className="text-center text-dark mt-2">OR</div>
-              <div id="g_id_signin" className="mt-2"></div>
+              {googleReady && (
+                <div className="text-center text-dark">OR</div>
+              )}
+
+              <div id="g_id_signin"></div>
             </form>
           </div>
         </div>

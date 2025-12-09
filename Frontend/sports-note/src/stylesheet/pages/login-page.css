@@ -200,6 +200,14 @@ body {
   color: black;
   border: 2px solid #710004;
 }
+.login-section .login-container .login-form form input::-moz-placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
+.login-section .login-container .login-form form input::placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
 .login-section .login-container .login-form form input.form-control:focus {
   background-color: #FCF0D6 !important;
   color: black !important;

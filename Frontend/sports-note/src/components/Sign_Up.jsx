@@ -9,6 +9,8 @@ function Sign_Up() {
 
   const [toast, setToast] = useState({ message: "" });
   const [loading, setLoading] = useState(false);
+  const [googleReady, setGoogleReady] = useState(false);
+
   const { login } = useContext(AuthContext);
 
   const showToast = (message) => {
@@ -93,6 +95,8 @@ function Sign_Up() {
       width: "100%"
     });
 
+    setGoogleReady(true);
+
     google.accounts.id.prompt();
 
 
@@ -115,15 +119,15 @@ function Sign_Up() {
             <form className="row g-3" onSubmit={handleSubmit}>
               <div className="mb-1 col-12">
                 <label htmlFor="username" className="form-label">Username:</label>
-                <input type="text" className="form-control" id="username" value={formData.username} onChange={handleChange} required />
+                <input type="text" className="form-control" id="username" value={formData.username} onChange={handleChange} placeholder='Enter username' required />
               </div>
               <div className="mb-1 col-12">
                 <label htmlFor="email" className="form-label">Email:</label>
-                <input type="email" className="form-control" id="email" value={formData.email} onChange={handleChange} required />
+                <input type="email" className="form-control" id="email" value={formData.email} onChange={handleChange} placeholder='Enter email address' required />
               </div>
               <div className="mb-2 col-12">
                 <label htmlFor="password" className="form-label">Password:</label>
-                <input type="password" className="form-control" id="password" value={formData.password} onChange={handleChange} required />
+                <input type="password" className="form-control" id="password" value={formData.password} onChange={handleChange} placeholder='Enter password' required />
               </div>
               <div className="col-12">
                 <button type="submit" className="btn btn-primary fs-6">Sign Up</button>
@@ -135,7 +139,10 @@ function Sign_Up() {
                 </p>
               </div>
 
-              <div className="text-center text-light">OR</div>
+              {googleReady && (
+                <div className="text-center text-light">OR</div>
+              )}
+
               <div id="g_id_signin"></div>
             </form>
           </div>

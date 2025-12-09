@@ -200,6 +200,16 @@ body {
   color: white;
   border: 2px solid #FCF0D6;
 }
+.signup-section .signup-container .signup-form form input::-moz-placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+  filter: invert(100);
+}
+.signup-section .signup-container .signup-form form input::placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+  filter: invert(100);
+}
 .signup-section .signup-container .signup-form form input.form-control:focus {
   background-color: #710004 !important;
   color: white !important;
