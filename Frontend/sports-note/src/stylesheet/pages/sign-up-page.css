@@ -249,7 +249,7 @@ body {
 }
 
 .toast-container {
-  top: 100px;
+  top: 50px !important;
   right: 0px;
   border-radius: 8px;
   z-index: 100;
