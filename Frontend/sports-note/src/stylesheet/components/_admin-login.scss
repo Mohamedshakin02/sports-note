@@ -1,0 +1,184 @@
+@use "../abstract/reset" as *;
+@use "../abstract/variables" as *;
+
+.admin-login-section {
+  width: 100%;
+  overflow: hidden;
+
+  .admin-login-container {
+    z-index: 30;
+    width: 100%;
+    margin-top: 7rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+    align-items: center;
+    justify-items: center;
+    color: $yellow;
+
+    .admin-login-heading {
+      justify-self: center;
+      align-self: flex-start;
+      max-width: 450px;
+
+      h1 {
+        font-weight: 600;
+      }
+
+      p {
+        color: $white;
+      }
+    }
+
+    .admin-login-form {
+      max-width: 450px;
+      justify-self: flex-start;
+      position: relative;
+      background-color: $yellow;
+      color: $red;
+      border-radius: 8px;
+      
+
+      form{
+        label{
+          font-weight: 500;
+        }
+
+        input{
+          background-color:unset;
+          color: black;
+          border: 2px solid $red;
+
+          &::placeholder {
+            font-size: 0.9rem;
+            color: rgb(55, 55, 55);
+          }
+        }
+
+        input.form-control:focus {
+          background-color: $yellow !important;
+          color: black !important;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+          background-color: $yellow !important;
+          -webkit-box-shadow: 0 0 0 1000px $yellow inset !important;
+          box-shadow: 0 0 0 1000px $yellow inset !important;
+          -webkit-text-fill-color: black !important;
+          color: black !important;
+        }
+
+        input:-internal-autofill-selected {
+          background-color: $yellow !important;
+          color: black !important;
+        }
+
+        .form-control:focus{
+          background-color: $yellow;
+          box-shadow: 0 0 0 .25rem rgb(113, 0, 4, 0.25);
+          color: black;
+        }
+
+        button{
+          background-color: $red;
+          color: $yellow;
+          font-weight: 500;
+          border: none;
+
+          &:hover{
+            background-color: $black;
+            color: $white;
+          }
+        }
+
+      }
+    }
+  }
+
+
+}
+
+.toast-container{
+  top: 100px !important;
+  right: 0px;
+  border-radius: 8px;
+  z-index: 100;
+}
+
+// Toast background 
+.custom-toast {
+  background-color: $white !important;  
+  color: $black !important;                
+  border: none;
+
+  .btn-close{
+    box-shadow: none;
+  }
+}
+
+// Progress bar 
+.toast-progress-wrapper {
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 0px 0px 8px 8px;
+}
+
+// Progress bar animation
+.toast-progress {
+  height: 100%;
+  width: 100%;
+  background-color: $red; 
+  animation: shrink 3s linear forwards;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4; 
+}
+
+// disappering toast 
+@keyframes shrink {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+@media only screen and (max-width: 992px) {
+  .admin-login-section {
+    .admin-login-container {
+      grid-template-columns: repeat(1, 1fr);
+      margin-top: 4rem;
+      gap: 2rem;
+
+      .admin-login-heading{
+        justify-self:unset;
+        max-width: 450px;
+      }
+
+      .admin-login-form{
+        justify-self:unset;
+      }
+    }
+
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-login-section {
+    .admin-login-container {
+      margin-top: 2rem;
+    }
+
+
+  }
+}

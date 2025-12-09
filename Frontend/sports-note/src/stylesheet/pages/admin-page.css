@@ -1,0 +1,299 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  padding-right: 0 !important;
+}
+
+.admin-section {
+  min-height: 500px;
+}
+.admin-section .heading-container {
+  color: #FCF0D6;
+}
+.admin-section .heading-container h1 {
+  font-weight: 600;
+}
+.admin-section .add-container {
+  display: flex;
+  justify-content: end;
+}
+.admin-section .add-container button {
+  background-color: #FCF0D6;
+  font-weight: 600;
+}
+.admin-section .add-container button:hover {
+  background-color: black;
+  color: white;
+}
+.admin-section .add-container button:focus, .admin-section .add-container button:active {
+  outline: #000000 !important;
+  box-shadow: #000000 !important;
+  border-color: #000000;
+}
+.admin-section .admin-logout {
+  display: flex;
+  justify-content: center;
+}
+.admin-section .admin-logout a,
+.admin-section .admin-logout button {
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.admin-section .admin-logout a {
+  background-color: black;
+  color: white;
+}
+.admin-section .admin-logout button {
+  background-color: #FCF0D6;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: black;
+  border: none;
+}
+.admin-section .admin-logout button:hover {
+  background-color: black;
+  color: white;
+}
+.admin-section .admin-logout a:focus,
+.admin-section .admin-logout a:active,
+.admin-section .admin-logout button:focus,
+.admin-section .admin-logout button:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+.admin-section .table-container {
+  overflow-x: auto;
+}
+.admin-section .table-container::-webkit-scrollbar {
+  height: 8px;
+  /* thickness of horizontal scrollbar */
+}
+.admin-section .table-container::-webkit-scrollbar-track {
+  background-color: white;
+  box-shadow: inset 0 0 0 4px #710004;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+.admin-section .table-container::-webkit-scrollbar-thumb {
+  background: #FCF0D6;
+  /* your custom color */
+  border-radius: 5px;
+}
+.admin-section .table-container table {
+  overflow-x: auto;
+}
+.admin-section .table-container table thead {
+  background-color: #710004;
+  box-shadow: inset 0 0 0 4px #FCF0D6;
+  color: #FCF0D6;
+}
+.admin-section .table-container table thead tr th {
+  background-color: unset;
+  color: unset;
+  align-self: first baseline;
+}
+.admin-section .table-container table tbody {
+  background-color: #FCF0D6;
+}
+.admin-section .table-container table tbody tr td,
+.admin-section .table-container table tbody tr th {
+  background-color: unset;
+  color: unset;
+  border-top: 2px solid #710004;
+}
+.admin-section .table-container table tbody tr td {
+  font-weight: 500;
+}
+.admin-section .table-container table tbody td button {
+  background-color: #710004;
+  border: none;
+  color: #FCF0D6;
+}
+.admin-section .table-container table tbody td button:hover {
+  background-color: black;
+  color: white;
+}
+.admin-section .modal .modal-dialog-scrollable,
+.admin-section .modal .modal-dialog {
+  display: flex;
+  align-items: center;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content,
+.admin-section .modal .modal-dialog .modal-content {
+  border-radius: 8px;
+  background-color: #FCF0D6;
+  border: 2px solid #710004;
+  position: relative;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading h1,
+.admin-section .modal .modal-dialog .modal-content .modal-body .heading h1 {
+  color: #710004;
+  font-weight: 600;
+  text-align: center;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .heading button,
+.admin-section .modal .modal-dialog .modal-content .modal-body .heading button {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  box-shadow: none;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form label {
+  font-weight: 500;
+  color: #710004;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form label span,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form label span {
+  font-weight: 400;
+  color: black;
+  font-size: 0.9rem;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input,
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea,
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form input,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form textarea,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form select {
+  background-color: unset;
+  color: black;
+  border: 2px solid #710004;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::-moz-placeholder, .admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea::-moz-placeholder, .admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::-moz-placeholder, .admin-section .modal .modal-dialog .modal-content .modal-body .form form input::-moz-placeholder, .admin-section .modal .modal-dialog .modal-content .modal-body .form form textarea::-moz-placeholder, .admin-section .modal .modal-dialog .modal-content .modal-body .form form select::-moz-placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input::placeholder,
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea::placeholder,
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select::placeholder,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form input::placeholder,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form textarea::placeholder,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form select::placeholder {
+  font-size: 0.9rem;
+  color: rgb(55, 55, 55);
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input.form-control:focus,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form input.form-control:focus {
+  background-color: #FCF0D6 !important;
+  color: black !important;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-webkit-autofill,
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-webkit-autofill:hover,
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-webkit-autofill:focus,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form input:-webkit-autofill,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form input:-webkit-autofill:hover,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form input:-webkit-autofill:focus {
+  background-color: #FCF0D6 !important;
+  box-shadow: 0 0 0 1000px #FCF0D6 inset !important;
+  -webkit-text-fill-color: black !important;
+  color: black !important;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form input:-internal-autofill-selected,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form input:-internal-autofill-selected {
+  background-color: #FCF0D6 !important;
+  color: black !important;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form .form-control:focus {
+  background-color: #FCF0D6;
+  box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
+  color: black;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form select.form-select option {
+  background-color: #710004;
+  color: white;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select option[value=""],
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form select.form-select option[value=""] {
+  background-color: #b3b5b7;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form textarea,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form .form-control:focus {
+  background-color: #FCF0D6;
+  box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
+  color: black;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form button {
+  background-color: #710004;
+  color: #FCF0D6;
+  font-weight: 500;
+  border: none;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form button:hover,
+.admin-section .modal .modal-dialog .modal-content .modal-body .form form button:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content h5,
+.admin-section .modal .modal-dialog .modal-content h5 {
+  color: #710004;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .cancel,
+.admin-section .modal .modal-dialog .modal-content .cancel {
+  border: 2px solid #710004;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .cancel:hover,
+.admin-section .modal .modal-dialog .modal-content .cancel:hover {
+  background-color: black;
+  color: white;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .delete,
+.admin-section .modal .modal-dialog .modal-content .delete {
+  background-color: #710004;
+  color: #FCF0D6;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .delete:hover,
+.admin-section .modal .modal-dialog .modal-content .delete:hover {
+  background-color: black;
+  color: white;
+}
+.admin-section .modal .modal-dialog-scrollable .modal-content .btn-close,
+.admin-section .modal .modal-dialog .modal-content .btn-close {
+  box-shadow: none;
+}
+
+.toast-container {
+  top: 100px !important;
+  right: 0px;
+  border-radius: 8px;
+  z-index: 9999;
+}
+
+.custom-toast {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: none;
+}
+.custom-toast .btn-close {
+  box-shadow: none;
+}
+
+.toast-progress-wrapper {
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 0px 0px 8px 8px;
+}
+
+.toast-progress {
+  height: 100%;
+  width: 100%;
+  background-color: #710004;
+  animation: shrink 3s linear forwards;
+}/*# sourceMappingURL=admin-page.css.map */

@@ -1,8 +1,7 @@
+import mongoose from "mongoose";
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { OAuth2Client } from "google-auth-library";
 import Moment from "../models/moment.js";
 import Fixture from "../models/fixture.js";
 import Quote from "../models/quote.js";
@@ -10,18 +9,6 @@ import Technique from "../models/technique.js";
 import Session from "../models/session.js";
 
 dotenv.config();
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-
-// Helper: create JWT and set cookie
-const createTokenAndSetCookie = (res, user) => {
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "lax",
-        maxAge: 7 * 24 * 60 * 60 * 1000
-    });
-};
 
 // Add default moments for the new user 
 const defaultMoments = [
@@ -110,20 +97,82 @@ const defaultSessions = [
     { title: "Badminton Footwork Practice", exercises: ["Front-back steps", "Side-to-side steps", "Recovery training"] },
 ]
 
-export const signup = async (req, res) => {
+// GET all users
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find().select("-__v"); // hide version key
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+// DELETE a user by id
+export const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const objectId = new mongoose.Types.ObjectId(id);
+
+        // Delete user
+        await User.findByIdAndDelete(objectId);
+
+        // Delete all related data
+        await Moment.deleteMany({ userId: objectId });
+        await Fixture.deleteMany({ userId: objectId });
+        await Quote.deleteMany({ userId: objectId });
+        await Technique.deleteMany({ userId: objectId });
+        await Session.deleteMany({ userId: objectId });
+
+        res.json({ message: "User and all related data deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+
+// UPDATE a user by id (only non-Google users)
+export const updateUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { username, email, password } = req.body;
+
+        const user = await User.findById(id);
+        if (!user) return res.status(404).json({ message: "User not found" });
+        if (user.googleUser) return res.status(400).json({ message: "Cannot edit Google user" });
+
+        if (username && username.length < 5)
+            return res.status(400).json({ message: "Username must have at least 5 characters." });
+
+        if (password && password.length < 6)
+            return res.status(400).json({ message: "Password must have at least 6 characters." });
+
+        if (username) user.username = username;
+        if (email) user.email = email;
+        if (password) user.password = await bcrypt.hash(password, 10);
+
+        await user.save();
+        res.json({ message: "User updated successfully", user });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+// CREATE a new user (non-Google)
+export const createUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
-        if (!username || !email || !password) return res.status(400).json({ message: "All fields required" });
+        if (!username || !email || !password)
+            return res.status(400).json({ message: "All fields are required" });
 
-        if (username.length < 5) {
+        if (username.length < 5)
             return res.status(400).json({ message: "Username must have at least 5 characters." });
-        }
-        if (password.length < 6) {
-            return res.status(400).json({ message: "Password must have at least 6 characters." });
-        }
 
-        const existingUser = await User.findOne({ email });
-        if (existingUser) return res.status(409).json({ message: "Email already exists" });
+        if (password.length < 6)
+            return res.status(400).json({ message: "Password must have at least 6 characters." });
+
+        const existing = await User.findOne({ email });
+        if (existing) return res.status(409).json({ message: "Email already exists" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await User.create({ username, email, password: hashedPassword });
@@ -148,127 +197,8 @@ export const signup = async (req, res) => {
         const userSessions = defaultSessions.map(session => ({ ...session, userId: newUser._id }));
         await Session.insertMany(userSessions);
 
-
-
-        createTokenAndSetCookie(res, newUser);
-
-        res.status(201).json({
-            user: { id: newUser._id, username: newUser.username, email: newUser.email },
-        });
+        res.status(201).json({ message: "User created", user: newUser });
     } catch (err) {
         res.status(500).json({ message: err.message });
-    }
-};
-
-export const login = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        if (!email || !password) return res.status(400).json({ message: "Email and password required" });
-
-        const user = await User.findOne({ email });
-        if (!user) return res.status(404).json({ message: "User not found" });
-
-        const match = await bcrypt.compare(password, user.password);
-        if (!match) return res.status(401).json({ message: "Incorrect password" });
-
-        createTokenAndSetCookie(res, user);
-
-        res.status(200).json({
-            user: { id: user._id, username: user.username, email: user.email },
-        });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-};
-
-// Google login
-export const googleLogin = async (req, res) => {
-    try {
-        const { token } = req.body;
-        const ticket = await client.verifyIdToken({ idToken: token, audience: process.env.GOOGLE_CLIENT_ID });
-        const payload = ticket.getPayload();
-        const { email, name } = payload;
-
-        let user = await User.findOne({ email });
-        if (!user) {
-            // New Google user → create user
-            user = await User.create({ username: name, email, password: null, googleUser: true });
-
-            // Add default moments for new Google user
-            const userMoments = defaultMoments.map(moment => ({ ...moment, userId: user._id }));
-            await Moment.insertMany(userMoments);
-
-            // Add default fixtures
-            const userFixtures = defaultFixtures.map(fixture => ({ ...fixture, userId: user._id, date: new Date(fixture.date) }));
-            await Fixture.insertMany(userFixtures);
-
-            // Add default quotes
-            const userQuotes = defaultQuotes.map(quote => ({ ...quote, userId: user._id }));
-            await Quote.insertMany(userQuotes);
-
-            // Add default techniques
-            const userTechniques = defaultTechniques.map(technique => ({ ...technique, userId: user._id }));
-            await Technique.insertMany(userTechniques);
-
-            // Add default sessions
-            const userSessions = defaultSessions.map(session => ({ ...session, userId: user._id }));
-            await Session.insertMany(userSessions);
-
-        }
-
-        createTokenAndSetCookie(res, user);
-        res.status(200).json({ user: { id: user._id, username: user.username, email: user.email } });
-
-    } catch (err) {
-        console.error("Google login error:", err);
-        res.status(400).json({ message: "Google login failed" });
-    }
-};
-
-// Admin login
-export const adminLogin = (req, res) => {
-    const { username, password } = req.body;
-
-    if (!username || !password)
-        return res.status(400).json({ message: "Username and password required" });
-
-    if (username !== process.env.ADMIN_USERNAME || password !== process.env.ADMIN_PASSWORD) {
-        return res.status(401).json({ message: "Invalid admin credentials" });
-    }
-
-    const adminUser = { id: "admin-unique-id", username: username, isAdmin: true };
-
-    const token = jwt.sign(
-        { id: adminUser.id, role: "admin" },
-        process.env.JWT_SECRET,
-        { expiresIn: "7d" }
-    );
-
-    res.cookie("token", token, {
-        httpOnly: true,
-        sameSite: "lax",
-        maxAge: 7 * 24 * 60 * 60 * 1000
-    });
-
-    res.status(200).json({ user: adminUser });
-};
-
-export const logout = (req, res) => {
-    res.clearCookie("token", { httpOnly: true, sameSite: "lax" });
-    res.json({ message: "Logged out successfully" });
-};
-
-export const getSession = async (req, res) => {
-    try {
-        const token = req.cookies.token;
-        if (!token) return res.json({ user: null });
-
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(decoded.id).select("-password");
-        if (!user) return res.json({ user: null });
-
-        res.json({ user: { id: user._id, username: user.username, email: user.email } });
-    } catch (err) {
-        res.json({ user: null });
     }
 };

@@ -6,11 +6,18 @@ export const verifyToken = async (req, res, next) => {
   if (!token) return res.status(401).json({ message: "Unauthorized" });
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Admin user
+    if (decoded.role === "admin") {
+      req.user = { id: decoded.id, username: "Admin", role: "admin" };
+      return next();
+    }
+
+    // Normal user
     req.user = await User.findById(decoded.id).select("-password");
     next();
   } catch (err) {
     res.status(401).json({ message: "Invalid token" });
-    next();
   }
 };
 

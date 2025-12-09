@@ -1,0 +1,340 @@
+@use "../abstract/reset" as *;
+@use "../abstract/variables" as *;
+
+.admin-section {
+    min-height: 500px;
+
+    .heading-container {
+        color: $yellow;
+
+
+        h1 {
+            font-weight: 600;
+
+        }
+
+
+    }
+
+    .add-container {
+        display: flex;
+        justify-content: end;
+
+        button {
+            background-color: $yellow;
+            font-weight: 600;
+
+            &:hover {
+                background-color: black;
+                color: white;
+            }
+
+            &:focus,
+            &:active {
+                outline: $black !important;
+                box-shadow: $black !important;
+                border-color: $black;
+            }
+
+
+        }
+    }
+
+    .admin-logout {
+        display: flex;
+        justify-content: center;
+
+        a,
+        button {
+            all: unset;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        a {
+            background-color: black;
+            color: white;
+        }
+
+        button {
+            background-color: $yellow;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: black;
+            border: none;
+
+            &:hover {
+                background-color: black;
+                color: white;
+            }
+        }
+
+
+        a:focus,
+        a:active,
+        button:focus,
+        button:active {
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+    }
+
+    .table-container {
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            height: 8px;
+            /* thickness of horizontal scrollbar */
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: white;
+            box-shadow: inset 0 0 0 4px $red;
+            border: 2px solid white;
+            border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $yellow;
+            /* your custom color */
+            border-radius: 5px;
+        }
+
+
+
+        table {
+            overflow-x: auto;
+
+            thead {
+                background-color: #710004;
+                box-shadow: inset 0 0 0 4px #FCF0D6;
+                color: $yellow ;
+
+                tr th {
+                    background-color: unset;
+                    color: unset;
+                    align-self: first baseline;
+
+                }
+            }
+
+            tbody {
+                background-color: $yellow;
+
+                tr td,
+                tr th {
+                    background-color: unset;
+                    color: unset;
+                    border-top: 2px solid $red;
+                }
+
+                tr td {
+                    font-weight: 500;
+                }
+
+                td button {
+                    background-color: $red;
+                    border: none;
+                    color: $yellow;
+
+                    &:hover {
+                        background-color: black;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    .modal {
+
+        .modal-dialog-scrollable,
+        .modal-dialog {
+            display: flex;
+            align-items: center;
+
+            .modal-content {
+                border-radius: 8px;
+                background-color: $yellow;
+                border: 2px solid $red;
+                position: relative;
+
+                .modal-body {
+                    .heading {
+                        h1 {
+                            color: $red;
+                            font-weight: 600;
+                            text-align: center;
+                        }
+
+                        button {
+                            position: absolute;
+                            right: 15px;
+                            top: 20px;
+                            box-shadow: none;
+                        }
+
+
+                    }
+
+                    .form {
+                        form {
+                            label {
+                                font-weight: 500;
+                                color: $red;
+
+                                span {
+                                    font-weight: 400;
+                                    color: black;
+                                    font-size: 0.9rem;
+                                }
+                            }
+
+                            input,
+                            textarea,
+                            select {
+                                background-color: unset;
+                                color: black;
+                                border: 2px solid $red;
+
+
+                                &::placeholder {
+                                    font-size: 0.9rem;
+                                    color: rgb(55, 55, 55);
+                                }
+                            }
+
+                            input.form-control:focus {
+                                background-color: $yellow !important;
+                                color: black !important;
+                            }
+
+                            input:-webkit-autofill,
+                            input:-webkit-autofill:hover,
+                            input:-webkit-autofill:focus {
+                                background-color: $yellow !important;
+                                -webkit-box-shadow: 0 0 0 1000px $yellow inset !important;
+                                box-shadow: 0 0 0 1000px $yellow inset !important;
+                                -webkit-text-fill-color: black !important;
+                                color: black !important;
+                            }
+
+                            input:-internal-autofill-selected {
+                                background-color: $yellow !important;
+                                color: black !important;
+                            }
+
+                            .form-control:focus {
+                                background-color: $yellow;
+                                box-shadow: 0 0 0 .25rem rgb(113, 0, 4, 0.25);
+                                color: black;
+                            }
+
+
+                            select.form-select option {
+                                background-color: $red;
+                                color: white;
+                            }
+
+                            select.form-select option[value=""] {
+                                background-color: #b3b5b7;
+                            }
+
+
+                            textarea {
+                                resize: vertical;
+                                min-height: 100px;
+                            }
+
+                            .form-control:focus {
+                                background-color: $yellow;
+                                box-shadow: 0 0 0 .25rem rgb(113, 0, 4, 0.25);
+                                color: black;
+                            }
+
+                            button {
+                                background-color: $red;
+                                color: $yellow;
+                                font-weight: 500;
+                                border: none;
+
+                                &:hover {
+                                    background-color: $black;
+                                    color: $white;
+                                }
+                            }
+
+
+                        }
+                    }
+                }
+
+                h5 {
+                    color: $red;
+                }
+
+                .cancel {
+                    border: 2px solid $red ;
+
+                    &:hover {
+                        background-color: black;
+                        color: white;
+                    }
+                }
+
+                .delete {
+                    background-color: $red;
+                    color: $yellow;
+
+                    &:hover {
+                        background-color: black;
+                        color: white;
+                    }
+                }
+
+                .btn-close {
+                    box-shadow: none;
+                }
+            }
+        }
+
+
+    }
+}
+
+
+.toast-container{
+  top: 100px !important;
+  right: 0px;
+  border-radius: 8px;
+  z-index: 9999;
+}
+
+// Toast background 
+.custom-toast {
+  background-color: $white !important;  
+  color: $black !important;                
+  border: none;
+
+  .btn-close{
+    box-shadow: none;
+  }
+}
+
+// Progress bar 
+.toast-progress-wrapper {
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 0px 0px 8px 8px;
+}
+
+// Progress bar animation
+.toast-progress {
+  height: 100%;
+  width: 100%;
+  background-color: $red; 
+  animation: shrink 3s linear forwards;
+}
