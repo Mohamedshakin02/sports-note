@@ -1,20 +1,11 @@
-import axios from "axios";
-
-const API_KEY = "AIzaSyCKvnpbKYu8KhTpqctTE8PRPiSP8v01FGw"; 
-
 export const fetchVideos = async (query) => {
-  const res = await axios.get(
-    "https://www.googleapis.com/youtube/v3/search",
-    {
-      params: {
-        part: "snippet",
-        q: query,
-        maxResults: 3,
-        type: "video",
-        key: API_KEY,
-      },
-    }
-  );
-
-  return res.data.items;
+  try {
+    const res = await fetch(`http://localhost:5000/api/youtube?q=${encodeURIComponent(query)}`);
+    if (!res.ok) throw new Error("Failed to fetch videos");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error fetching videos:", err);
+    return [];
+  }
 };

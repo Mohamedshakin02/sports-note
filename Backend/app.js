@@ -10,7 +10,7 @@ import quotesRoutes from "./routes/quotes.js";
 import techniquesRoutes from "./routes/techniques.js";
 import sessionRoutes from "./routes/sessions.js";
 import adminRoutes from "./routes/admin.js";
-
+import youtubeRoutes from "./routes/youtube.js";
 
 dotenv.config();
 const app = express();
@@ -22,6 +22,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
+
 app.use("/api/auth", authRoutes);
 app.use("/api/moments", momentsRoutes);
 app.use("/api/fixtures", fixturesRoutes);
@@ -29,6 +30,7 @@ app.use("/api/quotes", quotesRoutes);
 app.use("/api/techniques", techniquesRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/youtube", youtubeRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI, { dbName: "SportsNoteDB" })
