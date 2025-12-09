@@ -1,6 +1,6 @@
 import React from 'react'
-import Sign_Up from '../components/Sign_Up'
-import Header from '../components/header'
+import Sign_Up from '../components/layout/Sign_Up'
+import Header from '../components/layout/Header'
 import '../stylesheet/pages/sign-up-page.css';
 
 

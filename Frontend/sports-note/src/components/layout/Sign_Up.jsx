@@ -1,20 +1,18 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 
-function Login() {
+function Sign_Up() {
   const navigate = useNavigate();
   const toastRef = useRef(null);
 
-  const [formData, setFormData] = useState({ email: "", password: "" });
   const [toast, setToast] = useState({ message: "" });
   const [loading, setLoading] = useState(false);
   const [googleReady, setGoogleReady] = useState(false);
 
-  const { login } = useContext(AuthContext); 
+  const { login } = useContext(AuthContext);
 
-  // Show toast
   const showToast = (message) => {
     setToast({ message });
     const toastElement = toastRef.current;
@@ -32,44 +30,46 @@ function Login() {
 
   };
 
-  // Handle input change
+  const [formData, setFormData] = useState({ username: "", email: "", password: "" });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  // Handle login submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData, { withCredentials: true });
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/signup",
+        formData,
+        { withCredentials: true }
+      );
 
-      showToast("Login successful!");
-      login(res.data.user); // store in context
+      login(res.data.user);
+      showToast("Signup successful!");
+      setFormData({ username: "", email: "", password: "" });
       setTimeout(() => navigate("/", { replace: true }), 5);
     } catch (err) {
-      showToast(err.response?.data?.message || "Something went wrong");
+      const message = err.response?.data?.message || err.message || "Something went wrong";
+      showToast(message);
     } finally {
       setLoading(false);
     }
-
-
   };
 
-  // Google login
   const handleGoogleLogin = async (response) => {
+
     if (!response.credential) return showToast("Google login failed");
     setLoading(true);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/google-login",
+      const res = await axios.post("http://localhost:5000/api/auth/google-login",
         { token: response.credential },
         { withCredentials: true }
       );
-      login(res.data.user); // store in context
-      showToast("Logged in successfully with Google!");
+
+      login(res.data.user);
+      showToast("Signed up successfully with Google!");
       setTimeout(() => navigate("/", { replace: true }), 5);
     } catch (err) {
       showToast(err.response?.data?.message || "Google login failed");
@@ -78,7 +78,6 @@ function Login() {
     }
   };
 
-  // Initialize Google button
   useEffect(() => {
     /* global google */
     const signInContainer = document.getElementById("g_id_signin");
@@ -86,7 +85,7 @@ function Login() {
 
 
     google.accounts.id.initialize({
-      client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com", 
+      client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
       callback: handleGoogleLogin
     });
 
@@ -108,53 +107,40 @@ function Login() {
       {loading && (<div className="loading-overlay"> <div className="spinner-border text-light" role="status"> <span className="visually-hidden">Loading...</span> </div> </div>
       )}
 
-      <section className="login-section container-md px-3 px-md-2 mb-5">
-        <div className="login-container">
-          <div className="login-heading">
-            <h1 className="display-5 m-0 p-0">Login</h1>
-            <p className="fs-4 m-0 p-0 mt-3">Sign in to access your account and continue.</p>
+
+      <section className="signup-section container-md px-3 px-md-2 mb-5">
+        <div className="signup-container">
+          <div className="signup-heading">
+            <h1 className="display-5 m-0 p-0">Sign Up</h1>
+            <p className="fs-4 m-0 p-0 mt-3">Create your account and get started.</p>
           </div>
 
-          <div className="login-form p-4">
+          <div className="signup-form p-4">
             <form className="row g-3" onSubmit={handleSubmit}>
               <div className="mb-1 col-12">
-                <label htmlFor="email" className="form-label">Email:</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter email address"
-                  required
-                />
+                <label htmlFor="username" className="form-label">Username:</label>
+                <input type="text" className="form-control" id="username" value={formData.username} onChange={handleChange} placeholder='Enter username' required />
               </div>
-
+              <div className="mb-1 col-12">
+                <label htmlFor="email" className="form-label">Email:</label>
+                <input type="email" className="form-control" id="email" value={formData.email} onChange={handleChange} placeholder='Enter email address' required />
+              </div>
               <div className="mb-2 col-12">
                 <label htmlFor="password" className="form-label">Password:</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Enter password"
-                  required
-                />
+                <input type="password" className="form-control" id="password" value={formData.password} onChange={handleChange} placeholder='Enter password' required />
               </div>
-
               <div className="col-12">
-                <button type="submit" className="btn btn-primary fs-6">Login</button>
+                <button type="submit" className="btn btn-primary fs-6">Sign Up</button>
               </div>
 
               <div className="col-12 sign-up mt-4">
-                <p className="m-0 p-0">
-                  Don't have an account? <Link to="/sign-up" className="link rounded-pill">Sign Up</Link>
+                <p className='m-0 p-0'>
+                  Already have an account? <Link to="/login" className="link rounded-pill">Login</Link>
                 </p>
               </div>
 
               {googleReady && (
-                <div className="text-center text-dark">OR</div>
+                <div className="text-center text-light">OR</div>
               )}
 
               <div id="g_id_signin"></div>
@@ -163,7 +149,6 @@ function Login() {
         </div>
       </section>
 
-      {/* Toast */}
       <div className="toast-container position-fixed p-3">
         <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
           <div className="d-flex">
@@ -181,4 +166,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Sign_Up;

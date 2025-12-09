@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../components/header'
-import Quotes from '../components/Quotes'
+import Header from '../components/layout/Header'
+import Quotes from '../components/layout/Quotes'
 import '../stylesheet/pages/quotes-page.css';
-import Footer from '../components/Footer';
+import Footer from '../components/layout/Footer';
 
 function QuotesPage() {
   return (

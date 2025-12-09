@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../components/header'
-import Techniques from '../components/Techniques'
+import Header from '../components/layout/Header'
+import Techniques from '../components/layout/Techniques'
 import '../stylesheet/pages/techniques-page.css';
-import Footer from '../components/Footer';
+import Footer from '../components/layout/Footer';
 
 function TechniquesPage() {
   return (

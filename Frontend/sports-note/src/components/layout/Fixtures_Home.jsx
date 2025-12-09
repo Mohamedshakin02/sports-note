@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 
 function Fixtures_Home() {
     const { user } = useContext(AuthContext); // get logged-in user

@@ -28,10 +28,8 @@ export function AuthProvider({ children }) {
     setLogoutLoading(true);
 
     await axios.post("http://localhost:5000/api/auth/logout", {}, { withCredentials: true });
-    setTimeout(() => {
-      setUser(null);
-      setLogoutLoading(false);
-    }, 2000);
+    setUser(null);
+    setLogoutLoading(false);
   };
 
   return (

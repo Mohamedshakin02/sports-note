@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
-import moment1 from "../assets/moments/rcb.jpg";
-import moment3 from "../assets/moments/india vs new zealand.jpg";
-import moment4 from "../assets/moments/lakers win.jpg";
-import noImage from "../assets/logos/moments-grey.png";
+import { AuthContext } from "../auth/AuthContext";
+import moment1 from "../../assets/moments/rcb.jpg";
+import moment3 from "../../assets/moments/india vs new zealand.jpg";
+import moment4 from "../../assets/moments/lakers win.jpg";
+import noImage from "../../assets/logos/moments-grey.png";
 
 // Default static moments for non login user
 const defaultMoments = [

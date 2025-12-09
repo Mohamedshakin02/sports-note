@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 import { Link } from "react-router-dom";
 
 // Default techniques for non-login users

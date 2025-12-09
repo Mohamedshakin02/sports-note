@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import moments from "../assets/logos/moments.png";
-import fixtures from "../assets/logos/fixtures.png";
-import quotes from "../assets/logos/quotes.png";
-import techniques from "../assets/logos/techniques.png";
-import sessions from "../assets/logos/sessions.png";
+import moments from "../../assets/logos/moments.png";
+import fixtures from "../../assets/logos/fixtures.png";
+import quotes from "../../assets/logos/quotes.png";
+import techniques from "../../assets/logos/techniques.png";
+import sessions from "../../assets/logos/sessions.png";
 
 function Features() {
     return (

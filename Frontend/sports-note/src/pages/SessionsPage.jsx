@@ -1,8 +1,8 @@
 import React from 'react'
-import Sessions from '../components/Sessions'
-import Header from '../components/header'
+import Sessions from '../components/layout/Sessions'
+import Header from '../components/layout/Header'
 import '../stylesheet/pages/sessions-page.css';
-import Footer from '../components/Footer';
+import Footer from '../components/layout/Footer';
 
 function SessionsPage() {
   return (

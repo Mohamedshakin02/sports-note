@@ -6,10 +6,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 
-import quote1 from "../assets/quotes/virat.jpg";
-import quote2 from "../assets/quotes/muhammad.jpg";
+import quote1 from "../../assets/quotes/virat.jpg";
+import quote2 from "../../assets/quotes/muhammad.jpg";
 
 // Default static quotes for non-logged-in users
 const defaultQuotes = [

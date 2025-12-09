@@ -3,16 +3,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation as SwiperNavigation } from "swiper/modules";
-import Header from "./header";
-import { fetchVideos } from "../api/youtube";
+import Header from "../layout/Header";
+import { fetchVideos } from "../../api/youtube";
 
-import football from "../assets/bg-image/football.jpg";
-import cricket from "../assets/bg-image/cricket.jpg";
-import basketball from "../assets/bg-image/basketball.jpg";
-import f1 from "../assets/bg-image/f1.png";
+import football from "../../assets/bg-image/football.jpg";
+import cricket from "../../assets/bg-image/cricket.jpg";
+import basketball from "../../assets/bg-image/basketball.jpg";
+import f1 from "../../assets/bg-image/f1.png";
 
-import quote1 from "../assets/quotes/virat.jpg";
-import quote2 from "../assets/quotes/muhammad.jpg";
+import quote1 from "../../assets/quotes/virat.jpg";
+import quote2 from "../../assets/quotes/muhammad.jpg";
 
 const slides = [
   { id: 1, image: football },

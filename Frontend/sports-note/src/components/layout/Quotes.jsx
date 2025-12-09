@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
-import quote1 from "../assets/quotes/virat.jpg";
-import quote2 from "../assets/quotes/muhammad.jpg";
+import { AuthContext } from "../auth/AuthContext";
+import quote1 from "../../assets/quotes/virat.jpg";
+import quote2 from "../../assets/quotes/muhammad.jpg";
 
 // Default static quotes for non-logged-in users
 const defaultQuotes = [

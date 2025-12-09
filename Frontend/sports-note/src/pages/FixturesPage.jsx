@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../components/header'
-import Fixtures from '../components/Fixtures'
+import Header from '../components/layout/Header'
+import Fixtures from '../components/layout/Fixtures'
 import '../stylesheet/pages/fixtures-page.css';
-import Footer from '../components/Footer';
+import Footer from '../components/layout/Footer';
 
 
 function FixturesPage() {

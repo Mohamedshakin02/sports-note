@@ -1,8 +1,8 @@
 import React from 'react'
-import Moments from '../components/Moments'
-import Header from '../components/header'
+import Moments from '../components/layout/Moments'
+import Header from '../components/layout/Header'
 import '../stylesheet/pages/moments-page.css';
-import Footer from '../components/Footer';
+import Footer from '../components/layout/Footer';
 
 
 function MomentsPage() {

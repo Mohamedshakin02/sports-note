@@ -1,15 +1,13 @@
 import React from 'react'
-import Header from '../components/header'
-import Intro from '../components/Intro'
-import Features from '../components/Features'
+import Intro from '../components/layout/Intro'
+import Features from '../components/layout/Features'
 import '../stylesheet/pages/home.css';
-import Moments_Home from '../components/Moments_Home';
-import Fixtures from '../components/Fixtures';
-import Fixtures_Home from '../components/Fixtures_Home';
-import Quotes_Home from '../components/Quotes_Home';
-import Techniques_Home from '../components/Techniques_Home';
-import Sessions_home from '../components/Sessions_home';
-import Footer from '../components/Footer';
+import Moments_Home from '../components/layout/Moments_Home';
+import Fixtures_Home from '../components/layout/Fixtures_Home';
+import Quotes_Home from '../components/layout/Quotes_Home';
+import Techniques_Home from '../components/layout/Techniques_Home';
+import Sessions_home from '../components/layout/Sessions_home';
+import Footer from '../components/layout/Footer';
 
 function HomePage() {
   return (

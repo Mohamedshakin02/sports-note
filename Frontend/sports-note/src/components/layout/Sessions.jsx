@@ -4,21 +4,22 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Mousewheel, Pagination } from "swiper/modules";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../auth/AuthContext";
+
+// Default sessions for non-login users
+const defaultSessions = [
+  { title: "Morning Basketball Drills", exercises: ["Warm-up jog (5 mins)", "Dribbling practice", "Layup drills", "Free-throw routine", "Cooldown stretches"] },
+  { title: "Badminton Smash Training", exercises: ["Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills"] },
+  { title: "Football Dribbling Drills", exercises: ["Cone dribbling", "Fast touches", "Directional changes", "Ball control challenges"] },
+  { title: "Cardio and Endurance", exercises: ["5km run", "Interval sprints", "Jump rope (10 mins)", "Cooldown stretching"] },
+  { title: "Badminton Rally Session", exercises: ["Long rallies", "Placement shots", "Side-to-side drills"] },
+  { title: "Football Shooting Practice", exercises: ["First-touch shots", "Power shooting", "Target accuracy"] },
+  { title: "Badminton Footwork Practice", exercises: ["Front-back steps", "Side-to-side steps", "Recovery training"] },
+];
 
 function Sessions() {
   const { user } = useContext(AuthContext);
   const isLoggedIn = !!user;
-
-  const defaultSessions = [
-    { title: "Morning Basketball Drills", exercises: ["Warm-up jog (5 mins)", "Dribbling practice", "Layup drills", "Free-throw routine", "Cooldown stretches"] },
-    { title: "Badminton Smash Training", exercises: ["Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills"] },
-    { title: "Football Dribbling Drills", exercises: ["Cone dribbling", "Fast touches", "Directional changes", "Ball control challenges"] },
-    { title: "Cardio and Endurance", exercises: ["5km run", "Interval sprints", "Jump rope (10 mins)", "Cooldown stretching"] },
-    { title: "Badminton Rally Session", exercises: ["Long rallies", "Placement shots", "Side-to-side drills"] },
-    { title: "Football Shooting Practice", exercises: ["First-touch shots", "Power shooting", "Target accuracy"] },
-    { title: "Badminton Footwork Practice", exercises: ["Front-back steps", "Side-to-side steps", "Recovery training"] },
-  ];
 
   const [sessionsList, setSessionsList] = useState([]);
   const [selected, setSelected] = useState(null); // start with null
@@ -228,8 +229,9 @@ function Sessions() {
 
   return (
     <>
+      {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"></div></div>)}
+
       <section className="sessions-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
-        {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"></div></div>)}
 
         <div className="heading-container mb-5">
           <div className="text">

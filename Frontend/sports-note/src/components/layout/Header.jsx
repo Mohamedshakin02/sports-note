@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-import moments from "../assets/logos/moments-white.png";
-import fixtures from "../assets/logos/fixtures-white.png";
-import quotes from "../assets/logos/quotes-white.png";
-import techniques from "../assets/logos/techniques-white.png";
-import sessions from "../assets/logos/sessions-white.png";
-import { AuthContext } from "./AuthContext";
+import moments from "../../assets/logos/moments-white.png";
+import fixtures from "../../assets/logos/fixtures-white.png";
+import quotes from "../../assets/logos/quotes-white.png";
+import techniques from "../../assets/logos/techniques-white.png";
+import sessions from "../../assets/logos/sessions-white.png";
+import { AuthContext } from "../auth/AuthContext";
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -58,6 +58,10 @@ function Header() {
                     <Link to="/sign-up" className="text-decoration-none d-block fw-medium px-3 py-2">
                         Sign Up
                     </Link>
+                    <Link to="/admin-login" className="text-decoration-none d-block fw-medium px-3 py-2">
+                        Admin
+                    </Link>
+
                 </div>
             )}
         </div>
