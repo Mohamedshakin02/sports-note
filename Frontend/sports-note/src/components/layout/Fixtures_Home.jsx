@@ -230,7 +230,7 @@ function Fixtures_Home() {
                                                     ref={(el) => (menuRefs.current[index] = el)}
                                                     onClick={() => toggleMenu(index)}
                                                 >
-                                                    <i className="bi bi-three-dots-vertical menu-icon"></i>
+                                                    <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
 
                                                     {openMenuIndex === index && (
                                                         <div className="menu-dropdown">

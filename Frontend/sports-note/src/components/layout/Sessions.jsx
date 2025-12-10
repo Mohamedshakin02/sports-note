@@ -252,8 +252,8 @@ function Sessions() {
         {sessionsList.length > 0 && (
           <div className="grid-container">
             <div className="content">
-              <div className="menu-wrapper" ref={menuRef}>
-                <i className="bi bi-three-dots-vertical menu-icon" onClick={() => setOpenMenu(!openMenu)}></i>
+              <div className="menu-wrapper" ref={menuRef} onClick={() => setOpenMenu(!openMenu)}>
+                <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
                 {openMenu && (
                   <div className="menu-dropdown">
                     <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(selected) }}>Edit</button>

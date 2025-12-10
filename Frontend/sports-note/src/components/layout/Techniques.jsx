@@ -243,8 +243,8 @@ function Techniques() {
               </h2>
               <div id={`flush-collapse-${index}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div className="accordion-body">
-                  <div className="menu-wrapper" ref={(el) => (menuRefs.current[index] = el)}>
-                    <i className="bi bi-three-dots-vertical menu-icon" onClick={() => toggleMenu(index)}></i>
+                  <div className="menu-wrapper" ref={(el) => (menuRefs.current[index] = el)} onClick={() => toggleMenu(index)}>
+                    <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
                     {openMenuIndex === index && (
                       <div className="menu-dropdown">
                         <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(tech) }}>Edit</button>

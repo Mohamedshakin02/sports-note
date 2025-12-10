@@ -191,7 +191,7 @@ export const googleLogin = async (req, res) => {
 
         let user = await User.findOne({ email });
         if (!user) {
-            // New Google user → create user
+            // New Google user creates user in db
             user = await User.create({ username: name, email, password: null, googleUser: true });
 
             // Add default moments for new Google user

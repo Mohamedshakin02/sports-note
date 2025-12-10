@@ -412,7 +412,7 @@ function Moments_Home() {
                           toggleMenu(index);
                         }}
                       >
-                        <i className="bi bi-three-dots-vertical menu-icon"></i>
+                        <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
 
                         {openMenuIndex === index && (
                           <div className="menu-dropdown">

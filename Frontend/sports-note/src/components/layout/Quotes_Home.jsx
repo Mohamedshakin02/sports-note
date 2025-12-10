@@ -266,8 +266,8 @@ function Quotes_Home() {
                       <p className="quote m-0 display-6 fs-4 pt-0 pt-lg-1">"{item.quote}"</p>
                       <p className="author m-0 p-0 mt-2 fs-5 text-end text-capitalize"><i>- {item.author}</i></p>
                     </div>
-                    <div className="menu-wrapper ms-auto" ref={(el) => (menuRefs.current[index] = el)}>
-                      <i className="bi bi-three-dots-vertical menu-icon" onClick={() => toggleMenu(index)}></i>
+                    <div className="menu-wrapper ms-auto" ref={(el) => (menuRefs.current[index] = el)} onClick={() => toggleMenu(index)}>
+                      <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
                       {openMenuIndex === index && (
                         <div className="menu-dropdown">
                           <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(item); }}>Edit</button>

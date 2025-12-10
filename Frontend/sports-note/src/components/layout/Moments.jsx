@@ -289,7 +289,7 @@ function Moments() {
                             <div className={`moment-image mb-3 position-relative ${!(moment.image || moment.imageUrl) ? "no-image-wrapper" : ""}`}>
                                 <span className="sport-badge">{moment.sport}</span>
                                 <div className="menu-wrapper" ref={(el) => (menuRefs.current[index] = el)} onClick={() => toggleMenu(index)}>
-                                    <i className="bi bi-three-dots-vertical menu-icon"></i>
+                                    <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
                                     {openMenuIndex === index && (
                                         <div className="menu-dropdown">
                                             <button type="button" onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(moment) }}>Edit</button>
