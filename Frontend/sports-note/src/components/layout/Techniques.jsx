@@ -238,7 +238,7 @@ function Techniques() {
               <h2 className="accordion-header">
                 <button className="accordion-button collapsed fs-5 text-capitalize" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse-${index}`}>
                   {tech.title} <span className="sport-badge m-0 p-0 ms-2 rounded-pill">{tech.sport}</span>
-                  <i className="bi bi-caret-down-fill ms-auto ps-2"></i>
+                  <i className="bi bi-caret-down-fill ms-auto ps-2 custom-arrow"></i>
                 </button>
               </h2>
               <div id={`flush-collapse-${index}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
