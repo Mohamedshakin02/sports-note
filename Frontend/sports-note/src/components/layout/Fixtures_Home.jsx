@@ -177,6 +177,33 @@ function Fixtures_Home() {
         return date.toLocaleDateString("en-GB", { day: "2-digit", month: "short" }).toUpperCase();
     };
 
+    const sortFixtures = (fixtures) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return fixtures.slice().sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      dateA.setHours(0, 0, 0, 0);
+      dateB.setHours(0, 0, 0, 0);
+
+      const isAUpcoming = dateA >= today;
+      const isBUpcoming = dateB >= today;
+
+      // Upcoming fixtures first
+      if (isAUpcoming && !isBUpcoming) return -1;
+      if (!isAUpcoming && isBUpcoming) return 1;
+
+      // Both upcoming - ascending order
+      if (isAUpcoming && isBUpcoming) return dateA - dateB;
+
+      // Both past - descending order
+      if (!isAUpcoming && !isBUpcoming) return dateB - dateA;
+
+      return 0;
+    });
+  };
+
     return (
         <>
             {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"></div></div>)}
@@ -216,10 +243,7 @@ function Fixtures_Home() {
                             onSwiper={(swiper) => (swiperRef.current = swiper)}
                             className="fixtures-slider"
                         >
-                            {fixturesList
-                                .slice()
-                                .sort((a, b) => new Date(a.date) - new Date(b.date))
-                                .map((fixture, index) => (
+                            {sortFixtures(fixturesList).map((fixture, index) => (
                                     <SwiperSlide key={index} className="fixture-slide">
                                         <div className="fixture-box pt-0 text-center">
                                             <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
