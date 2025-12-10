@@ -68,12 +68,14 @@ function Sessions() {
         const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
         setSessionsList(sorted);
         setSelected(sorted.length > 0 ? sorted[0] : null);
-      } catch (err) {
-        console.error(err);
+      } 
+      catch (err) {
         setSessionsList([]);
         setSelected(null);
+        console.error("Failed to fetch sessions:", err);
         showToast("Failed to fetch sessions.");
-      } finally {
+      } 
+      finally {
         setLoading(false);
       }
     };
@@ -172,7 +174,7 @@ function Sessions() {
       setSelected(res.data); // select newly added
       setForm({ title: "", exercises: [""] });
       window.bootstrap.Modal.getInstance(modalEl)?.hide();
-      showToast("Session added!");
+      showToast("Session added successfully!");
     } catch {
       window.bootstrap.Modal.getInstance(modalEl)?.hide();
       showToast("Failed to add session.");
@@ -195,7 +197,7 @@ function Sessions() {
       setSessionsList(prev => prev.map(session => session._id === editForm.id ? res.data : session));
       setSelected(res.data); // update selected if edited
       window.bootstrap.Modal.getInstance(modalEl)?.hide();
-      showToast("Session updated!");
+      showToast("Session updated successfully!");
     } catch {
       window.bootstrap.Modal.getInstance(modalEl)?.hide();
       showToast("Failed to update session.");
@@ -218,7 +220,7 @@ function Sessions() {
       }
 
       window.bootstrap.Modal.getInstance(modalEl)?.hide();
-      showToast("Session deleted!");
+      showToast("Session deleted successfully!");
 
     } catch {
       window.bootstrap.Modal.getInstance(modalEl)?.hide();

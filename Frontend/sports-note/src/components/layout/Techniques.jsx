@@ -111,6 +111,7 @@ function Techniques() {
         setTechniquesList(sorted);
       } catch {
         setTechniquesList([]);
+        console.error("Failed to fetch tecnhiques:", err);
         showToast("Failed to fetch techniques.");
       }
       finally { setLoading(false); }
@@ -166,7 +167,7 @@ function Techniques() {
       setTechniquesList(prev => [...prev, res.data]);
       setForm({ title: "", sport: "", steps: [""] });
       window.bootstrap.Modal.getInstance(document.getElementById("addTechniqueModal")).hide();
-      showToast("Technique added!");
+      showToast("Technique added successfully!");
     } catch {
       window.bootstrap.Modal.getInstance(document.getElementById("addTechniqueModal")).hide();
       showToast("Failed to add technique.");
@@ -185,7 +186,7 @@ function Techniques() {
       const res = await axios.put(`http://localhost:5000/api/techniques/${editForm.id}`, editForm, { withCredentials: true });
       setTechniquesList(prev => prev.map(technique => (technique._id === editForm.id ? res.data : technique)));
       window.bootstrap.Modal.getInstance(document.getElementById("editTechniqueModal")).hide();
-      showToast("Technique updated!");
+      showToast("Technique updated successfully!");
     } catch { 
       window.bootstrap.Modal.getInstance(document.getElementById("editTechniqueModal")).hide();
       showToast("Failed to update technique."); 
@@ -200,7 +201,7 @@ function Techniques() {
       await axios.delete(`http://localhost:5000/api/techniques/${deleteId}`, { withCredentials: true });
       setTechniquesList(prev => prev.filter(technique => technique._id !== deleteId));
       window.bootstrap.Modal.getInstance(document.getElementById("deleteTechniqueModal")).hide();
-      showToast("Technique deleted!");
+      showToast("Technique deleted successfully!");
     } catch { 
       window.bootstrap.Modal.getInstance(document.getElementById("deleteTechniqueModal")).hide();
       showToast("Failed to delete technique."); 

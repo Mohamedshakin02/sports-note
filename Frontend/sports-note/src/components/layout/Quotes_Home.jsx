@@ -73,7 +73,7 @@ function Quotes_Home() {
         setQuotesList(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         setQuotesList([]);
-        console.error("Error fetching quotes:", err);
+        console.error("Failed to fetch quotes:", err);
         showToast("Failed to load quotes.");
       } finally {
         setLoading(false);
@@ -138,7 +138,7 @@ function Quotes_Home() {
     } catch {
       const modalEl = document.getElementById("addQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
-      showToast("Failed to save quote.");
+      showToast("Failed to add quote.");
     } finally { setLoading(false); }
 
 

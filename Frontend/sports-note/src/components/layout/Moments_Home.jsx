@@ -127,7 +127,7 @@ function Moments_Home() {
       catch (err) {
         setMomentsList([]);
         console.error("Failed to fetch moments:", err);
-        showToast("Failed to load your moments");
+        showToast("Failed to load moments");
       }
       finally { setLoading(false); }
     };
