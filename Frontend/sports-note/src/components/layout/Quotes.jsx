@@ -28,7 +28,7 @@ function Quotes() {
   const { user } = useContext(AuthContext);
   const isLoggedIn = !!user;
 
-  const [quotesList, setQuotesList] = useState(defaultQuotes);
+  const [quotesList, setQuotesList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [openMenuIndex, setOpenMenuIndex] = useState(null);
   const [editingQuote, setEditingQuote] = useState({ id: null, quote: "", author: "", image: null, imageUrl: "" });
@@ -54,7 +54,7 @@ function Quotes() {
   useEffect(() => {
     const fetchQuotes = async () => {
       if (!user) {
-        // User logged out → show default quotes immediately
+        // User logged out shows default quotes immediately
         setQuotesList(defaultQuotes);
         return;
       }
@@ -235,7 +235,7 @@ function Quotes() {
             <div className="quote-box d-flex p-3 mb-3" key={index}>
               {/* IMAGE */}
               <div className="image-container me-2 me-sm-4 d-flex justify-content-center align-items-center">
-                {quote.image || quote.imageUrl ? <img src={quote.image || quote.imageUrl} alt={quote.quote} className="img-fluid" /> : <i className="bi bi-person-fill display-3 text-secondary"></i>}
+                {quote.image || quote.imageUrl ? <img src={quote.image || quote.imageUrl} alt={quote.author} className="img-fluid" /> : <i className="bi bi-person-fill display-3 text-secondary"></i>}
               </div>
 
               {/* QUOTE ICON */}
