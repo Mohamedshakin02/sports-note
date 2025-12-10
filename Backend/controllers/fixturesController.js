@@ -5,7 +5,7 @@ export const getFixtures = async (req, res) => {
   try {
     const userId = req.user?._id; // optional user
     if (!userId) {
-      // Guest → return empty array or static default fixtures
+      // Guest returns empty array or static default fixtures
       return res.json([]); // optional: you can send your defaultFixtures if you want
     }
     

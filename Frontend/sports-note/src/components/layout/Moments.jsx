@@ -100,7 +100,7 @@ function Moments() {
     useEffect(() => {
         const fetchMoments = async () => {
             if (!user) {
-                // User logged out → show default moments immediately
+                // User logged out shows default moments immediately
                 setMomentsList(defaultMoments);
                 return;
             }

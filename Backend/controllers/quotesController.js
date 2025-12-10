@@ -5,7 +5,7 @@ export const getQuotes = async (req, res) => {
     try {
         const userId = req.user?._id; // optional user
         if (!userId) {
-            return res.json([]); // guest → empty or default quotes
+            return res.json([]); // guest sets default quotes
         }
         const quotes = await Quote.find({ userId }).sort({ createdAt: -1 });
         res.json(quotes);

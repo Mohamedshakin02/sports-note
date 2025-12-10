@@ -30,6 +30,6 @@ export const verifyTokenOptional = async (req, res, next) => {
     req.user = await User.findById(decoded.id).select("-password");
     next();
   } catch (err) {
-    next(); // invalid token → treat as guest
+    next(); // invalid token treats as guest
   }
 };

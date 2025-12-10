@@ -427,6 +427,7 @@ body {
 }
 .intro-section .quote-box .text-container {
   color: #710004;
+  width: 100%;
 }
 .intro-section .quote-box .text-container .quote {
   font-weight: 500;
