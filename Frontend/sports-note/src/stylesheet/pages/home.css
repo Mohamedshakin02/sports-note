@@ -1646,8 +1646,10 @@ body {
     height: 55px;
   }
   .sessions-section .buttons .session-btn:hover {
-    background: none;
+    background: black;
+    color: #FFFFFF;
     border: 0 !important;
+    box-shadow: inset 0 0 0 4px #FCF0D6;
   }
   .sessions-section .buttons .session-btn.active {
     box-shadow: inset 0 0 0 4px #FCF0D6;
