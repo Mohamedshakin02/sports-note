@@ -61,7 +61,7 @@ function Quotes() {
 
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:5000/api/quotes", { withCredentials: true });
+        const res = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
         setQuotesList(Array.isArray(res.data) ? res.data : []);
 
       } catch (err) {
@@ -126,7 +126,7 @@ function Quotes() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/quotes", { ...form, imageUrl }, { withCredentials: true });
+      const res = await axios.post("https://sports-note-backend.onrender.com/api/quotes", { ...form, imageUrl }, { withCredentials: true });
       setQuotesList(prev => [res.data, ...prev]);
       setForm({ quote: "", author: "", image: null });
       const modalEl = document.getElementById("addQuoteModal");
@@ -174,7 +174,7 @@ function Quotes() {
     if (imageUrl === null) return;
 
     try {
-      const res = await axios.put(`http://localhost:5000/api/quotes/${editingQuote.id}`, { ...editingQuote, imageUrl }, { withCredentials: true });
+      const res = await axios.put(`https://sports-note-backend.onrender.com/api/quotes/${editingQuote.id}`, { ...editingQuote, imageUrl }, { withCredentials: true });
       setQuotesList(prev => prev.map(quote => (quote._id === editingQuote.id || quote.id === editingQuote.id ? res.data : quote)));
       const modalEl = document.getElementById("editQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -192,7 +192,7 @@ function Quotes() {
     if (!deleteId) return;
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/quotes/${deleteId}`, { withCredentials: true });
+      await axios.delete(`https://sports-note-backend.onrender.com/api/quotes/${deleteId}`, { withCredentials: true });
       setQuotesList(prev => prev.filter(quote => (quote._id || quote.id) !== deleteId));
       const modalEl = document.getElementById("deleteQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();

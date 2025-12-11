@@ -44,7 +44,7 @@ function Login() {
 
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData, { withCredentials: true });
+      const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/login", formData, { withCredentials: true });
 
       showToast("Login successful!");
       login(res.data.user); // store in context
@@ -64,7 +64,7 @@ function Login() {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/google-login",
+        "https://sports-note-backend.onrender.com/api/auth/google-login",
         { token: response.credential },
         { withCredentials: true }
       );

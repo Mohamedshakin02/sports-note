@@ -64,7 +64,7 @@ function Sessions() {
 
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:5000/api/sessions", { withCredentials: true });
+        const res = await axios.get("https://sports-note-backend.onrender.com/api/sessions", { withCredentials: true });
         const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
         setSessionsList(sorted);
         setSelected(sorted.length > 0 ? sorted[0] : null);
@@ -169,7 +169,7 @@ function Sessions() {
     setLoading(true);
     const modalEl = document.getElementById("addSessionModal");
     try {
-      const res = await axios.post("http://localhost:5000/api/sessions", form, { withCredentials: true });
+      const res = await axios.post("https://sports-note-backend.onrender.com/api/sessions", form, { withCredentials: true });
       setSessionsList(prev => [...prev, res.data]);
       setSelected(res.data); // select newly added
       setForm({ title: "", exercises: [""] });
@@ -193,7 +193,7 @@ function Sessions() {
     setLoading(true);
     const modalEl = document.getElementById("editSessionModal");
     try {
-      const res = await axios.put(`http://localhost:5000/api/sessions/${editForm.id}`, editForm, { withCredentials: true });
+      const res = await axios.put(`https://sports-note-backend.onrender.com/api/sessions/${editForm.id}`, editForm, { withCredentials: true });
       setSessionsList(prev => prev.map(session => session._id === editForm.id ? res.data : session));
       setSelected(res.data); // update selected if edited
       window.bootstrap.Modal.getInstance(modalEl)?.hide();
@@ -210,7 +210,7 @@ function Sessions() {
     setLoading(true);
     const modalEl = document.getElementById("deleteSessionModal");
     try {
-      await axios.delete(`http://localhost:5000/api/sessions/${deleteId}`, { withCredentials: true });
+      await axios.delete(`https://sports-note-backend.onrender.com/api/sessions/${deleteId}`, { withCredentials: true });
       const updatedList = sessionsList.filter(session => session._id !== deleteId);
 
       setSessionsList(updatedList);

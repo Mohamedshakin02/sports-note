@@ -61,7 +61,7 @@ function Fixtures_Home() {
         const fetchFixtures = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get("http://localhost:5000/api/fixtures", { withCredentials: true });
+                const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
                 setFixturesList(res.data);
             } catch (err) {
                 setFixturesList([]);
@@ -114,7 +114,7 @@ function Fixtures_Home() {
         if (!isLoggedIn) return showLoginToast();
         setLoading(true);
         try {
-            const res = await axios.post("http://localhost:5000/api/fixtures", form, { withCredentials: true });
+            const res = await axios.post("https://sports-note-backend.onrender.com/api/fixtures", form, { withCredentials: true });
             setFixturesList(prev => [res.data, ...prev]);
             setForm({ team1: "", team2: "", sport: "", date: "", time: "" });
             const modalEl = document.getElementById("addFixtureModal");
@@ -140,7 +140,7 @@ function Fixtures_Home() {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.put(`http://localhost:5000/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
+            const res = await axios.put(`https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
             setFixturesList(prev => prev.map(fixture => (fixture._id === editForm.id ? res.data : fixture)));
             const modalEl = document.getElementById("editFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -158,7 +158,7 @@ function Fixtures_Home() {
         if (!deleteId) return;
         setLoading(true);
         try {
-            await axios.delete(`http://localhost:5000/api/fixtures/${deleteId}`, { withCredentials: true });
+            await axios.delete(`https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`, { withCredentials: true });
             setFixturesList(prev => prev.filter(fixture => fixture._id !== deleteId));
             const modalEl = document.getElementById("deleteFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();

@@ -41,7 +41,7 @@ function Sign_Up() {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/signup",
+        "https://sports-note-backend.onrender.com/api/auth/signup",
         formData,
         { withCredentials: true }
       );
@@ -63,7 +63,7 @@ function Sign_Up() {
     if (!response.credential) return showToast("Google login failed");
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/google-login",
+      const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/google-login",
         { token: response.credential },
         { withCredentials: true }
       );

@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/session", { withCredentials: true });
+        const res = await axios.get("https://sports-note-backend.onrender.com/api/auth/session", { withCredentials: true });
         setUser(res.data.user);
       } catch {
         setUser(null);
@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     setLogoutLoading(true);
 
-    await axios.post("http://localhost:5000/api/auth/logout", {}, { withCredentials: true });
+    await axios.post("https://sports-note-backend.onrender.com/api/auth/logout", {}, { withCredentials: true });
     setUser(null);
     setLogoutLoading(false);
   };

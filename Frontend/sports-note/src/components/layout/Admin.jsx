@@ -19,7 +19,7 @@ function Admin() {
         setLoading(true);
         const fetchUsers = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/api/admin/users", { withCredentials: true });
+                const res = await axios.get("https://sports-note-backend.onrender.com/api/admin/users", { withCredentials: true });
                 setUsers(res.data);
             } catch (err) {
                 logout();
@@ -52,7 +52,7 @@ function Admin() {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await axios.post("http://localhost:5000/api/admin/users", addForm, { withCredentials: true });
+            const res = await axios.post("https://sports-note-backend.onrender.com/api/admin/users", addForm, { withCredentials: true });
             setUsers([...users, res.data.user]);
             showToast(res.data.message || "User added successfully");
             setAddForm({ username: "", email: "", password: "" });
@@ -84,7 +84,7 @@ function Admin() {
         try {
             setLoading(true);
             const res = await axios.put(
-                `http://localhost:5000/api/admin/users/${selectedUser._id}`,
+                `https://sports-note-backend.onrender.com/api/admin/users/${selectedUser._id}`,
                 editForm,
                 { withCredentials: true }
             );
@@ -108,7 +108,7 @@ function Admin() {
     const confirmDeleteUser = async () => {
         try {
             setLoading(true);
-            await axios.delete(`http://localhost:5000/api/admin/users/${selectedUser._id}`, { withCredentials: true });
+            await axios.delete(`https://sports-note-backend.onrender.com/api/admin/users/${selectedUser._id}`, { withCredentials: true });
             setUsers(users.filter(u => u._id !== selectedUser._id));
             showToast("User deleted successfully");
             window.bootstrap.Modal.getInstance(document.getElementById("deleteUserModal")).hide();

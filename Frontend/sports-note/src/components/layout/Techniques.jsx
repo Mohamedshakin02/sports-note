@@ -104,7 +104,7 @@ function Techniques() {
     const fetchTechniques = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:5000/api/techniques", { withCredentials: true });
+        const res = await axios.get("https://sports-note-backend.onrender.com/api/techniques", { withCredentials: true });
         // Sort by createdAt ascending so oldest first
         const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
@@ -163,7 +163,7 @@ function Techniques() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/techniques", form, { withCredentials: true });
+      const res = await axios.post("https://sports-note-backend.onrender.com/api/techniques", form, { withCredentials: true });
       setTechniquesList(prev => [...prev, res.data]);
       setForm({ title: "", sport: "", steps: [""] });
       window.bootstrap.Modal.getInstance(document.getElementById("addTechniqueModal")).hide();
@@ -183,7 +183,7 @@ function Techniques() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.put(`http://localhost:5000/api/techniques/${editForm.id}`, editForm, { withCredentials: true });
+      const res = await axios.put(`https://sports-note-backend.onrender.com/api/techniques/${editForm.id}`, editForm, { withCredentials: true });
       setTechniquesList(prev => prev.map(technique => (technique._id === editForm.id ? res.data : technique)));
       window.bootstrap.Modal.getInstance(document.getElementById("editTechniqueModal")).hide();
       showToast("Technique updated successfully!");
@@ -198,7 +198,7 @@ function Techniques() {
     if (!deleteId) return;
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/techniques/${deleteId}`, { withCredentials: true });
+      await axios.delete(`https://sports-note-backend.onrender.com/api/techniques/${deleteId}`, { withCredentials: true });
       setTechniquesList(prev => prev.filter(technique => technique._id !== deleteId));
       window.bootstrap.Modal.getInstance(document.getElementById("deleteTechniqueModal")).hide();
       showToast("Technique deleted successfully!");

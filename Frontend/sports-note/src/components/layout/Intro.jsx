@@ -151,8 +151,8 @@ function Intro() {
 
       try {
         setLoading(true);
-        const resFixtures = await axios.get("http://localhost:5000/api/fixtures", { withCredentials: true });
-        const resQuotes = await axios.get("http://localhost:5000/api/quotes", { withCredentials: true });
+        const resFixtures = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
+        const resQuotes = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
 
         setFixturesListData(getSortedFixtures(resFixtures.data));
         setQuotesListData(getRecentQuotes(Array.isArray(resQuotes.data) ? resQuotes.data : []));
