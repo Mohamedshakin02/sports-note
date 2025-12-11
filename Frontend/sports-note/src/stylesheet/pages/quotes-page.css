@@ -247,6 +247,7 @@ body {
   padding: 8px 12px;
   border: none;
   background: white;
+  color: #000000;
   font-size: 0.9rem;
   text-align: left;
 }
@@ -359,7 +360,8 @@ body {
   background-color: #000000;
   color: #FFFFFF;
 }
-.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form #edit-quote-image::file-selector-button, .quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form #add-quote-image::file-selector-button,
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form #edit-quote-image::file-selector-button,
+.quotes-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form #add-quote-image::file-selector-button,
 .quotes-section .modal .modal-dialog .modal-content .modal-body .form form #edit-quote-image::file-selector-button,
 .quotes-section .modal .modal-dialog .modal-content .modal-body .form form #add-quote-image::file-selector-button {
   background-color: #710004;

@@ -3,7 +3,7 @@
 
 .quotes-section {
     min-height: 500px;
-    
+
     .heading-container {
         color: $yellow;
         display: flex;
@@ -105,6 +105,7 @@
                         padding: 8px 12px;
                         border: none;
                         background: white;
+                        color: $black;
                         font-size: 0.9rem;
                         text-align: left;
 
@@ -222,16 +223,17 @@
                                 }
                             }
 
-                            #edit-quote-image::file-selector-button, #add-quote-image::file-selector-button{
+                            #edit-quote-image::file-selector-button,
+                            #add-quote-image::file-selector-button {
                                 background-color: $red;
                                 color: $yellow;
                             }
 
-                            #edit-quote-image::file-selector-button{
+                            #edit-quote-image::file-selector-button {
                                 position: relative;
                             }
 
-                            .image-input{
+                            .image-input {
                                 position: relative;
                             }
 
