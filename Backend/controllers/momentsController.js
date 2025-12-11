@@ -19,7 +19,7 @@ export const getMoments = async (req, res) => {
 // Add moment (logged-in users only)
 export const addMoment = async (req, res) => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user?._id;
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized. Please log in to add a moment." });
     }
