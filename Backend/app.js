@@ -17,8 +17,11 @@ const app = express();
 
 app.use(cors({
   origin: ["http://localhost:5173", "https://sportsnote.vercel.app"],
-  credentials: true
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -31,6 +34,10 @@ app.use("/api/techniques", techniquesRoutes);
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/youtube", youtubeRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Sports Note Backend is running!");
+});
 
 
 mongoose.connect(process.env.MONGO_URI, { dbName: "SportsNoteDB" })
