@@ -735,6 +735,7 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   width: 110px;
+  z-index: 20;
 }
 .moments-slider .menu-wrapper .menu-dropdown button {
   width: 100%;
@@ -1067,6 +1068,7 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   width: 110px;
+  z-index: 20;
 }
 .quotes-section .quotes-slider .quote-box .menu-wrapper .menu-dropdown button {
   width: 100%;
@@ -1325,6 +1327,7 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   width: 110px;
+  z-index: 20;
 }
 .techniques-section .techniques-container .menu-dropdown button {
   width: 100%;
@@ -1435,6 +1438,7 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   width: 110px;
+  z-index: 20;
 }
 .sessions-section .content .menu-dropdown button {
   width: 100%;
