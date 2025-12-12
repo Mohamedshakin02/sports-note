@@ -9,7 +9,7 @@ function Sign_Up() {
 
   const [toast, setToast] = useState({ message: "" });
   const [loading, setLoading] = useState(false);
-  const [googleReady, setGoogleReady] = useState(false);
+  const [googleReady, setGoogleReady] = useState(true);
 
   const { login } = useContext(AuthContext);
 
@@ -81,7 +81,10 @@ function Sign_Up() {
   useEffect(() => {
     /* global google */
     const signInContainer = document.getElementById("g_id_signin");
-    if (!window.google || !signInContainer || signInContainer.childNodes.length > 0) return;
+    if (!window.google || !signInContainer) {
+      setLoading(false); // still remove loader if Google fails
+      return;
+    }
 
 
     google.accounts.id.initialize({
@@ -96,7 +99,7 @@ function Sign_Up() {
     });
 
     setGoogleReady(true);
-
+    setLoading(false);
     google.accounts.id.prompt();
 
 

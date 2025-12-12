@@ -9,7 +9,7 @@ function Login() {
 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [toast, setToast] = useState({ message: "" });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [googleReady, setGoogleReady] = useState(false);
 
   const { login } = useContext(AuthContext); 
@@ -82,7 +82,10 @@ function Login() {
   useEffect(() => {
     /* global google */
     const signInContainer = document.getElementById("g_id_signin");
-    if (!window.google || !signInContainer || signInContainer.childNodes.length > 0) return;
+    if (!window.google || !signInContainer) {
+      setLoading(false); // still remove loader if Google fails
+      return;
+    }
 
 
     google.accounts.id.initialize({
@@ -97,7 +100,7 @@ function Login() {
     });
 
     setGoogleReady(true);
-
+    setLoading(false);
     google.accounts.id.prompt();
 
 
