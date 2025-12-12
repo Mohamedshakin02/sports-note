@@ -50,7 +50,6 @@ function Sign_Up() {
       showToast("Signup successful!");
       setFormData({ username: "", email: "", password: "" });
       setTimeout(() => navigate("/", { replace: true }), 5);
-      // window.location.replace("/");
     } catch (err) {
       const message = err.response?.data?.message || err.message || "Something went wrong";
       showToast(message);
@@ -72,7 +71,6 @@ function Sign_Up() {
       login(res.data.user);
       showToast("Signed up successfully with Google!");
       setTimeout(() => navigate("/", { replace: true }), 5);
-      // window.location.replace("/");
     } catch (err) {
       showToast(err.response?.data?.message || "Google login failed");
     } finally {
