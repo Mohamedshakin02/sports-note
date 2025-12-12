@@ -19,8 +19,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: true, // allow same origin
-  credentials: true
+  origin: ["http://localhost:5173", "https://sportsnote.vercel.app"],
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -60,9 +60,11 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Serve frontend build
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/*", (req, res) => {
+// Return index.html for any route not starting with /api
+app.get("*", (req, res) => {
   if (!req.path.startsWith("/api")) {
     res.sendFile(path.join(__dirname, "public", "index.html"));
   }
