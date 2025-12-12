@@ -17,8 +17,8 @@ const createTokenAndSetCookie = (res, user) => {
 
     res.cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // HTTPS only on live
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        secure: true,
+        sameSite: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         path: "/",
         partitioned: true
@@ -248,8 +248,8 @@ export const adminLogin = (req, res) => {
 
     res.cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        secure: true,
+        sameSite: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         path: "/",
         partitioned: true
@@ -262,8 +262,8 @@ export const adminLogin = (req, res) => {
 export const logout = (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "None",
+        secure: true,
+        sameSite: true,
         path: "/",
         partitioned: true
     });
