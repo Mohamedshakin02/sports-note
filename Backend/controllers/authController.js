@@ -15,11 +15,15 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 // Helper: create JWT and set cookie
 const createTokenAndSetCookie = (res, user) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+
+    const secureFlag = process.env.NODE_ENV === "production";
+    
     res.cookie("token", token, {
-        httpOnly: true,
+        httpOnly: secureFlag,
         secure: process.env.NODE_ENV === "production",
         sameSite: "None",
-        maxAge: 7 * 24 * 60 * 60 * 1000
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        path: "/"
     });
 };
 

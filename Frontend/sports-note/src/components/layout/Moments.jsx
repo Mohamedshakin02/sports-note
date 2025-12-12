@@ -202,7 +202,7 @@ function Moments() {
 
         try {
             const res = await axios.put(`https://sports-note-backend.onrender.com/api/moments/${editForm.id}`, { ...editForm, imageUrl }, { withCredentials: true });
-            setMomentsList(prev => prev.map(moment => (moment._id === editForm.id || mmoment.id === editForm.id ? res.data : moment)));
+            setMomentsList(prev => prev.map(moment => (moment._id === editForm.id || moment.id === editForm.id ? res.data : moment)));
             const modalEl = document.getElementById("editMomentModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
             showToast("Moment updated successfully!");

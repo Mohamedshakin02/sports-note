@@ -15,10 +15,30 @@ import youtubeRoutes from "./routes/youtube.js";
 dotenv.config();
 const app = express();
 
+// app.js (replace existing app.use(cors({ ... })))
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://sportsnote.vercel.app",
+];
+
 app.use(cors({
-  origin: ["http://localhost:5173", "https://sportsnote.vercel.app"],
+  origin: function(origin, callback){
+    // allow requests with no origin (like mobile, curl) or if origin is whitelisted
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization","Accept","X-Requested-With"],
+  optionsSuccessStatus: 200
 }));
+
+
+app.options("*", (req, res) => res.sendStatus(200));
 
 app.use(express.json());
 app.use(cookieParser());
