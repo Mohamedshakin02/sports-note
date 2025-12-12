@@ -60,11 +60,9 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve frontend build
 app.use(express.static(path.join(__dirname, "public")));
 
-// Return index.html for any route not starting with /api
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   if (!req.path.startsWith("/api")) {
     res.sendFile(path.join(__dirname, "public", "index.html"));
   }
