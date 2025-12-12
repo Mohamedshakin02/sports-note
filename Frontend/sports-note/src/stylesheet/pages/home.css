@@ -254,7 +254,9 @@ body {
 .intro-section .intro-container .content-container .quotes-container .quotes-box img {
   -o-object-fit: cover;
      object-fit: cover;
-  height: 100%;
+  width: 4rem;
+  height: 4rem;
+  aspect-ratio: 1/1;
 }
 .intro-section .slider-control {
   position: absolute;
