@@ -44,7 +44,7 @@ export const addMoment = async (req, res) => {
 // Update a moment (logged-in users only)
 export const updateMoment = async (req, res) => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user?._id;
     if (!userId) return res.status(401).json({ message: "Unauthorized" });
 
     const { title, sport, description, date, imageUrl } = req.body;
@@ -65,7 +65,7 @@ export const updateMoment = async (req, res) => {
 // Delete a moment (logged-in users only)
 export const deleteMoment = async (req, res) => {
   try {
-    const userId = req.user?.id;
+    const userId = req.user?._id;
     if (!userId) return res.status(401).json({ message: "Unauthorized" });
 
     const deleted = await Moment.findOneAndDelete({ _id: req.params.id, userId });

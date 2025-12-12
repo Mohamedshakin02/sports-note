@@ -22,8 +22,10 @@ function Admin() {
                 const res = await axios.get("https://sports-note-backend.onrender.com/api/admin/users", { withCredentials: true });
                 setUsers(res.data);
             } catch (err) {
-                logout();
+                // logout();
+
                 showToast("Unauthorized. Please login again.");
+                navigate("/admin-login", { replace: true });
             }
             finally { setLoading(false); }
         };

@@ -44,7 +44,8 @@ function Admin_Login() {
       login(res.data.user);
       showToast("Admin login successful!");
       setFormData({ username: "", password: "" });
-      setTimeout(() => navigate("/admin", { replace: true }), 10);
+      // setTimeout(() => navigate("/admin", { replace: true }), 10);
+      window.location.replace("/admin");
     } catch (err) {
       const message = err.response?.data?.message || err.message || "Something went wrong";
       showToast(message);

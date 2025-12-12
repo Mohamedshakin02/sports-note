@@ -259,17 +259,39 @@ export const logout = (req, res) => {
     res.json({ message: "Logged out successfully" });
 };
 
+// export const getSession = async (req, res) => {
+//     try {
+//         const token = req.cookies.token;
+//         if (!token) return res.json({ user: null });
+
+//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//         const user = await User.findById(decoded.id).select("-password");
+//         if (!user) return res.json({ user: null });
+
+//         res.json({ user: { id: user._id, username: user.username, email: user.email } });
+//     } catch (err) {
+//         res.json({ user: null });
+//     }
+// };
+
 export const getSession = async (req, res) => {
-    try {
-        const token = req.cookies.token;
-        if (!token) return res.json({ user: null });
+  try {
+    const token = req.cookies.token;
+    if (!token) return res.json({ user: null });
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(decoded.id).select("-password");
-        if (!user) return res.json({ user: null });
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        res.json({ user: { id: user._id, username: user.username, email: user.email } });
-    } catch (err) {
-        res.json({ user: null });
+    if (decoded.role === "admin") {
+      
+      return res.json({ user: { id: decoded.id, username: "Admin", isAdmin: true } });
     }
+        
+    
+    const user = await User.findById(decoded.id).select("-password");
+    if (!user) return res.json({ user: null });
+
+    res.json({ user: { id: user._id, username: user.username, email: user.email } });
+  } catch (err) {
+    res.json({ user: null });
+  }
 };
