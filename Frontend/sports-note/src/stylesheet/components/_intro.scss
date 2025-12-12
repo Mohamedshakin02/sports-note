@@ -227,9 +227,9 @@
 
   .modal-dialog {
     display: flex;
-    
 
-    .modal-body{
+
+    .modal-body {
       max-height: 500px;
     }
 
@@ -343,8 +343,8 @@
     }
 
     h2 {
-        color: $red;
-      }
+      color: $red;
+    }
 
 
   }
@@ -372,6 +372,13 @@
         .quotes-container {
           .quotes-box {
             width: 3rem;
+
+            img {
+              object-fit: cover;
+              width: 3rem;
+              height: 3rem;
+              aspect-ratio: 1/1;
+            }
 
             p {
               font-size: 1.3rem;
