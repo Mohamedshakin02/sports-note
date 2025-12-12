@@ -37,6 +37,11 @@ app.get("/", (req, res) => {
   res.send("Sports Note Backend is running!");
 });
 
+app.get("/api/test-cookie", (req, res) => {
+  console.log(req.cookies); // check if token exists
+  res.json({ cookies: req.cookies });
+});
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: "Internal Server Error" });

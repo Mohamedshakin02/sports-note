@@ -12,18 +12,15 @@ import Session from "../models/session.js";
 dotenv.config();
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-// Helper: create JWT and set cookie
 const createTokenAndSetCookie = (res, user) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
-    const secureFlag = process.env.NODE_ENV === "production";
-
     res.cookie("token", token, {
-        httpOnly: true, // always
-        secure: process.env.NODE_ENV === "production",
-        sameSite: secureFlag ? "None" : "Lax",
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // HTTPS only on live
+        sameSite: "None",
         maxAge: 7 * 24 * 60 * 60 * 1000,
-        path: "/"
+        path: "/",
     });
 };
 
@@ -252,14 +249,21 @@ export const adminLogin = (req, res) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "None",
-        maxAge: 7 * 24 * 60 * 60 * 1000
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        path: "/",
     });
+
 
     res.status(200).json({ user: adminUser });
 };
 
 export const logout = (req, res) => {
-    res.clearCookie("token", { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "None" });
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
+        path: "/",
+    });
     res.json({ message: "Logged out successfully" });
 };
 
@@ -279,21 +283,21 @@ export const logout = (req, res) => {
 // };
 
 export const getSession = async (req, res) => {
-  try {
-    const token = req.cookies.token;
-    if (!token) return res.json({ user: null });
+    try {
+        const token = req.cookies.token;
+        if (!token) return res.json({ user: null });
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    if (decoded.role === "admin") {
-      return res.json({ user: { id: decoded.id, username: "Admin", isAdmin: true } });
+        if (decoded.role === "admin") {
+            return res.json({ user: { id: decoded.id, username: "Admin", isAdmin: true } });
+        }
+
+        const user = await User.findById(decoded.id).select("-password");
+        if (!user) return res.json({ user: null });
+
+        res.json({ user: { id: user._id, username: user.username, email: user.email } });
+    } catch (err) {
+        res.json({ user: null });
     }
-
-    const user = await User.findById(decoded.id).select("-password");
-    if (!user) return res.json({ user: null });
-
-    res.json({ user: { id: user._id, username: user.username, email: user.email } });
-  } catch (err) {
-    res.json({ user: null });
-  }
 };
