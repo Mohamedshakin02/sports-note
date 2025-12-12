@@ -477,6 +477,13 @@
         .quotes-container {
           .quotes-box {
             width: 3rem;
+
+            img {
+              object-fit: cover;
+              width: 3rem;
+              height: 3rem;
+              aspect-ratio: 1/1;
+            }
           }
         }
 

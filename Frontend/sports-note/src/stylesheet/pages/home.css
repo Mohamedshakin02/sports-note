@@ -507,6 +507,13 @@ body {
   .intro-section .intro-container .content-container .quotes-container .quotes-box {
     width: 3rem;
   }
+  .intro-section .intro-container .content-container .quotes-container .quotes-box img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 3rem;
+    height: 3rem;
+    aspect-ratio: 1/1;
+  }
   .intro-section .intro-container .content-container .slogan-container {
     align-self: center;
   }
