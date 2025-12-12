@@ -21,6 +21,7 @@ const createTokenAndSetCookie = (res, user) => {
         sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         path: "/",
+        partitioned: true
     });
 };
 
@@ -251,6 +252,7 @@ export const adminLogin = (req, res) => {
         sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         path: "/",
+        partitioned: true
     });
 
 
@@ -263,6 +265,7 @@ export const logout = (req, res) => {
         secure: process.env.NODE_ENV === "production",
         sameSite: "None",
         path: "/",
+        partitioned: true
     });
     res.json({ message: "Logged out successfully" });
 };
