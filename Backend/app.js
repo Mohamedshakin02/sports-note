@@ -15,30 +15,10 @@ import youtubeRoutes from "./routes/youtube.js";
 dotenv.config();
 const app = express();
 
-// app.js (replace existing app.use(cors({ ... })))
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://sportsnote.vercel.app",
-];
-
 app.use(cors({
-  origin: function(origin, callback){
-    // allow requests with no origin (like mobile, curl) or if origin is whitelisted
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: ["http://localhost:5173", "https://sportsnote.vercel.app"],
   credentials: true,
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
-  allowedHeaders: ["Content-Type","Authorization","Accept","X-Requested-With"],
-  optionsSuccessStatus: 200
 }));
-
-
-app.options("*", (req, res) => res.sendStatus(200));
 
 app.use(express.json());
 app.use(cookieParser());
@@ -57,6 +37,10 @@ app.get("/", (req, res) => {
   res.send("Sports Note Backend is running!");
 });
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Internal Server Error" });
+});
 
 mongoose.connect(process.env.MONGO_URI, { dbName: "SportsNoteDB" })
   .then(() => console.log("MongoDB Connected"))

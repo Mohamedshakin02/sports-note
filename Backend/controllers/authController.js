@@ -17,11 +17,11 @@ const createTokenAndSetCookie = (res, user) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
     const secureFlag = process.env.NODE_ENV === "production";
-    
+
     res.cookie("token", token, {
-        httpOnly: secureFlag,
+        httpOnly: true, // always
         secure: process.env.NODE_ENV === "production",
-        sameSite: "None",
+        sameSite: secureFlag ? "None" : "Lax",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         path: "/"
     });
@@ -286,11 +286,9 @@ export const getSession = async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     if (decoded.role === "admin") {
-      
       return res.json({ user: { id: decoded.id, username: "Admin", isAdmin: true } });
     }
-        
-    
+
     const user = await User.findById(decoded.id).select("-password");
     if (!user) return res.json({ user: null });
 
