@@ -12,7 +12,7 @@ function Login() {
   const [loading, setLoading] = useState(true);
   const [googleReady, setGoogleReady] = useState(false);
 
-  const { login } = useContext(AuthContext); 
+  const { login } = useContext(AuthContext);
 
   // Show toast
   const showToast = (message) => {
@@ -78,32 +78,38 @@ function Login() {
     }
   };
 
-  // Initialize Google button
   useEffect(() => {
-    /* global google */
-    const signInContainer = document.getElementById("g_id_signin");
-    if (!window.google || !signInContainer) {
-      setLoading(false); // still remove loader if Google fails
-      return;
-    }
+    setLoading(true);
 
+    const script = document.createElement("script");
+    script.src = "https://accounts.google.com/gsi/client?hl=en"; // force English
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      if (window.google) {
+        const signInContainer = document.getElementById("g_id_signin");
+        google.accounts.id.initialize({
+          client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
+          callback: handleGoogleLogin
+        });
 
-    google.accounts.id.initialize({
-      client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com", 
-      callback: handleGoogleLogin
-    });
+        google.accounts.id.renderButton(signInContainer, {
+          theme: "outline",
+          size: "large",
+          width: "100%"
+        });
 
-    google.accounts.id.renderButton(signInContainer, {
-      theme: "outline",
-      size: "large",
-      width: "100%"
-    });
+        setGoogleReady(true);
+        setLoading(false);
+        google.accounts.id.prompt();
+      }
+    };
 
-    setGoogleReady(true);
-    setLoading(false);
-    google.accounts.id.prompt();
+    document.body.appendChild(script);
 
-
+    return () => {
+      document.body.removeChild(script); // clean up on unmount
+    };
   }, []);
 
   return (
