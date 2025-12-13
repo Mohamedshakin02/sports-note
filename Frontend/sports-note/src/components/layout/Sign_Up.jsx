@@ -96,43 +96,26 @@ function Sign_Up() {
     }
   };
 
-
   useEffect(() => {
-    setLoading(true);
-
     const script = document.createElement("script");
     script.src = "https://accounts.google.com/gsi/client?hl=en";
     script.async = true;
     script.defer = true;
+
     script.onload = () => {
-      if (window.google) {
-        const signInContainer = document.getElementById("g_id_signin");
+      google.accounts.id.initialize({
+        client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
+        callback: handleGoogleLogin,
+        ux_mode: "popup"
+      });
 
-        google.accounts.id.initialize({
-          client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
-          callback: handleGoogleLogin,
-          ux_mode: "popup",
-          hl: "en"
-        });
-
-        google.accounts.id.renderButton(signInContainer, {
-          theme: "outline",
-          size: "large",
-          width: "100%"
-        });
-
-        setGoogleReady(true);
-        setLoading(false);
-        google.accounts.id.prompt();
-      }
+      setGoogleReady(true);
+      setLoading(false);
     };
 
     document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
   }, []);
+
 
   return (
     <>
@@ -175,10 +158,18 @@ function Sign_Up() {
                 <>
                   <div className="text-center text-light">OR</div>
 
-                  <div id="g_id_signin" className="w-100"></div>
-
+                  <button
+                    type="button"
+                    className="google-button btn w-100"
+                    onClick={() => {
+                      google.accounts.id.prompt();
+                    }}
+                  >
+                    <i className="bi bi-google me-2"></i> Sign in with Google
+                  </button>
                 </>
               )}
+
 
             </form>
           </div>
