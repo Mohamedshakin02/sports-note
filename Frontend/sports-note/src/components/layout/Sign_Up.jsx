@@ -69,25 +69,21 @@ function Sign_Up() {
   };
 
   const handleGoogleLogin = async (response) => {
-
     if (!response.credential) return showToast("Google login failed");
     setLoading(true);
     try {
-      // const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/google-login",
-      //   { token: response.credential },
-      //   { withCredentials: true }
-      // );
-
-      const resGoogle = await axios.post(
+      const res = await axios.post(
         "https://sports-note-backend.onrender.com/api/auth/google-login",
         { token: response.credential }
       );
 
-      localStorage.setItem("token", resGoogle.data.token);
 
-      login(resGoogle.data.user, resGoogle.data.token);
+      localStorage.setItem("token", res.data.token);
 
-      showToast("Signed up successfully with Google!");
+      // login(res.data.user); // store in context
+
+      login(res.data.user, res.data.token);
+      showToast("Logged in successfully with Google!");
       navigate("/", { replace: true });
     } catch (err) {
       showToast(err.response?.data?.message || "Google login failed");
@@ -97,24 +93,30 @@ function Sign_Up() {
   };
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://accounts.google.com/gsi/client?hl=en";
-    script.async = true;
-    script.defer = true;
+    /* global google */
+    const signInContainer = document.getElementById("g_id_signin");
+    if (!window.google || !signInContainer) {
+      setLoading(false); // still remove loader if Google fails
+      return;
+    }
 
-    script.onload = () => {
-      google.accounts.id.initialize({
-        client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
-        callback: handleGoogleLogin,
-        ux_mode: "popup",
-        use_fedcm_for_prompt: true
-      });
 
-      setGoogleReady(true);
-      setLoading(false);
-    };
+    google.accounts.id.initialize({
+      client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
+      callback: handleGoogleLogin
+    });
 
-    document.body.appendChild(script);
+    google.accounts.id.renderButton(signInContainer, {
+      theme: "outline",
+      size: "large",
+      width: "100%"
+    });
+
+    setGoogleReady(true);
+    setLoading(false);
+    google.accounts.id.prompt();
+
+    setLoading(true);
   }, []);
 
 
@@ -156,23 +158,12 @@ function Sign_Up() {
               </div>
 
               {googleReady && (
-                <>
-                  <div className="text-center text-light">OR</div>
-
-                  <button
-                    type="button"
-                    className="google-button btn w-100"
-                    onClick={() => {
-                      google.accounts.id.prompt();
-                    }}
-                  >
-                    <i className="bi bi-google me-2"></i> Sign in with Google
-                  </button>
-                </>
+                <div className="text-center text-dark">OR</div>
               )}
 
-
+              <div id="g_id_signin"></div>
             </form>
+
           </div>
         </div>
       </section >
