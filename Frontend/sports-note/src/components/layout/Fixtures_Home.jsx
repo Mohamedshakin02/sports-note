@@ -10,6 +10,7 @@ import { AuthContext } from "../auth/AuthContext";
 
 function Fixtures_Home() {
     const { user } = useContext(AuthContext); // get logged-in user
+    const token = localStorage.getItem("token");
     const [fixturesList, setFixturesList] = useState([]);
     const [openMenuIndex, setOpenMenuIndex] = useState(null);
     const menuRefs = useRef([]);
@@ -54,14 +55,21 @@ function Fixtures_Home() {
 
     // Fetch fixtures from backend
     useEffect(() => {
-        if (!user) {
+        if (!user || !token) {
             setFixturesList(defaultFixtures);
             return;
         }
         const fetchFixtures = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
+                // const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
+
+                const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
                 setFixturesList(res.data);
             } catch (err) {
                 setFixturesList([]);
@@ -114,7 +122,15 @@ function Fixtures_Home() {
         if (!isLoggedIn) return showLoginToast();
         setLoading(true);
         try {
-            const res = await axios.post("https://sports-note-backend.onrender.com/api/fixtures", form, { withCredentials: true });
+            // const res = await axios.post("https://sports-note-backend.onrender.com/api/fixtures", form, { withCredentials: true });
+
+            const res = await axios.post(
+                "https://sports-note-backend.onrender.com/api/fixtures",
+                form,
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
             setFixturesList(prev => [res.data, ...prev]);
             setForm({ team1: "", team2: "", sport: "", date: "", time: "" });
             const modalEl = document.getElementById("addFixtureModal");
@@ -140,7 +156,18 @@ function Fixtures_Home() {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.put(`https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
+            // const res = await axios.put(`https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
+
+            const res = await axios.put(
+                `https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`,
+                editForm,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
             setFixturesList(prev => prev.map(fixture => (fixture._id === editForm.id ? res.data : fixture)));
             const modalEl = document.getElementById("editFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -158,7 +185,17 @@ function Fixtures_Home() {
         if (!deleteId) return;
         setLoading(true);
         try {
-            await axios.delete(`https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`, { withCredentials: true });
+            // await axios.delete(`https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`, { withCredentials: true });
+
+            await axios.delete(
+                `https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
             setFixturesList(prev => prev.filter(fixture => fixture._id !== deleteId));
             const modalEl = document.getElementById("deleteFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -178,31 +215,31 @@ function Fixtures_Home() {
     };
 
     const sortFixtures = (fixtures) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
 
-    return fixtures.slice().sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      dateA.setHours(0, 0, 0, 0);
-      dateB.setHours(0, 0, 0, 0);
+        return fixtures.slice().sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            dateA.setHours(0, 0, 0, 0);
+            dateB.setHours(0, 0, 0, 0);
 
-      const isAUpcoming = dateA >= today;
-      const isBUpcoming = dateB >= today;
+            const isAUpcoming = dateA >= today;
+            const isBUpcoming = dateB >= today;
 
-      // Upcoming fixtures first
-      if (isAUpcoming && !isBUpcoming) return -1;
-      if (!isAUpcoming && isBUpcoming) return 1;
+            // Upcoming fixtures first
+            if (isAUpcoming && !isBUpcoming) return -1;
+            if (!isAUpcoming && isBUpcoming) return 1;
 
-      // Both upcoming - ascending order
-      if (isAUpcoming && isBUpcoming) return dateA - dateB;
+            // Both upcoming - ascending order
+            if (isAUpcoming && isBUpcoming) return dateA - dateB;
 
-      // Both past - descending order
-      if (!isAUpcoming && !isBUpcoming) return dateB - dateA;
+            // Both past - descending order
+            if (!isAUpcoming && !isBUpcoming) return dateB - dateA;
 
-      return 0;
-    });
-  };
+            return 0;
+        });
+    };
 
     return (
         <>
@@ -244,35 +281,35 @@ function Fixtures_Home() {
                             className="fixtures-slider"
                         >
                             {sortFixtures(fixturesList).map((fixture, index) => (
-                                    <SwiperSlide key={index} className="fixture-slide">
-                                        <div className="fixture-box pt-0 text-center">
-                                            <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
-                                                <h2 className="m-0 fs-3">{formatDate(fixture.date)}</h2>
+                                <SwiperSlide key={index} className="fixture-slide">
+                                    <div className="fixture-box pt-0 text-center">
+                                        <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
+                                            <h2 className="m-0 fs-3">{formatDate(fixture.date)}</h2>
 
-                                                <div
-                                                    className="menu-wrapper"
-                                                    ref={(el) => (menuRefs.current[index] = el)}
-                                                    onClick={() => toggleMenu(index)}
-                                                >
-                                                    <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
+                                            <div
+                                                className="menu-wrapper"
+                                                ref={(el) => (menuRefs.current[index] = el)}
+                                                onClick={() => toggleMenu(index)}
+                                            >
+                                                <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
 
-                                                    {openMenuIndex === index && (
-                                                        <div className="menu-dropdown">
-                                                            <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(fixture); }}>Edit</button>
-                                                            <button onClick={() => { if (!isLoggedIn) return showLoginToast(); setDeleteId(fixture._id); new window.bootstrap.Modal(document.getElementById("deleteFixtureModal")).show(); }}>Delete</button>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-
-                                            <div className="bottom-container p-4">
-                                                <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{fixture.sport}</p>
-                                                <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder">{fixture.team1} VS {fixture.team2}</p>
-                                                <p className="m-0 p-0 fs-6"><i className="bi bi-clock me-2"></i>{fixture.time || "N/A"}</p>
+                                                {openMenuIndex === index && (
+                                                    <div className="menu-dropdown">
+                                                        <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(fixture); }}>Edit</button>
+                                                        <button onClick={() => { if (!isLoggedIn) return showLoginToast(); setDeleteId(fixture._id); new window.bootstrap.Modal(document.getElementById("deleteFixtureModal")).show(); }}>Delete</button>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                ))}
+
+                                        <div className="bottom-container p-4">
+                                            <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{fixture.sport}</p>
+                                            <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder">{fixture.team1} VS {fixture.team2}</p>
+                                            <p className="m-0 p-0 fs-6"><i className="bi bi-clock me-2"></i>{fixture.time || "N/A"}</p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            ))}
                         </Swiper>
 
                         <div className="explore mt-4">

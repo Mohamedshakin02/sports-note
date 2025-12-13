@@ -23,6 +23,8 @@ const createTokenAndSetCookie = (res, user) => {
         path: "/",
         partitioned: true
     });
+
+    return token;
 };
 
 // Add default moments for the new user 
@@ -152,11 +154,19 @@ export const signup = async (req, res) => {
 
 
 
-        createTokenAndSetCookie(res, newUser);
+        // createTokenAndSetCookie(res, newUser);
+
+        // res.status(201).json({
+        //     user: { id: newUser._id, username: newUser.username, email: newUser.email },
+        // });
+
+        const token = createTokenAndSetCookie(res, newUser);
 
         res.status(201).json({
+            token,
             user: { id: newUser._id, username: newUser.username, email: newUser.email },
         });
+
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -173,11 +183,20 @@ export const login = async (req, res) => {
         const match = await bcrypt.compare(password, user.password);
         if (!match) return res.status(401).json({ message: "Incorrect password" });
 
-        createTokenAndSetCookie(res, user);
+        // createTokenAndSetCookie(res, user);
+
+        // res.status(200).json({
+        //     user: { id: user._id, username: user.username, email: user.email },
+        // });
+
+        const token = createTokenAndSetCookie(res, user);
 
         res.status(200).json({
+            token,
             user: { id: user._id, username: user.username, email: user.email },
         });
+
+
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -218,8 +237,16 @@ export const googleLogin = async (req, res) => {
 
         }
 
-        createTokenAndSetCookie(res, user);
-        res.status(200).json({ user: { id: user._id, username: user.username, email: user.email } });
+        // createTokenAndSetCookie(res, user);
+
+        // res.status(200).json({ user: { id: user._id, username: user.username, email: user.email } });
+
+        const jwtToken = createTokenAndSetCookie(res, user);
+
+        res.status(200).json({
+            token: jwtToken,
+            user: { id: user._id, username: user.username, email: user.email },
+        });
 
     } catch (err) {
         console.error("Google login error:", err);
@@ -256,7 +283,13 @@ export const adminLogin = (req, res) => {
     });
 
 
-    res.status(200).json({ user: adminUser });
+    // res.status(200).json({ user: adminUser });
+
+    res.status(200).json({
+        token,
+        user: adminUser
+    });
+
 };
 
 export const logout = (req, res) => {
@@ -287,7 +320,12 @@ export const logout = (req, res) => {
 
 export const getSession = async (req, res) => {
     try {
-        const token = req.cookies.token;
+        // const token = req.cookies.token;
+
+        const token =
+            req.cookies.token ||
+            req.headers.authorization?.split(" ")[1];
+
         if (!token) return res.json({ user: null });
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);

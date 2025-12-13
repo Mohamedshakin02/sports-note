@@ -21,6 +21,7 @@ const defaultSessions = [
 function Sessions_home() {
   const { user } = useContext(AuthContext);
   const isLoggedIn = !!user;
+  const token = localStorage.getItem("token");
 
   const [sessionsList, setSessionsList] = useState([]);
   const [selected, setSelected] = useState(null); // start with null
@@ -57,7 +58,7 @@ function Sessions_home() {
   // Fetch sessions from backend if logged in
   useEffect(() => {
     const fetchSessions = async () => {
-      if (!user) {
+      if (!user || !token) {
         setSessionsList(defaultSessions);
         setSelected(defaultSessions[0]);
         return;
@@ -65,7 +66,17 @@ function Sessions_home() {
 
       try {
         setLoading(true);
-        const res = await axios.get("https://sports-note-backend.onrender.com/api/sessions", { withCredentials: true });
+        // const res = await axios.get("https://sports-note-backend.onrender.com/api/sessions", { withCredentials: true });
+
+        const res = await axios.get(
+          "https://sports-note-backend.onrender.com/api/sessions",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
         const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
         setSessionsList(sorted);
         setSelected(sorted.length > 0 ? sorted[0] : null);
@@ -168,7 +179,16 @@ function Sessions_home() {
     setLoading(true);
     const modalEl = document.getElementById("addSessionModal");
     try {
-      const res = await axios.post("https://sports-note-backend.onrender.com/api/sessions", form, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend.onrender.com/api/sessions", form, { withCredentials: true });
+
+      const res = await axios.post(
+        "https://sports-note-backend.onrender.com/api/sessions",
+        form,
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
+
       setSessionsList(prev => [...prev, res.data]);
       setSelected(res.data); // select newly added
       setForm({ title: "", exercises: [""] });
@@ -192,7 +212,18 @@ function Sessions_home() {
     setLoading(true);
     const modalEl = document.getElementById("editSessionModal");
     try {
-      const res = await axios.put(`https://sports-note-backend.onrender.com/api/sessions/${editForm.id}`, editForm, { withCredentials: true });
+      // const res = await axios.put(`https://sports-note-backend.onrender.com/api/sessions/${editForm.id}`, editForm, { withCredentials: true });
+
+      const res = await axios.put(
+        `https://sports-note-backend.onrender.com/api/sessions/${editForm.id}`,
+        editForm,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
       setSessionsList(prev => prev.map(session => session._id === editForm.id ? res.data : session));
       setSelected(res.data); // update selected if edited
       window.bootstrap.Modal.getInstance(modalEl)?.hide();
@@ -209,7 +240,17 @@ function Sessions_home() {
     setLoading(true);
     const modalEl = document.getElementById("deleteSessionModal");
     try {
-      await axios.delete(`https://sports-note-backend.onrender.com/api/sessions/${deleteId}`, { withCredentials: true });
+      // await axios.delete(`https://sports-note-backend.onrender.com/api/sessions/${deleteId}`, { withCredentials: true });
+
+      await axios.delete(
+        `https://sports-note-backend.onrender.com/api/sessions/${deleteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+      
       const updatedList = sessionsList.filter(session => session._id !== deleteId);
 
       setSessionsList(updatedList);

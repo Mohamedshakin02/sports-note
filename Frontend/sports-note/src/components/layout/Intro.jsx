@@ -72,6 +72,7 @@ const getInitials = (name) => {
 
 function Intro() {
   const { user } = useContext(AuthContext);
+  const token = localStorage.getItem("token");
   const [fixturesListData, setFixturesListData] = useState([]);
   const [quotesListData, setQuotesListData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -151,9 +152,23 @@ function Intro() {
 
       try {
         setLoading(true);
-        const resFixtures = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
-        const resQuotes = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
+        // const resFixtures = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
+        const resFixtures = await axios.get(
+          "https://sports-note-backend.onrender.com/api/fixtures",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
+        // const resQuotes = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
+
+        const resQuotes = await axios.get(
+          "https://sports-note-backend.onrender.com/api/quotes",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        
         setFixturesListData(getSortedFixtures(resFixtures.data));
         setQuotesListData(getRecentQuotes(Array.isArray(resQuotes.data) ? resQuotes.data : []));
 

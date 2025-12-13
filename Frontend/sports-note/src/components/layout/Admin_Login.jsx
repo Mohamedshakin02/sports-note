@@ -7,6 +7,7 @@ function Admin_Login() {
   const navigate = useNavigate();
   const toastRef = useRef(null);
   const { login } = useContext(AuthContext);
+  const token = localStorage.getItem("token");
 
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -41,7 +42,9 @@ function Admin_Login() {
         { withCredentials: true }
       );
 
-      login(res.data.user);
+      // login(res.data.user);
+
+      login(res.data.user, res.data.token);
       showToast("Admin login successful!");
       setFormData({ username: "", password: "" });
       setTimeout(() => navigate("/admin", { replace: true }), 10);

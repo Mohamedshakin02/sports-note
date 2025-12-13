@@ -44,10 +44,19 @@ function Login() {
 
 
     try {
-      const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/login", formData, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/login", formData, { withCredentials: true });
+
+      const res = await axios.post(
+        "https://sports-note-backend.onrender.com/api/auth/login",
+        formData
+      );
+
 
       showToast("Login successful!");
-      login(res.data.user); // store in context
+
+      // login(res.data.user); // store in context
+
+      login(res.data.user, res.data.token);
       setTimeout(() => navigate("/", { replace: true }), 5);
     } catch (err) {
       showToast(err.response?.data?.message || "Something went wrong");
@@ -63,12 +72,24 @@ function Login() {
     if (!response.credential) return showToast("Google login failed");
     setLoading(true);
     try {
+      // const res = await axios.post(
+      //   "https://sports-note-backend.onrender.com/api/auth/google-login",
+      //   { token: response.credential },
+      //   { withCredentials: true }
+      // );
+
       const res = await axios.post(
-        "https://sports-note-backend.onrender.com/api/auth/google-login",
-        { token: response.credential },
-        { withCredentials: true }
+        "https://sports-note-backend.onrender.com/api/auth/admin-login",
+        formData
       );
-      login(res.data.user); // store in context
+
+      // Save token in localStorage (works reliably on iPhone)
+      localStorage.setItem("token", res.data.token);
+
+
+      // login(res.data.user); // store in context
+
+      login(res.data.user, res.data.token);
       showToast("Logged in successfully with Google!");
       setTimeout(() => navigate("/", { replace: true }), 5);
     } catch (err) {

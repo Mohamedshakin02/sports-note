@@ -27,6 +27,8 @@ const defaultQuotes = [
 function Quotes() {
   const { user } = useContext(AuthContext);
   const isLoggedIn = !!user;
+  const token = localStorage.getItem("token");
+
 
   const [quotesList, setQuotesList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -53,7 +55,7 @@ function Quotes() {
 
   useEffect(() => {
     const fetchQuotes = async () => {
-      if (!user) {
+      if (!user || !token) {
         // User logged out shows default quotes immediately
         setQuotesList(defaultQuotes);
         return;
@@ -61,7 +63,17 @@ function Quotes() {
 
       try {
         setLoading(true);
-        const res = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
+        // const res = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
+
+        const res = await axios.get(
+          "https://sports-note-backend.onrender.com/api/quotes",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
         setQuotesList(Array.isArray(res.data) ? res.data : []);
 
       } catch (err) {
@@ -116,7 +128,9 @@ function Quotes() {
       const formData = new FormData();
       formData.append("file", form.image);
       formData.append("upload_preset", "quotes_preset");
-      try { const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); imageUrl = res.data.secure_url; }
+      try {
+        const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); imageUrl = res.data.secure_url;
+      }
       catch {
         const modalEl = document.getElementById("addQuoteModal");
         window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -126,7 +140,18 @@ function Quotes() {
     }
 
     try {
-      const res = await axios.post("https://sports-note-backend.onrender.com/api/quotes", { ...form, imageUrl }, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend.onrender.com/api/quotes", { ...form, imageUrl }, { withCredentials: true });
+
+      const res = await axios.post(
+        "https://sports-note-backend.onrender.com/api/quotes",
+        { ...form, imageUrl },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
       setQuotesList(prev => [res.data, ...prev]);
       setForm({ quote: "", author: "", image: null });
       const modalEl = document.getElementById("addQuoteModal");
@@ -174,7 +199,18 @@ function Quotes() {
     if (imageUrl === null) return;
 
     try {
-      const res = await axios.put(`https://sports-note-backend.onrender.com/api/quotes/${editingQuote.id}`, { ...editingQuote, imageUrl }, { withCredentials: true });
+      // const res = await axios.put(`https://sports-note-backend.onrender.com/api/quotes/${editingQuote.id}`, { ...editingQuote, imageUrl }, { withCredentials: true });
+
+      const res = await axios.put(
+        `https://sports-note-backend.onrender.com/api/quotes/${editingQuote.id}`,
+        { ...editingQuote, imageUrl },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
       setQuotesList(prev => prev.map(quote => (quote._id === editingQuote.id || quote.id === editingQuote.id ? res.data : quote)));
       const modalEl = document.getElementById("editQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -192,7 +228,17 @@ function Quotes() {
     if (!deleteId) return;
     setLoading(true);
     try {
-      await axios.delete(`https://sports-note-backend.onrender.com/api/quotes/${deleteId}`, { withCredentials: true });
+      // await axios.delete(`https://sports-note-backend.onrender.com/api/quotes/${deleteId}`, { withCredentials: true });
+
+      await axios.delete(
+        `https://sports-note-backend.onrender.com/api/quotes/${deleteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
       setQuotesList(prev => prev.filter(quote => (quote._id || quote.id) !== deleteId));
       const modalEl = document.getElementById("deleteQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -437,12 +483,12 @@ function Quotes() {
             <div className="modal-content">
 
               <div className="modal-header">
-                <h5 className="modal-title" id="deleteModalLabel">Delete Moment</h5>
+                <h5 className="modal-title" id="deleteModalLabel">Delete Quote</h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
               </div>
 
               <div className="modal-body">
-                Are you sure you want to delete this moment?
+                Are you sure you want to delete this quote?
               </div>
 
               <div className="modal-footer">

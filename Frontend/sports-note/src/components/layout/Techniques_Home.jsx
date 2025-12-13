@@ -59,6 +59,8 @@ const defaultTechniques = [
 
 function Techniques_Home() {
     const { user } = useContext(AuthContext);
+    const token = localStorage.getItem("token");
+
     const [techniquesList, setTechniquesList] = useState([]);
     const [openMenuIndex, setOpenMenuIndex] = useState(null);
     const menuRefs = useRef([]);
@@ -99,14 +101,24 @@ function Techniques_Home() {
     }, [openMenuIndex]);
 
     useEffect(() => {
-        if (!user) {
+        if (!user || !token) {
             setTechniquesList(defaultTechniques);
             return;
         }
         const fetchTechniques = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get("https://sports-note-backend.onrender.com/api/techniques", { withCredentials: true });
+                // const res = await axios.get("https://sports-note-backend.onrender.com/api/techniques", { withCredentials: true });
+
+                const res = await axios.get(
+                    "https://sports-note-backend.onrender.com/api/techniques",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+
                 // Sort by createdAt ascending so oldest first
                 const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
@@ -165,7 +177,17 @@ function Techniques_Home() {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post("https://sports-note-backend.onrender.com/api/techniques", form, { withCredentials: true });
+            // const res = await axios.post("https://sports-note-backend.onrender.com/api/techniques", form, { withCredentials: true });
+
+            const res = await axios.post(
+                "https://sports-note-backend.onrender.com/api/techniques",
+                form,
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
+
+
             setTechniquesList(prev => [...prev, res.data]);
             setForm({ title: "", sport: "", steps: [""] });
             window.bootstrap.Modal.getInstance(document.getElementById("addTechniqueModal")).hide();
@@ -184,7 +206,18 @@ function Techniques_Home() {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.put(`https://sports-note-backend.onrender.com/api/techniques/${editForm.id}`, editForm, { withCredentials: true });
+            // const res = await axios.put(`https://sports-note-backend.onrender.com/api/techniques/${editForm.id}`, editForm, { withCredentials: true });
+
+            const res = await axios.put(
+                `https://sports-note-backend.onrender.com/api/techniques/${editForm.id}`,
+                editForm,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
             setTechniquesList(prev => prev.map(technique => (technique._id === editForm.id ? res.data : technique)));
             window.bootstrap.Modal.getInstance(document.getElementById("editTechniqueModal")).hide();
             showToast("Technique updated successfully!");
@@ -196,7 +229,17 @@ function Techniques_Home() {
         if (!deleteId) return;
         setLoading(true);
         try {
-            await axios.delete(`https://sports-note-backend.onrender.com/api/techniques/${deleteId}`, { withCredentials: true });
+            // await axios.delete(`https://sports-note-backend.onrender.com/api/techniques/${deleteId}`, { withCredentials: true });
+
+            await axios.delete(
+                `https://sports-note-backend.onrender.com/api/techniques/${deleteId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
             setTechniquesList(prev => prev.filter(technique => technique._id !== deleteId));
             window.bootstrap.Modal.getInstance(document.getElementById("deleteTechniqueModal")).hide();
             showToast("Technique deleted successfully!");
@@ -207,6 +250,9 @@ function Techniques_Home() {
 
     return (
         <>
+
+            {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"><span className="visually-hidden">Loading...</span></div></div>)}
+
             {techniquesList && techniquesList.length > 0 && (
                 <section className="techniques-section py-5 mt-2">
                     <div className="techniques-container container-md px-3 px-md-2">

@@ -13,6 +13,7 @@ const defaultFixtures = [
 
 function Fixtures() {
   const { user } = useContext(AuthContext); // gets logged-in user
+  const token = localStorage.getItem("token");
   const [fixturesList, setFixturesList] = useState([]);
   const [openMenuIndex, setOpenMenuIndex] = useState(null);
   const menuRefs = useRef([]);
@@ -63,7 +64,7 @@ function Fixtures() {
 
   // Fetch fixtures from backend
   useEffect(() => {
-    if (!user) {
+    if (!user || !token) {
       setFixturesList(defaultFixtures);
       return;
     }
@@ -71,7 +72,14 @@ function Fixtures() {
     const fetchFixtures = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
+        // const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
+
+        const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
         setFixturesList(res.data);
       } catch (err) {
         setFixturesList([]);
@@ -104,7 +112,16 @@ function Fixtures() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("https://sports-note-backend.onrender.com/api/fixtures", form, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend.onrender.com/api/fixtures", form, { withCredentials: true });
+
+      const res = await axios.post(
+        "https://sports-note-backend.onrender.com/api/fixtures",
+        form,
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
+
       setFixturesList(prev => [res.data, ...prev]);
       setForm({ team1: "", team2: "", sport: "", date: "", time: "" });
       const modalEl = document.getElementById("addFixtureModal");
@@ -130,7 +147,18 @@ function Fixtures() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.put(`https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
+      // const res = await axios.put(`https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
+
+      const res = await axios.put(
+        `https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`,
+        editForm,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
       setFixturesList(prev => prev.map(fixture => (fixture._id === editForm.id ? res.data : fixture)));
       const modalEl = document.getElementById("editFixtureModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -150,7 +178,17 @@ function Fixtures() {
     if (!deleteId) return;
     setLoading(true);
     try {
-      await axios.delete(`https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`, { withCredentials: true });
+      // await axios.delete(`https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`, { withCredentials: true });
+
+      await axios.delete(
+        `https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+      
       setFixturesList(prev => prev.filter(fixture => fixture._id !== deleteId));
       const modalEl = document.getElementById("deleteFixtureModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -229,41 +267,41 @@ function Fixtures() {
 
         <div className="grid-container">
           {sortFixtures(fixturesList).map((fixture, index) => (
-              <div className="fixture-box pt-0 text-center" key={index}>
-                <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
-                  <h2 className="m-0 fs-3">{formatDate(fixture.date)}</h2>
+            <div className="fixture-box pt-0 text-center" key={index}>
+              <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
+                <h2 className="m-0 fs-3">{formatDate(fixture.date)}</h2>
 
-                  <div
-                    className="menu-wrapper"
-                    ref={(el) => (menuRefs.current[index] = el)}
-                    onClick={() => toggleMenu(index)}
-                  >
-                    <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
+                <div
+                  className="menu-wrapper"
+                  ref={(el) => (menuRefs.current[index] = el)}
+                  onClick={() => toggleMenu(index)}
+                >
+                  <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
 
-                    {openMenuIndex === index && (
-                      <div className="menu-dropdown">
-                        <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(fixture) }}>Edit</button>
-                        <button onClick={() => {
-                          if (!isLoggedIn) return showLoginToast();
-                          setDeleteId(fixture._id);
-                          new window.bootstrap.Modal(document.getElementById("deleteFixtureModal")).show();
-                        }}>
-                          Delete
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="bottom-container p-4">
-                  <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{fixture.sport}</p>
-                  <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder text-uppercase">{fixture.team1} VS {fixture.team2}</p>
-                  <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span>
-                    {fixture.time || "N/A"}
-                  </p>
+                  {openMenuIndex === index && (
+                    <div className="menu-dropdown">
+                      <button onClick={() => { if (!isLoggedIn) return showLoginToast(); handleEdit(fixture) }}>Edit</button>
+                      <button onClick={() => {
+                        if (!isLoggedIn) return showLoginToast();
+                        setDeleteId(fixture._id);
+                        new window.bootstrap.Modal(document.getElementById("deleteFixtureModal")).show();
+                      }}>
+                        Delete
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
-            ))}
+
+              <div className="bottom-container p-4">
+                <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{fixture.sport}</p>
+                <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder text-uppercase">{fixture.team1} VS {fixture.team2}</p>
+                <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span>
+                  {fixture.time || "N/A"}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Add Fixture Modal */}

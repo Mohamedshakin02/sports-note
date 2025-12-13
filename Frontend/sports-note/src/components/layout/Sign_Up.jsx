@@ -40,13 +40,21 @@ function Sign_Up() {
     e.preventDefault();
     setLoading(true);
     try {
+      // const res = await axios.post(
+      //   "https://sports-note-backend.onrender.com/api/auth/signup",
+      //   formData,
+      //   { withCredentials: true }
+      // );
+
       const res = await axios.post(
         "https://sports-note-backend.onrender.com/api/auth/signup",
-        formData,
-        { withCredentials: true }
+        formData
       );
 
-      login(res.data.user);
+      localStorage.setItem("token", res.data.token);
+
+      login(res.data.user, res.data.token);
+
       showToast("Signup successful!");
       setFormData({ username: "", email: "", password: "" });
       setTimeout(() => navigate("/", { replace: true }), 5);
@@ -63,12 +71,20 @@ function Sign_Up() {
     if (!response.credential) return showToast("Google login failed");
     setLoading(true);
     try {
-      const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/google-login",
-        { token: response.credential },
-        { withCredentials: true }
+      // const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/google-login",
+      //   { token: response.credential },
+      //   { withCredentials: true }
+      // );
+
+      const resGoogle = await axios.post(
+        "https://sports-note-backend.onrender.com/api/auth/google-login",
+        { token: response.credential }
       );
 
-      login(res.data.user);
+      localStorage.setItem("token", resGoogle.data.token);
+
+      login(resGoogle.data.user, resGoogle.data.token);
+
       showToast("Signed up successfully with Google!");
       setTimeout(() => navigate("/", { replace: true }), 5);
     } catch (err) {
@@ -79,38 +95,38 @@ function Sign_Up() {
   };
 
   useEffect(() => {
-  setLoading(true);
+    setLoading(true);
 
-  const script = document.createElement("script");
-  script.src = "https://accounts.google.com/gsi/client?hl=en"; 
-  script.async = true;
-  script.defer = true;
-  script.onload = () => {
-    if (window.google) {
-      const signInContainer = document.getElementById("g_id_signin");
-      google.accounts.id.initialize({
-        client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
-        callback: handleGoogleLogin
-      });
+    const script = document.createElement("script");
+    script.src = "https://accounts.google.com/gsi/client?hl=en";
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      if (window.google) {
+        const signInContainer = document.getElementById("g_id_signin");
+        google.accounts.id.initialize({
+          client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
+          callback: handleGoogleLogin
+        });
 
-      google.accounts.id.renderButton(signInContainer, {
-        theme: "outline",
-        size: "large",
-        width: "100%"
-      });
+        google.accounts.id.renderButton(signInContainer, {
+          theme: "outline",
+          size: "large",
+          width: "100%"
+        });
 
-      setGoogleReady(true);
-      setLoading(false);
-      google.accounts.id.prompt();
-    }
-  };
+        setGoogleReady(true);
+        setLoading(false);
+        google.accounts.id.prompt();
+      }
+    };
 
-  document.body.appendChild(script);
+    document.body.appendChild(script);
 
-  return () => {
-    document.body.removeChild(script); 
-  };
-}, []);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <>

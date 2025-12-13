@@ -53,6 +53,7 @@ const defaultMoments = [
 
 function Moments_Home() {
   const { user } = useContext(AuthContext);
+  const token = localStorage.getItem("token");
   const [momentsList, setMomentsList] = useState(defaultMoments);
   const [openIndex, setOpenIndex] = useState(0);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -116,8 +117,17 @@ function Moments_Home() {
 
       try {
         setLoading(true);
-        const res = await axios.get("https://sports-note-backend.onrender.com/api/moments", { withCredentials: true });
-        // setMomentsList(res.data); // replace static moments with DB data
+        // const res = await axios.get("https://sports-note-backend.onrender.com/api/moments", { withCredentials: true });
+
+        const res = await axios.get(
+          "https://sports-note-backend.onrender.com/api/moments",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+
         // Sort by createdAt ascending so oldest first
         const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
@@ -175,7 +185,18 @@ function Moments_Home() {
     }
 
     try {
-      const res = await axios.post("https://sports-note-backend.onrender.com/api/moments", { ...form, imageUrl }, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend.onrender.com/api/moments", { ...form, imageUrl }, { withCredentials: true });
+
+      const res = await axios.post(
+        "https://sports-note-backend.onrender.com/api/moments",
+        { ...form, imageUrl },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
       setMomentsList(prev => [res.data, ...prev]);
       setForm({ title: "", sport: "", image: null, date: "", description: "" });
       const modalEl = document.getElementById("addMomentModal");
@@ -213,7 +234,18 @@ function Moments_Home() {
     if (imageUrl === null) return;
 
     try {
-      const res = await axios.put(`https://sports-note-backend.onrender.com/api/moments/${editForm.id}`, { ...editForm, imageUrl }, { withCredentials: true });
+      // const res = await axios.put(`https://sports-note-backend.onrender.com/api/moments/${editForm.id}`, { ...editForm, imageUrl }, { withCredentials: true });
+
+      const res = await axios.put(
+        `https://sports-note-backend.onrender.com/api/moments/${editForm.id}`,
+        { ...editForm, imageUrl },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
       setMomentsList(prev => prev.map(moment => (moment._id === editForm.id || moment.id === editForm.id ? res.data : moment)));
       const modalEl = document.getElementById("editMomentModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -231,10 +263,20 @@ function Moments_Home() {
 
     try {
       setLoading(true);
-      await axios.delete(`https://sports-note-backend.onrender.com/api/moments/${deleteId}`, { withCredentials: true });
+      // await axios.delete(`https://sports-note-backend.onrender.com/api/moments/${deleteId}`, { withCredentials: true });
+
+      await axios.delete(
+        `https://sports-note-backend.onrender.com/api/moments/${deleteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
 
       setMomentsList(prev =>
-        prev.filter(m => (moment._id || moment.id) !== deleteId)
+        prev.filter(moment => (moment._id || moment.id) !== deleteId)
       );
 
       const modalEl = document.getElementById("deleteMomentModal");
