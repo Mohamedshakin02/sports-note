@@ -169,13 +169,21 @@ function Sign_Up() {
 
               {googleReady && (
                 <>
-                  <div className="text-center text-dark">OR</div>
+                  <div className="text-center text-light">OR</div>
 
                   <button
                     type="button"
                     className="google-button btn w-100"
                     onClick={() => {
-                      google.accounts.id.prompt();
+                      if (window.google) {
+                        google.accounts.id.initialize({
+                          client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
+                          callback: handleGoogleLogin
+                        });
+                        google.accounts.id.prompt(); // or google.accounts.id.signIn() if you want direct popup
+                      } else {
+                        showToast("Google API not loaded yet");
+                      }
                     }}
                   >
                     <i className="bi bi-google me-2"></i> Sign in with Google
@@ -186,7 +194,7 @@ function Sign_Up() {
             </form>
           </div>
         </div>
-      </section>
+      </section >
 
       <div className="toast-container position-fixed p-3">
         <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
