@@ -128,10 +128,8 @@ function Moments_Home() {
           }
         );
 
-        // Sort by createdAt ascending so oldest first
-        const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
-        setMomentsList(sorted);
+        setMomentsList(res.data);
       }
 
       catch (err) {

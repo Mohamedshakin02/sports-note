@@ -119,10 +119,7 @@ function Moments() {
                     }
                 );
 
-                // Sort by createdAt ascending so oldest first
-                const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-
-                setMomentsList(sorted);
+                setMomentsList(res.data);
             }
 
             catch (err) {
@@ -179,7 +176,7 @@ function Moments() {
                 }
             );
 
-            setMomentsList(prev => [...prev, res.data]);
+            setMomentsList(prev => [res.data, ...prev]);
             setForm({ title: "", sport: "", image: null, date: "", description: "" });
             const modalEl = document.getElementById("addMomentModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();

@@ -77,8 +77,8 @@ function Sessions_home() {
           }
         );
 
-        const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-        setSessionsList(sorted);
+        
+        setSessionsList(res.data);
         setSelected(sorted.length > 0 ? sorted[0] : null);
       } catch (err) {
         setSessionsList([]);
@@ -189,7 +189,7 @@ function Sessions_home() {
         }
       );
 
-      setSessionsList(prev => [...prev, res.data]);
+      setSessionsList(prev => [res.data, ...prev]);
       setSelected(res.data); // select newly added
       setForm({ title: "", exercises: [""] });
       window.bootstrap.Modal.getInstance(modalEl)?.hide();
@@ -250,7 +250,7 @@ function Sessions_home() {
           }
         }
       );
-      
+
       const updatedList = sessionsList.filter(session => session._id !== deleteId);
 
       setSessionsList(updatedList);
