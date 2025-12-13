@@ -245,6 +245,12 @@ body {
 .login-section .login-container .login-form form .sign-up .link {
   color: #710004;
 }
+.login-section .login-container .login-form form .google-button {
+  background-color: white;
+  color: black;
+  font-weight: 400;
+  border: 1px solid black;
+}
 
 .toast-container {
   top: 50px !important;

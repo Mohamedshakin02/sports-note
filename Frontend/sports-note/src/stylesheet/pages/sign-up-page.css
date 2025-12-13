@@ -247,6 +247,12 @@ body {
 .signup-section .signup-container .signup-form form .sign-up .link {
   color: #FCF0D6;
 }
+.signup-section .signup-container .signup-form form .google-button {
+  background-color: white;
+  color: black;
+  font-weight: 400;
+  border: 1px solid black;
+}
 
 .toast-container {
   top: 50px !important;

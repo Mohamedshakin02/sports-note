@@ -84,7 +84,7 @@ function Login() {
         { token: response.credential }
       );
 
-  
+
       localStorage.setItem("token", res.data.token);
 
 
@@ -185,17 +185,26 @@ function Login() {
               </div>
 
               {googleReady && (
-                <div className="text-center text-dark">OR</div>
-              )}
+                <>
+                  <div className="text-center text-dark">OR</div>
 
-              <div id="g_id_signin"></div>
+                  <button
+                    className="google-button btn w-100"
+                    onClick={() => {
+                      google.accounts.id.prompt(); 
+                    }}
+                  >
+                    <i className="bi bi-google me-2"></i> Sign in with Google
+                  </button>
+                </>
+              )}
             </form>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Toast */}
-      <div className="toast-container position-fixed p-3">
+      < div className="toast-container position-fixed p-3" >
         <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
           <div className="d-flex">
             <div className="toast-body">{toast.message}</div>
@@ -205,7 +214,7 @@ function Login() {
             <div className="toast-progress"></div>
           </div>
         </div>
-      </div>
+      </div >
     </>
 
 

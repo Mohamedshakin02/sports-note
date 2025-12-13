@@ -53,7 +53,7 @@ function Sign_Up() {
 
       localStorage.setItem("token", res.data.token);
 
-       // login(res.data.user);
+      // login(res.data.user);
 
       login(res.data.user, res.data.token);
 
@@ -168,7 +168,18 @@ function Sign_Up() {
               </div>
 
               {googleReady && (
-                <div className="text-center text-light">OR</div>
+                <>
+                  <div className="text-center text-dark">OR</div>
+
+                  <button
+                    className="google-button btn w-100"
+                    onClick={() => {
+                      google.accounts.id.prompt();
+                    }}
+                  >
+                    <i className="bi bi-google me-2"></i> Sign in with Google
+                  </button>
+                </>
               )}
 
               <div id="g_id_signin"></div>
