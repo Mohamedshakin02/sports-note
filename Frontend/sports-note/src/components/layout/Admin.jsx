@@ -61,7 +61,7 @@ function Admin() {
             setLoading(true);
             // const res = await axios.post("https://sports-note-backend.onrender.com/api/admin/users", addForm, { withCredentials: true });
 
-            await axios.post(
+            const res = await axios.post(
                 "https://sports-note-backend.onrender.com/api/admin/users",
                 addForm,
                 { headers: { Authorization: `Bearer ${token}` } }
@@ -103,7 +103,7 @@ function Admin() {
             //     { withCredentials: true }
             // );
 
-            await axios.put(
+            const res = await axios.put(
                 `https://sports-note-backend.onrender.com/api/admin/users/${selectedUser._id}`,
                 editForm,
                 { headers: { Authorization: `Bearer ${token}` } }
