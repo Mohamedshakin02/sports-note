@@ -107,7 +107,7 @@ function Sign_Up() {
         client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
         callback: handleGoogleLogin,
         ux_mode: "popup",
-        use_fedcm_for_prompt: false
+        use_fedcm_for_prompt: true
       });
 
       setGoogleReady(true);
