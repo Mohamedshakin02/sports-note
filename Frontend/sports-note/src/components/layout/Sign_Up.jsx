@@ -69,21 +69,25 @@ function Sign_Up() {
   };
 
   const handleGoogleLogin = async (response) => {
+
     if (!response.credential) return showToast("Google login failed");
     setLoading(true);
     try {
-      const res = await axios.post(
+      // const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/google-login",
+      //   { token: response.credential },
+      //   { withCredentials: true }
+      // );
+
+      const resGoogle = await axios.post(
         "https://sports-note-backend.onrender.com/api/auth/google-login",
         { token: response.credential }
       );
 
+      localStorage.setItem("token", resGoogle.data.token);
 
-      localStorage.setItem("token", res.data.token);
+      login(resGoogle.data.user, resGoogle.data.token);
 
-      // login(res.data.user); // store in context
-
-      login(res.data.user, res.data.token);
-      showToast("Logged in successfully with Google!");
+      showToast("Signed up successfully with Google!");
       navigate("/", { replace: true });
     } catch (err) {
       showToast(err.response?.data?.message || "Google login failed");
@@ -93,30 +97,37 @@ function Sign_Up() {
   };
 
   useEffect(() => {
-    /* global google */
-    const signInContainer = document.getElementById("g_id_signin");
-    if (!window.google || !signInContainer) {
-      setLoading(false); // still remove loader if Google fails
-      return;
-    }
-
-
-    google.accounts.id.initialize({
-      client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
-      callback: handleGoogleLogin
-    });
-
-    google.accounts.id.renderButton(signInContainer, {
-      theme: "outline",
-      size: "large",
-      width: "100%"
-    });
-
-    setGoogleReady(true);
-    setLoading(false);
-    google.accounts.id.prompt();
-
     setLoading(true);
+
+    const script = document.createElement("script");
+    script.src = "https://accounts.google.com/gsi/client?hl=en";
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      if (window.google) {
+        const signInContainer = document.getElementById("g_id_signin");
+        google.accounts.id.initialize({
+          client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
+          callback: handleGoogleLogin
+        });
+
+        google.accounts.id.renderButton(signInContainer, {
+          theme: "outline",
+          size: "large",
+          width: "100%"
+        });
+
+        setGoogleReady(true);
+        setLoading(false);
+        google.accounts.id.prompt();
+      }
+    };
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
 
@@ -158,7 +169,8 @@ function Sign_Up() {
               </div>
 
               {googleReady && (
-                <div className="text-center text-dark">OR</div>
+                <div className="text-center text-light">OR</div>
+
               )}
 
               <div id="g_id_signin"></div>
