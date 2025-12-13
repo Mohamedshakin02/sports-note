@@ -560,7 +560,7 @@ function Moments_Home() {
                       </div>
                       <div className="mb-1 col-12">
                         <label htmlFor="moment-type" className="form-label">Sport:</label>
-                        <select id="moment-type" className="form-select" value={editForm.sport} onChange={(e) => handleChange(e, true)} required>
+                        <select id="moment-type" className="form-select" value={editForm.sport} onChange={(e) => handleChange(e, true)} required placeholder="Enter a short title for your sports moment">
                           <option value="" disabled>Select a sport</option>
                           <option value="Football">Football</option>
                           <option value="Basketball">Basketball</option>
@@ -603,7 +603,7 @@ function Moments_Home() {
                       </div>
                       <div className="mb-4 col-12">
                         <label htmlFor="moment-desc" className="form-label">Description:</label>
-                        <textarea id="moment-desc" className="form-control" value={editForm.description} onChange={(e) => handleChange(e, true)} required />
+                        <textarea id="moment-desc" className="form-control" value={editForm.description} onChange={(e) => handleChange(e, true)} required placeholder="Describe what happened in this moment"/>
                       </div>
                       <div className="col-12"><button type="submit" className="btn btn-primary w-100">Update Moment</button></div>
                     </form>
