@@ -81,10 +81,10 @@ function Login() {
 
       const res = await axios.post(
         "https://sports-note-backend.onrender.com/api/auth/google-login",
-        formData
+        { token: response.credential }
       );
 
-      // Save token in localStorage (works reliably on iPhone)
+  
       localStorage.setItem("token", res.data.token);
 
 
