@@ -108,7 +108,8 @@ function Sign_Up() {
         const signInContainer = document.getElementById("g_id_signin");
         google.accounts.id.initialize({
           client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
-          callback: handleGoogleLogin
+          callback: handleGoogleLogin,
+          ux_mode: "popup"
         });
 
         google.accounts.id.renderButton(signInContainer, {
@@ -176,11 +177,7 @@ function Sign_Up() {
                     className="google-button btn w-100"
                     onClick={() => {
                       if (window.google) {
-                        google.accounts.id.initialize({
-                          client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
-                          callback: handleGoogleLogin
-                        });
-                        google.accounts.id.prompt(); // or google.accounts.id.signIn() if you want direct popup
+                        google.accounts.id.prompt(); // or google.accounts.id.signIn() with popup
                       } else {
                         showToast("Google API not loaded yet");
                       }
