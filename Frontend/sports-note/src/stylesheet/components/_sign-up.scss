@@ -111,9 +111,8 @@
 
         #g_id_signin{
           div{
-            div{
-              justify-self: center;
-            }
+            display: flex;
+            justify-content: center;
           }
         }
       }
