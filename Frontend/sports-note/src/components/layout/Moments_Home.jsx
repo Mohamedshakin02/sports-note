@@ -556,11 +556,11 @@ function Moments_Home() {
                     <form className="row g-2 py-2 mt-3" onSubmit={handleEditSubmit}>
                       <div className="mb-1 col-12">
                         <label htmlFor="moment-title" className="form-label">Title:</label>
-                        <input type="text" id="moment-title" className="form-control" value={editForm.title} onChange={(e) => handleChange(e, true)} required />
+                        <input type="text" id="moment-title" className="form-control" value={editForm.title} onChange={(e) => handleChange(e, true)} required placeholder="Enter a short title for your sports moment"/>
                       </div>
                       <div className="mb-1 col-12">
                         <label htmlFor="moment-type" className="form-label">Sport:</label>
-                        <select id="moment-type" className="form-select" value={editForm.sport} onChange={(e) => handleChange(e, true)} required placeholder="Enter a short title for your sports moment">
+                        <select id="moment-type" className="form-select" value={editForm.sport} onChange={(e) => handleChange(e, true)} required>
                           <option value="" disabled>Select a sport</option>
                           <option value="Football">Football</option>
                           <option value="Basketball">Basketball</option>
