@@ -253,6 +253,9 @@ body {
   font-weight: 400;
   border: 1px solid black;
 }
+.signup-section .signup-container .signup-form form #g_id_signin div div {
+  justify-self: center;
+}
 
 .toast-container {
   top: 50px !important;
