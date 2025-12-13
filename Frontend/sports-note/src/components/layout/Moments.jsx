@@ -119,7 +119,11 @@ function Moments() {
                     }
                 );
 
-                setMomentsList(res.data);
+                const sorted = res.data.sort(
+                    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                );
+
+                setMomentsList(sorted);
             }
 
             catch (err) {
