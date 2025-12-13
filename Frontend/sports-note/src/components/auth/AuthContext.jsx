@@ -49,10 +49,12 @@ export function AuthProvider({ children }) {
 
   const logout = () => {
     setLogoutLoading(true);
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    setUser(null);
-    setLogoutLoading(false);
+    setTimeout(() => {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      setUser(null);
+      setLogoutLoading(false);
+    }, 2000);
   };
 
   return (
