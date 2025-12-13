@@ -7,7 +7,7 @@ const GuestRoute = ({ children }) => {
 
   if (loading) return null; 
 
-  return user ? <Navigate to="/not-found" replace /> : children;
+  return user ? <Navigate to="/" replace /> : children;
 };
 
 export default GuestRoute;
