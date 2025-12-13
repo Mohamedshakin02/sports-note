@@ -79,7 +79,7 @@ function Sessions_home() {
 
         
         setSessionsList(res.data);
-        setSelected(sorted.length > 0 ? sorted[0] : null);
+        setSelected(res.data.length > 0 ? res.data[0] : null);
       } catch (err) {
         setSessionsList([]);
         setSelected(null);
