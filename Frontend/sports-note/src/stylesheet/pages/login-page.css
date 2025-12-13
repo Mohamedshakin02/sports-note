@@ -251,6 +251,10 @@ body {
   font-weight: 400;
   border: 1px solid black;
 }
+.login-section .login-container .login-form form #g_id_signin div {
+  display: flex;
+  justify-content: center;
+}
 
 .toast-container {
   top: 50px !important;
