@@ -8,7 +8,7 @@ function Sign_Up() {
   const toastRef = useRef(null);
 
   const [toast, setToast] = useState({ message: "" });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [googleReady, setGoogleReady] = useState(true);
 
   const { login } = useContext(AuthContext);
@@ -53,11 +53,13 @@ function Sign_Up() {
 
       localStorage.setItem("token", res.data.token);
 
+       // login(res.data.user);
+
       login(res.data.user, res.data.token);
 
       showToast("Signup successful!");
       setFormData({ username: "", email: "", password: "" });
-      setTimeout(() => navigate("/", { replace: true }), 5);
+      navigate("/", { replace: true });
     } catch (err) {
       const message = err.response?.data?.message || err.message || "Something went wrong";
       showToast(message);
@@ -86,7 +88,7 @@ function Sign_Up() {
       login(resGoogle.data.user, resGoogle.data.token);
 
       showToast("Signed up successfully with Google!");
-      setTimeout(() => navigate("/", { replace: true }), 5);
+      navigate("/", { replace: true });
     } catch (err) {
       showToast(err.response?.data?.message || "Google login failed");
     } finally {

@@ -51,13 +51,14 @@ function Login() {
         formData
       );
 
+      localStorage.setItem("token", res.data.token);
 
       showToast("Login successful!");
 
       // login(res.data.user); // store in context
 
       login(res.data.user, res.data.token);
-      setTimeout(() => navigate("/", { replace: true }), 5);
+      navigate("/", { replace: true });
     } catch (err) {
       showToast(err.response?.data?.message || "Something went wrong");
     } finally {
@@ -79,7 +80,7 @@ function Login() {
       // );
 
       const res = await axios.post(
-        "https://sports-note-backend.onrender.com/api/auth/admin-login",
+        "https://sports-note-backend.onrender.com/api/auth/google-login",
         formData
       );
 
@@ -91,7 +92,7 @@ function Login() {
 
       login(res.data.user, res.data.token);
       showToast("Logged in successfully with Google!");
-      setTimeout(() => navigate("/", { replace: true }), 5);
+      navigate("/", { replace: true });
     } catch (err) {
       showToast(err.response?.data?.message || "Google login failed");
     } finally {
