@@ -172,6 +172,7 @@ function Sign_Up() {
                   <div className="text-center text-dark">OR</div>
 
                   <button
+                    type="button"
                     className="google-button btn w-100"
                     onClick={() => {
                       google.accounts.id.prompt();
@@ -182,7 +183,6 @@ function Sign_Up() {
                 </>
               )}
 
-              <div id="g_id_signin"></div>
             </form>
           </div>
         </div>

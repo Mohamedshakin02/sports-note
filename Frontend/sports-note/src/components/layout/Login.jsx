@@ -189,9 +189,10 @@ function Login() {
                   <div className="text-center text-dark">OR</div>
 
                   <button
+                    type="button"
                     className="google-button btn w-100"
                     onClick={() => {
-                      google.accounts.id.prompt(); 
+                      google.accounts.id.prompt();
                     }}
                   >
                     <i className="bi bi-google me-2"></i> Sign in with Google
