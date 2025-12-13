@@ -106,7 +106,8 @@ function Sign_Up() {
       google.accounts.id.initialize({
         client_id: "820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com",
         callback: handleGoogleLogin,
-        ux_mode: "popup"
+        ux_mode: "popup",
+        use_fedcm_for_prompt: false
       });
 
       setGoogleReady(true);
