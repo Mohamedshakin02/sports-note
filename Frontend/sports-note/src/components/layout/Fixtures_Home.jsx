@@ -304,7 +304,7 @@ function Fixtures_Home() {
 
                                         <div className="bottom-container p-4">
                                             <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{fixture.sport}</p>
-                                            <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder">{fixture.team1} VS {fixture.team2}</p>
+                                            <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder text-uppercase">{fixture.team1} VS {fixture.team2}</p>
                                             <p className="m-0 p-0 fs-6"><i className="bi bi-clock me-2"></i>{fixture.time || "N/A"}</p>
                                         </div>
                                     </div>
@@ -419,13 +419,13 @@ function Fixtures_Home() {
                                             <div className="mb-1 col-6">
                                                 <label htmlFor="fixture-team1" className="form-label">Team 1:</label>
                                                 <input type="text" className="form-control" id="fixture-team1"
-                                                    value={editForm.team1} onChange={(e) => handleChange(e, true)} required />
+                                                    value={editForm.team1} onChange={(e) => handleChange(e, true)} required placeholder="Enter Team 1"/>
                                             </div>
 
                                             <div className="mb-1 col-6">
                                                 <label htmlFor="fixture-team2" className="form-label">Team 2:</label>
                                                 <input type="text" className="form-control" id="fixture-team2"
-                                                    value={editForm.team2} onChange={(e) => handleChange(e, true)} required />
+                                                    value={editForm.team2} onChange={(e) => handleChange(e, true)} required placeholder="Enter Team 2"/>
                                             </div>
 
                                             <div className="mb-1 col-12">
@@ -487,7 +487,7 @@ function Fixtures_Home() {
                                 </div>
 
                                 <div className="modal-body">
-                                    Are you sure you want to delete this moment?
+                                    Are you sure you want to delete this fixture?
                                 </div>
 
                                 <div className="modal-footer">

@@ -329,7 +329,7 @@ function Techniques() {
                         type="text"
                         className="form-control"
                         id="tech-title"
-                        placeholder="Enter a short title for your sports moment"
+                        placeholder="Enter a technique name"
                         value={form.title}
                         onChange={handleChange}
                         required
@@ -425,6 +425,7 @@ function Techniques() {
                         value={editForm.title}
                         onChange={(e) => handleChange(e, true)}
                         required
+                        placeholder="Enter a technique name"
                       />
                     </div>
 

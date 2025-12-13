@@ -403,7 +403,7 @@ function Sessions_home() {
                           type="text"
                           className="form-control"
                           id="session-title"
-                          placeholder="Enter a short title for your sports moment"
+                          placeholder="Enter a session name"
                           value={form.title}
                           onChange={(e) => handleChange(e)}
                           required
@@ -485,7 +485,7 @@ function Sessions_home() {
                           type="text"
                           className="form-control"
                           id="edit-session-title"
-                          placeholder="Enter a short title for your sports moment"
+                          placeholder="Enter a session name"
                           value={editForm.title}
                           onChange={(e) => handleChange(e, true)}
                           required

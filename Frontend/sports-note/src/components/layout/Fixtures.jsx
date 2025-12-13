@@ -404,13 +404,13 @@ function Fixtures() {
                     <div className="mb-1 col-6">
                       <label htmlFor="fixture-team1" className="form-label">Team 1:</label>
                       <input type="text" className="form-control" id="fixture-team1"
-                        value={editForm.team1} onChange={(e) => handleChange(e, true)} required />
+                        value={editForm.team1} onChange={(e) => handleChange(e, true)} required placeholder="Enter Team 1"/>
                     </div>
 
                     <div className="mb-1 col-6">
                       <label htmlFor="fixture-team2" className="form-label">Team 2:</label>
                       <input type="text" className="form-control" id="fixture-team2"
-                        value={editForm.team2} onChange={(e) => handleChange(e, true)} required />
+                        value={editForm.team2} onChange={(e) => handleChange(e, true)} required placeholder="Enter Team 2" />
                     </div>
 
                     <div className="mb-1 col-12">
@@ -472,7 +472,7 @@ function Fixtures() {
               </div>
 
               <div className="modal-body">
-                Are you sure you want to delete this moment?
+                Are you sure you want to delete this fixture?
               </div>
 
               <div className="modal-footer">

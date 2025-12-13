@@ -431,7 +431,7 @@ function Moments() {
                                     <form className="row g-2 py-2 mt-3" onSubmit={handleEditSubmit}>
                                         <div className="mb-1 col-12">
                                             <label htmlFor="moment-title" className="form-label">Title:</label>
-                                            <input type="text" id="moment-title" className="form-control" value={editForm.title} onChange={(e) => handleChange(e, true)} required />
+                                            <input type="text" id="moment-title" className="form-control" value={editForm.title} onChange={(e) => handleChange(e, true)} required placeholder="Enter a short title for your sports moment"/>
                                         </div>
                                         <div className="mb-1 col-12">
                                             <label htmlFor="moment-type" className="form-label">Sport:</label>
@@ -478,7 +478,7 @@ function Moments() {
                                         </div>
                                         <div className="mb-4 col-12">
                                             <label htmlFor="moment-desc" className="form-label">Description:</label>
-                                            <textarea id="moment-desc" className="form-control" value={editForm.description} onChange={(e) => handleChange(e, true)} required />
+                                            <textarea id="moment-desc" className="form-control" value={editForm.description} onChange={(e) => handleChange(e, true)} required placeholder="Describe what happened in this moment"/>
                                         </div>
                                         <div className="col-12"><button type="submit" className="btn btn-primary w-100">Update Moment</button></div>
                                     </form>
