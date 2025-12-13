@@ -109,7 +109,8 @@
 
             thead {
                 background-color: #710004;
-                box-shadow: inset 0 0 0 4px #FCF0D6;
+                // box-shadow: inset 0 0 0 4px #FCF0D6;
+                border: 4px solid $yellow;
                 color: $yellow ;
 
                 tr th {
@@ -122,6 +123,7 @@
 
             tbody {
                 background-color: $yellow;
+                border: 4px solid $yellow;
 
                 tr td,
                 tr th {
