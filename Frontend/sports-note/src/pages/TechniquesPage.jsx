@@ -60,6 +60,12 @@ function TechniquesPage() {
             border: 3px solid #FCF0D6 !important;
           }
 
+          footer .footer-container .auth-links .logout:hover{
+            color: #000 !important;
+            background-color: #fff !important;
+            border: 3px solid #fff !important;
+          }
+
           body footer .footer-container p, .copyright{
             color: white !important
           }

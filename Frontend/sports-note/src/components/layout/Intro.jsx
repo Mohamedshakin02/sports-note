@@ -304,7 +304,7 @@ function Intro() {
         <div className="slider-control position-absolute w-100">
           <div className="left-side">
             <div className="left-button" onClick={goPrev}>
-              <i className="bi bi-chevron-double-left fs-2"></i>
+              <i className="bi bi-chevron-double-left fs-2 d-flex justify-content-center"></i>
             </div>
           </div>
           <div className="right-side">
@@ -315,7 +315,7 @@ function Intro() {
               />
             ))}
             <div className="right-button" onClick={goNext}>
-              <i className="bi bi-chevron-double-right fs-2"></i>
+              <i className="bi bi-chevron-double-right fs-2 d-flex justify-content-center"></i>
             </div>
           </div>
         </div>
