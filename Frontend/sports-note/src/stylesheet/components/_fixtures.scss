@@ -291,5 +291,29 @@
             flex-direction: column;
             gap: 1.5rem;
         }
+
+        .grid-container{
+            .fixture-box{
+                .top-container{
+                    .menu-wrapper{
+                        top: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .fixtures-section {
+        .grid-container{
+            .fixture-box{
+                .top-container{
+                    .menu-wrapper{
+                        top: 14px;
+                    }
+                }
+            }
+        }
     }
 }
