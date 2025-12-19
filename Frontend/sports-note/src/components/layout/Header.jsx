@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import moments from "../../assets/logos/moments-white.png";
@@ -11,6 +11,9 @@ import { AuthContext } from "../auth/AuthContext";
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const menuRef = useRef(null);
+    const dropdownRef = useRef(null);
+
     const { user, logout, logoutLoading } = useContext(AuthContext);
 
 
@@ -19,46 +22,67 @@ function Header() {
         return name.charAt(0).toUpperCase() + name.slice(1);
     };
 
-    // Close dropdown if clicking outside
     useEffect(() => {
-        const handler = (e) => {
-            if (!e.target.closest(".auth-dropdown")) setDropdownOpen(false);
+        const handleOutsideClick = (e) => {
+            // Closes mobile menu
+            if (menuOpen && menuRef.current && !menuRef.current.contains(e.target)) {
+                setMenuOpen(false);
+            }
+
+            // Closes auth dropdown
+            if (dropdownOpen && dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setDropdownOpen(false);
+            }
         };
-        document.addEventListener("click", handler);
-        return () => document.removeEventListener("click", handler);
-    }, []);
+
+        document.addEventListener("click", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("click", handleOutsideClick);
+        };
+    }, [menuOpen, dropdownOpen]);
 
     const AuthDropdown = () => (
-        <div className="auth-dropdown position-relative">
+        <div ref={dropdownRef} className="auth-dropdown position-relative">
             <button
                 className="dropbtn border-0 bg-transparent p-0"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setDropdownOpen(!dropdownOpen);
+                }}
             >
                 <i className="bi bi-person-fill text-white fs-3"></i>
             </button>
 
             {user ? (
-                <div className={`dropdown-content ${dropdownOpen ? "show" : ""}`}>
+                <div className={`dropdown-content ${dropdownOpen ? "show" : ""}`}
+                    onClick={(e) => e.stopPropagation()}>
+
                     <div className="username text-dark d-block fw-medium px-3 py-2 text-truncate overflow-hidden text-nowrap">
                         Hello, {capitalize(user.username)}
                     </div>
 
                     <button
-                        onClick={logout}
+                        onClick={() => {
+                            setDropdownOpen(false);
+                            logout();
+                        }}
                         className="logout text-dark text-center w-100 fw-medium px-3 py-2 border-0 bg-transparent"
                     >
                         Logout
                     </button>
                 </div>
             ) : (
-                <div className={`dropdown-content ${dropdownOpen ? "show" : ""}`}>
-                    <Link to="/login" className="text-decoration-none d-block fw-medium px-3 py-2">
+                <div className={`dropdown-content ${dropdownOpen ? "show" : ""}`}
+                    onClick={(e) => e.stopPropagation()}>
+
+                    <Link to="/login" onClick={() => setDropdownOpen(false)} className="text-decoration-none d-block fw-medium px-3 py-2">
                         Login
                     </Link>
-                    <Link to="/sign-up" className="text-decoration-none d-block fw-medium px-3 py-2">
+                    <Link to="/sign-up" onClick={() => setDropdownOpen(false)} className="text-decoration-none d-block fw-medium px-3 py-2">
                         Sign Up
                     </Link>
-                    <Link to="/admin-login" className="text-decoration-none d-block fw-medium px-3 py-2">
+                    <Link to="/admin-login" onClick={() => setDropdownOpen(false)} className="text-decoration-none d-block fw-medium px-3 py-2">
                         Admin
                     </Link>
 
@@ -71,8 +95,8 @@ function Header() {
         <header className="navbar navbar-expand-lg container-fluid py-4">
 
             {logoutLoading && (<div className="loading-overlay"> <div className="spinner-border text-light" role="status"> <span className="visually-hidden">Loading...</span> </div> </div>
-      )}
-      
+            )}
+
             <nav className="container-md px-3 px-md-2 navbar-nav w-100 d-flex flex-column flex-md-row justify-content-between text-center">
 
                 {/* Mobile Header */}
@@ -86,7 +110,10 @@ function Header() {
                         {/* Mobile Menu Icon */}
                         <button
                             className="btn btn-transparent text-white p-0"
-                            onClick={() => setMenuOpen(!menuOpen)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setMenuOpen(!menuOpen);
+                            }}
                         >
                             <i className="bi bi-grid-fill text-white fs-3"></i>
                         </button>
@@ -124,7 +151,7 @@ function Header() {
                 </div>
 
                 {/* Mobile Slide Menu */}
-                <div className={`mobile-sidenav ${menuOpen ? "open" : ""}`}>
+                <div ref={menuRef} className={`mobile-sidenav ${menuOpen ? "open" : ""}`} onClick={(e) => e.stopPropagation()}>
                     <button className="closebtn" onClick={() => setMenuOpen(false)}>
                         <i className="bi bi-x-lg text-white fs-3"></i>
                     </button>
@@ -141,7 +168,7 @@ function Header() {
             </nav>
         </header>
 
-        
+
     );
 }
 
