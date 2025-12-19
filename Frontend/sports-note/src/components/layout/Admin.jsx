@@ -109,7 +109,7 @@ function Admin() {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
-            setUsers(users.map(u => u._id === selectedUser._id ? res.data.user : u));
+            setUsers(users.map(user => user._id === selectedUser._id ? res.data.user : user));
             showToast(res.data.message || "User updated successfully");
             window.bootstrap.Modal.getInstance(document.getElementById("editUserModal")).hide();
         } catch (err) {
@@ -136,7 +136,7 @@ function Admin() {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
-            setUsers(users.filter(u => u._id !== selectedUser._id));
+            setUsers(users.filter(user => user._id !== selectedUser._id));
             showToast("User deleted successfully");
             window.bootstrap.Modal.getInstance(document.getElementById("deleteUserModal")).hide();
         } catch (err) {
