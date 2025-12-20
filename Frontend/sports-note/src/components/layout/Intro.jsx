@@ -71,7 +71,7 @@ const getInitials = (name) => {
 
 
 function Intro() {
-  const { user } = useContext(AuthContext);
+  const { user, refreshKey } = useContext(AuthContext);
   const token = localStorage.getItem("token");
   const [fixturesListData, setFixturesListData] = useState([]);
   const [quotesListData, setQuotesListData] = useState([]);
@@ -184,7 +184,7 @@ function Intro() {
     };
 
     fetchUserData();
-  }, [user]);
+  }, [user, refreshKey]);
 
   const getSortedFixtures = (fixtures) => {
     const today = new Date();
@@ -350,7 +350,7 @@ function Intro() {
                     </div>
                     <div className="bottom-container p-4">
                       <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{selectedItem.sport}</p>
-                      <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder"> {selectedItem.team1} vs {selectedItem.team2}</p>
+                      <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder text-uppercase"> {selectedItem.team1} vs {selectedItem.team2}</p>
                       <p className="m-0 p-0 fs-6"> <span><i className="bi bi-clock me-2"></i></span> {selectedItem.time || "N/A"}</p>
                     </div>
                   </div>
@@ -373,7 +373,7 @@ function Intro() {
                       </div>
                       <div className="text-container h-100 p-2 d-flex flex-column justify-content-between">
                         <p className="quote m-0 display-6 fs-4 pt-0 pt-lg-1">"{selectedItem.quote}"</p>
-                        <p className="author m-0 p-0 mt-2 fs-5 text-end"><i>- {selectedItem.author}</i></p>
+                        <p className="author m-0 p-0 mt-2 fs-5 text-end text-capitalize"><i>- {selectedItem.author}</i></p>
                       </div>
                     </div>
 

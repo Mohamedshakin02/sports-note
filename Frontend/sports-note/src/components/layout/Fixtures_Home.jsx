@@ -9,7 +9,7 @@ import axios from "axios";
 import { AuthContext } from "../auth/AuthContext";
 
 function Fixtures_Home() {
-    const { user } = useContext(AuthContext); // get logged-in user
+    const { user, triggerRefresh } = useContext(AuthContext); // get logged-in user
     const token = localStorage.getItem("token");
     const [fixturesList, setFixturesList] = useState([]);
     const [openMenuIndex, setOpenMenuIndex] = useState(null);
@@ -136,6 +136,9 @@ function Fixtures_Home() {
             const modalEl = document.getElementById("addFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
             showToast("Fixture added successfully!");
+
+            triggerRefresh();
+
         } catch {
             const modalEl = document.getElementById("addFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -172,6 +175,9 @@ function Fixtures_Home() {
             const modalEl = document.getElementById("editFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
             showToast("Fixture updated successfully!");
+
+            triggerRefresh();
+
         } catch {
             const modalEl = document.getElementById("editFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -200,6 +206,9 @@ function Fixtures_Home() {
             const modalEl = document.getElementById("deleteFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
             showToast("Fixture deleted successfully!");
+
+            triggerRefresh();
+            
         } catch {
             const modalEl = document.getElementById("deleteFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -479,7 +488,7 @@ function Fixtures_Home() {
                         data-bs-keyboard="false"
                         tabIndex="-1"
                         aria-hidden="true">
-                            
+
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
 

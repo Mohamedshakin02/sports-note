@@ -8,6 +8,11 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [logoutLoading, setLogoutLoading] = useState(false);
 
+  const [refreshKey, setRefreshKey] = useState(0);
+  const triggerRefresh = () => {
+    setRefreshKey(prev => prev + 1);
+  };
+
   // useEffect(() => {
   //   const fetchSession = async () => {
   //     try {
@@ -56,9 +61,10 @@ export function AuthProvider({ children }) {
       setLogoutLoading(false);
     }, 2000);
   };
+  
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading, logoutLoading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading, logoutLoading, refreshKey, triggerRefresh}}>
       {children}
     </AuthContext.Provider>
   );

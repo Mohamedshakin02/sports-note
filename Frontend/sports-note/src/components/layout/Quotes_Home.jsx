@@ -32,7 +32,7 @@ const defaultQuotes = [
 ];
 
 function Quotes_Home() {
-  const { user } = useContext(AuthContext);
+  const { user, triggerRefresh } = useContext(AuthContext);
   const isLoggedIn = !!user;
   const token = localStorage.getItem("token");
 
@@ -157,6 +157,9 @@ function Quotes_Home() {
       const modalEl = document.getElementById("addQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Quote added successfully!");
+
+      triggerRefresh();
+
     } catch {
       const modalEl = document.getElementById("addQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -215,6 +218,9 @@ function Quotes_Home() {
       const modalEl = document.getElementById("editQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Quote updated successfully!");
+
+      triggerRefresh();
+
     } catch {
       const modalEl = document.getElementById("editQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -243,6 +249,9 @@ function Quotes_Home() {
       const modalEl = document.getElementById("deleteQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
       showToast("Quote deleted successfully!");
+
+      triggerRefresh();
+      
     } catch {
       const modalEl = document.getElementById("deleteQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
