@@ -475,10 +475,12 @@ function Quotes() {
         <div
           className="modal fade"
           id="deleteQuoteModal"
-          tabIndex="-1"
           aria-labelledby="deleteModalLabel"
-          aria-hidden="true"
-        >
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabIndex="-1"
+          aria-hidden="true">
+
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
 

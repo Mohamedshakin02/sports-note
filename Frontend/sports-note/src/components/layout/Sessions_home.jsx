@@ -77,7 +77,7 @@ function Sessions_home() {
           }
         );
 
-        
+
         setSessionsList(res.data);
         setSelected(res.data.length > 0 ? res.data[0] : null);
       } catch (err) {
@@ -539,7 +539,13 @@ function Sessions_home() {
 
 
           {/* Delete Session Modal */}
-          <div className="modal fade" id="deleteSessionModal" tabIndex="-1" aria-hidden="true">
+          <div className="modal fade"
+            id="deleteSessionModal"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabIndex="-1"
+            aria-hidden="true">
+
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content">
                 <div className="modal-header">

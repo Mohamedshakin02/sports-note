@@ -309,7 +309,13 @@ function Techniques() {
         </div>
 
         {/* Add Technique Modal */}
-        <div className="modal fade" id="addTechniqueModal" tabIndex="-1" aria-hidden="true">
+        <div className="modal fade"
+          id="addTechniqueModal"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabIndex="-1"
+          aria-hidden="true">
+
           <div className="modal-dialog modal-dialog-scrollable">
             <div className="modal-content">
               <div className="modal-body">
@@ -402,7 +408,13 @@ function Techniques() {
         </div>
 
         {/* Edit Technique Modal */}
-        <div className="modal fade" id="editTechniqueModal" tabIndex="-1" aria-hidden="true">
+        <div className="modal fade"
+          id="editTechniqueModal"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabIndex="-1"
+          aria-hidden="true">
+
           <div className="modal-dialog modal-dialog-scrollable">
             <div className="modal-content">
               <div className="modal-body">
@@ -495,7 +507,13 @@ function Techniques() {
         </div>
 
         {/* Delete Technique Modal */}
-        <div className="modal fade" id="deleteTechniqueModal" tabIndex="-1" aria-hidden="true">
+        <div className="modal fade"
+          id="deleteTechniqueModal"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabIndex="-1"
+          aria-hidden="true">
+
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">

@@ -556,7 +556,7 @@ function Moments_Home() {
                     <form className="row g-2 py-2 mt-3" onSubmit={handleEditSubmit}>
                       <div className="mb-1 col-12">
                         <label htmlFor="moment-title" className="form-label">Title:</label>
-                        <input type="text" id="moment-title" className="form-control" value={editForm.title} onChange={(e) => handleChange(e, true)} required placeholder="Enter a short title for your sports moment"/>
+                        <input type="text" id="moment-title" className="form-control" value={editForm.title} onChange={(e) => handleChange(e, true)} required placeholder="Enter a short title for your sports moment" />
                       </div>
                       <div className="mb-1 col-12">
                         <label htmlFor="moment-type" className="form-label">Sport:</label>
@@ -603,7 +603,7 @@ function Moments_Home() {
                       </div>
                       <div className="mb-4 col-12">
                         <label htmlFor="moment-desc" className="form-label">Description:</label>
-                        <textarea id="moment-desc" className="form-control" value={editForm.description} onChange={(e) => handleChange(e, true)} required placeholder="Describe what happened in this moment"/>
+                        <textarea id="moment-desc" className="form-control" value={editForm.description} onChange={(e) => handleChange(e, true)} required placeholder="Describe what happened in this moment" />
                       </div>
                       <div className="col-12"><button type="submit" className="btn btn-primary w-100">Update Moment</button></div>
                     </form>
@@ -617,10 +617,12 @@ function Moments_Home() {
           <div
             className="modal fade"
             id="deleteMomentModal"
-            tabIndex="-1"
             aria-labelledby="deleteModalLabel"
-            aria-hidden="true"
-          >
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabIndex="-1"
+            aria-hidden="true">
+
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content">
 

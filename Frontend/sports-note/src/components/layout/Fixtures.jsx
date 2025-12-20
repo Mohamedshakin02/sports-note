@@ -188,7 +188,7 @@ function Fixtures() {
           }
         }
       );
-      
+
       setFixturesList(prev => prev.filter(fixture => fixture._id !== deleteId));
       const modalEl = document.getElementById("deleteFixtureModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -404,7 +404,7 @@ function Fixtures() {
                     <div className="mb-1 col-6">
                       <label htmlFor="fixture-team1" className="form-label">Team 1:</label>
                       <input type="text" className="form-control" id="fixture-team1"
-                        value={editForm.team1} onChange={(e) => handleChange(e, true)} required placeholder="Enter Team 1"/>
+                        value={editForm.team1} onChange={(e) => handleChange(e, true)} required placeholder="Enter Team 1" />
                     </div>
 
                     <div className="mb-1 col-6">
@@ -459,8 +459,10 @@ function Fixtures() {
         <div
           className="modal fade"
           id="deleteFixtureModal"
-          tabIndex="-1"
           aria-labelledby="deleteModalLabel"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabIndex="-1"
           aria-hidden="true"
         >
           <div className="modal-dialog modal-dialog-centered">
