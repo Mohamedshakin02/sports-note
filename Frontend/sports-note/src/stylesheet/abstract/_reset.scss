@@ -1,5 +1,7 @@
+// Import global variables from the abstract folder
 @use "../abstract/variables" as *;
 
+// Resets default browser styles and applies a consistent box model and font
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +9,7 @@
   font-family: $poppins-font;
 }
 
+// Ensures no extra right padding is applied to the body
 body {
   padding-right: 0 !important;
 }

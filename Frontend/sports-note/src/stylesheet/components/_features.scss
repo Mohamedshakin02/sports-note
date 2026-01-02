@@ -1,10 +1,15 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Features section with yellow background
 .features-section {
   background-color: $yellow;
 
+  // Features section container styling
   .features-container {
+
+    // Top container with heading and description side by side
     .top-container {
       .heading {
         width: 40%;
@@ -26,6 +31,7 @@
       }
     }
 
+    // Bottom container holding individual feature boxes in flex layout
     .bottom-container {
       display: flex;
       flex-wrap: wrap;
@@ -64,6 +70,7 @@
   }
 }
 
+// Responsive adjustments for screens smaller than 1400px
 @media (max-width: 1400px) {
   .features-section {
     .features-container {
@@ -78,6 +85,7 @@
   }
 }
 
+// Responsive adjustments for screens smaller than 1200px
 @media (max-width: 1200px) {
   .features-section {
     .features-container {
@@ -104,6 +112,7 @@
   }
 }
 
+// Responsive adjustments for screens smaller than 1023px
 @media (max-width: 1023px) {
   .features-section {
     .features-container {
@@ -119,6 +128,7 @@
   }
 }
 
+// Mobile adjustments for screens smaller than 768px
 @media (max-width: 768px) {
   .features-section {
     .features-container {

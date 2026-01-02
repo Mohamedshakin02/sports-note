@@ -1,9 +1,12 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Moments section with minimum height and main styling
 .moments-section {
     min-height: 500px;
 
+     // Top heading area with title, description, and buttons
     .heading-container {
         color: $yellow;
         display: flex;
@@ -43,11 +46,13 @@
         }
     }
 
+    // Grid container holding moment boxes in responsive columns
     .grid-container {
         column-count: 3; // 3 columns for desktop
         column-gap: 2rem;
         width: 100%;
 
+        
         @media screen and (max-width: 1200px) {
             column-count: 2; // tablet
         }
@@ -56,6 +61,7 @@
             column-count: 1; // mobile
         }
 
+        // Each moment box with image and content sections
         .moment-box {
             display: grid;
             grid-template-rows: auto 1fr;
@@ -142,7 +148,7 @@
                     }
                 }
 
-                /* NO IMAGE BOX */
+                // Placeholder style for moments without an image
                 &.no-image-wrapper {
                     display: flex;
                     justify-content: center;
@@ -204,6 +210,7 @@
         }
     }
 
+    // Modal styles 
     .modal {
 
         .modal-dialog-scrollable,
@@ -267,6 +274,7 @@
                                 color: black !important;
                             }
 
+                            // Autofill styles for input fields
                             input:-webkit-autofill,
                             input:-webkit-autofill:hover,
                             input:-webkit-autofill:focus {
@@ -322,6 +330,7 @@
                                 }
                             }
 
+                            // Upload button styling
                             #moment-image::file-selector-button {
                                 background-color: $red;
                                 color: $yellow;
@@ -331,6 +340,7 @@
                                 position: relative;
                             }
 
+                            // Displays existing filename
                             .existing-file {
                                 position: absolute;
                                 pointer-events: "none";
@@ -354,6 +364,7 @@
                     color: $red;
                 }
 
+                // Cancel button styling
                 .cancel {
                     border: 2px solid $red ;
 
@@ -363,6 +374,7 @@
                     }
                 }
 
+                // Delete button styling
                 .delete{
                     background-color: $red;
                     color: $yellow;
@@ -385,6 +397,8 @@
 
 }
 
+
+// Full-page loading overlay styling
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -398,6 +412,7 @@
     z-index: 2000 !important;
 }
 
+// Responsive heading adjustments for smaller screen
 @media screen and (max-width: 992px) {
     .moments-section {
         .heading-container {

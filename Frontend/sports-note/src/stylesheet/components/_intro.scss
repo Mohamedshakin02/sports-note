@@ -9,6 +9,7 @@
   height: 100svh;
   overflow: visible;
 
+  // Swiper slider container for intro images
   .intro-swiper {
     width: 100%;
     height: 100%;
@@ -16,6 +17,7 @@
     top: 0;
     left: 0;
 
+    // Swiper slider for intro images covering the full section
     .slide-image {
       width: 100%;
       height: 100%;
@@ -24,6 +26,7 @@
     }
   }
 
+  // Each slide image fills its container and stays centered
   .gradient-overlay {
     position: absolute;
     top: 0;
@@ -34,11 +37,13 @@
     z-index: 5;
   }
 
+  // Keeps header above the overlay
   header {
     position: relative;
     z-index: 20;
   }
 
+  // intro contenter centered horizontally and vertically
   .intro-container {
     position: absolute;
     top: 0;
@@ -48,6 +53,7 @@
     height: 100%;
     z-index: 10;
 
+    // Grid layout for dates, slogan, description, and quotes
     .content-container {
       position: absolute;
       top: 0;
@@ -63,7 +69,7 @@
       align-items: center;
       justify-content: space-between;
 
-
+      // box displaying event dates
       .dates-container {
         grid-area: dates;
 
@@ -75,6 +81,7 @@
         }
       }
 
+      // Center slogan text with bold font
       .slogan-container {
         grid-area: slogan;
         color: $black;
@@ -87,6 +94,7 @@
         }
       }
 
+      // Description text below the slogan
       .desc-container {
         grid-area: desc;
         justify-self: center;
@@ -99,6 +107,7 @@
         }
       }
 
+      // Box for quotes images 
       .quotes-container {
         grid-area: quotes;
         justify-self: end;
@@ -121,6 +130,7 @@
     }
   }
 
+  // Navigation arrows and slide indicators at bottom of intro
   .slider-control {
     position: absolute;
     bottom: 0;
@@ -131,6 +141,7 @@
     z-index: 15;
     overflow: hidden;
 
+    // Left arrow button with skew effect and bounce animation
     .left-side {
       .left-button {
         position: absolute;
@@ -157,6 +168,7 @@
       }
     }
 
+    // Right arrow button and indicators styling
     .right-side {
       display: flex;
       align-items: center;
@@ -201,6 +213,7 @@
     }
   }
 
+  // Scroll down arrow at bottom center with bounce animation
   .scroll-down {
     position: absolute;
     bottom: 50px;
@@ -217,6 +230,7 @@
     }
   }
 
+  // Keyframes for bounce animations
   @keyframes bounce {
 
     0%,
@@ -236,6 +250,7 @@
     }
   }
 
+  // Keyframes for horizontal bounce left animation
   @keyframes horizontal-bounce-left {
 
     0%,
@@ -255,6 +270,7 @@
     }
   }
 
+  // Keyframes for horizontal bounce right animation
   @keyframes horizontal-bounce-right {
 
     0%,
@@ -275,7 +291,7 @@
   }
 
 
-
+  // Modal styling for intro section pop-ups
   .modal-dialog {
     display: flex;
 
@@ -307,6 +323,7 @@
     }
   }
 
+  // Styling for fixture box inside modal/popup
   .fixture-box {
     border: 2px solid $red;
     border-radius: 8px;
@@ -347,6 +364,7 @@
     }
   }
 
+  // Styling for quote boxes inside modal/popup
   .quote-box {
     border-radius: 8px;
     position: relative;
@@ -403,6 +421,7 @@
 
 }
 
+// Responsive tablet landscape adjustments for intro layout
 @media only screen and (max-width: 992px) and (orientation: landscape) {
   .intro-section {
     .intro-container {
@@ -478,6 +497,7 @@
   }
 }
 
+// Responsive smaller landscape screens scaling slogan and description
 @media only screen and (max-width: 768px) and (orientation: landscape) {
   .intro-section {
     .intro-container {
@@ -501,6 +521,7 @@
   }
 }
 
+// Mobile responsive layout for intro section and grid reorganization
 @media (max-width: 576px) {
   .intro-section {
     .intro-container {
