@@ -4,17 +4,18 @@ import axios from "axios";
 import { AuthContext } from "../auth/AuthContext";
 
 function Login() {
-  const navigate = useNavigate();
-  const toastRef = useRef(null);
+  const navigate = useNavigate(); // To navigate after login
+  const toastRef = useRef(null); // Ref for toast notifications
 
+  // State for form, toast messages, loading spinner, and Google login readiness
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [toast, setToast] = useState({ message: "" });
   const [loading, setLoading] = useState(true);
   const [googleReady, setGoogleReady] = useState(false);
 
-  const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext); // Context for auth functions
 
-  // Show toast
+  // Function to display toast notifications
   const showToast = (message) => {
     setToast({ message });
     const toastElement = toastRef.current;
@@ -32,18 +33,20 @@ function Login() {
 
   };
 
-  // Handle input change
+  // Handle input changes in form
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  // Handle login submit
+  // Handle login form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-
+    // Send login request to backend
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/login", formData, { withCredentials: true });
 
       const res = await axios.post(
@@ -51,14 +54,15 @@ function Login() {
         formData
       );
 
+      // stores token
       localStorage.setItem("token", res.data.token);
 
       showToast("Login successful!");
 
       // login(res.data.user); // store in context
 
-      login(res.data.user, res.data.token);
-      navigate("/", { replace: true });
+      login(res.data.user, res.data.token); // store user in context
+      navigate("/", { replace: true }); // redirect to home
     } catch (err) {
       showToast(err.response?.data?.message || "Something went wrong");
     } finally {
@@ -68,11 +72,13 @@ function Login() {
 
   };
 
-  // Google login
+  // Loads Google Sign-In script on mount
   const handleGoogleLogin = async (response) => {
     if (!response.credential) return showToast("Google login failed");
     setLoading(true);
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.post(
       //   "https://sports-note-backend.onrender.com/api/auth/google-login",
       //   { token: response.credential },
@@ -137,9 +143,11 @@ function Login() {
 
   return (
     <>
+      {/* Loading spinner overlay */}
       {loading && (<div className="loading-overlay"> <div className="spinner-border text-light" role="status"> <span className="visually-hidden">Loading...</span> </div> </div>
       )}
 
+      {/* Login Section */}
       <section className="login-section container-md px-3 px-md-2 mb-5">
         <div className="login-container">
           <div className="login-heading">
@@ -149,6 +157,8 @@ function Login() {
 
           <div className="login-form p-4">
             <form className="row g-3" onSubmit={handleSubmit}>
+
+              {/* Email input */}
               <div className="mb-1 col-12">
                 <label htmlFor="email" className="form-label">Email:</label>
                 <input
@@ -162,6 +172,7 @@ function Login() {
                 />
               </div>
 
+              {/* Password input */}
               <div className="mb-2 col-12">
                 <label htmlFor="password" className="form-label">Password:</label>
                 <input
@@ -175,28 +186,31 @@ function Login() {
                 />
               </div>
 
+              {/* Login button */}
               <div className="col-12">
                 <button type="submit" className="btn btn-primary fs-6">Login</button>
               </div>
 
+              {/* Link to Sign Up */}
               <div className="col-12 sign-up mt-4">
                 <p className="m-0 p-0">
                   Don't have an account? <Link to="/sign-up" className="link rounded-pill">Sign Up</Link>
                 </p>
               </div>
 
+              {/* Show OR for Google login */}
               {googleReady && (
                 <div className="text-center text-dark">OR</div>
               )}
 
-              <div id="g_id_signin"></div>
+              <div id="g_id_signin"></div> {/* Google Sign-In button container */}
 
             </form>
           </div>
         </div>
       </section >
 
-      {/* Toast */}
+      {/* Toast notification container */}
       < div className="toast-container position-fixed p-3" >
         <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
           <div className="d-flex">

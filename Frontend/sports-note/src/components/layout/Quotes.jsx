@@ -4,7 +4,7 @@ import { AuthContext } from "../auth/AuthContext";
 import quote1 from "../../assets/quotes/virat.jpg";
 import quote2 from "../../assets/quotes/muhammad.jpg";
 
-// Default static quotes for non-logged-in users
+// Default quotes to show when user is not logged in
 const defaultQuotes = [
   {
     image: quote1,
@@ -25,22 +25,37 @@ const defaultQuotes = [
 ];
 
 function Quotes() {
+  // gets logged-in user
   const { user } = useContext(AuthContext);
+
+  // true if user is logged in
   const isLoggedIn = !!user;
+
+  // Get auth token from localStorage
   const token = localStorage.getItem("token");
 
-
+  // State for fixtures
   const [quotesList, setQuotesList] = useState([]);
+
+  // Loading spinner state
   const [loading, setLoading] = useState(false);
+
+  // State for menu dropdown visibility
   const [openMenuIndex, setOpenMenuIndex] = useState(null);
+
+  // Form states for Add and Edit
   const [editingQuote, setEditingQuote] = useState({ id: null, quote: "", author: "", image: null, imageUrl: "" });
   const [form, setForm] = useState({ quote: "", author: "", image: null });
   const [deleteId, setDeleteId] = useState(null);
-  const [toast, setToast] = useState({ message: "" });
 
-  const menuRefs = useRef([]);
+  // Toast state
+  const [toast, setToast] = useState({ message: "" });
   const toastRef = useRef();
 
+  // References to detect clicks outside menus
+  const menuRefs = useRef([]);
+
+  // Show toast function
   const showToast = (message) => {
     setToast({ message });
     const toastElement = toastRef.current;
@@ -53,6 +68,7 @@ function Quotes() {
     bsToast.show();
   };
 
+  // Fetch fixtures from backend if user is logged in
   useEffect(() => {
     const fetchQuotes = async () => {
       if (!user || !token) {
@@ -63,6 +79,8 @@ function Quotes() {
 
       try {
         setLoading(true);
+
+        // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
         // const res = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
 
         const res = await axios.get(
@@ -89,6 +107,7 @@ function Quotes() {
   }, [user]);
 
 
+  // Handle changes in form inputs for adding or editing a quote
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -117,19 +136,24 @@ function Quotes() {
     else setForm(prev => ({ ...prev, [key]: files ? files[0] : value }));
   };
 
+  // Submits new quote to backend and update the fixtures list
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     if (!isLoggedIn) return showToast("Please login to add quotes");
     setLoading(true);
 
-
+    // Stores uploaded image URL
     let imageUrl = "";
+
+    // Checks if user uploaded an image
     if (form.image) {
       const formData = new FormData();
-      formData.append("file", form.image);
-      formData.append("upload_preset", "quotes_preset");
+      formData.append("file", form.image); // Add image file
+      formData.append("upload_preset", "quotes_preset"); // Cloudinary preset
       try {
-        const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); imageUrl = res.data.secure_url;
+        // Uploads image to Cloudinary
+        const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); 
+        imageUrl = res.data.secure_url; // Saves uploaded image URL
       }
       catch {
         const modalEl = document.getElementById("addQuoteModal");
@@ -140,6 +164,8 @@ function Quotes() {
     }
 
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.post("https://sports-note-backend.onrender.com/api/quotes", { ...form, imageUrl }, { withCredentials: true });
 
       const res = await axios.post(
@@ -166,6 +192,7 @@ function Quotes() {
 
   };
 
+  // Opens edit modal and populate fields with selected quote details
   const handleEdit = (quote) => {
     setEditingQuote({
       id: quote._id || quote.id,
@@ -178,16 +205,20 @@ function Quotes() {
     new window.bootstrap.Modal(modalEl).show();
   };
 
+  // Submits edited quote to backend and update the quotes list
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-
+    // Upload new image only if user uploads new one
     let imageUrl = editingQuote.image ? await (async () => {
       const formData = new FormData();
       formData.append("file", editingQuote.image);
-      formData.append("upload_preset", "quotes_preset");
-      try { const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); return res.data.secure_url; }
+      formData.append("upload_preset", "quotes_preset"); // Add image file
+      try { 
+        const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); 
+        return res.data.secure_url; // Returns uploaded image URL
+      }
       catch {
         const modalEl = document.getElementById("editQuoteModal");
         window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -199,6 +230,8 @@ function Quotes() {
     if (imageUrl === null) return;
 
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.put(`https://sports-note-backend.onrender.com/api/quotes/${editingQuote.id}`, { ...editingQuote, imageUrl }, { withCredentials: true });
 
       const res = await axios.put(
@@ -224,10 +257,13 @@ function Quotes() {
 
   };
 
+  // Deletes quote from backend and remove it from the list
   const confirmDelete = async () => {
     if (!deleteId) return;
     setLoading(true);
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // await axios.delete(`https://sports-note-backend.onrender.com/api/quotes/${deleteId}`, { withCredentials: true });
 
       await axios.delete(
@@ -254,11 +290,13 @@ function Quotes() {
 
   return (
     <>
+      {/* Loading spinner overlay */}
       {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"><span className="visually-hidden">Loading...</span></div></div>)}
 
 
       <section className="quotes-section container-md py-5">
 
+        {/* Header with title and Add quote button */}
         <div className="heading-container mb-5">
           <div className="text">
             <h1 className="m-0 p-0 mb-3">Quotes</h1>
@@ -267,6 +305,8 @@ function Quotes() {
             </p>
           </div>
           <div className="button">
+
+            {/* Adds quote only if user is logged in*/}
             <button type="button" className="btn p-2"
               onClick={() => {
                 if (!isLoggedIn) return showLoginToast(); const modalEl = document.getElementById("addQuoteModal");
@@ -276,6 +316,7 @@ function Quotes() {
           </div>
         </div>
 
+        {/* quotes grid */}
         <div className="grid-container">
           {quotesList.map((quote, index) => (
             <div className="quote-box d-flex p-3 mb-3" key={index}>
@@ -299,6 +340,7 @@ function Quotes() {
                 </p>
               </div>
 
+              {/* Dropdown menu for edit/delete actions and only allowed to edit or delete the quote if user is logged in */}
               <div className="menu-wrapper ms-2" ref={el => menuRefs.current[index] = el} onClick={() => toggleMenu(index)}>
                 <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
                 {openMenuIndex === index && (
@@ -518,7 +560,7 @@ function Quotes() {
 
       </section>
 
-      {/* Toast */}
+      {/* Toast container for notifications */}
       <div className="toast-container position-fixed p-3">
         <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
           <div className="d-flex">

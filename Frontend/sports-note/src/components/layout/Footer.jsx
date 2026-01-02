@@ -4,8 +4,10 @@ import { AuthContext } from "../auth/AuthContext";
 
 
 function Footer() {
+    // Access user info and logout function from AuthContext
     const { user, logout } = useContext(AuthContext);
 
+    // Access user info and logout function from AuthContext
     const capitalize = (name) => {
         if (!name) return "";
         return name.charAt(0).toUpperCase() + name.slice(1);
@@ -15,6 +17,8 @@ function Footer() {
     return (
         <footer className='py-5 pb-3 mt-1'>
             <div className='footer-container container-md px-3 px-md-2'>
+
+                {/* Section with links to different pages */}
                 <div className='menu-links pe-5'>
                     <h1 className='h3 m-0 p-0'>Explore Sports Note</h1>
                     <p className='h5 m-0 p-0 pt-3'>Find everything you need to explore your sports notes.</p>
@@ -27,8 +31,10 @@ function Footer() {
                     </ul>
                 </div>
 
+                {/* Auth links section */}
                 <div className='auth-links ps-lg-5'>
                     {user ? (
+                        // If user is logged in, show welcome message and logout button
                         <div className="d-flex flex-column m-0 p-0">
                             <h1 className='username h3 m-0 p-0 text-truncate overflow-hidden text-nowrap'>Hello, {capitalize(user.username)}</h1>
                             <p className='h5 m-0 p-0 pt-3 text-wrap'>Welcome back! Dive into your sports notes and make the most of all our features.</p>
@@ -40,6 +46,7 @@ function Footer() {
                             </button>
                         </div>
                     ) : (
+                        // If user is not logged in, show login/signup links
                         <>
                             <h1 className='h3 m-0 p-0'>Planning to organise your sports notes?</h1>
                             <p className='h5 m-0 p-0 pt-3'>Start building your sports collection by joining Sport Note.</p>
@@ -51,6 +58,7 @@ function Footer() {
                     )}
                 </div>
 
+                {/* Footer logo and tagline */}
                 <div className='logo'>
                     <h2 className='display-4 m-0 p-0'>SPORTS <br />NOTE</h2>
                     <p className='m-0 p-0 pt-3 px-lg-5 fs-5'><i>Capture Plays, Track Progress, Relive Moments</i></p>

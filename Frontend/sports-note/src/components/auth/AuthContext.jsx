@@ -1,9 +1,12 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
+// Created AuthContext to share authentication data across the wen-app
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
+  // State for user info, loading states, and refresh triggers
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [logoutLoading, setLogoutLoading] = useState(false);
@@ -13,6 +16,7 @@ export function AuthProvider({ children }) {
     setRefreshKey(prev => prev + 1);
   };
 
+  // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
   // useEffect(() => {
   //   const fetchSession = async () => {
   //     try {
@@ -27,6 +31,8 @@ export function AuthProvider({ children }) {
   //   fetchSession();
   // }, []);
 
+
+  // Load user from localStorage on app start to keep them logged in
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -35,8 +41,10 @@ export function AuthProvider({ children }) {
     setLoading(false);
   }, []);
 
-  // const login = (userData) => setUser(userData);
+  // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
+  // const login = (userData) => setUser(userData); 
 
+   // Login function saves user and token in localStorage and updates state
   const login = (userData, token) => {
     localStorage.setItem("user", JSON.stringify(userData));
     localStorage.setItem("token", token);
@@ -44,6 +52,7 @@ export function AuthProvider({ children }) {
   };
 
 
+  // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
   // const logout = async () => {
   //   setLogoutLoading(true);
 
@@ -52,6 +61,8 @@ export function AuthProvider({ children }) {
   //   setLogoutLoading(false);
   // };
 
+
+  // Logout function removes user info from localStorage and resets state
   const logout = () => {
     setLogoutLoading(true);
     setTimeout(() => {
@@ -62,7 +73,7 @@ export function AuthProvider({ children }) {
     }, 2000);
   };
   
-
+  // Provide all auth data and functions to children components
   return (
     <AuthContext.Provider value={{ user, login, logout, loading, logoutLoading, refreshKey, triggerRefresh}}>
       {children}

@@ -6,6 +6,7 @@ import '../stylesheet/pages/login-page.css';
 function LoginPage() {
     return (
         <>
+            {/* Inline CSS specific to Login page */}
             <style>
                 {`
           body {
@@ -29,6 +30,8 @@ function LoginPage() {
           }
         `}
             </style>
+
+            {/* Page content */}
             <Header />
             <main>
                 <Login />

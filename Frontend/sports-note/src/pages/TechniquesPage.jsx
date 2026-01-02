@@ -7,6 +7,7 @@ import Footer from '../components/layout/Footer';
 function TechniquesPage() {
   return (
     <>
+    {/* Inline CSS specific to Techniques page */}
     <style>
         {`
           body {
@@ -77,6 +78,7 @@ function TechniquesPage() {
         `}
       </style>
 
+      {/* Page content */}
       <Header/>
       <main>
         <Techniques/>

@@ -1,27 +1,34 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
+// Importing logos for the navigation links
 import moments from "../../assets/logos/moments-white.png";
 import fixtures from "../../assets/logos/fixtures-white.png";
 import quotes from "../../assets/logos/quotes-white.png";
 import techniques from "../../assets/logos/techniques-white.png";
 import sessions from "../../assets/logos/sessions-white.png";
+
+// AuthContext to get user info and logout function
 import { AuthContext } from "../auth/AuthContext";
 
 function Header() {
+    // State for mobile menu and auth dropdown visibility
     const [menuOpen, setMenuOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    // References to detect clicks outside menus
     const menuRef = useRef(null);
     const dropdownRef = useRef(null);
 
     const { user, logout, logoutLoading } = useContext(AuthContext);
 
-
+    // function to capitalize username
     const capitalize = (name) => {
         if (!name) return "";
         return name.charAt(0).toUpperCase() + name.slice(1);
     };
 
+    // Close mobile menu or auth dropdown if clicking outside
     useEffect(() => {
         const handleOutsideClick = (e) => {
             // Closes mobile menu
@@ -42,6 +49,7 @@ function Header() {
         };
     }, [menuOpen, dropdownOpen]);
 
+    // Auth dropdown component for login/logout links
     const AuthDropdown = () => (
         <div ref={dropdownRef} className="auth-dropdown position-relative">
             <button
@@ -55,6 +63,7 @@ function Header() {
             </button>
 
             {user ? (
+                // Shows username and logout button if user is logged in
                 <div className={`dropdown-content ${dropdownOpen ? "show" : ""}`}
                     onClick={(e) => e.stopPropagation()}>
 
@@ -73,6 +82,7 @@ function Header() {
                     </button>
                 </div>
             ) : (
+                // Shows login, signup, and admin links if no user is logged in
                 <div className={`dropdown-content ${dropdownOpen ? "show" : ""}`}
                     onClick={(e) => e.stopPropagation()}>
 
@@ -94,6 +104,7 @@ function Header() {
     return (
         <header className="navbar navbar-expand-lg container-fluid py-4">
 
+            {/* Loading spinner overlay*/}
             {logoutLoading && (<div className="loading-overlay"> <div className="spinner-border text-light" role="status"> <span className="visually-hidden">Loading...</span> </div> </div>
             )}
 

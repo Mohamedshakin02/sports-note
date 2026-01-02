@@ -7,6 +7,7 @@ import Header from '../components/layout/Header';
 function AdminLoginPage() {
     return (
         <>
+            {/* Inline CSS specific to Admin Login page */}
             <style>
                 {`
           body {
@@ -31,6 +32,8 @@ function AdminLoginPage() {
         `}
 
             </style>
+
+            {/* Page content */}
             <Header />
             <main>
                 <Admin_Login />

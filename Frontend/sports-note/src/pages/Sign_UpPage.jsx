@@ -7,6 +7,7 @@ import '../stylesheet/pages/sign-up-page.css';
 function Sign_UpPage() {
   return (
     <>
+        {/* Inline CSS specific to Sign Up page */}
         <style>
         {`
           body {
@@ -32,6 +33,7 @@ function Sign_UpPage() {
         `}
       </style>
 
+      {/* Page content */}
       <Header/>
       <main>
         <Sign_Up/>

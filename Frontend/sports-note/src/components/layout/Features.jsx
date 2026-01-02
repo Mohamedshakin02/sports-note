@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+// Importing logos for feature boxes
 import moments from "../../assets/logos/moments.png";
 import fixtures from "../../assets/logos/fixtures.png";
 import quotes from "../../assets/logos/quotes.png";
 import techniques from "../../assets/logos/techniques.png";
 import sessions from "../../assets/logos/sessions.png";
 
+// Component to display the main features of the app with clickable boxes
 function Features() {
     return (
         <section className="features-section">
             <div className='features-container container-md py-3 py-lg-4 px-3 px-md-2'>
                 
-                {/* Top Heading */}
+                {/* Heading */}
                 <div className='top-container d-flex justify-content-between mb-5'>
                     <div className='heading mt-4'>
                         <h1 className='m-0 p-0'>Discover Sport Note Features</h1>
@@ -25,7 +27,7 @@ function Features() {
                     </div>
                 </div>
 
-                {/* Bottom Feature Boxes */}
+                {/* Feature container */}
                 <div className='bottom-container pt-3 pt-lg-5 mb-5'>
 
                     {/* Moments */}

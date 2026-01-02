@@ -7,6 +7,7 @@ import Footer from '../components/layout/Footer';
 function SessionsPage() {
   return (
     <>
+    {/* Inline CSS specific to Sessions page */}
     <style>
         {`
           body {
@@ -35,6 +36,7 @@ function SessionsPage() {
         `}
       </style>
 
+      {/* Page content */}
       <Header/>
       <main>
         <Sessions/>

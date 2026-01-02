@@ -32,22 +32,40 @@ const defaultQuotes = [
 ];
 
 function Quotes_Home() {
+  // Gets current user and refresh trigger
   const { user, triggerRefresh } = useContext(AuthContext);
+
+  // true if user is logged in
   const isLoggedIn = !!user;
+
+  // Get auth token from localStorage
   const token = localStorage.getItem("token");
 
+  // State for quotes
   const [quotesList, setQuotesList] = useState(defaultQuotes);
+
+  // Loading spinner state
   const [loading, setLoading] = useState(false);
+
+  // State for menu dropdown visibility
   const [openMenuIndex, setOpenMenuIndex] = useState(null);
+
+  // Form states for Add and Edit
   const [editingQuote, setEditingQuote] = useState({ id: null, quote: "", author: "", image: null, imageUrl: "" });
   const [form, setForm] = useState({ quote: "", author: "", image: null });
   const [deleteId, setDeleteId] = useState(null);
-  const [toast, setToast] = useState({ message: "" });
 
-  const menuRefs = useRef([]);
+  // Toast state
+  const [toast, setToast] = useState({ message: "" });
   const toastRef = useRef();
+
+  // References to detect clicks outside menus
+  const menuRefs = useRef([]);
+  
+  // References for Swiper instance
   const swiperRef = useRef(null);
 
+  // Show toast function
   const showToast = (message) => {
     setToast({ message });
     const toastElement = toastRef.current;
@@ -60,7 +78,7 @@ function Quotes_Home() {
     bsToast.show();
   };
 
-  // Fetch quotes from backend
+  // Fetch quotes from backend if user is logged in
   useEffect(() => {
     const fetchQuotes = async () => {
       if (!user || !token) {
@@ -70,6 +88,8 @@ function Quotes_Home() {
 
       try {
         setLoading(true);
+
+        // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
         // const res = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
 
         const res = await axios.get(
@@ -110,8 +130,10 @@ function Quotes_Home() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openMenuIndex]);
 
+  // Toggle dropdown menu for a quote
   const toggleMenu = (index) => setOpenMenuIndex((prev) => (prev === index ? null : index));
 
+  // Handle changes in form inputs for adding or editing a quote
   const handleChange = (e, edit = false) => {
     const { id, value, files } = e.target;
     let key = id.includes("quote-image") ? "image" : id.includes("quote-text") ? "quote" : "author";
@@ -119,18 +141,23 @@ function Quotes_Home() {
     else setForm(prev => ({ ...prev, [key]: files ? files[0] : value }));
   };
 
+  // Submits new quote to backend and update the quotes list
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     if (!isLoggedIn) return showToast("Please login to add quotes");
     setLoading(true);
 
-
+     // Stores uploaded image URL
     let imageUrl = "";
+
+    // Checks if user uploaded an image 
     if (form.image) {
       const formData = new FormData();
-      formData.append("file", form.image);
-      formData.append("upload_preset", "quotes_preset");
-      try { const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); imageUrl = res.data.secure_url; }
+      formData.append("file", form.image); // Add image file
+      formData.append("upload_preset", "quotes_preset"); // Cloudinary preset
+      try { const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); 
+        imageUrl = res.data.secure_url; // Saves uploaded image URL 
+      }
       catch {
         const modalEl = document.getElementById("addQuoteModal");
         window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -140,6 +167,8 @@ function Quotes_Home() {
     }
 
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.post("https://sports-note-backend.onrender.com/api/quotes", { ...form, imageUrl }, { withCredentials: true });
 
       const res = await axios.post(
@@ -169,6 +198,7 @@ function Quotes_Home() {
 
   };
 
+  // Opens edit modal and populate fields with selected quote details
   const handleEdit = (quote) => {
     setEditingQuote({
       id: quote._id || quote.id,
@@ -181,16 +211,20 @@ function Quotes_Home() {
     new window.bootstrap.Modal(modalEl).show();
   };
 
+  // Submits edited quote to backend and update the quotes list
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-
+    // Upload new image only if user uploads new one
     let imageUrl = editingQuote.image ? await (async () => {
       const formData = new FormData();
-      formData.append("file", editingQuote.image);
-      formData.append("upload_preset", "quotes_preset");
-      try { const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); return res.data.secure_url; }
+      formData.append("file", editingQuote.image); // Add image file
+      formData.append("upload_preset", "quotes_preset"); // Cloudinary preset
+      try { 
+        const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); 
+        return res.data.secure_url; // Returns uploaded image URL
+      }
       catch {
         const modalEl = document.getElementById("editQuoteModal");
         window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -202,6 +236,8 @@ function Quotes_Home() {
     if (imageUrl === null) return;
 
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.put(`https://sports-note-backend.onrender.com/api/quotes/${editingQuote.id}`, { ...editingQuote, imageUrl }, { withCredentials: true });
 
       const res = await axios.put(
@@ -214,6 +250,7 @@ function Quotes_Home() {
         }
       );
 
+      // Replace the old quote in the list with the updated quote
       setQuotesList(prev => prev.map(quote => (quote._id === editingQuote.id || quote.id === editingQuote.id ? res.data : quote)));
       const modalEl = document.getElementById("editQuoteModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -230,10 +267,13 @@ function Quotes_Home() {
 
   };
 
+   // Deletes quote from backend and remove it from the list
   const confirmDelete = async () => {
     if (!deleteId) return;
     setLoading(true);
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // await axios.delete(`https://sports-note-backend.onrender.com/api/quotes/${deleteId}`, { withCredentials: true });
 
       await axios.delete(
@@ -259,34 +299,43 @@ function Quotes_Home() {
     } finally { setLoading(false); }
   };
 
+  //functions to get initials
   const getInitials = (name) => {
     const words = name.split(" ");
     if (words.length === 1) return words[0].charAt(0).toUpperCase();
     return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
   };
 
+  // Show toast if user tries to edit/add without logging in
   const showLoginToast = () => showToast("Please login to continue");
 
   return (
     <>
+
+      {/* Loading spinner overlay */}
       {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"><span className="visually-hidden">Loading...</span></div></div>)}
 
+      {/* Show quotes only if there are any */}
       {quotesList && quotesList.length > 0 && (
         <section className="quotes-section">
 
           <div className="section-container container-md py-5 mt-2 px-3 px-md-2">
+            {/* Header with title and Add quote button */}
             <div className="heading-container mb-5">
               <div className="text">
                 <h1 className="m-0 p-0 mb-3">Quotes</h1>
                 <p className="m-0 p-0 fs-4">Read your favorite quotes from players and coaches. Let their words inspire and motivate you every day.</p>
               </div>
               <div className="button">
+
+                {/* Adds quote only if user is logged in*/}
                 <button type="button" className="btn p-2" onClick={() => { if (!isLoggedIn) return showLoginToast(); const modalEl = document.getElementById("addQuoteModal"); new window.bootstrap.Modal(modalEl).show(); }}>
                   <i className="bi bi-plus-lg me-2"></i>Add Quote
                 </button>
               </div>
             </div>
 
+            {/* Swiper slider to display all quotes */}
             <Swiper
               ref={swiperRef}
               spaceBetween={20}
@@ -295,6 +344,8 @@ function Quotes_Home() {
                 clickable: true,
                 dynamicBullets: true,
                 centerInsufficientSlides: true,
+
+                // Show image or initials inside pagination bullet
                 renderBullet: (index, className) => {
                   const author = quotesList[index].author;
                   const image = quotesList[index].image || quotesList[index].imageUrl;
@@ -307,6 +358,8 @@ function Quotes_Home() {
               className="quotes-slider"
               breakpoints={{ 0: { slidesPerView: 1.25 }, 768: { slidesPerView: 1.25 }, 992: { slidesPerView: 1 } }}
             >
+
+              {/* Loop through each quote and display it */}
               {quotesList.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div className="quote-box d-flex p-3 px-4">
@@ -332,6 +385,7 @@ function Quotes_Home() {
               ))}
             </Swiper>
 
+            {/* Explore more button */}
             <div className="explore mt-5">
               <Link to="/quotes" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
             </div>
@@ -537,7 +591,7 @@ function Quotes_Home() {
 
       )}
 
-      {/* Toast */}
+      {/* Toast container for notifications */}
       <div className="toast-container position-fixed p-3">
         <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
           <div className="d-flex">

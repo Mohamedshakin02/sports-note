@@ -8,6 +8,7 @@ import Footer from '../components/layout/Footer';
 function FixturesPage() {
   return (
     <>
+    {/* Inline CSS specific to Fixtures page */}
     <style>
         {`
           body {
@@ -78,6 +79,7 @@ function FixturesPage() {
         `}
       </style>
 
+      {/* Page content */}
       <Header/>
       <main>
         <Fixtures/>

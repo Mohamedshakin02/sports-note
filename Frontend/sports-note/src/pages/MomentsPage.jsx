@@ -8,6 +8,7 @@ import Footer from '../components/layout/Footer';
 function MomentsPage() {
   return (
     <>
+    {/* Inline CSS specific to Moments page */}
     <style>
         {`
           body {
@@ -34,10 +35,13 @@ function MomentsPage() {
         `}
       </style>
 
+      {/* Main content of the page */}
       <main>
         <Header/>
         <Moments/>
       </main>
+
+      {/* Footer section */}
       <Footer/>
     </>
   )

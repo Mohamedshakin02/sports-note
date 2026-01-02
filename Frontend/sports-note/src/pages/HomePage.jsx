@@ -12,6 +12,7 @@ import Footer from '../components/layout/Footer';
 function HomePage() {
   return (
     <>
+      {/* Inline CSS for specific section minimum heights */}
       <style>
         {`
           body .fixtures-section, .techniques-section {
@@ -24,6 +25,7 @@ function HomePage() {
           `}
       </style>
 
+      {/* Main content of the homepage */}
       <main>
         <Intro />
         <Features />
@@ -33,6 +35,8 @@ function HomePage() {
         <Techniques_Home />
         <Sessions_home />
       </main>
+
+      {/* Footer component */}
       <Footer />
     </>
   )

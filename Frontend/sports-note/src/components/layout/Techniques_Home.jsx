@@ -3,7 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../auth/AuthContext";
 import { Link } from "react-router-dom";
 
-// Default techniques for non-login users
+// Default techniques to show when user is not logged in
 const defaultTechniques = [
     {
         title: "Rainbow Flick",
@@ -58,25 +58,43 @@ const defaultTechniques = [
 ]
 
 function Techniques_Home() {
+    // gets logged-in user
     const { user } = useContext(AuthContext);
+
+    // Get auth token from localStorage
     const token = localStorage.getItem("token");
 
+    // State for techniques
     const [techniquesList, setTechniquesList] = useState([]);
+
+    // State for menu dropdown visibility
     const [openMenuIndex, setOpenMenuIndex] = useState(null);
+
+    // References to detect clicks outside menus
     const menuRefs = useRef([]);
+
+    // Toast state
     const toastRef = useRef(null);
     const [toast, setToast] = useState({ message: "" });
+
+    // Loading spinner state
     const [loading, setLoading] = useState(false);
+
+    // Form states for Add and Edit
     const [form, setForm] = useState({ title: "", sport: "", steps: [""] });
     const [editForm, setEditForm] = useState({ id: null, title: "", sport: "", steps: [""] });
     const [deleteId, setDeleteId] = useState(null);
 
+    // true if user is logged in
     const isLoggedIn = !!user;
+
+    // Show toast if user tries to edit/add without logging in
     const showLoginToast = () => showToast("Please login to continue");
 
-
+     // Toggle dropdown menu for a technique
     const toggleMenu = (index) => setOpenMenuIndex(prev => (prev === index ? null : index));
 
+    // Show toast function
     const showToast = (message) => {
         setToast({ message });
         const toastElement = toastRef.current;
@@ -88,6 +106,7 @@ function Techniques_Home() {
         new window.bootstrap.Toast(toastElement, { delay: 3000 }).show();
     };
 
+    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (openMenuIndex !== null &&
@@ -100,6 +119,7 @@ function Techniques_Home() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [openMenuIndex]);
 
+    // Fetch techniques from backend if user is logged in
     useEffect(() => {
         if (!user || !token) {
             setTechniquesList(defaultTechniques);
@@ -108,6 +128,8 @@ function Techniques_Home() {
         const fetchTechniques = async () => {
             try {
                 setLoading(true);
+
+                // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
                 // const res = await axios.get("https://sports-note-backend.onrender.com/api/techniques", { withCredentials: true });
 
                 const res = await axios.get(
@@ -133,8 +155,11 @@ function Techniques_Home() {
         fetchTechniques();
     }, [user]);
 
+    // Handle changes in form inputs for adding or editing a technique
     const handleChange = (e, edit = false, stepIndex = null) => {
         const { id, value } = e.target;
+
+        // Handle step updates
         if (stepIndex !== null) {
             if (edit) {
                 const steps = [...editForm.steps];
@@ -163,20 +188,25 @@ function Techniques_Home() {
 
     };
 
+    // Adds a new step input
     const addStep = (edit = false) => {
         if (edit) setEditForm(prev => ({ ...prev, steps: [...prev.steps, ""] }));
         else setForm(prev => ({ ...prev, steps: [...prev.steps, ""] }));
     };
 
+    // Deletes a step
     const deleteStep = (index, edit = false) => {
         if (edit) setEditForm(prev => ({ ...prev, steps: prev.steps.filter((_, i) => i !== index) }));
         else setForm(prev => ({ ...prev, steps: prev.steps.filter((_, i) => i !== index) }));
     };
 
+    // Submits new technique to backend and update the techniques list
     const handleAddSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // const res = await axios.post("https://sports-note-backend.onrender.com/api/techniques", form, { withCredentials: true });
 
             const res = await axios.post(
@@ -197,15 +227,21 @@ function Techniques_Home() {
         } finally { setLoading(false); }
     };
 
+
+    // Opens edit modal and populate fields with selected technique details
     const handleEdit = (tech) => {
         setEditForm({ id: tech._id, title: tech.title, sport: tech.sport, steps: tech.steps });
         new window.bootstrap.Modal(document.getElementById("editTechniqueModal")).show();
     };
 
+
+    // Submits edited technique to backend and update the techniques list
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // const res = await axios.put(`https://sports-note-backend.onrender.com/api/techniques/${editForm.id}`, editForm, { withCredentials: true });
 
             const res = await axios.put(
@@ -225,10 +261,13 @@ function Techniques_Home() {
         finally { setLoading(false); }
     };
 
+    // Deletes technique from backend and remove it from the list
     const confirmDelete = async () => {
         if (!deleteId) return;
         setLoading(true);
         try {
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // await axios.delete(`https://sports-note-backend.onrender.com/api/techniques/${deleteId}`, { withCredentials: true });
 
             await axios.delete(
@@ -250,11 +289,13 @@ function Techniques_Home() {
 
     return (
         <>
-
+            {/* Loading spinner overlay */}
             {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"><span className="visually-hidden">Loading...</span></div></div>)}
 
+            {/* Shows techniques only if there are any */}
             {techniquesList && techniquesList.length > 0 && (
                 <section className="techniques-section py-5 mt-2">
+                    {/* Header with title and Add technique button */}
                     <div className="techniques-container container-md px-3 px-md-2">
                         <div className="heading-container mb-5">
                             <div className="text">
@@ -265,6 +306,7 @@ function Techniques_Home() {
                                 </p>
                             </div>
                             <div className="button">
+                                {/* Adds technique only if user is logged in*/}
                                 <button type="button" className="btn p-2" onClick={() => {
                                     if (!isLoggedIn) return showLoginToast();
                                     const modalEl = document.getElementById("addTechniqueModal");
@@ -274,7 +316,7 @@ function Techniques_Home() {
                         </div>
 
 
-                        {/* ACCORDION */}
+                        {/* Techniques Accordion */}
                         <div className="accordion accordion-flush" id="accordionFlushExample">
                             {techniquesList.map((tech, index) => (
                                 <div className="accordion-item" key={index}>
@@ -287,6 +329,8 @@ function Techniques_Home() {
 
                                     <div id={`flush-collapse-${index}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div className="accordion-body">
+
+                                            {/* Dropdown menu for edit/delete actions and only allowed to edit or delete the technique if user is logged in */}
                                             <div className="menu-wrapper" ref={(el) => (menuRefs.current[index] = el)}>
                                                 <i className="bi bi-three-dots-vertical menu-icon" onClick={() => toggleMenu(index)} title="Actions"></i>
                                                 {openMenuIndex === index && (
@@ -309,7 +353,7 @@ function Techniques_Home() {
                             ))}
                         </div>
 
-
+                        {/* Explore more button */}
                         <div className="explore mt-5">
                             <Link to="/techniques" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
                         </div>
@@ -539,7 +583,7 @@ function Techniques_Home() {
 
             )}
 
-            {/* Toast */}
+            {/* Toast container for notifications */}
             <div className="toast-container position-fixed p-3">
                 <div ref={toastRef} className="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div className="d-flex">

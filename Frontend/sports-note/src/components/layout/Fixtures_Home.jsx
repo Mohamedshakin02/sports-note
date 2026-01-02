@@ -9,16 +9,28 @@ import axios from "axios";
 import { AuthContext } from "../auth/AuthContext";
 
 function Fixtures_Home() {
-    const { user, triggerRefresh } = useContext(AuthContext); // get logged-in user
+    // Gets current user and refresh trigger
+    const { user, triggerRefresh } = useContext(AuthContext);
+
+    // Get auth token from localStorage
     const token = localStorage.getItem("token");
+
+    // State for fixtures
     const [fixturesList, setFixturesList] = useState([]);
+
+    // State for menu dropdown visibility
     const [openMenuIndex, setOpenMenuIndex] = useState(null);
+
+    // References to detect clicks outside menus
     const menuRefs = useRef([]);
+
+    // References for Swiper instance
     const swiperRef = useRef(null);
 
-
+    // Loading spinner state
     const [loading, setLoading] = useState(false);
 
+    // Form states
     const [form, setForm] = useState({ team1: "", team2: "", sport: "", date: "", time: "" });
     const [editForm, setEditForm] = useState({ id: null, team1: "", team2: "", sport: "", date: "", time: "" });
     const [deleteId, setDeleteId] = useState(null);
@@ -26,6 +38,7 @@ function Fixtures_Home() {
     const toastRef = useRef(null);
     const [toast, setToast] = useState({ message: "" });
 
+    // Default fixtures to show when user is not logged in
     const defaultFixtures = [
         { date: "2024-11-19", team1: "INDIA", team2: "PAK", time: "9:30", sport: "Cricket" },
         { date: "2024-11-20", team1: "AUSTRALIA", team2: "ENG", time: "14:00", sport: "Cricket" },
@@ -34,9 +47,10 @@ function Fixtures_Home() {
         { date: "2024-11-25", team1: "BULLS", team2: "CELTICS", time: "", sport: "Basketball" }
     ];
 
+    // true if user is logged in
     const isLoggedIn = !!user;
 
-    // Show toast function
+    // Shows toast function
     const showToast = (message) => {
         setToast({ message });
         const toastElement = toastRef.current;
@@ -51,9 +65,10 @@ function Fixtures_Home() {
         bsToast.show();
     };
 
+    // Show toast if user tries to edit/add without logging in
     const showLoginToast = () => showToast("Please login to continue");
 
-    // Fetch fixtures from backend
+    // Fetch fixtures from backend if user is logged in
     useEffect(() => {
         if (!user || !token) {
             setFixturesList(defaultFixtures);
@@ -62,6 +77,8 @@ function Fixtures_Home() {
         const fetchFixtures = async () => {
             try {
                 setLoading(true);
+
+                // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
                 // const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
 
                 const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", {
@@ -81,11 +98,12 @@ function Fixtures_Home() {
         fetchFixtures();
     }, [user]);
 
+    // Toggle dropdown menu for a fixture
     const toggleMenu = (index) => {
         setOpenMenuIndex(prev => (prev === index ? null : index));
     };
 
-    // Close dropdown on outside click
+    // Closes dropdown on outside click
     useEffect(() => {
         const handleClickOutside = (e) => {
             if (
@@ -100,6 +118,7 @@ function Fixtures_Home() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [openMenuIndex]);
 
+    // Handle changes in form inputs for adding or editing a fixture
     const handleChange = (e, edit = false) => {
         const { id, value } = e.target;
         const keyMap = {
@@ -117,11 +136,14 @@ function Fixtures_Home() {
         else setForm(prev => ({ ...prev, [key]: value }));
     };
 
+    // Submits new fixture to backend and update the fixtures list
     const handleAddSubmit = async (e) => {
         e.preventDefault();
         if (!isLoggedIn) return showLoginToast();
         setLoading(true);
         try {
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // const res = await axios.post("https://sports-note-backend.onrender.com/api/fixtures", form, { withCredentials: true });
 
             const res = await axios.post(
@@ -148,6 +170,7 @@ function Fixtures_Home() {
         }
     };
 
+    // Opens edit modal and populate fields with selected fixture details
     const handleEdit = (fixture) => {
         const formattedDate = fixture.date ? fixture.date.split('T')[0] : '';
         setEditForm({ id: fixture._id, ...fixture, date: formattedDate });
@@ -155,10 +178,13 @@ function Fixtures_Home() {
         new window.bootstrap.Modal(modalEl).show();
     };
 
+    // Submits edited fixture to backend and update the fixtures list
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // const res = await axios.put(`https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
 
             const res = await axios.put(
@@ -171,6 +197,7 @@ function Fixtures_Home() {
                 }
             );
 
+            // Replace the old fixture in the list with the updated fixture
             setFixturesList(prev => prev.map(fixture => (fixture._id === editForm.id ? res.data : fixture)));
             const modalEl = document.getElementById("editFixtureModal");
             window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -187,10 +214,13 @@ function Fixtures_Home() {
         }
     };
 
+    // Deletes fixture from backend and remove it from the list
     const confirmDelete = async () => {
         if (!deleteId) return;
         setLoading(true);
         try {
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // await axios.delete(`https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`, { withCredentials: true });
 
             await axios.delete(
@@ -218,11 +248,13 @@ function Fixtures_Home() {
         }
     };
 
+    //Function to Format date string to "19 NOV"
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString("en-GB", { day: "2-digit", month: "short" }).toUpperCase();
     };
 
+    // Sort fixtures: upcoming matches first (ascending), past matches after (descending)
     const sortFixtures = (fixtures) => {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -252,10 +284,13 @@ function Fixtures_Home() {
 
     return (
         <>
+            {/* Loading spinner overlay */}
             {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"></div></div>)}
 
+            {/* Shows fixtures only if there are any */}
             {fixturesList && fixturesList.length > 0 && (
                 <section className="fixtures-section py-5 mt-2">
+                     {/* Header with title and Add Fixture button */}
                     <div className="fixtures-container container-md px-3 px-md-2">
                         <div className="heading-container mb-5">
                             <div className="text">
@@ -265,6 +300,8 @@ function Fixtures_Home() {
                                 </p>
                             </div>
                             <div className="button">
+
+                                {/* Adds fixture only if user is logged in*/}
                                 <button type="button" className="btn p-2" onClick={() => {
                                     if (!isLoggedIn) return showLoginToast();
                                     const modalEl = document.getElementById("addFixtureModal");
@@ -275,6 +312,7 @@ function Fixtures_Home() {
                             </div>
                         </div>
 
+                        {/* Swiper slider for fixtures */}
                         <Swiper
                             modules={[Navigation, Pagination]}
                             navigation
@@ -295,6 +333,7 @@ function Fixtures_Home() {
                                         <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
                                             <h2 className="m-0 fs-3">{formatDate(fixture.date)}</h2>
 
+                                            {/* Dropdown menu for edit/delete actions and only allowed to edit or delete the fixture if user is logged in */}
                                             <div
                                                 className="menu-wrapper"
                                                 ref={(el) => (menuRefs.current[index] = el)}
@@ -311,6 +350,7 @@ function Fixtures_Home() {
                                             </div>
                                         </div>
 
+                                        {/* Fixture details */}
                                         <div className="bottom-container p-4">
                                             <p className="sport-badge m-0 p-0 mt-2 rounded-pill">{fixture.sport}</p>
                                             <p className="m-0 p-0 my-2 mt-3 fs-4 fw-bolder text-uppercase">{fixture.team1} VS {fixture.team2}</p>
@@ -321,6 +361,7 @@ function Fixtures_Home() {
                             ))}
                         </Swiper>
 
+                        {/* Explore more button */}
                         <div className="explore mt-4">
                             <Link to="/fixtures" className="text-decoration-none">
                                 <button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button>
@@ -526,7 +567,7 @@ function Fixtures_Home() {
 
             )}
 
-            {/* Toast */}
+            {/* Toast container for notifications */}
             <div className="toast-container position-fixed p-3">
                 <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
                     <div className="d-flex">

@@ -7,7 +7,7 @@ import { Mousewheel, Pagination } from "swiper/modules";
 import axios from "axios";
 import { AuthContext } from "../auth/AuthContext";
 
-// Default sessions for non-login users
+// Default sessions to show when user is not logged in
 const defaultSessions = [
   { title: "Morning Basketball Drills", exercises: ["Warm-up jog (5 mins)", "Dribbling practice", "Layup drills", "Free-throw routine", "Cooldown stretches"] },
   { title: "Badminton Smash Training", exercises: ["Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills"] },
@@ -19,23 +19,43 @@ const defaultSessions = [
 ];
 
 function Sessions_home() {
+  // gets logged-in user
   const { user } = useContext(AuthContext);
+
+  // true if user is logged in
   const isLoggedIn = !!user;
+
+  // Get auth token from localStorage
   const token = localStorage.getItem("token");
 
+  // State for sessions
   const [sessionsList, setSessionsList] = useState([]);
-  const [selected, setSelected] = useState(null); // start with null
+
+  // Currently selected session
+  const [selected, setSelected] = useState(null); 
+
+  // State for menu dropdown visibility
   const [openMenu, setOpenMenu] = useState(false);
   const [openMenuIndex, setOpenMenuIndex] = useState(null);
+
+  // References to detect clicks outside menus
   const menuRef = useRef(null);
   const menuRefs = useRef([]);
+
+  // Track screen width for responsive swiper
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+   // Show/hide swiper arrows
   const [showArrows, setShowArrows] = useState(false);
+
+  // Swiper reference
   const swiperRef = useRef(null);
 
-  // Toast
+  // Toast state
   const toastRef = useRef(null);
   const [toast, setToast] = useState({ message: "" });
+
+  // Show toast function
   const showToast = (message) => {
     setToast({ message });
     const toastElement = toastRef.current;
@@ -46,8 +66,11 @@ function Sessions_home() {
     progress.style.animation = "shrink 3s linear forwards";
     new window.bootstrap.Toast(toastElement, { delay: 3000 }).show();
   };
+
+  // Show toast if user tries to edit/add without logging in
   const showLoginToast = () => showToast("Please login to continue");
 
+  // Loading spinner state
   const [loading, setLoading] = useState(false);
 
   // Form state for add/edit
@@ -55,7 +78,7 @@ function Sessions_home() {
   const [editForm, setEditForm] = useState({ id: null, title: "", exercises: [""] }); // ✅ CHANGED 'exercises' to 'exercises'
   const [deleteId, setDeleteId] = useState(null);
 
-  // Fetch sessions from backend if logged in
+  // Fetch sessions from backend if user is logged in
   useEffect(() => {
     const fetchSessions = async () => {
       if (!user || !token) {
@@ -66,6 +89,8 @@ function Sessions_home() {
 
       try {
         setLoading(true);
+
+        // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
         // const res = await axios.get("https://sports-note-backend.onrender.com/api/sessions", { withCredentials: true });
 
         const res = await axios.get(
@@ -140,7 +165,7 @@ function Sessions_home() {
   const slidePrev = () => swiperRef.current?.slidePrev();
   const slideNext = () => swiperRef.current?.slideNext();
 
-  // Form handlers
+  // Handle changes in form inputs for adding or editing a session
   const handleChange = (e, edit = false, index = null) => {
     const { value } = e.target;
     if (index !== null) {
@@ -156,29 +181,31 @@ function Sessions_home() {
       return;
     }
 
-
     if (edit) setEditForm(prev => ({ ...prev, title: value }));
     else setForm(prev => ({ ...prev, title: value }));
   };
 
+  // Adds new exercise input
   const addItem = (edit = false) => {
     if (edit) setEditForm(prev => ({ ...prev, exercises: [...prev.exercises, ""] }));
     else setForm(prev => ({ ...prev, exercises: [...prev.exercises, ""] }));
   };
 
-
+  // Deletes exercise input
   const deleteItem = (index, edit = false) => {
     if (edit) setEditForm(prev => ({ ...prev, exercises: prev.exercises.filter((_, i) => i !== index) }));
     else setForm(prev => ({ ...prev, exercises: prev.exercises.filter((_, i) => i !== index) }));
   };
 
-  // Add session
+  // Submits new session to backend and update the sessions list
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     if (!isLoggedIn) return showLoginToast();
     setLoading(true);
     const modalEl = document.getElementById("addSessionModal");
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.post("https://sports-note-backend.onrender.com/api/sessions", form, { withCredentials: true });
 
       const res = await axios.post(
@@ -200,7 +227,7 @@ function Sessions_home() {
     } finally { setLoading(false); }
   };
 
-  // Edit session
+  // Opens edit modal and populate fields with selected session details
   const handleEdit = (session) => {
     setEditForm({ id: session._id, title: session.title, exercises: session.exercises });
     const modalEl = document.getElementById("editSessionModal");
@@ -212,6 +239,8 @@ function Sessions_home() {
     setLoading(true);
     const modalEl = document.getElementById("editSessionModal");
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.put(`https://sports-note-backend.onrender.com/api/sessions/${editForm.id}`, editForm, { withCredentials: true });
 
       const res = await axios.put(
@@ -234,12 +263,14 @@ function Sessions_home() {
     } finally { setLoading(false); }
   };
 
-  // Delete session
+  // Deletes session from backend and remove it from the list
   const confirmDelete = async () => {
     if (!deleteId) return;
     setLoading(true);
     const modalEl = document.getElementById("deleteSessionModal");
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // await axios.delete(`https://sports-note-backend.onrender.com/api/sessions/${deleteId}`, { withCredentials: true });
 
       await axios.delete(
@@ -272,10 +303,13 @@ function Sessions_home() {
 
   return (
     <>
+      {/* Loading spinner overlay */}
       {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"></div></div>)}
 
+      {/* Shows sessions only if there are any */}
       {sessionsList.length > 0 && selected && selected.exercises?.length > 0 && (
         <section className="sessions-section py-5">
+          {/* Header with title and Add session button */}
           <div className="sessions-container container-md px-3 px-md-2">
             <div className="heading-container mb-5">
               <div className="text">
@@ -285,6 +319,8 @@ function Sessions_home() {
                 </p>
               </div>
               <div className="button">
+
+                {/* Adds session only if user is logged in*/}
                 <button type="button" className="btn p-2" onClick={() => {
                   if (!isLoggedIn) return showLoginToast();
                   const modalEl = document.getElementById("addSessionModal");
@@ -293,9 +329,11 @@ function Sessions_home() {
               </div>
             </div>
 
-
+            {/* Sessions grid container */}
             <div className="grid-container">
               <div className="content">
+
+                {/* Dropdown menu for edit/delete actions and only allowed to edit or delete the session if user is logged in */}
                 <div className="menu-wrapper" ref={menuRef} onClick={() => setOpenMenu(!openMenu)}>
                   <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
                   {openMenu && (
@@ -314,6 +352,7 @@ function Sessions_home() {
                   )}
                 </div>
 
+                {/* Display selected session details */}
                 {selected && (
                   <>
                     <h1 className="mb-3 text-capitalize">{selected.title}</h1>
@@ -327,6 +366,7 @@ function Sessions_home() {
                 )}
               </div>
 
+              {/* Navigation arrows for desktop and mobile */}
               <div className="buttons">
                 {screenWidth >= 1024 && showArrows && (
                   <div className="arrow-desktop-container">
@@ -341,6 +381,7 @@ function Sessions_home() {
                   </>
                 )}
 
+                {/* Swiper for session navigation */}
                 <Swiper
                   key={screenWidth}
                   direction={screenWidth >= 1024 ? "vertical" : "horizontal"}
@@ -369,7 +410,7 @@ function Sessions_home() {
               </div>
             </div>
 
-
+            {/* Explore more button */}
             <div className="explore mt-5">
               <Link to="/sessions" className="text-decoration-none"><button type="button" className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
             </div>
@@ -564,7 +605,7 @@ function Sessions_home() {
 
       )}
 
-      {/* Toast */}
+      {/* Toast container for notifications */}
       <div className="toast-container position-fixed p-3">
         <div ref={toastRef} className="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
           <div className="d-flex">

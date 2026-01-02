@@ -13,6 +13,7 @@ import moment3 from "../../assets/moments/india vs new zealand.jpg";
 import moment4 from "../../assets/moments/lakers win.jpg";
 import noImage from "../../assets/logos/moments-grey.png";
 
+// Default moments to show when user is not logged in
 const defaultMoments = [
   {
     image: moment1,
@@ -52,13 +53,28 @@ const defaultMoments = [
 ];
 
 function Moments_Home() {
+  // Gets current user 
   const { user } = useContext(AuthContext);
+
+  // Get auth token from localStorage
   const token = localStorage.getItem("token");
+
+  // State for moments
   const [momentsList, setMomentsList] = useState(defaultMoments);
+
+  // State for menu dropdown visibility
   const [openIndex, setOpenIndex] = useState(0);
+
+  // State for screen width
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  // State for menu dropdown visibility
   const [openMenuIndex, setOpenMenuIndex] = useState(null);
+  
+  // References to detect clicks outside menus
   const menuRefs = useRef([]);
+
+  // References for Swiper instance
   const swiperRef = useRef(null);
 
 
@@ -66,12 +82,14 @@ function Moments_Home() {
   const toastRef = useRef(null);
   const [toast, setToast] = useState({ message: "" });
 
+  // Loading spinner state
   const [loading, setLoading] = useState(false);
 
   // Form states for Add and Edit
   const [form, setForm] = useState({ title: "", sport: "", image: null, date: "", description: "" });
   const [editForm, setEditForm] = useState({ id: null, title: "", sport: "", image: null, date: "", description: "", imageUrl: "" });
 
+  // Toggle dropdown menu for a moment
   const toggleMenu = (index) => {
     setOpenMenuIndex((prev) => (prev === index ? null : index));
   };
@@ -106,7 +124,7 @@ function Moments_Home() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openMenuIndex]);
 
-  // Fetch moments from MongoDB if user is logged in
+  // Fetch moments from backend if user is logged in
   useEffect(() => {
     const fetchMoments = async () => {
       if (!user) {
@@ -117,6 +135,8 @@ function Moments_Home() {
 
       try {
         setLoading(true);
+
+        // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
         // const res = await axios.get("https://sports-note-backend.onrender.com/api/moments", { withCredentials: true });
 
         const res = await axios.get(
@@ -147,6 +167,7 @@ function Moments_Home() {
     fetchMoments();
   }, [user]);
 
+  //Function to Format date string
   const formatDate = (dateString) => {
 
     if (!dateString) return "N/A";
@@ -161,6 +182,7 @@ function Moments_Home() {
     return date.toISOString().split("T")[0]; // YYYY-MM-DD
   };
 
+  // Handle changes in form inputs for adding or editing a moment
   const handleChange = (e, edit = false) => {
 
     const map = { "moment-title": "title", "moment-type": "sport", "moment-image": "image", "moment-date": "date", "moment-desc": "description" };
@@ -171,22 +193,30 @@ function Moments_Home() {
     else setForm(prev => ({ ...prev, [key]: files ? files[0] : value }));
   };
 
+  // Submits new moment to backend and update the moments list
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    // Stores uploaded image URL
     let imageUrl = "";
+
+    // Checks if user uploaded an image 
     if (form.image) {
       const formData = new FormData();
-      formData.append("file", form.image);
-      formData.append("upload_preset", "moments_preset");
+      formData.append("file", form.image); // Add image file
+      formData.append("upload_preset", "moments_preset"); // Cloudinary preset
       try {
-        const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); imageUrl = res.data.secure_url;
+        const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); 
+        imageUrl = res.data.secure_url; // Saves uploaded image URL
       }
 
       catch { showToast("Failed to upload image."); setLoading(false); return; }
     }
 
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.post("https://sports-note-backend.onrender.com/api/moments", { ...form, imageUrl }, { withCredentials: true });
 
       const res = await axios.post(
@@ -210,21 +240,26 @@ function Moments_Home() {
     finally { setLoading(false); }
   };
 
+  // Opens edit modal and populate fields with selected moment details
   const handleEdit = (moment) => {
     setEditForm({ id: moment._id || moment.id, ...moment, date: moment.date ? formatDate2(moment.date) : "", image: null });
     const modalEl = document.getElementById("editMomentModal");
     new window.bootstrap.Modal(modalEl).show();
   };
 
+  // Submits edited moment to backend and update the moments list
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    // Upload new image only if user uploads new one
     let imageUrl = editForm.image ? await (async () => {
       const formData = new FormData();
-      formData.append("file", editForm.image);
-      formData.append("upload_preset", "moments_preset");
+      formData.append("file", editForm.image); // Add image file
+      formData.append("upload_preset", "moments_preset"); // Cloudinary preset
       try {
-        const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); return res.data.secure_url;
+        const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); 
+        return res.data.secure_url; // Returns uploaded image URL
       }
 
       catch {
@@ -236,6 +271,8 @@ function Moments_Home() {
     if (imageUrl === null) return;
 
     try {
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.put(`https://sports-note-backend.onrender.com/api/moments/${editForm.id}`, { ...editForm, imageUrl }, { withCredentials: true });
 
       const res = await axios.put(
@@ -248,6 +285,7 @@ function Moments_Home() {
         }
       );
 
+      // Replace the old moment in the list with the updated moment
       setMomentsList(prev => prev.map(moment => (moment._id === editForm.id || moment.id === editForm.id ? res.data : moment)));
       const modalEl = document.getElementById("editMomentModal");
       window.bootstrap.Modal.getInstance(modalEl).hide();
@@ -258,13 +296,17 @@ function Moments_Home() {
     finally { setLoading(false); }
   };
 
+  // Stores moment ID to delete
   const [deleteId, setDeleteId] = useState(null);
 
+  // Deletes moment from backend and remove it from the list
   const confirmDelete = async () => {
     if (!deleteId) return;
 
     try {
       setLoading(true);
+
+      // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // await axios.delete(`https://sports-note-backend.onrender.com/api/moments/${deleteId}`, { withCredentials: true });
 
       await axios.delete(
@@ -297,18 +339,22 @@ function Moments_Home() {
     finally { setLoading(false); }
   };
 
+  // true if user is logged in
   const isLoggedIn = !!user;
 
+  // Show toast if user tries to edit/add without logging in
   const showLoginToast = () => {
     showToast("Please login to continue");
   };
 
+  // Detect screen resize
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Closes dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (openMenuIndex !== null && menuRefs.current[openMenuIndex] && !menuRefs.current[openMenuIndex].contains(event.target)) {
@@ -324,11 +370,13 @@ function Moments_Home() {
   return (
 
     <>
+      {/* Loading spinner overlay */}
       {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"><span className="visually-hidden">Loading...</span></div></div>)}
 
+      {/* Show moments only if there are any */}
       {momentsList && momentsList.length > 0 && (
         <section className="moments-section container-md py-5 mt-2 px-3 px-md-2">
-
+          {/* Header with title and Add moment button */}
           <div className="heading-container mb-5">
             <div className="text">
               <h1 className="m-0 p-0 mb-3">Moments</h1>
@@ -337,12 +385,15 @@ function Moments_Home() {
               </p>
             </div>
             <div className="button">
+
+              {/* Adds moment only if user is logged in*/}
               <button className="btn p-2" onClick={() => { if (!isLoggedIn) return showToast("Please login to continue"); new window.bootstrap.Modal(document.getElementById("addMomentModal")).show(); }}>
                 <i className="bi bi-plus-lg me-2"></i>Add Moment
               </button>
             </div>
           </div>
 
+          {/* Swiper slider to display all moments */}
           <Swiper
             key={screenWidth}
             modules={[Navigation, Pagination]}
@@ -354,10 +405,14 @@ function Moments_Home() {
             spaceBetween={20}
             observer={true}
             observeParents={true}
+
+            /* Store swiper reference and update layout */
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
               setTimeout(() => swiper.update(), 50);
             }}
+
+            /* Recalculate layout when screen resizes */
             onResize={() => {
               setTimeout(() => {
                 swiperRef.current.update();
@@ -366,6 +421,8 @@ function Moments_Home() {
             }}
             className="moments-slider"
           >
+
+            {/* Loop through each moment and display it */}
             {momentsList.map((moment, index) => (
               <SwiperSlide
                 key={index}
@@ -380,6 +437,8 @@ function Moments_Home() {
                   transition: "0.3s ease",
                   flexShrink: 0,
                 }}
+
+                // Expands or collapses card on click
                 onClick={() => {
                   if (!isMobile) {
                     const newIndex = openIndex === index ? null : index;
@@ -439,12 +498,14 @@ function Moments_Home() {
                     )}
                   </div>
 
+                  {/* Shows title vertically when collapsed */}
                   {!isMobile && openIndex !== index && (
                     <div className="card-vertical-text">
                       <p className="m-0 p-0 text-truncate fs-6 text-capitalize">{moment.title}</p>
                     </div>
                   )}
 
+                   {/* Expanded content */}
                   {(openIndex === index || isMobile) && (
 
                     <>
@@ -483,6 +544,7 @@ function Moments_Home() {
             ))}
           </Swiper>
 
+          {/* Explore more button */}
           <div className="explore mt-3">
             <Link to="/moments"><button className="btn">EXPLORE MORE</button></Link>
           </div>
@@ -661,6 +723,7 @@ function Moments_Home() {
 
       )}
 
+      {/* Toast container for notifications */}
       <div className="toast-container position-fixed p-3">
         <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert">
           <div className="d-flex">

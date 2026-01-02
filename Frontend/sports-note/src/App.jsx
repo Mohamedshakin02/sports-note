@@ -13,14 +13,18 @@ import NotFound from './pages/NotFound';
 import GuestRoute from "./components/auth/GuestRoute";
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminPage from './pages/AdminPage';
-import AdminLoginGuard from "./components/admin/AdminLoginGuard"; // NEW Route
-import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute"; // NEW Route
+import AdminLoginGuard from "./components/admin/AdminLoginGuard"; 
+import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute"; 
 
 function App() {
   return (
+    // BrowserRouter is used here to enable routing in react js (it will redirect the page without actually loading)
     <BrowserRouter>
+
+      {/* ScrollToTop makes the page scroll to top whenever we navigate to a new route */}
       <ScrollToTop />
 
+      {/* setting the paths for different pages */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/moments" element={<MomentsPage />} />
@@ -29,7 +33,8 @@ function App() {
         <Route path="/techniques" element={<TechniquesPage />} />
         <Route path="/sessions" element={<SessionsPage />} />
 
-        {/* Regular User Auth Routes (Uses existing GuestRoute logic) */}
+        {/* Login page and Sign Up page for users who are not logged in and
+        those who are logged in cannot access Login page and Sign Up page */}
         <Route
           path="/login"
           element={
@@ -47,7 +52,8 @@ function App() {
           }
         />
 
-        {/* Admin Login Route (Blocks REGULAR logged-in users) */}
+        {/* Admin Login page for users who are not logged in and
+        those who are logged in cannot access admin login page*/}
         <Route
           path="/admin-login"
           element={
@@ -57,7 +63,7 @@ function App() {
           }
         />
 
-        {/* Admin Panel Route (Blocks ALL non-admin users, including guests) */}
+        {/* Admin dashboard page, only accessible to admin user not any other user / not logged in */}
         <Route
           path="/admin"
           element={
@@ -67,6 +73,7 @@ function App() {
           } 
         />
 
+        {/* Not Found Route , to display page for invalid URLs*/}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

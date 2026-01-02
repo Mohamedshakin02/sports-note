@@ -5,6 +5,8 @@ import AdminGuard from '../components/admin/AdminGuard';
 
 function AdminPage() {
     return (
+
+        //Page content
         <main>
             <AdminGuard>
                 <Admin />

@@ -7,6 +7,8 @@ import { AuthProvider } from './components/auth/AuthContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+
+    {/* Wraps the app with AuthProvider to provide user authentication state and login/logout functionality */}
     <AuthProvider>
        <App />
     </AuthProvider>

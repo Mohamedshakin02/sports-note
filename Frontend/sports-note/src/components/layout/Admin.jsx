@@ -4,24 +4,44 @@ import axios from "axios";
 import { AuthContext } from "../auth/AuthContext";
 
 function Admin() {
+    // State for storing all users
     const [users, setUsers] = useState([]);
+
+    // Currently selected user for editing or deleting
     const [selectedUser, setSelectedUser] = useState(null);
+
+    // Form state for adding a new user
     const [addForm, setAddForm] = useState({ username: "", email: "", password: "" });
+
+    // Form state for editing an existing user
     const [editForm, setEditForm] = useState({ username: "", email: "", password: "" });
+
+    // State for toast messages
     const [toast, setToast] = useState({ message: "" });
+
+    // Loading state for spinner
     const [loading, setLoading] = useState(false);
+
+    // Ref to the toast element
     const toastRef = useRef(null);
+
+    // Get token from localStorage
     const token = localStorage.getItem("token");
 
+    // Access logout function from AuthContext
     const { logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    // Fetch users 
     useEffect(() => {
         setLoading(true);
         const fetchUsers = async () => {
             try {
+
+                // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
                 // const res = await axios.get("https://sports-note-backend.onrender.com/api/admin/users", { withCredentials: true });
 
+                // GET request to fetch all users from backend
                 const res = await axios.get(
                     "https://sports-note-backend.onrender.com/api/admin/users",
                     { headers: { Authorization: `Bearer ${token}` } }
@@ -37,6 +57,7 @@ function Admin() {
         fetchUsers();
     }, []);
 
+    // Function to show toast messages
     const showToast = (message) => {
         setToast({ message });
         const toastElement = toastRef.current;
@@ -51,10 +72,12 @@ function Admin() {
         bsToast.show();
     };
 
+    // Handle input change in Add User form
     const handleAddFormChange = (e) => {
         setAddForm({ ...addForm, [e.target.id.replace('add', '').toLowerCase()]: e.target.value });
     };
 
+    // Add a new user
     const handleAddUser = async (e) => {
         e.preventDefault();
         try {
@@ -79,6 +102,7 @@ function Admin() {
         }
     };
 
+    // Open Edit User modal and populate form
     const handleEdit = (user) => {
         if (user.googleUser) {
             showToast("Cannot edit Google user");
@@ -89,14 +113,18 @@ function Admin() {
         new window.bootstrap.Modal(document.getElementById("editUserModal")).show();
     };
 
+    // Handle input change in Edit User form
     const handleChangeEditForm = (e) => {
         setEditForm({ ...editForm, [e.target.id]: e.target.value });
     };
 
+    // Update an existing user
     const handleUpdateUser = async (e) => {
         e.preventDefault();
         try {
             setLoading(true);
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // const res = await axios.put(
             //     `https://sports-note-backend.onrender.com/api/admin/users/${selectedUser._id}`,
             //     editForm,
@@ -121,11 +149,13 @@ function Admin() {
         }
     };
 
+    // Open Delete User modal
     const handleDelete = async (user) => {
         setSelectedUser(user);
         new window.bootstrap.Modal(document.getElementById("deleteUserModal")).show();
     };
 
+    // Confirm deletion of user
     const confirmDeleteUser = async () => {
         try {
             setLoading(true);
@@ -147,6 +177,7 @@ function Admin() {
         }
     };
 
+    // Admin logout
     const handleLogout = () => {
         logout();
         navigate("/admin-login");
@@ -154,6 +185,7 @@ function Admin() {
 
     return (
         <>
+            {/* Loading spinner overlay */}
             {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"></div></div>)}
 
             <section className="admin-section container-md py-5">
@@ -161,6 +193,7 @@ function Admin() {
                     <h1 className="text-center mb-4">Admin Panel</h1>
                 </div>
 
+                {/* Add User button */}
                 <div className="add-container mb-4">
                     <button type="button" className="btn p-2" onClick={() => {
                         const modalEl = document.getElementById("addUserModal");
@@ -170,6 +203,7 @@ function Admin() {
                     </button>
                 </div>
 
+                {/* Users Table */}
                 <div className="table-container m-0 p-0">
                     <table className="table">
                         <thead className="custom-thead">
@@ -211,6 +245,7 @@ function Admin() {
                     </table>
                 </div>
 
+                {/* Logout Button */}
                 <div className="admin-logout text-center mt-4">
                     <button className="btn btn-danger" onClick={handleLogout}>LOGOUT</button>
                 </div>

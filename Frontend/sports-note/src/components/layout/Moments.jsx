@@ -6,7 +6,7 @@ import moment3 from "../../assets/moments/india vs new zealand.jpg";
 import moment4 from "../../assets/moments/lakers win.jpg";
 import noImage from "../../assets/logos/moments-grey.png";
 
-// Default static moments for non login user
+// Default moments to show when user is not logged in
 const defaultMoments = [
     {
         image: moment1,
@@ -46,23 +46,33 @@ const defaultMoments = [
 ];
 
 function Moments() {
-    const { user } = useContext(AuthContext); // gets logged-in user
-    const token = localStorage.getItem("token");
-    const [momentsList, setMomentsList] = useState(defaultMoments); // initial static moments
-    const [openMenuIndex, setOpenMenuIndex] = useState(null);
-    const menuRefs = useRef([]);
+    // gets logged-in user
+    const { user } = useContext(AuthContext); 
 
+    // Get auth token from localStorage
+    const token = localStorage.getItem("token");
+
+    // State for moments
+    const [momentsList, setMomentsList] = useState(defaultMoments);
+
+    // State for menu dropdown visibility
+    const [openMenuIndex, setOpenMenuIndex] = useState(null);
+
+    // References to detect clicks outside menus
+    const menuRefs = useRef([]);
 
     // Toast state
     const toastRef = useRef(null);
     const [toast, setToast] = useState({ message: "" });
 
+    // Loading spinner state
     const [loading, setLoading] = useState(false);
 
     // Form states for Add and Edit
     const [form, setForm] = useState({ title: "", sport: "", image: null, date: "", description: "" });
     const [editForm, setEditForm] = useState({ id: null, title: "", sport: "", image: null, date: "", description: "", imageUrl: "" });
 
+    // Toggle dropdown menu for a moment
     const toggleMenu = (index) => {
         setOpenMenuIndex((prev) => (prev === index ? null : index));
     };
@@ -97,7 +107,7 @@ function Moments() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [openMenuIndex]);
 
-    // Fetch moments from MongoDB if user is logged in
+    // Fetch moments from backend if user is logged in
     useEffect(() => {
         const fetchMoments = async () => {
             if (!user || !token) {
@@ -108,6 +118,8 @@ function Moments() {
 
             try {
                 setLoading(true);
+
+                // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
                 // const res = await axios.get("https://sports-note-backend.onrender.com/api/moments", { withCredentials: true });
 
                 const res = await axios.get(
@@ -137,6 +149,7 @@ function Moments() {
         fetchMoments();
     }, [user]);
 
+    // Handle changes in form inputs for adding or editing a moment
     const handleChange = (e, edit = false) => {
 
         const map = { "moment-title": "title", "moment-type": "sport", "moment-image": "image", "moment-date": "date", "moment-desc": "description" };
@@ -147,16 +160,23 @@ function Moments() {
         else setForm(prev => ({ ...prev, [key]: files ? files[0] : value }));
     };
 
+    // Submits new moment to backend and update the moments list
     const handleAddSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        // Stores uploaded image URL
         let imageUrl = "";
+
+        // Checks if user uploaded an image 
         if (form.image) {
             const formData = new FormData();
-            formData.append("file", form.image);
-            formData.append("upload_preset", "moments_preset");
+            formData.append("file", form.image); // Add image file
+            formData.append("upload_preset", "moments_preset"); // Cloudinary preset
             try {
-                const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); imageUrl = res.data.secure_url;
+                // Uploads image to Cloudinary
+                const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); 
+                imageUrl = res.data.secure_url; // Saves uploaded image URL
             }
 
             catch {
@@ -168,6 +188,8 @@ function Moments() {
         }
 
         try {
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // const res = await axios.post("https://sports-note-backend.onrender.com/api/moments", { ...form, imageUrl }, { withCredentials: true });
 
             const res = await axios.post(
@@ -195,21 +217,27 @@ function Moments() {
         finally { setLoading(false); }
     };
 
+    // Opens edit modal and populate fields with selected moment details
     const handleEdit = (moment) => {
         setEditForm({ id: moment._id || moment.id, ...moment, date: moment.date ? formatDate2(moment.date) : "", image: null });
         const modalEl = document.getElementById("editMomentModal");
         new window.bootstrap.Modal(modalEl).show();
     };
 
+    // Submits edited moment to backend and update the moments list
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        // Upload new image only if user uploads new one
         let imageUrl = editForm.image ? await (async () => {
             const formData = new FormData();
-            formData.append("file", editForm.image);
-            formData.append("upload_preset", "moments_preset");
+            formData.append("file", editForm.image); // Add image file
+            formData.append("upload_preset", "moments_preset"); // Cloudinary preset
             try {
-                const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); return res.data.secure_url;
+                // Uploads image to Cloudinary
+                const res = await axios.post("https://api.cloudinary.com/v1_1/dy3pvt29a/image/upload", formData); 
+                return res.data.secure_url; // Returns uploaded image URL
             }
 
             catch {
@@ -223,6 +251,8 @@ function Moments() {
         if (imageUrl === null) return;
 
         try {
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // const res = await axios.put(`https://sports-note-backend.onrender.com/api/moments/${editForm.id}`, { ...editForm, imageUrl }, { withCredentials: true });
 
             const res = await axios.put(
@@ -249,13 +279,17 @@ function Moments() {
         finally { setLoading(false); }
     };
 
+    // Stores moment ID to delete
     const [deleteId, setDeleteId] = useState(null);
 
+    // Deletes moment from backend and remove it from the list
     const confirmDelete = async () => {
         if (!deleteId) return;
 
         try {
             setLoading(true);
+
+            // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // await axios.delete(`https://sports-note-backend.onrender.com/api/moments/${deleteId}`, { withCredentials: true });
 
             await axios.delete(
@@ -288,6 +322,7 @@ function Moments() {
         finally { setLoading(false); }
     };
 
+     //Function to Format date string
     const formatDate = (dateString) => {
 
         if (!dateString) return "N/A";
@@ -302,20 +337,26 @@ function Moments() {
         return date.toISOString().split("T")[0]; // YYYY-MM-DD
     };
 
+    // true if user is logged in
     const isLoggedIn = !!user;
 
+    // Show toast if user tries to edit/add without logging in
     const showLoginToast = () => {
         showToast("Please login to continue");
     };
 
     return (
         <>
+            {/* Loading spinner overlay */}
             {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"><span className="visually-hidden">Loading...</span></div></div>)}
 
             <section className="moments-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
+                {/* Header with title and Add moment button */}
                 <div className="heading-container mb-5">
                     <div className="text"><h1 className="m-0 p-0 mb-3">Moments</h1><p className="m-0 p-0 fs-4">Keep and enjoy your best sports moments. Remember the exciting games and achievements that made you proud.</p></div>
                     <div className="button">
+
+                        {/* Adds moment only if user is logged in*/}
                         <button type="button" className="btn p-2" onClick={() => {
                             if (!isLoggedIn) return showLoginToast();
                             const modalEl = document.getElementById("addMomentModal");
@@ -326,11 +367,14 @@ function Moments() {
                     </div>
                 </div>
 
+                {/* Moments grid */}
                 <div className="grid-container">
                     {momentsList.map((moment, index) => (
                         <div className="moment-box" key={index}>
                             <div className={`moment-image mb-3 position-relative ${!(moment.image || moment.imageUrl) ? "no-image-wrapper" : ""}`}>
                                 <span className="sport-badge">{moment.sport}</span>
+
+                                {/* Dropdown menu for edit/delete actions and only allowed to edit or delete the moment if user is logged in */}
                                 <div className="menu-wrapper" ref={(el) => (menuRefs.current[index] = el)} onClick={() => toggleMenu(index)}>
                                     <i className="bi bi-three-dots-vertical menu-icon" title="Actions"></i>
                                     {openMenuIndex === index && (
@@ -349,6 +393,8 @@ function Moments() {
                                 </div>
                                 {moment.image || moment.imageUrl ? <img className="img-fluid" src={moment.image || moment.imageUrl} alt={moment.title} /> : <div className="no-image-inner"><img src={noImage} alt="No image" /></div>}
                             </div>
+
+                            {/* moment details */}
                             <div className="moment-content pb-3 px-3 pt-0">
                                 <div className="top-container">
                                     <h2 className="m-0 p-0 mb-3 fs-3 text-capitalize">{moment.title}</h2>
@@ -535,7 +581,7 @@ function Moments() {
 
             </section>
 
-
+            {/* Toast container for notifications */}
             <div className="toast-container position-fixed p-3">
                 <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
                     <div className="d-flex">

@@ -7,6 +7,7 @@ import Footer from '../components/layout/Footer';
 function QuotesPage() {
   return (
     <>
+    {/* Inline CSS specific to Quotes page */}
     <style>
         {`
           body {
@@ -36,6 +37,7 @@ function QuotesPage() {
         `}
       </style>
 
+      {/* Page content */}
       <Header/>
       <main>
         <Quotes/>

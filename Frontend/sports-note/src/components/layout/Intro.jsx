@@ -8,14 +8,17 @@ import { Navigation as SwiperNavigation } from "swiper/modules";
 import Header from "../layout/Header";
 import { fetchVideos } from "../../api/youtube";
 
+// Importing background images for the slider
 import football from "../../assets/bg-image/football.jpg";
 import cricket from "../../assets/bg-image/cricket.jpg";
 import basketball from "../../assets/bg-image/basketball.jpg";
 import f1 from "../../assets/bg-image/f1.png";
 
+// Importing quote images
 import quote1 from "../../assets/quotes/virat.jpg";
 import quote2 from "../../assets/quotes/muhammad.jpg";
 
+// Slider data
 const slides = [
   { id: 1, image: football },
   { id: 2, image: cricket },
@@ -23,6 +26,7 @@ const slides = [
   { id: 4, image: f1 },
 ];
 
+// Default fixtures shown when user is not logged in
 const defaultFixturesData = [
   { date: "2024-11-25", team1: "BULLS", team2: "CELTICS", time: "", sport: "Basketball" },
   { date: "2024-11-23", team1: "MAN UNITED", team2: "ARSENAL", time: "", sport: "Football" },
@@ -31,6 +35,7 @@ const defaultFixturesData = [
   { date: "2024-11-19", team1: "INDIA", team2: "PAK", time: "9:30", sport: "Cricket" },
 ];
 
+// Default quotes shown when user is not logged in
 const defaultQuotesData = [
   {
     image: quote1,
@@ -50,6 +55,7 @@ const defaultQuotesData = [
   },
 ];
 
+//functions to format dates and get initials
 const formatDate = (dateStr) => {
   const d = new Date(dateStr);
   const month = d.toLocaleString("en-US", { month: "short" }).toUpperCase();
@@ -71,8 +77,10 @@ const getInitials = (name) => {
 
 
 function Intro() {
-  const { user, refreshKey } = useContext(AuthContext);
-  const token = localStorage.getItem("token");
+  const { user, refreshKey } = useContext(AuthContext); // Get current user and refresh trigger
+  const token = localStorage.getItem("token"); // Get auth token from localStorage
+
+  // State for fixtures, quotes, slider, modals, videos, loading, and toast messages
   const [fixturesListData, setFixturesListData] = useState([]);
   const [quotesListData, setQuotesListData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -80,7 +88,7 @@ function Intro() {
   const toastRef = useRef(null);
   const [toast, setToast] = useState({ message: "" });
 
-  // Show toast function
+  // Shows toast function
   const showToast = (message) => {
     setToast({ message });
     const toastElement = toastRef.current;
@@ -95,6 +103,7 @@ function Intro() {
     bsToast.show();
   };
 
+  // Slider navigation functions
   const swiperRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -109,6 +118,7 @@ function Intro() {
   const [videos, setVideos] = useState([]);
   const [videosLoading, setVideosLoading] = useState(false);
 
+  // Modal/Popup open functions
   const openFixtureModal = (fixture) => {
     setSelectedItem(fixture);
     setModalType("fixture");
@@ -121,6 +131,7 @@ function Intro() {
     setVideos([]);
     setVideosLoading(true);
 
+    // Fetch related videos from YouTube API
     const searchText = `Best of ${quote.author} Moments in Sports`;
 
     try {
@@ -141,6 +152,7 @@ function Intro() {
     setVideosLoading(false);
   };
 
+  // Fetch fixtures and quotes from backend or show defaults if no user
   useEffect(() => {
     const fetchUserData = async () => {
       if (!user) {
@@ -152,7 +164,10 @@ function Intro() {
 
       try {
         setLoading(true);
+
+        // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
         // const resFixtures = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
+
         const resFixtures = await axios.get(
           "https://sports-note-backend.onrender.com/api/fixtures",
           {
@@ -160,6 +175,7 @@ function Intro() {
           }
         );
 
+        // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
         // const resQuotes = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
 
         const resQuotes = await axios.get(
@@ -186,6 +202,7 @@ function Intro() {
     fetchUserData();
   }, [user, refreshKey]);
 
+  //Displays fixtures sorted by upcoming and recent
   const getSortedFixtures = (fixtures) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -207,6 +224,7 @@ function Intro() {
       .slice(0, 3); // max 3
   };
 
+  // Displays most recent quotes
   const getRecentQuotes = (quotes) => {
 
     return quotes
@@ -218,10 +236,11 @@ function Intro() {
 
   return (
     <>
+      {/* Loading overlay */}
       {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"></div></div>)}
 
       <section className="intro-section">
-        {/* Full-width slider */}
+        {/* Full-width slider as background*/}
         <Swiper
           modules={[SwiperNavigation]}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -320,7 +339,7 @@ function Intro() {
           </div>
         </div>
 
-        {/* Scroll down */}
+        {/* Scroll down indicator*/}
         <div className="scroll-down position-absolute">
           <p className="m-0 p-0">Scroll</p>
           <div className="arrow">
@@ -328,6 +347,7 @@ function Intro() {
           </div>
         </div>
 
+        {/* Modal/Popup for fixture or quote details */}
         <div
           className="modal fade"
           id="infoModal"
@@ -343,6 +363,7 @@ function Intro() {
                 <h1 className="m-0 fs-3 mb-4">{modalType === "fixture" ? "Upcoming Fixture" : "Quote"}</h1>
                 <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
 
+                {/* Fixture modal content */}
                 {modalType === "fixture" && selectedItem && (
                   <div className="fixture-box pt-0 text-center">
                     <div className="top-container p-2 py-3 d-flex flex-column justify-content-center align-items-center">
@@ -357,6 +378,7 @@ function Intro() {
 
                 )}
 
+                {/* Quote modal content */}
                 {modalType === "quote" && selectedItem && (
                   <div className="quote-box d-flex flex-column ">
                     <div className="image-container mb-3 me-2 me-sm-4 d-flex align-items-center">
@@ -415,7 +437,7 @@ function Intro() {
 
       </section>
 
-      {/* Toast */}
+      {/* Toast container for notifications */}
       < div className="toast-container position-fixed p-3" >
         <div ref={toastRef} className="toast custom-toast text-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
           <div className="d-flex">
