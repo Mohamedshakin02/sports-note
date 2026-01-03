@@ -1,10 +1,15 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Fixtures section with yellow background
 .fixtures-section {
     background-color: $yellow;
 
+    // Main container inside fixtures section
     .fixtures-container {
+
+        // Heading area with title and description
         .heading-container {
             color: $red;
 
@@ -17,9 +22,11 @@
             }
         }
 
+        // fixture slide container
         .fixture-slide {
             height: auto !important;
 
+            // fixture box
             .fixture-box {
                 height: 100% !important;
                 display: flex;
@@ -30,6 +37,7 @@
                 position: relative;
                 background: $yellow;
 
+                // Top section of fixture with title and menu
                 .top-container {
                     flex-shrink: 0;
                     background-color: $red;
@@ -40,6 +48,7 @@
                         font-weight: 700;
                     }
 
+                    // Dropdown menu wrapper
                     .menu-wrapper {
                         cursor: pointer;
                         position: absolute;
@@ -51,6 +60,7 @@
                             color: $yellow;
                         }
 
+                        // Dropdown menu content
                         .menu-dropdown {
                             position: absolute;
                             top: 32px;
@@ -81,6 +91,7 @@
                     }
                 }
 
+                // Bottom section with badges and text
                 .bottom-container {
                     padding: 1.2rem;
                     flex-grow: 1;
@@ -102,6 +113,7 @@
             }
         }
 
+        // Swiper slider for fixtures
         .fixtures-slider {
             padding-bottom: 3rem; // space for pagination
             padding-left: 2rem;
@@ -113,6 +125,7 @@
                 padding-right: 0rem;
             }
 
+            // Pagination bullet style
             .swiper-pagination-bullet {
                 background-color: $red;
                 opacity: 1;
@@ -126,6 +139,7 @@
                 border: 3px solid $red;
             }
 
+            // Swiper navigation buttons
             .swiper-button-prev,
             .swiper-button-next {
                 background-color: $red;
@@ -143,6 +157,7 @@
             }
         }
 
+        // Explore button 
         .explore {
             display: flex;
             justify-content: center;
@@ -174,7 +189,7 @@
                 color: white;
             }
 
-
+             // Remove focus outline
             a:focus,
             a:active,
             button:focus,

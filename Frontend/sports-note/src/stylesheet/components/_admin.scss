@@ -1,9 +1,12 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Admin page section styling
 .admin-section {
     min-height: 500px;
 
+    // Heading of admin page
     .heading-container {
         color: $yellow;
 
@@ -16,6 +19,7 @@
 
     }
 
+    // Heading of admin page
     .add-container {
         display: flex;
         justify-content: end;
@@ -40,6 +44,7 @@
         }
     }
 
+    // Admin logout section styling
     .admin-logout {
         display: flex;
         justify-content: center;
@@ -70,7 +75,7 @@
             }
         }
 
-
+        // Remove default focus styles
         a:focus,
         a:active,
         button:focus,
@@ -81,6 +86,7 @@
         }
     }
 
+    // Table container with custom scrollbar
     .table-container {
         overflow-x: auto;
 
@@ -150,6 +156,8 @@
         }
     }
 
+
+    // Modal styling for add/edit forms
     .modal {
 
         .modal-dialog-scrollable,
@@ -181,6 +189,7 @@
 
                     }
 
+                    // Form inside modal
                     .form {
                         form {
                             label {
@@ -277,6 +286,7 @@
                     color: $red;
                 }
 
+                // Cancel button styling
                 .cancel {
                     border: 2px solid $red ;
 
@@ -286,6 +296,7 @@
                     }
                 }
 
+                // Delete button styling
                 .delete {
                     background-color: $red;
                     color: $yellow;
@@ -306,7 +317,7 @@
     }
 }
 
-
+// Toast notification container
 .toast-container{
   top: 50px !important;
   right: 0px;

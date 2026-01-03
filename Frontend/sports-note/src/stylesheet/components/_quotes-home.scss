@@ -1,9 +1,12 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Main quotes section container
 .quotes-section {
     border-top: 5px solid $yellow;
 
+    // Heading container for title and description
     .heading-container {
 
         h1 {
@@ -15,8 +18,10 @@
         }
     }
 
+    // Slider wrapper for quotes
     .quotes-slider {
 
+        // Individual quote box styling
         .quote-box {
             border-radius: 8px;
             position: relative;
@@ -26,6 +31,7 @@
             color: $yellow;
             margin-bottom: 6rem;
 
+            // Circular author image container
             .image-container {
                 height: 9rem;
                 aspect-ratio: 1/1;
@@ -51,6 +57,7 @@
                 }
             }
 
+            // Dropdown menu for each quote
             .menu-wrapper {
                 cursor: pointer;
                 position: absolute;
@@ -94,6 +101,7 @@
             }
         }
 
+        // Swiper pagination bullets
         .swiper-pagination-bullet {
             background-color: $yellow;
             opacity: 1;
@@ -107,6 +115,7 @@
             border: 3px solid $yellow;
         }
 
+        // Swiper navigation buttons
         .swiper-button-prev,
         .swiper-button-next {
             background-color: $yellow;
@@ -123,6 +132,7 @@
             }
         }
 
+        // Custom pagination bullets with images or initials
         .swiper-pagination {
             display: flex;
             justify-content: center;
@@ -159,6 +169,7 @@
         }
     }
 
+    // Explore button section below slider
     .explore {
         display: flex;
         justify-content: center;
@@ -203,6 +214,8 @@
 
 }
 
+
+// Tablet responsive adjustments
 @media (max-width: 992px) {
     .quotes-section {
         .quotes-slider {
@@ -217,6 +230,7 @@
     }
 }
 
+// Mobile layout adjustments
 @media (max-width: 768px) {
     .quotes-section {
 
@@ -273,6 +287,7 @@
     }
 }
 
+// Extra small mobile adjustments
 @media (max-width: 576px) {
     .quotes-section {
         .quotes-slider {

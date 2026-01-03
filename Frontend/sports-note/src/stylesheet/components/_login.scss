@@ -1,10 +1,13 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Login page section styling
 .login-section {
   width: 100%;
   overflow: hidden;
 
+  // Login page section styling
   .login-container {
     z-index: 30;
     width: 100%;
@@ -30,6 +33,7 @@
       }
     }
 
+    // Right side- login form
     .login-form {
       max-width: 450px;
       justify-self: self-start;
@@ -61,6 +65,7 @@
           color: black !important;
         }
 
+        // Autofill styles
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
         input:-webkit-autofill:focus {
@@ -82,6 +87,7 @@
           color: black;
         }
 
+        // Form button
         button {
           background-color: $red;
           color: $yellow;
@@ -94,6 +100,7 @@
           }
         }
 
+        // Sign-up link styling
         .sign-up {
           color: $black;
 
@@ -102,6 +109,7 @@
           }
         }
 
+        // Sign-up link styling
         .google-button {
           background-color: white;
           color: black;
@@ -122,6 +130,7 @@
 
 }
 
+// Toast notification container
 .toast-container {
   top: 50px !important;
   right: 0px;
@@ -156,6 +165,7 @@
   animation: shrink 3s linear forwards;
 }
 
+// Overlay for loading spinner
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -169,7 +179,7 @@
   z-index: 4;
 }
 
-// disappering toast 
+// Keyframe animation for disappearing toast
 @keyframes shrink {
   from {
     width: 100%;
@@ -180,6 +190,7 @@
   }
 }
 
+// Responsive styling for tablets
 @media only screen and (max-width: 992px) {
   .login-section {
     .login-container {
@@ -200,6 +211,7 @@
   }
 }
 
+// Responsive styling for mobile devices
 @media (max-width: 576px) {
   .login-section {
     .login-container {

@@ -1,10 +1,15 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Main Techniques Section
 .techniques-section {
     background-color: $yellow;
 
+    // Container for all techniques content
     .techniques-container {
+
+        // Heading container with title and description
         .heading-container {
             color: $red;
 
@@ -17,11 +22,13 @@
             }
         }
 
+        // Accordion button styling
         .accordion-button {
             background-color: $red;
             color: $yellow;
             font-weight: 500;
 
+            // Badge inside accordion button
             .sport-badge {
                 display: inline;
                 color: $yellow;
@@ -34,40 +41,48 @@
             }
         }
 
+        // Accordion body heading
         .body-head {
             font-weight: 600;
             color: $red;
         }
 
+        // Remove default bootstrap focus/active styles
         .accordion-button:focus,
         .accordion-button:active {
             box-shadow: none
         }
 
+        // Remove default accordion arrow
         .accordion-button::after {
             display: none;
         }
 
+        // Custom arrow styling and rotation
         .custom-arrow {
             color: $yellow;
             transition: transform 0.3s;
         }
 
+        // Rotate arrow when accordion is open
         .accordion-button:not(.collapsed) .custom-arrow {
             transform: rotate(180deg);
         }
 
+        // Accordion body styling
         .accordion-body {
             background-color: $yellow;
             border: 5px solid $red;
         }
 
+        // Ordered list without default numbering
         .accordion-body ol {
             list-style: none;
             counter-reset: item;
             padding-left: 0;
         }
 
+        // List items inside accordion body
         .accordion-body ol li {
             counter-increment: item;
             position: relative;
@@ -77,6 +92,7 @@
             font-size: 1.2rem;
         }
 
+        // Number inside a circle before each list item
         .accordion-body ol li::before {
             content: counter(item);
             position: absolute;
@@ -93,22 +109,26 @@
             color: $yellow;
         }
 
+        // Menu dropdown inside techniques section
         .accordion-body {
             position: relative;
             padding-right: 2.2rem;
         }
 
+        // Dropdown menu wrapper
         .menu-wrapper {
             position: absolute;
             top: 15px;
             right: 15px;
         }
 
+        // Menu icon inside wrapper
         .menu-icon {
             cursor: pointer;
             font-size: 1.2rem;
         }
 
+        // Dropdown menu styling
         .menu-dropdown {
             position: absolute;
             top: 30px;
@@ -136,6 +156,7 @@
         }
     }
 
+    // Explore section styling
     .explore {
         display: flex;
         justify-content: center;
@@ -168,6 +189,7 @@
         }
 
 
+        // Remove focus/active outline for accessibility
         a:focus,
         a:active,
         button:focus,

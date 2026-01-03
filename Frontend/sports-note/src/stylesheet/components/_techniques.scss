@@ -1,15 +1,19 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Main Techniques Section
 .techniques-section {
     min-height: 500px;
 
+    // Top heading area with title, description, and buttons
     .heading-container {
         color: $red;
         display: flex;
         justify-content: space-between;
         gap: 3rem;
 
+        // Button container within heading
         .button {
             display: flex;
             align-items: end;
@@ -44,11 +48,13 @@
         }
     }
 
+    // Accordion buttons styling
     .accordion-button {
         background-color: $red;
         color: $yellow;
         font-weight: 500;
 
+        // Sport badge inside button
         .sport-badge {
             display: inline;
             color: $yellow;
@@ -61,34 +67,41 @@
         }
     }
 
+    // Remove default focus/active styles on accordion buttons
     .accordion-button:focus,
     .accordion-button:active {
         box-shadow: none
     }
 
+    // Remove default bootstrap accordion arrow
     .accordion-button::after {
         display: none;
     }
 
+    // Custom arrow rotation for expanded accordion
     .custom-arrow {
         color: $yellow;
         transition: transform 0.3s;
     }
 
+    // Accordion body styling
     .accordion-button:not(.collapsed) .custom-arrow {
         transform: rotate(180deg);
     }
 
+    // Heading inside accordion body
     .accordion-body {
         background-color: $yellow;
         border: 5px solid $red;
     }
 
+    // Heading inside accordion body
     .body-head {
         font-weight: 600;
         color: $red;
     }
 
+    // Ordered list styling inside accordion body
     .accordion-body ol {
         list-style: none;
         counter-reset: item;
@@ -104,6 +117,7 @@
         font-size: 1.2rem;
     }
 
+    // Number circles for list items
     .accordion-body ol li::before {
         content: counter(item);
         position: absolute;
@@ -125,6 +139,7 @@
         padding-right: 2.2rem;
     }
 
+    // Menu dropdown inside techniques section
     .menu-wrapper {
         position: absolute;
         top: 15px;
@@ -162,6 +177,7 @@
         }
     }
 
+    // Modal styling for add/edit forms
     .modal {
 
         .modal-dialog-scrollable,
@@ -191,6 +207,7 @@
                         }
                     }
 
+                    // Form inside modal
                     .form {
                         form {
                             label {
@@ -284,6 +301,7 @@
                     color: $red;
                 }
 
+                // Cancel button styling
                 .cancel {
                     border: 2px solid $red ;
 
@@ -293,6 +311,7 @@
                     }
                 }
 
+                // Delete button styling
                 .delete {
                     background-color: $red;
                     color: $yellow;
@@ -314,6 +333,7 @@
 
 }
 
+// Tablet responsive adjustments
 @media screen and (max-width: 992px) {
     .techniques-section {
         .heading-container {

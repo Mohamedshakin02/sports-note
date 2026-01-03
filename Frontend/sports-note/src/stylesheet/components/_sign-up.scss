@@ -1,10 +1,13 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Sign up page section styling
 .signup-section {
   width: 100%;
   overflow: hidden;
 
+  // Container for signup heading and form
   .signup-container {
     z-index: 30;
     width: 100%;
@@ -16,6 +19,7 @@
     justify-items: center;
     color: $red;
 
+    // Left side- heading of signip
     .signup-heading {
       justify-self: flex-end;
       align-self: flex-start;
@@ -30,6 +34,7 @@
       }
     }
 
+    // Right side- signup form
     .signup-form {
       max-width: 450px;
       justify-self: self-start;
@@ -61,6 +66,7 @@
           color: white !important;
         }
 
+        // Autofill styles
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
         input:-webkit-autofill:focus {
@@ -82,6 +88,7 @@
           color: white;
         }
 
+        // Form button
         button {
           background-color: $yellow;
           color: $red;
@@ -94,6 +101,7 @@
           }
         }
 
+        // login link styling
         .sign-up {
           color: $white;
 
@@ -102,6 +110,7 @@
           }
         }
 
+        // Sign-up link styling
         .google-button{
           background-color: white;
           color: black;
@@ -122,6 +131,7 @@
 
 }
 
+// Toast notification container
 .toast-container{
   top: 50px !important;
   right: 0px;
@@ -156,6 +166,7 @@
   animation: shrink 3s linear forwards;
 }
 
+// Overlay for loading spinner
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -175,7 +186,7 @@
   to { width: 0%; }
 }
 
-
+// Responsive styling for tablets
 @media only screen and (max-width: 992px) {
   .signup-section {
     .signup-container {
@@ -196,6 +207,7 @@
   }
 }
 
+// Responsive styling for mobile devices
 @media (max-width: 576px) {
   .signup-section {
     .signup-container {

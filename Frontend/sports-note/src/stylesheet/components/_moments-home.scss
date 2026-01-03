@@ -1,15 +1,19 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Moments slider container with fixed height for the carousel
 .moments-slider {
     height: 550px;
 
+    // Each card inside the slider 
     .moment-card {
         height: 500px;
         overflow: hidden;
         border-radius: 8px;
         position: relative;
     }
+
 
     .card-inner {
         position: relative;
@@ -20,6 +24,7 @@
     }
 
 
+    // Layout changes when card is collapsed horizontally
     .card-inner.closed {
         display: flex;
         flex-direction: row;
@@ -29,6 +34,7 @@
     .card-inner.closed {
         height: 100%;
 
+        // Card image styling for collapsed state
         .card-image {
             width: 100%;
 
@@ -45,6 +51,7 @@
     }
 
 
+    // Vertical text strip styling for collapsed card
     .card-inner.closed .card-vertical-text {
         width: 30%;
         background: $red;
@@ -69,6 +76,7 @@
         flex-direction: column;
     }
 
+    // Layout changes when card is expanded vertically
     .card-inner.open {
         .card-image {
             width: 100%;
@@ -92,7 +100,7 @@
 
     }
 
-
+    // Sport badge styling positioned at top left of image
     .sport-badge {
         position: absolute;
         top: 10px;
@@ -105,6 +113,7 @@
         z-index: 1
     }
 
+    // Dropdown menu on each card for actions like edit or delete
     .menu-wrapper {
         position: absolute;
         top: 10px;
@@ -156,7 +165,7 @@
         }
     }
 
-    /* Expanded content */
+    // Expanded card content area for description and details
     .card-inner.open .card-content {
         height: 55%;
         padding: 14px;
@@ -184,7 +193,7 @@
         }
     }
 
-    /* IMAGE SETTINGS */
+    // Image container styling with gradient overlay
     .card-image {
         position: relative;
 
@@ -211,6 +220,7 @@
 
     }
 
+    // Swiper pagination bullet styling
     .swiper-pagination-bullet {
         background-color: $yellow;
         opacity: 1;
@@ -240,6 +250,7 @@
     }
 }
 
+// Explore section styling for buttons and links
 .explore {
   display: flex;
   justify-content: center;

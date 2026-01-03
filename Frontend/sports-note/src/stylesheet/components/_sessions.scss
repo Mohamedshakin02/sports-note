@@ -1,15 +1,19 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Main Sessions Section
 .sessions-section {
     min-height: 500px;
 
+    // Heading container with title, description, and button
     .heading-container {
         color: $yellow;
         display: flex;
         justify-content: space-between;
         gap: 3rem;
 
+        // Container for button
         .button {
             display: flex;
             align-items: end;
@@ -43,6 +47,7 @@
         }
     }
 
+    // Grid layout for session content and buttons
     .grid-container {
         display: grid;
         grid-template-columns: 2fr 1fr;
@@ -51,6 +56,7 @@
         grid-template-rows: minmax(30px, auto);
     }
 
+    // Main content area (left side)
     .content {
         background: $yellow;
         padding: 2rem;
@@ -81,6 +87,7 @@
             font-size: 1.5rem;
         }
 
+        // Dropdown menu for content options
         .menu-wrapper {
             position: absolute;
             top: 30px;
@@ -119,6 +126,7 @@
         }
     }
 
+    // Buttons panel (right side in desktop layout)
     .buttons {
         min-height: 100%;
         position: relative;
@@ -136,6 +144,7 @@
             z-index: 10;
         }
 
+        // Container for up/down arrow buttons
         .arrow-desktop-container {
             position: absolute;
             height: 370px;
@@ -144,6 +153,7 @@
 
         }
 
+        // Arrow buttons for session navigation
         .arrow-btn {
             position: absolute;
             background: transparent;
@@ -157,6 +167,7 @@
             }
         }
 
+        // Arrow positions
         .arrow-btn.up {
             top: 0px;
             left: 95.5%;
@@ -182,6 +193,7 @@
         }
     }
 
+    // Session selection buttons
     .session-btn {
         width: 91%;
         max-width: 400px;
@@ -202,6 +214,7 @@
         }
     }
 
+    // Active session button
     .session-btn.active {
         background: $red;
         color: $yellow;
@@ -210,6 +223,7 @@
         border-left: 6px solid $yellow !important;
     }
 
+    // Divider between buttons
     .session-divider {
         position: absolute;
         color: $red;
@@ -220,6 +234,7 @@
         bottom: -5px
     }
 
+    // Divider between buttons
     .mySwiper {
         height: 370px;
         position: relative;
@@ -255,6 +270,7 @@
 
     }
 
+    // Modal styling for add/edit forms
     .modal {
 
         .modal-dialog-scrollable,
@@ -284,6 +300,7 @@
                         }
                     }
 
+                    // Form inside modal
                     .form {
                         form {
                             label {
@@ -372,6 +389,7 @@
                     color: $red;
                 }
 
+                // Cancel button styling
                 .cancel {
                     border: 2px solid $red ;
 
@@ -381,6 +399,7 @@
                     }
                 }
 
+                // Delete button styling
                 .delete {
                     background-color: $red;
                     color: $yellow;
@@ -401,6 +420,7 @@
     }
 }
 
+// Responsive styles for smaller screens
 @media screen and (max-width: 1023px) {
     .sessions-section {
         .grid-container {
@@ -473,6 +493,7 @@
     }
 }
 
+// Responsive heading for smaller screens
 @media screen and (max-width: 992px) {
     .sessions-section {
         .heading-container {

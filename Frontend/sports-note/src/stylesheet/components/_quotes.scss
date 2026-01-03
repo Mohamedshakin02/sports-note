@@ -1,9 +1,12 @@
+// Import reset and variables for consistent styling and theme colors
 @use "../abstract/reset" as *;
 @use "../abstract/variables" as *;
 
+// Quotes section container
 .quotes-section {
     min-height: 500px;
 
+    // Heading area with title, description, and button
     .heading-container {
         color: $yellow;
         display: flex;
@@ -43,17 +46,20 @@
         }
     }
 
+    // Grid of quote boxes
     .grid-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
         gap: 2rem;
 
+        // Individual quote box
         .quote-box {
             background-color: $yellow;
             border-radius: 8px;
             position: relative;
             padding-right: 2rem !important;
 
+            // Circular author image
             .image-container {
                 height: 7rem;
                 aspect-ratio: 1/1;
@@ -79,6 +85,7 @@
                 }
             }
 
+            // Dropdown menu for each quote
             .menu-wrapper {
                 cursor: pointer;
                 position: absolute;
@@ -123,6 +130,8 @@
         }
     }
 
+
+    // Modal styling for adding/editing quotes
     .modal {
 
         .modal-dialog-scrollable,
@@ -136,6 +145,7 @@
                 border: 2px solid $red;
                 position: relative;
 
+                // Modal body content
                 .modal-body {
                     .heading {
                         h1 {
@@ -153,6 +163,7 @@
                         }
                     }
 
+                    // Form inside modal with input and textarea styling
                     .form {
                         form {
                             label {
@@ -261,6 +272,7 @@
                     color: $red;
                 }
 
+                // Cancel button styling
                 .cancel {
                     border: 2px solid $red ;
 
@@ -270,6 +282,7 @@
                     }
                 }
 
+                // Delete button styling
                 .delete {
                     background-color: $red;
                     color: $yellow;
@@ -290,6 +303,8 @@
     }
 }
 
+
+// Responsive layout for tablets
 @media screen and (max-width: 992px) {
     .quotes-section {
         .heading-container {
@@ -299,6 +314,7 @@
     }
 }
 
+// Mobile responsiveness adjustments
 @media screen and (max-width: 576px) {
     .quotes-section {
         .grid-container {
