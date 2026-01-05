@@ -1,15 +1,22 @@
-import express from "express";
-import dotenv from "dotenv";
+import express from "express"; // Imports Express
+import dotenv from "dotenv";   // Imports dotenv to load environment variables
 
+// Loads environment variables from the .env file
 dotenv.config();
+
+// Creates Express router
 const router = express.Router();
+
+// Gets YouTube API key from environment
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 
+// Handles video search request
 router.get("/", async (req, res) => {
-  const query = req.query.q;
+  const query = req.query.q; // Gets search query from request
   if (!query) return res.status(400).json({ message: "Query is required" });
 
   try {
+    // Calls YouTube API to search for videos
     const response = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
         query

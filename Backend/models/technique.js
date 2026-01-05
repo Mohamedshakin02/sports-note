@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Defines schema for storing user techniques with title, sport, and steps
 const techniqueSchema = new mongoose.Schema(
   {
     userId: {

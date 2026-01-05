@@ -1,12 +1,11 @@
-import Moment from "../models/moment.js";
+import Moment from "../models/moment.js"; // Imports Moment model
 
-// Get moments for a user (only logged-in users)
+// Fetches all moments for the logged-in user
 export const getMoments = async (req, res) => {
   try {
     const userId = req.user?._id; // optional user
     if (!userId) {
-      // Guest returns empty array or static default moments
-      return res.json([]); // optional: you can send your defaultMoments if you want
+      return res.json([]); 
     }
 
     const moments = await Moment.find({ userId }).sort({ date: -1 });
@@ -16,7 +15,7 @@ export const getMoments = async (req, res) => {
   }
 };
 
-// Add moment (logged-in users only)
+// Adds moment (logged-in users only)
 export const addMoment = async (req, res) => {
   try {
     const userId = req.user?._id;
@@ -41,7 +40,7 @@ export const addMoment = async (req, res) => {
   }
 };
 
-// Update a moment (logged-in users only)
+// Updates an existing moment for logged-in users
 export const updateMoment = async (req, res) => {
   try {
     const userId = req.user?._id;
@@ -62,7 +61,7 @@ export const updateMoment = async (req, res) => {
   }
 };
 
-// Delete a moment (logged-in users only)
+// Deletes a moment for logged-in users
 export const deleteMoment = async (req, res) => {
   try {
     const userId = req.user?._id;

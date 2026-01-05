@@ -1,3 +1,4 @@
+// Imports required libraries, models, and configuration tools
 import mongoose from "mongoose";
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
@@ -8,9 +9,10 @@ import Quote from "../models/quote.js";
 import Technique from "../models/technique.js";
 import Session from "../models/session.js";
 
+// Loads environment variables from the .env file
 dotenv.config();
 
-// Add default moments for the new user 
+// Default sports moments added automatically for new users
 const defaultMoments = [
     { imageUrl: "https://res.cloudinary.com/dy3pvt29a/image/upload/v1765029203/rcb.jpg", sport: "Cricket", title: "RCB Won This Year IPL", description: "I was extremely happy when RCB finally won this year IPL. It was their first win and I still can’t believe it happened. The joy and excitement of watching the team lift the trophy was unforgettable and truly special for all the fans.", date: "2025-06-03" },
     { imageUrl: "", sport: "Football", title: "Argentina Won FIFA World Cup 2022", description: "I was overjoyed when Argentina won the 2022 FIFA World Cup. The match was thrilling and seeing the team lift the trophy felt surreal. I still can’t believe the incredible journey and the unforgettable moments of that tournament.", date: "2022-12-18" },
@@ -19,7 +21,7 @@ const defaultMoments = [
     { imageUrl: "", sport: "Cricket", title: "England Won 2019 Cricket World Cup", description: "I could not stop cheering when England won the 2019 Cricket World Cup. The final was so intense and nerve-wracking, and I still remember the excitement when the match ended in a super over. It was an amazing experience to witness history.", date: "2019-07-14" },
 ];
 
-// Default fixtures for new users
+// Default upcoming sports fixtures for new users
 const defaultFixtures = [
     { team1: "INDIA", team2: "PAK", sport: "Cricket", date: "2024-11-19", time: "09:30" },
     { team1: "AUSTRALIA", team2: "ENG", sport: "Cricket", date: "2024-11-20", time: "14:00" },
@@ -28,12 +30,14 @@ const defaultFixtures = [
     { team1: "BULLS", team2: "CELTICS", sport: "Basketball", date: "2024-11-25", time: "" }
 ];
 
+// Default motivational quotes assigned to new user
 const defaultQuotes = [
     { quote: "Whatever you want to do, do with full passion and work really hard towards it. Don't look anywhere else.", author: "Virat Kohli", imageUrl: "https://res.cloudinary.com/dy3pvt29a/image/upload/v1765129338/virat.jpg" },
     { quote: "I hated every minute of training, but I said, 'Don’t quit. Suffer now and live the rest of your life as a champion.'", author: "Muhammad Ali", imageUrl: "https://res.cloudinary.com/dy3pvt29a/image/upload/v1765129578/muhammad.jpg" },
     { quote: "Success isn’t owned. It’s leased. And rent is due every day.", author: "J.J. Watt", imageUrl: "" },
 ];
 
+// Default sports techniques with step-by-step guidance for new users
 const defaultTechniques = [
     {
         title: "Rainbow Flick",
@@ -87,6 +91,7 @@ const defaultTechniques = [
     }
 ];
 
+// Default training sessions added for practice guidance for new users
 const defaultSessions = [
     { title: "Morning Basketball Drills", exercises: ["Warm-up jog (5 mins)", "Dribbling practice", "Layup drills", "Free-throw routine", "Cooldown stretches"] },
     { title: "Badminton Smash Training", exercises: ["Warm-up footwork", "Shadow swings", "Smash repetitions", "Net recovery drills"] },
@@ -97,7 +102,7 @@ const defaultSessions = [
     { title: "Badminton Footwork Practice", exercises: ["Front-back steps", "Side-to-side steps", "Recovery training"] },
 ]
 
-// GET all users
+// Fetches all users from the database
 export const getAllUsers = async (req, res) => {
     try {
         const users = await User.find().select("-__v"); // hide version key
@@ -107,7 +112,7 @@ export const getAllUsers = async (req, res) => {
     }
 };
 
-// DELETE a user by id
+// Deletes a user and all their related records
 export const deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
@@ -131,7 +136,7 @@ export const deleteUser = async (req, res) => {
 };
 
 
-// UPDATE a user by id (only non-Google users)
+// Updates user details except Google-based accounts
 export const updateUser = async (req, res) => {
     try {
         const { id } = req.params;
@@ -158,7 +163,7 @@ export const updateUser = async (req, res) => {
     }
 };
 
-// CREATE a new user (non-Google)
+// Creates a new user and assign all default content
 export const createUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;

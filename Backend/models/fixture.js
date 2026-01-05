@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Defines schema for storing user fixtures with team names, sport, date, and optional time
 const fixtureSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, 
   team1: { type: String, required: true, trim: true },

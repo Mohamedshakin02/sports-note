@@ -1,11 +1,11 @@
-import Quote from "../models/quote.js";
+import Quote from "../models/quote.js";  // Imports Quote model
 
-// Get quotes (optional: if user logged in, return user quotes)
+// Fetches all quotes for the logged-in user
 export const getQuotes = async (req, res) => {
     try {
-        const userId = req.user?._id; // optional user
+        const userId = req.user?._id; 
         if (!userId) {
-            return res.json([]); // guest sets default quotes
+            return res.json([]); 
         }
         const quotes = await Quote.find({ userId }).sort({ createdAt: -1 });
         res.json(quotes);
@@ -14,7 +14,7 @@ export const getQuotes = async (req, res) => {
     }
 };
 
-// Add quote (logged-in users only)
+// Adds a new quote for logged-in users
 export const addQuote = async (req, res) => {
     try {
         const userId = req.user?.id;
@@ -38,7 +38,7 @@ export const addQuote = async (req, res) => {
     }
 };
 
-// Update quote
+// Updates an existing quote for logged-in users
 export const updateQuote = async (req, res) => {
     try {
         const userId = req.user?.id;
@@ -61,7 +61,7 @@ export const updateQuote = async (req, res) => {
     }
 };
 
-// Delete quote
+// Deletes a quote for logged-in users
 export const deleteQuote = async (req, res) => {
     try {
         const userId = req.user?.id;

@@ -1,12 +1,11 @@
-import Fixture from "../models/fixture.js";
+import Fixture from "../models/fixture.js"; // Imports Fixture model
 
-// Get fixtures (optionally for logged-in users)
+// Fetches fixtures for logged-in users
 export const getFixtures = async (req, res) => {
   try {
-    const userId = req.user?._id; // optional user
+    const userId = req.user?._id; 
     if (!userId) {
-      // Guest returns empty array or static default fixtures
-      return res.json([]); // optional: you can send your defaultFixtures if you want
+      return res.json([]); 
     }
     
     const today = new Date();
@@ -33,7 +32,7 @@ export const getFixtures = async (req, res) => {
   }
 };
 
-// Add a fixture (logged-in users only)
+// Adds a new fixture for logged-in users
 export const addFixture = async (req, res) => {
   try {
     const userId = req.user?.id;
@@ -47,7 +46,7 @@ export const addFixture = async (req, res) => {
   }
 };
 
-// Update fixture (logged-in users only)
+// Updates an existing fixture for logged-in users
 export const updateFixture = async (req, res) => {
   try {
     const userId = req.user?.id;
@@ -66,7 +65,7 @@ export const updateFixture = async (req, res) => {
   }
 };
 
-// Delete fixture (logged-in users only)
+// Deletes a fixture for logged-in users
 export const deleteFixture = async (req, res) => {
   try {
     const userId = req.user?.id;

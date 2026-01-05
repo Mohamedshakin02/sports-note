@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Defines schema for storing user quotes with text, author, and optional image
 const quoteSchema = new mongoose.Schema(
 {
 userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },

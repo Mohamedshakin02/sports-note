@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Defines schema for storing user information with username, email, password, and Google user flag
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -15,12 +16,12 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: false,   // <-- FIXED
-        default: null      // <-- FIXED
+        required: false,   
+        default: null      
     },
     googleUser: {
         type: Boolean,
-        default: false     // <-- Useful flag
+        default: false     
     }
 }, { timestamps: true });
 

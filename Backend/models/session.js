@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Defines schema for storing user training sessions with title and exercises
 const sessionSchema = new mongoose.Schema(
   {
     userId: {

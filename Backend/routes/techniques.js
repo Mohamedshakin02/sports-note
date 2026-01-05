@@ -1,20 +1,21 @@
-import express from "express";
+import express from "express"; // Imports Express
 import {
   getTechniques,
   addTechnique,
   updateTechnique,
   deleteTechnique,
-} from "../controllers/techniquesController.js";
+} from "../controllers/techniquesController.js"; // Imports technique controllers
 
-import { verifyToken, verifyTokenOptional } from "../middleware/authMiddleware.js";
-const router = express.Router();
+import { verifyToken, verifyTokenOptional } from "../middleware/authMiddleware.js"; // Imports auth middleware
 
-// Protected Routes
-router.get("/", verifyTokenOptional, getTechniques);  // guest can see empty or default quotes
-router.get("/", verifyToken, getTechniques);
-router.post("/", verifyToken, addTechnique);
-router.put("/:id", verifyToken, updateTechnique);
-router.delete("/:id", verifyToken, deleteTechnique);
+const router = express.Router(); // Creates Express router
+
+// Routes for techniques
+router.get("/", verifyTokenOptional, getTechniques);  // Gets all techniques, guest sees empty or default
+router.get("/", verifyToken, getTechniques);          // Gets all techniques, logged-in only
+router.post("/", verifyToken, addTechnique);          // Adds a new technique, logged-in only
+router.put("/:id", verifyToken, updateTechnique);     // Updates a technique by ID, logged-in only
+router.delete("/:id", verifyToken, deleteTechnique);  // Deletes a technique by ID, logged-in only
 
 export default router;
 

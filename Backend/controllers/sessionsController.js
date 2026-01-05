@@ -1,5 +1,6 @@
-import Session from "../models/session.js";
+import Session from "../models/session.js"; // Imports Session model
 
+// Fetches all sessions for the logged-in user
 export const getSessions = async (req, res) => {
   try {
     if (!req.user) return res.json([]);  
@@ -12,6 +13,7 @@ export const getSessions = async (req, res) => {
   }
 };
 
+// Adds a new session for the logged-in user
 export const addSession = async (req, res) => {
   const { title, exercises } = req.body;
 
@@ -28,6 +30,7 @@ export const addSession = async (req, res) => {
   }
 };
 
+// Updates an existing session for the logged-in user
 export const updateSession = async (req, res) => {
   const { id } = req.params;
   const { title, exercises } = req.body;
@@ -47,6 +50,7 @@ export const updateSession = async (req, res) => {
   }
 };
 
+// Deletes a session for the logged-in user
 export const deleteSession = async (req, res) => {
   const { id } = req.params;
 

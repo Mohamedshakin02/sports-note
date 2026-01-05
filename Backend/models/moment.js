@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Defines schema for storing user moments with sport, title, description, image, and date
 const momentSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   sport: { type: String, required: true },

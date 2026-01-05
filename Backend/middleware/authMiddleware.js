@@ -1,6 +1,7 @@
-import jwt from "jsonwebtoken";
-import User from "../models/user.js";
+import jwt from "jsonwebtoken"; // Imports JWT library
+import User from "../models/user.js"; // Imports User model
 
+// Middleware to verify JWT for protected routes
 export const verifyToken = async (req, res, next) => {
 
   // const token = req.cookies.token;
@@ -27,6 +28,7 @@ export const verifyToken = async (req, res, next) => {
   }
 };
 
+// Middleware to optionally verify JWT for guests or logged-in users
 export const verifyTokenOptional = async (req, res, next) => {
 
   // const token = req.cookies.token;

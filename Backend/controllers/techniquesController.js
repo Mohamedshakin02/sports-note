@@ -1,6 +1,6 @@
-import Technique from "../models/technique.js";
+import Technique from "../models/technique.js"; // Imports Technique model
 
-// Get all techniques of logged-in user
+// Fetches all techniques for the logged-in user
 export const getTechniques = async (req, res) => {
   try {
     const userId = req.user?.id;
@@ -14,7 +14,7 @@ export const getTechniques = async (req, res) => {
   }
 };
 
-// Add technique
+// Adds a new technique for the logged-in user
 export const addTechnique = async (req, res) => {
   try {
     const userId = req.user?.id;
@@ -35,7 +35,7 @@ export const addTechnique = async (req, res) => {
   }
 };
 
-// Update technique
+// Updates an existing technique for the logged-in user
 export const updateTechnique = async (req, res) => {
   try {
     const userId = req.user?.id;
@@ -58,7 +58,7 @@ export const updateTechnique = async (req, res) => {
   }
 };
 
-// Delete technique
+// Deletes a technique for the logged-in user
 export const deleteTechnique = async (req, res) => {
   try {
     const userId = req.user?.id;
