@@ -32,7 +32,8 @@ function TechniquesPage() {
 
           body footer .footer-container .menu-links ul a, 
           body footer .footer-container, 
-          body footer .footer-container .logo p{
+          body footer .footer-container .logo p,
+          body footer .footer-container .logo h2 a{
             color: #FCF0D6 !important;
           }
 

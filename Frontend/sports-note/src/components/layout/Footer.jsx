@@ -60,7 +60,7 @@ function Footer() {
 
                 {/* Footer logo and tagline */}
                 <div className='logo'>
-                    <h2 className='display-4 m-0 p-0'>SPORTS <br />NOTE</h2>
+                    <h2 className='display-4 m-0 p-0'><Link to="/" className="text-decoration-none">SPORTS <br />NOTE </Link></h2>
                     <p className='m-0 p-0 pt-3 px-lg-5 fs-5'><i>Capture Plays, Track Progress, Relive Moments</i></p>
                 </div>
             </div>

@@ -675,8 +675,6 @@ body {
 }
 .moments-slider {
   height: 550px;
-  /* Expanded content */
-  /* IMAGE SETTINGS */
 }
 .moments-slider .moment-card {
   height: 500px;
@@ -1794,6 +1792,13 @@ footer .footer-container .logo {
 }
 footer .footer-container .logo h2 {
   font-weight: 900;
+}
+footer .footer-container .logo h2 a {
+  color: #710004 !important;
+}
+footer .footer-container .logo h2 a:hover {
+  color: none !important;
+  cursor: text;
 }
 footer .footer-container .logo p {
   font-weight: 600;

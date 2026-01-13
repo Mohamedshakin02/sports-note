@@ -226,7 +226,6 @@ body {
   position: relative;
   border-radius: 8px 8px 0 0;
   overflow: hidden;
-  /* NO IMAGE BOX */
 }
 .moments-section .grid-container .moment-box .moment-image img {
   width: 100%;

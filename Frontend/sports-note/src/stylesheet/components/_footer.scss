@@ -114,6 +114,15 @@ footer {
 
             h2 {
                 font-weight: 900;
+
+                a{
+                    color: $red !important;
+
+                    &:hover {
+                        color: none !important;
+                        cursor: text;
+                    }
+                }
             }
 
             p {
