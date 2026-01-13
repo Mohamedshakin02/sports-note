@@ -294,7 +294,7 @@ function Techniques() {
       {/* Loading spinner overlay */}
       {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"></div></div>)}
 
-      <section className="techniques-section py-5 mt-2 container-md px-3 px-md-2">
+      <section className="techniques-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
         {/* Header with title and Add technique button */}
         <div className="heading-container mb-5">
           <div className="text">

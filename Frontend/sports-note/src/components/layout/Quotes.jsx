@@ -294,7 +294,7 @@ function Quotes() {
       {loading && (<div className="loading-overlay"><div className="spinner-border text-light" role="status"><span className="visually-hidden">Loading...</span></div></div>)}
 
 
-      <section className="quotes-section container-md py-5">
+      <section className="quotes-section container-md py-5 pt-3 pt-md-5 mb-5 mt-3 mt-md-2 px-3 px-md-2">
 
         {/* Header with title and Add quote button */}
         <div className="heading-container mb-5">
