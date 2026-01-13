@@ -4,6 +4,7 @@ import { AuthContext } from "../auth/AuthContext";
 import moment1 from "../../assets/moments/rcb.jpg";
 import moment3 from "../../assets/moments/india vs new zealand.jpg";
 import moment4 from "../../assets/moments/lakers win.jpg";
+import moment5 from "../../assets/moments/argentina.jpeg";
 import noImage from "../../assets/logos/moments-grey.png";
 
 // Default moments to show when user is not logged in
@@ -16,7 +17,7 @@ const defaultMoments = [
         date: "2025-06-03"
     },
     {
-        image: "",
+        image: moment5,
         sport: "Football",
         title: "Argentina Won FIFA World Cup 2022",
         description: "I was overjoyed when Argentina won the 2022 FIFA World Cup. The match was thrilling and seeing the team lift the trophy felt surreal. I still can’t believe the incredible journey and the unforgettable moments of that tournament.",
