@@ -547,7 +547,7 @@ function Moments_Home() {
 
           {/* Explore more button */}
           <div className="explore mt-3">
-            <Link to="/moments"><button className="btn">EXPLORE MORE</button></Link>
+            <Link to="/moments"><button className="btn p-3 p-lg-3 fs-6 fs-lg-5">EXPLORE MORE</button></Link>
           </div>
 
           {/* Add Moment Modal */}
