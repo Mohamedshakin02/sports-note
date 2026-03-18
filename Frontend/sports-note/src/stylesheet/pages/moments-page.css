@@ -433,8 +433,9 @@ body {
   resize: vertical;
   min-height: 100px;
 }
-.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus,
-.moments-section .modal .modal-dialog .modal-content .modal-body .form form .form-control:focus {
+.moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form .form-control:focus, .moments-section .modal .modal-dialog-scrollable .modal-content .modal-body .form form select.form-select:focus,
+.moments-section .modal .modal-dialog .modal-content .modal-body .form form .form-control:focus,
+.moments-section .modal .modal-dialog .modal-content .modal-body .form form select.form-select:focus {
   background-color: #FCF0D6;
   box-shadow: 0 0 0 0.25rem rgba(113, 0, 4, 0.25);
   color: black;

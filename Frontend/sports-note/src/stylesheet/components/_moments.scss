@@ -313,7 +313,7 @@
                                 min-height: 100px;
                             }
 
-                            .form-control:focus {
+                            .form-control:focus, select.form-select:focus {
                                 background-color: $yellow;
                                 box-shadow: 0 0 0 .25rem rgb(113, 0, 4, 0.25);
                                 color: black;
