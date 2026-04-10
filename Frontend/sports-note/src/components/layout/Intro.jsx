@@ -166,20 +166,20 @@ function Intro() {
         setLoading(true);
 
         // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-        // const resFixtures = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
+        // const resFixtures = await axios.get("https://sports-note-backend2.onrender.com/api/fixtures", { withCredentials: true });
 
         const resFixtures = await axios.get(
-          "https://sports-note-backend.onrender.com/api/fixtures",
+          "https://sports-note-backend2.onrender.com/api/fixtures",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
 
         // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-        // const resQuotes = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
+        // const resQuotes = await axios.get("https://sports-note-backend2.onrender.com/api/quotes", { withCredentials: true });
 
         const resQuotes = await axios.get(
-          "https://sports-note-backend.onrender.com/api/quotes",
+          "https://sports-note-backend2.onrender.com/api/quotes",
           {
             headers: { Authorization: `Bearer ${token}` },
           }

@@ -47,10 +47,10 @@ function Login() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/login", formData, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend2.onrender.com/api/auth/login", formData, { withCredentials: true });
 
       const res = await axios.post(
-        "https://sports-note-backend.onrender.com/api/auth/login",
+        "https://sports-note-backend2.onrender.com/api/auth/login",
         formData
       );
 
@@ -80,13 +80,13 @@ function Login() {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.post(
-      //   "https://sports-note-backend.onrender.com/api/auth/google-login",
+      //   "https://sports-note-backend2.onrender.com/api/auth/google-login",
       //   { token: response.credential },
       //   { withCredentials: true }
       // );
 
       const res = await axios.post(
-        "https://sports-note-backend.onrender.com/api/auth/google-login",
+        "https://sports-note-backend2.onrender.com/api/auth/google-login",
         { token: response.credential }
       );
 

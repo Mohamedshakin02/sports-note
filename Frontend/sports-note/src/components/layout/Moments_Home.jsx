@@ -138,10 +138,10 @@ function Moments_Home() {
         setLoading(true);
 
         // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-        // const res = await axios.get("https://sports-note-backend.onrender.com/api/moments", { withCredentials: true });
+        // const res = await axios.get("https://sports-note-backend2.onrender.com/api/moments", { withCredentials: true });
 
         const res = await axios.get(
-          "https://sports-note-backend.onrender.com/api/moments",
+          "https://sports-note-backend2.onrender.com/api/moments",
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -218,10 +218,10 @@ function Moments_Home() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.post("https://sports-note-backend.onrender.com/api/moments", { ...form, imageUrl }, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend2.onrender.com/api/moments", { ...form, imageUrl }, { withCredentials: true });
 
       const res = await axios.post(
-        "https://sports-note-backend.onrender.com/api/moments",
+        "https://sports-note-backend2.onrender.com/api/moments",
         { ...form, imageUrl },
         {
           headers: {
@@ -274,10 +274,10 @@ function Moments_Home() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.put(`https://sports-note-backend.onrender.com/api/moments/${editForm.id}`, { ...editForm, imageUrl }, { withCredentials: true });
+      // const res = await axios.put(`https://sports-note-backend2.onrender.com/api/moments/${editForm.id}`, { ...editForm, imageUrl }, { withCredentials: true });
 
       const res = await axios.put(
-        `https://sports-note-backend.onrender.com/api/moments/${editForm.id}`,
+        `https://sports-note-backend2.onrender.com/api/moments/${editForm.id}`,
         { ...editForm, imageUrl },
         {
           headers: {
@@ -308,10 +308,10 @@ function Moments_Home() {
       setLoading(true);
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // await axios.delete(`https://sports-note-backend.onrender.com/api/moments/${deleteId}`, { withCredentials: true });
+      // await axios.delete(`https://sports-note-backend2.onrender.com/api/moments/${deleteId}`, { withCredentials: true });
 
       await axios.delete(
-        `https://sports-note-backend.onrender.com/api/moments/${deleteId}`,
+        `https://sports-note-backend2.onrender.com/api/moments/${deleteId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

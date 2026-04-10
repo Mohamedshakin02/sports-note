@@ -39,11 +39,11 @@ function Admin() {
             try {
 
                 // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-                // const res = await axios.get("https://sports-note-backend.onrender.com/api/admin/users", { withCredentials: true });
+                // const res = await axios.get("https://sports-note-backend2.onrender.com/api/admin/users", { withCredentials: true });
 
                 // GET request to fetch all users from backend
                 const res = await axios.get(
-                    "https://sports-note-backend.onrender.com/api/admin/users",
+                    "https://sports-note-backend2.onrender.com/api/admin/users",
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
 
@@ -82,10 +82,10 @@ function Admin() {
         e.preventDefault();
         try {
             setLoading(true);
-            // const res = await axios.post("https://sports-note-backend.onrender.com/api/admin/users", addForm, { withCredentials: true });
+            // const res = await axios.post("https://sports-note-backend2.onrender.com/api/admin/users", addForm, { withCredentials: true });
 
             const res = await axios.post(
-                "https://sports-note-backend.onrender.com/api/admin/users",
+                "https://sports-note-backend2.onrender.com/api/admin/users",
                 addForm,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -126,13 +126,13 @@ function Admin() {
 
             // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
             // const res = await axios.put(
-            //     `https://sports-note-backend.onrender.com/api/admin/users/${selectedUser._id}`,
+            //     `https://sports-note-backend2.onrender.com/api/admin/users/${selectedUser._id}`,
             //     editForm,
             //     { withCredentials: true }
             // );
 
             const res = await axios.put(
-                `https://sports-note-backend.onrender.com/api/admin/users/${selectedUser._id}`,
+                `https://sports-note-backend2.onrender.com/api/admin/users/${selectedUser._id}`,
                 editForm,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -159,10 +159,10 @@ function Admin() {
     const confirmDeleteUser = async () => {
         try {
             setLoading(true);
-            // await axios.delete(`https://sports-note-backend.onrender.com/api/admin/users/${selectedUser._id}`, { withCredentials: true });
+            // await axios.delete(`https://sports-note-backend2.onrender.com/api/admin/users/${selectedUser._id}`, { withCredentials: true });
 
             await axios.delete(
-                `https://sports-note-backend.onrender.com/api/admin/users/${selectedUser._id}`,
+                `https://sports-note-backend2.onrender.com/api/admin/users/${selectedUser._id}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 

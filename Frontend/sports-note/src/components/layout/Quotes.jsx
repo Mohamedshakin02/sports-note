@@ -81,10 +81,10 @@ function Quotes() {
         setLoading(true);
 
         // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-        // const res = await axios.get("https://sports-note-backend.onrender.com/api/quotes", { withCredentials: true });
+        // const res = await axios.get("https://sports-note-backend2.onrender.com/api/quotes", { withCredentials: true });
 
         const res = await axios.get(
-          "https://sports-note-backend.onrender.com/api/quotes",
+          "https://sports-note-backend2.onrender.com/api/quotes",
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -166,10 +166,10 @@ function Quotes() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.post("https://sports-note-backend.onrender.com/api/quotes", { ...form, imageUrl }, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend2.onrender.com/api/quotes", { ...form, imageUrl }, { withCredentials: true });
 
       const res = await axios.post(
-        "https://sports-note-backend.onrender.com/api/quotes",
+        "https://sports-note-backend2.onrender.com/api/quotes",
         { ...form, imageUrl },
         {
           headers: {
@@ -232,10 +232,10 @@ function Quotes() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.put(`https://sports-note-backend.onrender.com/api/quotes/${editingQuote.id}`, { ...editingQuote, imageUrl }, { withCredentials: true });
+      // const res = await axios.put(`https://sports-note-backend2.onrender.com/api/quotes/${editingQuote.id}`, { ...editingQuote, imageUrl }, { withCredentials: true });
 
       const res = await axios.put(
-        `https://sports-note-backend.onrender.com/api/quotes/${editingQuote.id}`,
+        `https://sports-note-backend2.onrender.com/api/quotes/${editingQuote.id}`,
         { ...editingQuote, imageUrl },
         {
           headers: {
@@ -264,10 +264,10 @@ function Quotes() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // await axios.delete(`https://sports-note-backend.onrender.com/api/quotes/${deleteId}`, { withCredentials: true });
+      // await axios.delete(`https://sports-note-backend2.onrender.com/api/quotes/${deleteId}`, { withCredentials: true });
 
       await axios.delete(
-        `https://sports-note-backend.onrender.com/api/quotes/${deleteId}`,
+        `https://sports-note-backend2.onrender.com/api/quotes/${deleteId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

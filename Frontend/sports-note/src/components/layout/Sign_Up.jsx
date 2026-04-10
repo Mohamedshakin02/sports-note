@@ -50,13 +50,13 @@ function Sign_Up() {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
       // const res = await axios.post(
-      //   "https://sports-note-backend.onrender.com/api/auth/signup",
+      //   "https://sports-note-backend2.onrender.com/api/auth/signup",
       //   formData,
       //   { withCredentials: true }
       // );
 
       const res = await axios.post(
-        "https://sports-note-backend.onrender.com/api/auth/signup",
+        "https://sports-note-backend2.onrender.com/api/auth/signup",
         formData
       );
 
@@ -85,13 +85,13 @@ function Sign_Up() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.post("https://sports-note-backend.onrender.com/api/auth/google-login",
+      // const res = await axios.post("https://sports-note-backend2.onrender.com/api/auth/google-login",
       //   { token: response.credential },
       //   { withCredentials: true }
       // );
 
       const resGoogle = await axios.post(
-        "https://sports-note-backend.onrender.com/api/auth/google-login",
+        "https://sports-note-backend2.onrender.com/api/auth/google-login",
         { token: response.credential }
       );
 

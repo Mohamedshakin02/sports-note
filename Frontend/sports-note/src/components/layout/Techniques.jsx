@@ -129,10 +129,10 @@ function Techniques() {
         setLoading(true);
 
         // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-        // const res = await axios.get("https://sports-note-backend.onrender.com/api/techniques", { withCredentials: true });
+        // const res = await axios.get("https://sports-note-backend2.onrender.com/api/techniques", { withCredentials: true });
 
         const res = await axios.get(
-          "https://sports-note-backend.onrender.com/api/techniques",
+          "https://sports-note-backend2.onrender.com/api/techniques",
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -206,10 +206,10 @@ function Techniques() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.post("https://sports-note-backend.onrender.com/api/techniques", form, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend2.onrender.com/api/techniques", form, { withCredentials: true });
 
       const res = await axios.post(
-        "https://sports-note-backend.onrender.com/api/techniques",
+        "https://sports-note-backend2.onrender.com/api/techniques",
         form,
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -239,10 +239,10 @@ function Techniques() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.put(`https://sports-note-backend.onrender.com/api/techniques/${editForm.id}`, editForm, { withCredentials: true });
+      // const res = await axios.put(`https://sports-note-backend2.onrender.com/api/techniques/${editForm.id}`, editForm, { withCredentials: true });
 
       const res = await axios.put(
-        `https://sports-note-backend.onrender.com/api/techniques/${editForm.id}`,
+        `https://sports-note-backend2.onrender.com/api/techniques/${editForm.id}`,
         editForm,
         {
           headers: {
@@ -268,10 +268,10 @@ function Techniques() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // await axios.delete(`https://sports-note-backend.onrender.com/api/techniques/${deleteId}`, { withCredentials: true });
+      // await axios.delete(`https://sports-note-backend2.onrender.com/api/techniques/${deleteId}`, { withCredentials: true });
 
       await axios.delete(
-        `https://sports-note-backend.onrender.com/api/techniques/${deleteId}`,
+        `https://sports-note-backend2.onrender.com/api/techniques/${deleteId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

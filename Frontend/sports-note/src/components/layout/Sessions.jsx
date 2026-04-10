@@ -90,10 +90,10 @@ function Sessions() {
         setLoading(true);
 
         // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-        // const res = await axios.get("https://sports-note-backend.onrender.com/api/sessions", { withCredentials: true });
+        // const res = await axios.get("https://sports-note-backend2.onrender.com/api/sessions", { withCredentials: true });
 
         const res = await axios.get(
-          "https://sports-note-backend.onrender.com/api/sessions",
+          "https://sports-note-backend2.onrender.com/api/sessions",
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -207,10 +207,10 @@ function Sessions() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.post("https://sports-note-backend.onrender.com/api/sessions", form, { withCredentials: true });
+      // const res = await axios.post("https://sports-note-backend2.onrender.com/api/sessions", form, { withCredentials: true });
 
       const res = await axios.post(
-        "https://sports-note-backend.onrender.com/api/sessions",
+        "https://sports-note-backend2.onrender.com/api/sessions",
         form,
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -242,10 +242,10 @@ function Sessions() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // const res = await axios.put(`https://sports-note-backend.onrender.com/api/sessions/${editForm.id}`, editForm, { withCredentials: true });
+      // const res = await axios.put(`https://sports-note-backend2.onrender.com/api/sessions/${editForm.id}`, editForm, { withCredentials: true });
 
       const res = await axios.put(
-        `https://sports-note-backend.onrender.com/api/sessions/${editForm.id}`,
+        `https://sports-note-backend2.onrender.com/api/sessions/${editForm.id}`,
         editForm,
         {
           headers: {
@@ -272,10 +272,10 @@ function Sessions() {
     try {
 
       // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-      // await axios.delete(`https://sports-note-backend.onrender.com/api/sessions/${deleteId}`, { withCredentials: true });
+      // await axios.delete(`https://sports-note-backend2.onrender.com/api/sessions/${deleteId}`, { withCredentials: true });
 
       await axios.delete(
-        `https://sports-note-backend.onrender.com/api/sessions/${deleteId}`,
+        `https://sports-note-backend2.onrender.com/api/sessions/${deleteId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

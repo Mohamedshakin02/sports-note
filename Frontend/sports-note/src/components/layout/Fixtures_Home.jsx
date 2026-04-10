@@ -79,9 +79,9 @@ function Fixtures_Home() {
                 setLoading(true);
 
                 // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-                // const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", { withCredentials: true });
+                // const res = await axios.get("https://sports-note-backend2.onrender.com/api/fixtures", { withCredentials: true });
 
-                const res = await axios.get("https://sports-note-backend.onrender.com/api/fixtures", {
+                const res = await axios.get("https://sports-note-backend2.onrender.com/api/fixtures", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -144,10 +144,10 @@ function Fixtures_Home() {
         try {
 
             // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-            // const res = await axios.post("https://sports-note-backend.onrender.com/api/fixtures", form, { withCredentials: true });
+            // const res = await axios.post("https://sports-note-backend2.onrender.com/api/fixtures", form, { withCredentials: true });
 
             const res = await axios.post(
-                "https://sports-note-backend.onrender.com/api/fixtures",
+                "https://sports-note-backend2.onrender.com/api/fixtures",
                 form,
                 {
                     headers: { Authorization: `Bearer ${token}` }
@@ -185,10 +185,10 @@ function Fixtures_Home() {
         try {
 
             // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-            // const res = await axios.put(`https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
+            // const res = await axios.put(`https://sports-note-backend2.onrender.com/api/fixtures/${editForm.id}`, editForm, { withCredentials: true });
 
             const res = await axios.put(
-                `https://sports-note-backend.onrender.com/api/fixtures/${editForm.id}`,
+                `https://sports-note-backend2.onrender.com/api/fixtures/${editForm.id}`,
                 editForm,
                 {
                     headers: {
@@ -221,10 +221,10 @@ function Fixtures_Home() {
         try {
 
             // This code is commented out to switch from cookies auth auth to token/localStorage-based auth
-            // await axios.delete(`https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`, { withCredentials: true });
+            // await axios.delete(`https://sports-note-backend2.onrender.com/api/fixtures/${deleteId}`, { withCredentials: true });
 
             await axios.delete(
-                `https://sports-note-backend.onrender.com/api/fixtures/${deleteId}`,
+                `https://sports-note-backend2.onrender.com/api/fixtures/${deleteId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
