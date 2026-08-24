@@ -247,15 +247,22 @@ body {
 .signup-section .signup-container .signup-form form .sign-up .link {
   color: #FCF0D6;
 }
-.signup-section .signup-container .signup-form form .google-button {
-  background-color: white;
-  color: black;
-  font-weight: 400;
-  border: 1px solid black;
-}
-.signup-section .signup-container .signup-form form #g_id_signin div {
+.signup-section .signup-container .signup-form form .custom-google-btn {
+  width: 100%;
+  background-color: #ffffff;
+  color: #3c4043;
+  padding: 0.875rem 0;
+  border-radius: 6px;
+  font-size: 0.875rem;
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+.signup-section .signup-container .signup-form form .custom-google-btn .google-icon {
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .toast-container {

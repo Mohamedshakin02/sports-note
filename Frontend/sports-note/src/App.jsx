@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import MomentsPage from './pages/MomentsPage';
 import HomePage from './pages/HomePage';
 import FixturesPage from './pages/FixturesPage';
@@ -18,7 +19,10 @@ import ProtectedAdminRoute from "./components/admin/ProtectedAdminRoute";
 
 function App() {
   return (
-    // BrowserRouter is used here to enable routing in react js (it will redirect the page without actually loading)
+
+    <GoogleOAuthProvider clientId="820918226908-3ovb2eiblurbg5h5ooiu0o9rco7r5cb4.apps.googleusercontent.com">
+
+    {/* BrowserRouter is used here to enable routing in react js (it will redirect the page without actually loading) */}
     <BrowserRouter>
 
       {/* ScrollToTop makes the page scroll to top whenever we navigate to a new route */}
@@ -77,6 +81,9 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
+
+    </GoogleOAuthProvider>
+    
   )
 }
 
