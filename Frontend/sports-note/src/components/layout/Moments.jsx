@@ -392,7 +392,7 @@ function Moments() {
                                         </div>
                                     )}
                                 </div>
-                                {moment.image || moment.imageUrl ? <img className="img-fluid" src={moment.image || moment.imageUrl} alt={moment.title} /> : <div className="no-image-inner"><img src={noImage} alt="No image" /></div>}
+                                {moment.image || moment.imageUrl ? <img loading="lazy" className="img-fluid" src={moment.image || moment.imageUrl} alt={moment.title} /> : <div className="no-image-inner"><img loading="lazy" src={noImage} alt="No image" /></div>}
                             </div>
 
                             {/* moment details */}

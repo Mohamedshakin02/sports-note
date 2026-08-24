@@ -308,7 +308,7 @@ function Intro() {
                   data-bs-toggle="modal"
                   data-bs-target="#infoModal">
                   {quote.image || quote.imageUrl ? (
-                    <img src={quote.image || quote.imageUrl} alt={quote.author} className="quote-img img-fluid" />
+                    <img loading="lazy" src={quote.image || quote.imageUrl} alt={quote.author} className="quote-img img-fluid" />
                   ) : (
                     <p className="author m-0 p-0">{getInitials(quote.author)}</p>
                   )}
@@ -383,7 +383,7 @@ function Intro() {
                   <div className="quote-box d-flex flex-column ">
                     <div className="image-container mb-3 me-2 me-sm-4 d-flex align-items-center">
                       {selectedItem.image || selectedItem.imageUrl ? (
-                        <img src={selectedItem.image || selectedItem.imageUrl} alt={selectedItem.author} className="quote-img img-fluid" />
+                        <img loading="lazy" src={selectedItem.image || selectedItem.imageUrl} alt={selectedItem.author} className="quote-img img-fluid" />
                       ) : (
                         <i className="bi bi-person-fill display-3"></i>
                       )}

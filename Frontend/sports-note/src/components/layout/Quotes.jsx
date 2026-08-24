@@ -322,7 +322,7 @@ function Quotes() {
             <div className="quote-box d-flex p-3 mb-3" key={index}>
               {/* IMAGE */}
               <div className="image-container me-2 me-sm-4 d-flex justify-content-center align-items-center">
-                {quote.image || quote.imageUrl ? <img src={quote.image || quote.imageUrl} alt={quote.author} className="img-fluid" /> : <i className="bi bi-person-fill display-3 text-secondary"></i>}
+                {quote.image || quote.imageUrl ? <img loading="lazy" src={quote.image || quote.imageUrl} alt={quote.author} className="img-fluid" /> : <i className="bi bi-person-fill display-3 text-secondary"></i>}
               </div>
 
               {/* QUOTE ICON */}

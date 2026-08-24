@@ -34,7 +34,7 @@ function Features() {
                     <div className='feature-box d-flex flex-column justify-content-between ps-4 py-3'>
                         <div className='box-content mb-4'>
                             <div className='logo mb-4'>
-                                <img className='img-fluid' src={moments} alt="" />
+                                <img loading="lazy" className='img-fluid' src={moments} alt="" />
                             </div>
                             <h1 className='m-0 p-0 fs-2 mb-3'>Moments</h1>
                             <p className='m-0 p-0 fs-5'>Record your unforgettable sports moments and relive the highlights that define your journey.</p>
@@ -48,7 +48,7 @@ function Features() {
                     <div className='feature-box d-flex flex-column justify-content-between ps-4 py-3'>
                         <div className='box-content mb-4'>
                             <div className='logo mb-4'>
-                                <img className='img-fluid' src={fixtures} alt="" />
+                                <img loading="lazy" className='img-fluid' src={fixtures} alt="" />
                             </div>
                             <h1 className='m-0 p-0 fs-2 mb-3'>Fixtures</h1>
                             <p className='m-0 p-0 fs-5'>Add your upcoming match fixtures and stay prepared for every game that defines your passion.</p>
@@ -62,7 +62,7 @@ function Features() {
                     <div className='feature-box d-flex flex-column justify-content-between ps-4 py-3'>
                         <div className='box-content mb-4'>
                             <div className='logo mb-4'>
-                                <img className='img-fluid' src={quotes} alt="" />
+                                <img loading="lazy" className='img-fluid' src={quotes} alt="" />
                             </div>
                             <h1 className='m-0 p-0 fs-2 mb-3'>Quotes</h1>
                             <p className='m-0 p-0 fs-5'>Save your favourite player quotes and rediscover the words that keep your spirit alive.</p>
@@ -76,7 +76,7 @@ function Features() {
                     <div className='feature-box d-flex flex-column justify-content-between ps-4 py-3'>
                         <div className='box-content mb-4'>
                             <div className='logo mb-4'>
-                                <img className='img-fluid' src={techniques} alt="" />
+                                <img loading="lazy" className='img-fluid' src={techniques} alt="" />
                             </div>
                             <h1 className='m-0 p-0 fs-2 mb-3'>Techniques</h1>
                             <p className='m-0 p-0 fs-5'>Write your step-by-step techniques and master the moves that improve your overall game.</p>
@@ -90,7 +90,7 @@ function Features() {
                     <div className='feature-box d-flex flex-column justify-content-between ps-4'>
                         <div className='box-content mb-4'>
                             <div className='logo mb-4'>
-                                <img className='img-fluid' src={sessions} alt="" />
+                                <img loading="lazy" className='img-fluid' src={sessions} alt="" />
                             </div>
                             <h1 className='m-0 p-0 fs-2 mb-3'>Sessions</h1>
                             <p className='m-0 p-0 fs-5'>Add your training sessions to keep a record of your sports practice and improve your performance.</p>

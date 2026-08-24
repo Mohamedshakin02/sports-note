@@ -349,7 +349,7 @@ function Quotes_Home() {
                 renderBullet: (index, className) => {
                   const author = quotesList[index].author;
                   const image = quotesList[index].image || quotesList[index].imageUrl;
-                  if (image) return `<span class="${className} custom-bullet"><img src="${image}" alt="${author}" class="bullet-image"/></span>`;
+                  if (image) return `<span class="${className} custom-bullet"><img loading="lazy" src="${image}" alt="${author}" class="bullet-image"/></span>`;
                   return `<span class="${className} custom-bullet initials">${getInitials(author)}</span>`;
                 }
               }}
@@ -364,7 +364,7 @@ function Quotes_Home() {
                 <SwiperSlide key={index}>
                   <div className="quote-box d-flex p-3 px-4">
                     <div className="image-container me-2 me-sm-4 d-flex justify-content-center align-items-center">
-                      {item.image || item.imageUrl ? <img src={item.image || item.imageUrl} alt={item.author} className="img-fluid" /> : <i className="bi bi-person-fill display-3"></i>}
+                      {item.image || item.imageUrl ? <img loading="lazy" src={item.image || item.imageUrl} alt={item.author} className="img-fluid" /> : <i className="bi bi-person-fill display-3"></i>}
                     </div>
                     <div className="quote-container"><i className="bi bi-quote display-3"></i></div>
                     <div className="text-container h-100 p-2 d-flex flex-column justify-content-between">

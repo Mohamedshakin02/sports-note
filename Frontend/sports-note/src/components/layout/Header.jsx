@@ -168,11 +168,11 @@ function Header() {
                     </button>
 
                     <ul className="list-unstyled mt-5 gap-3 mx-3">
-                        <li><Link to="/moments" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img src={moments} alt="" className="mb-1" /><span>Moments</span></Link></li>
-                        <li><Link to="/fixtures" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img src={fixtures} alt="" className="mb-1" /><span>Fixtures</span></Link></li>
-                        <li><Link to="/quotes" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img src={quotes} alt="" className="mb-1" /><span>Quotes</span></Link></li>
-                        <li><Link to="/techniques" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img src={techniques} alt="" className="mb-1" /><span>Techniques</span></Link></li>
-                        <li><Link to="/sessions" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img src={sessions} alt="" className="mb-1" /><span>Sessions</span></Link></li>
+                        <li><Link to="/moments" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img loading="lazy" src={moments} alt="" className="mb-1" /><span>Moments</span></Link></li>
+                        <li><Link to="/fixtures" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img loading="lazy" src={fixtures} alt="" className="mb-1" /><span>Fixtures</span></Link></li>
+                        <li><Link to="/quotes" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img loading="lazy" src={quotes} alt="" className="mb-1" /><span>Quotes</span></Link></li>
+                        <li><Link to="/techniques" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img loading="lazy" src={techniques} alt="" className="mb-1" /><span>Techniques</span></Link></li>
+                        <li><Link to="/sessions" className="text-decoration-none text-white d-flex flex-column align-items-center justify-content-center h-100" onClick={() => setMenuOpen(false)}><img loading="lazy" src={sessions} alt="" className="mb-1" /><span>Sessions</span></Link></li>
 
                     </ul>
                 </div>

@@ -491,10 +491,10 @@ function Moments_Home() {
                     <span className="sport-badge">{moment.sport}</span>
 
                     {moment.image || moment.imageUrl ? (
-                      <img src={moment.image || moment.imageUrl} alt={moment.title} />
+                      <img loading="lazy" src={moment.image || moment.imageUrl} alt={moment.title} />
                     ) : (
                       <div className="no-image-inner">
-                        <img src={noImage} className="img-fluid" alt="No image" />
+                        <img loading="lazy" src={noImage} className="img-fluid" alt="No image" />
                       </div>
                     )}
                   </div>
